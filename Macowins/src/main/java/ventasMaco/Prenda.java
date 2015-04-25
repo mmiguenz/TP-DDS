@@ -5,6 +5,7 @@ public abstract  class Prenda {
 	private double precioBase;
 	private Origen origen;
 	private static double  ValorX=0;
+	private Marca marca;
 	
 	
 	
@@ -45,11 +46,13 @@ public abstract  class Prenda {
 		Prenda.ValorX = valorX;
 	}
 	
-	
+	public double precioOriginal(){
+		return precioBase;
+	}
 	
 	public double precioFinal(){
 		
-		return (ValorX + precioBase ) * origen.getTasaImportacion();
+		return (ValorX + this.precioOriginal() ) * origen.getTasaImportacion() * marca.coefDeLaMarca(this);
 		
 	}
 

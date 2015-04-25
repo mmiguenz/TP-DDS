@@ -44,9 +44,7 @@ public class Negocio {
 		return  ventas.stream()
 				.filter( venta -> venta.getFecha().equals(fecha))
 				.map(Venta::total)
-				.reduce(
-							0.0,
-							(a,b) -> a + b ) ;
+				.reduce(0.0,(a,b) -> a + b ) ;
 		
 	
 		
