@@ -1,13 +1,12 @@
-package VentasMaco;
+package ventasMaco;
 
-import java.util.Collection;
-import java.util.ArrayList;
+import java.util.*;
 import java.time.LocalDate;
 
 
 public class Negocio {
 	
-	private Collection<Venta> ventas;
+	private List<Venta> ventas;
 	
 
 	public Negocio(){
@@ -25,7 +24,7 @@ public class Negocio {
 
 
 
-	public void setVentas(Collection<Venta> ventas) {
+	public void setVentas(List<Venta> ventas) {
 		this.ventas = ventas;
 	}
 
@@ -37,33 +36,26 @@ public class Negocio {
 	}
 	
 	
-	private double totalPorVenta(Venta venta){
+
+	
+	
+	public  double calcularGananciasTotalesPorFecha(LocalDate fecha){
+
+		return  ventas.stream()
+				.filter( venta -> venta.getFecha().equals(fecha))
+				.map(Venta::total)
+				.reduce(
+							0.0,
+							(a,b) -> a + b ) ;
 		
-		return  venta.total();
-		
+	
 		
 	}
 	
 	
-	public  double calcularGananciasTotales(LocalDate fecha){
+	
+	
 		
-		double acum=0;
-		
-		for (Venta venta: ventas){
-			
-			if (venta.getFecha().equals(fecha)){
-				
-				acum+= totalPorVenta(venta);
-				
-			}
-			
-		}
-		
-			
-		return acum;
-		
-		
-		
-	}
+	
 	
 }

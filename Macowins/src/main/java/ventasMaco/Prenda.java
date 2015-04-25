@@ -1,4 +1,4 @@
-package VentasMaco;
+package ventasMaco;
 
 public abstract  class Prenda {
 	
@@ -8,7 +8,7 @@ public abstract  class Prenda {
 	
 	
 	
-	public Prenda (double precioBase, Origen Origen){
+	public Prenda (double precioBase, Origen origen){
 		
 		setOrigen(origen);
 		setPrecioBase(precioBase);

@@ -1,4 +1,4 @@
-package VentasMaco;
+package ventasMaco;
 
 import java.time.LocalDate;
 
