@@ -4,7 +4,7 @@ public abstract  class Prenda {
 	
 	private double precioBase;
 	private Origen origen;
-	private static double valorX;
+	private static double  ValorX=0;
 	
 	
 	
@@ -37,19 +37,19 @@ public abstract  class Prenda {
 
 
 	public static double getValorX() {
-		return valorX;
+		return ValorX;
 	}
 
 
 	public static void setValorX(double valorX) {
-		Prenda.valorX = valorX;
+		Prenda.ValorX = valorX;
 	}
 	
 	
 	
 	public double precioFinal(){
 		
-		return (valorX + precioBase ) * origen.getTasaImportacion();
+		return (ValorX + precioBase ) * origen.getTasaImportacion();
 		
 	}
 
