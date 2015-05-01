@@ -16,4 +16,18 @@ public class TestUsuario {
 				
 	}
 
+
+
+
+
+	@Test
+	public void testIMCPeso66Estatura172()
+	{
+		usuario = new Usuario(66.0,1.72);
+		assertEquals(22.30,usuario.indiceMasaCorporal(),0.1);
+		
+		
+		
+	}
+	
 }
