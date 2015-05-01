@@ -16,7 +16,12 @@ public class TestUsuario {
 				
 	}
 
-
+	@Test
+	public void testIMCPPesoYEstaturaF()
+	{
+		usuario = new Usuario(73.4, 1.74);
+		assertEquals(24.24, usuario.indiceMasaCorporal(), 0.01);
+	}
 
 
 
