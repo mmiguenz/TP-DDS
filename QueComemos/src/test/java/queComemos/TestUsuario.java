@@ -41,5 +41,6 @@ public class TestUsuario {
 	{
 		usuario = new Usuario(64.0,1.69);
 		assertEquals(22.40, usuario.indiceMasaCorporal(),0.1);
+	}
 	
 }
