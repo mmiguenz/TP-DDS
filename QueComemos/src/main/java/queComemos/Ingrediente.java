@@ -1,6 +1,6 @@
 package queComemos;
 
-public abstract  class Ingrediente {
+public   class Ingrediente {
 
 	private String nombre;
 	private Receta subReceta;
@@ -14,12 +14,7 @@ public abstract  class Ingrediente {
 		
 		
 	}
-	
-	public String esInadecuadoPara()
-	{
-		return "";
-		
-	}
+
 
 	public String getNombre() {
 		return nombre;

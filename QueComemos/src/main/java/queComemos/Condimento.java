@@ -1,6 +1,6 @@
 package queComemos;
 
-public class Condimento {
+public  class Condimento {
 	protected String nombre ;
 	protected double cantidad;
 	protected String medida;
