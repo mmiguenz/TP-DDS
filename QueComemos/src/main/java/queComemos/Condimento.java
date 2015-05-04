@@ -1,9 +1,10 @@
 package queComemos;
 
 public  class Condimento {
-	protected String nombre ;
-	protected double cantidad;
-	protected String medida;
+	
+	private String nombre ;
+	private double cantidad;
+	private String medida;
 
 
 
