@@ -28,15 +28,40 @@ public   class Ingrediente {
 		this.nombre = nombre;
 	}
 
-	public Receta getTipoIngrediente() {
+
+	
+	
+	
+	public String getMedida() {
+		return medida;
+	}
+
+
+	public void setMedida(String medida) {
+		this.medida = medida;
+	}
+
+
+	public double getCantidad() {
+		return cantidad;
+	}
+
+
+	public void setCantidad(double cantidad) {
+		this.cantidad = cantidad;
+	}
+
+
+	public Receta getSubReceta() {
 		return subReceta;
 	}
 
-	public void setTipoIngrediente(Receta tipoIngrediente) {
-		this.subReceta = tipoIngrediente;
+
+	public void setSubReceta(Receta subReceta) {
+		this.subReceta = subReceta;
 	}
-	
-	
+
+
 	public boolean contiene(String nombreIngrediente)
 	{
 		if (subReceta ==null)
@@ -48,11 +73,7 @@ public   class Ingrediente {
 	}
 	
 	
-	public String inadecuadoPara()
-	{
-		
-		return "Nadie";
-	}
+	
 
 }
 

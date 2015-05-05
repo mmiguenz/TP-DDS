@@ -33,6 +33,42 @@ public class Preparacion {
 	}
 	
 	
+	public List<Ingrediente> getIngredientes() {
+		return ingredientes;
+	}
+
+
+
+	public void setIngredientes(List<Ingrediente> ingredientes) {
+		this.ingredientes = ingredientes;
+	}
+
+
+
+	public List<Condimento> getCondimentos() {
+		return condimentos;
+	}
+
+
+
+	public void setCondimentos(List<Condimento> condimentos) {
+		this.condimentos = condimentos;
+	}
+
+
+
+	public List<String> getExplicacion() {
+		return explicacion;
+	}
+
+
+
+	public void setExplicacion(List<String> explicacion) {
+		this.explicacion = explicacion;
+	}
+
+
+
 	public boolean isOk()
 	{
 	
