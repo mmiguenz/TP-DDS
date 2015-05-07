@@ -2,10 +2,10 @@ package queComemos;
 
 import java.util.Set;
 
-public class CondicionPreexistente {
+public abstract class CondicionPreexistente {
 	
-	private String nombre; 
-	private Set<String> comidasProhibidas;
+	protected String nombre; 
+	protected Set<String> comidasProhibidas;
 
 	
 	
@@ -25,6 +25,22 @@ public class CondicionPreexistente {
 	}
 	public void setComidasProhibidas(Set<String> comidasProhibidas) {
 		this.comidasProhibidas = comidasProhibidas;
+	}
+	
+	
+	public boolean subSanaCondicion(Usuario usuario)
+	{
+		return false;
+		
+		
+	}
+	
+	public static boolean esRecomendable(double calorias,Receta subReceta, Preparacion preparacion)
+	{
+		
+		return true ; 
+		
+		
 	}
 	
 	

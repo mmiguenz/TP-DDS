@@ -1,23 +1,22 @@
 package queComemos;
 
-import java.util.List;
+import java.util.Set;
 
 public class Preparacion {
 
-	private List<Ingrediente> ingredientes;
-	private List<Condimento> condimentos;
-	private List<String> explicacion;
+	private Set<Ingrediente> ingredientes;
+	private Set<Ingrediente> condimentos;
+	private Set<String> explicacion;
 	
 	
 	
-	public Preparacion(List<Ingrediente> ingredientes,List<Condimento> condimentos,List<String> explicacion)
+	public Preparacion(Set<Ingrediente> ingredientes, Set<Ingrediente> condimentos,Set<String> explicacion)
 	{
 		
 		this.ingredientes=ingredientes;
-		this.condimentos=condimentos;
 		this.explicacion=explicacion;
-		
-		
+		this.condimentos =condimentos;
+			
 		
 		
 	}
@@ -27,51 +26,49 @@ public class Preparacion {
 	public boolean contiene(String nombreIngrediente)
 	{
 		return  (ingredientes.stream()
-				.filter(ingrediente -> ingrediente.contiene(nombreIngrediente))).count() >0;
+				.filter(ingrediente -> ingrediente.contiene(nombreIngrediente))).count() >0
+				|| (condimentos.stream()
+				    .filter(condimento -> condimento.contiene(nombreIngrediente))).count() >0;
 		
 		
 	}
-	
-	
-	public List<Ingrediente> getIngredientes() {
+
+
+
+	public Set<Ingrediente> getIngredientes() {
 		return ingredientes;
 	}
 
 
 
-	public void setIngredientes(List<Ingrediente> ingredientes) {
+	public void setIngredientes(Set<Ingrediente> ingredientes) {
 		this.ingredientes = ingredientes;
 	}
 
 
 
-	public List<Condimento> getCondimentos() {
+	public Set<Ingrediente> getCondimentos() {
 		return condimentos;
 	}
 
 
 
-	public void setCondimentos(List<Condimento> condimentos) {
+	public void setCondimentos(Set<Ingrediente> condimentos) {
 		this.condimentos = condimentos;
 	}
 
 
 
-	public List<String> getExplicacion() {
+	public Set<String> getExplicacion() {
 		return explicacion;
 	}
 
 
 
-	public void setExplicacion(List<String> explicacion) {
+	public void setExplicacion(Set<String> explicacion) {
 		this.explicacion = explicacion;
 	}
-
-
-
-	public boolean isOk()
-	{
 	
-		return ingredientes.size() >0;
-	}
+	
+	
 }

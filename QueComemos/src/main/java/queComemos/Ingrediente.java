@@ -1,20 +1,17 @@
 package queComemos;
 
-public   class Ingrediente {
+public   class Ingrediente  {
 
-	private String nombre;
-	private String medida;
-	private double cantidad;
-	private Receta subReceta;
-
-	
+		private String nombre ;
+		private String medida;
+		private double cantidad;
 	
 	public Ingrediente(String nombre,String medida,double cantidad, Receta receta)
 	{
 		this.nombre=nombre;
 		this.medida=medida;
 		this.cantidad=cantidad;
-		this.subReceta=receta;
+		
 		
 		
 	}
@@ -52,22 +49,17 @@ public   class Ingrediente {
 	}
 
 
-	public Receta getSubReceta() {
-		return subReceta;
-	}
 
 
-	public void setSubReceta(Receta subReceta) {
-		this.subReceta = subReceta;
-	}
+
 
 
 	public boolean contiene(String nombreIngrediente)
 	{
-		if (subReceta ==null)
+	
 				return nombre ==nombreIngrediente;
-		else
-			return subReceta.contiene(nombreIngrediente);
+	
+	
 		
 		
 	}
