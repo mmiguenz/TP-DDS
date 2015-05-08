@@ -140,6 +140,15 @@ public class TestUsuario {
 		
 	}
 	
+	@Test
+	public void testUsuarioDiabeticoNoSigueRutinaSaludable(){
+		Set<CondicionPreexistente> condiciones= new HashSet<CondicionPreexistente>();
+		condiciones.add(new Diabetico("Diabetico",comidasProhibidas));
+		usuario= new Usuario("Pedro", "Masculino", LocalDate.parse("1990-01-01"),60.0,1.7, "Leve",preferenciaAlimenticiaNoSaludable, condiciones, null);
+		assertFalse(usuario.sigueRutinaSaludable());
+
+	}
+	
 	
 	
 
