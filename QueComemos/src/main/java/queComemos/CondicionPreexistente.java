@@ -44,5 +44,12 @@ public abstract class CondicionPreexistente {
 	}
 	
 	
+	public  boolean validar(Usuario usr)
+	{
+		
+		return true ;
+	}
+	
+	
 
 }

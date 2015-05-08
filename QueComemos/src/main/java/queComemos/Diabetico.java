@@ -27,4 +27,11 @@ public class Diabetico extends CondicionPreexistente {
 
 }
 	
+	public boolean validar(Usuario usr)
+	{
+		return usr.getSexo() !=null && usr.getPreferenciaAlimenticia() != null;
+		
+		
+	}
+	
 }

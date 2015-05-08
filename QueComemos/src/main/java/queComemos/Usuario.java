@@ -9,8 +9,8 @@ public class Usuario{
 	private String nombre;
 	private String sexo ; 
 	private LocalDate fechaNacimiento;
-	private double peso;
-	private double estatura;
+	private Double peso;
+	private Double estatura;
 	private String rutina;
 	private PreferenciaAlimenticia preferenciaAlimenticia;
 	private Set<CondicionPreexistente> condicionesPreexistentes;
@@ -20,7 +20,7 @@ public class Usuario{
 	
 	
 	
-	public Usuario(String nombre,String sexo,LocalDate fechaNacimiento,double peso,double estatura
+	public Usuario(String nombre,String sexo,LocalDate fechaNacimiento,Double peso,Double estatura
 					,String rutina,PreferenciaAlimenticia preferenciaAlimenticia,Set<CondicionPreexistente> condicionesPreexistentes
 					,Set<Receta> misRecetas)
 		{
@@ -82,19 +82,19 @@ public class Usuario{
 	}
 
 
-	public double getPeso() {
+	public Double getPeso() {
 		return peso;
 	}
 
-	public void setPeso(double peso) {
+	public void setPeso(Double peso) {
 		this.peso = peso;
 	}
 
-	public double getEstatura() {
+	public Double getEstatura() {
 		return estatura;
 	}
 
-	public void setEstatura(double estatura) {
+	public void setEstatura(Double estatura) {
 		this.estatura = estatura;
 	}
 	
@@ -128,7 +128,7 @@ public class Usuario{
 
 	
 	
-	public double indiceMasaCorporal() {
+	public Double indiceMasaCorporal() {
 		 return this.peso/(this.estatura*this.estatura);
 	}
 	
@@ -150,5 +150,71 @@ public class Usuario{
 			return aux;
 		}
 	}
+	
+	
+	public boolean validar()
+	{
+		return this.tieneCamposObligatorios(this) && this.nombre.length()>4 && this.validaCondicionesPreexistentes(this);
+		
+		
+		
+	}
+	
+	private boolean tieneCamposObligatorios(Usuario usr)
+	{
+		
+		return usr.nombre!=null && usr.rutina!=null && usr.peso!=null 
+				&& usr.estatura !=null && usr.fechaNacimiento!=null;
+		
+	}
+	
+	private boolean validaCondicionesPreexistentes(Usuario usr)
+	{
+		if (usr.condicionesPreexistentes==null)
+			return true;
+		else
+		return 
+				usr.condicionesPreexistentes.size()  ==  usr.condicionesPreexistentes.stream()
+															.filter(condicion -> condicion.validar(usr))
+															.count();
+		
+		
+	}
+	
+	
+	
+	public void agregarReceta(Receta receta)
+	{
+		
+		if (receta.validar())
+		{
+			misRecetas.add(receta);
+			
+			
+		}
+		
+	}
+		
+		
+		public void modificarUnaReceta(Receta recetaModificada )
+		{
+					
+					misRecetas.removeIf(receta -> receta.getNombre() == recetaModificada.getNombre());
+					this.agregarReceta(recetaModificada);
+				
+					
+				
+		}
+			
+			
+		
+		public boolean puedeVer(Receta receta)
+		{
+			return misRecetas.contains(receta) || QueComemosApp.recetas.contains(receta);
+			
+			
+		}
+	
+	
 
 }

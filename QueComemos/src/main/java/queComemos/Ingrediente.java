@@ -6,7 +6,7 @@ public   class Ingrediente  {
 		private String medida;
 		private double cantidad;
 	
-	public Ingrediente(String nombre,String medida,double cantidad, Receta receta)
+	public Ingrediente(String nombre,String medida,double cantidad)
 	{
 		this.nombre=nombre;
 		this.medida=medida;

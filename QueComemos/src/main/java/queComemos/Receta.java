@@ -1,6 +1,7 @@
 package queComemos;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Stream;
@@ -21,7 +22,7 @@ public class Receta {
 
 	public Receta(String nombre,double calorias, Preparacion preparacion,String dificultad, String temporada,Receta subReceta)
 	{
-		try{
+		
 			
 				
 								
@@ -36,18 +37,81 @@ public class Receta {
 				
 			
 			
-			
-		}
-		
-		catch (Exception ex){
-			
-			
-		}
-		
+	
 			
 		
 	}
 	
+
+	public String getNombre() {
+		return nombre;
+	}
+
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+
+	public double getCalorias() {
+		return calorias;
+	}
+
+
+	public void setCalorias(double calorias) {
+		this.calorias = calorias;
+	}
+
+
+	public Preparacion getPreparacion() {
+		return preparacion;
+	}
+
+
+	public void setPreparacion(Preparacion preparacion) {
+		this.preparacion = preparacion;
+	}
+
+
+	public String getDificultad() {
+		return dificultad;
+	}
+
+
+	public void setDificultad(String dificultad) {
+		this.dificultad = dificultad;
+	}
+
+
+	public String getTemporada() {
+		return temporada;
+	}
+
+
+	public void setTemporada(String temporada) {
+		this.temporada = temporada;
+	}
+
+
+	public Receta getSubReceta() {
+		return subReceta;
+	}
+
+
+	public void setSubReceta(Receta subReceta) {
+		this.subReceta = subReceta;
+	}
+
+
+	public Set<String> getInadecuados() {
+		return inadecuados;
+	}
+
+
+	public void setInadecuados(Set<String> inadecuados) {
+		this.inadecuados = inadecuados;
+	}
+
 
 	public boolean contiene(String nombreIngrediente)
 	{
@@ -61,7 +125,7 @@ public class Receta {
 		
 	}
 	
-	public boolean contieneAlguna(List<String> comidas )
+	public boolean contieneAlguna(Set<String> comidas )
 	{
 		
 		
@@ -97,11 +161,11 @@ public class Receta {
 	private Set<String> calcularInadecuados(Receta subReceta,
 			Preparacion preparacion) {
 	
-		Set<String> inadecuados = (Set<String>) new ArrayList<String>();
+		Set<String> inadecuados = new HashSet<String>();
 		
 				
 		if (!(Hipertenso.esRecomendable(subReceta,preparacion)))
-			inadecuados.add("Hipertensos");
+			inadecuados.add("Hipertenso");
 		
 		
 		if (!(Diabetico.esRecomendable(calorias,subReceta, preparacion)))
@@ -117,6 +181,13 @@ public class Receta {
 		return inadecuados;
 	}
 
+	
+	public boolean validar()
+	{
+		return preparacion.validar() && (calorias>=10 && calorias <=5000);
+		
+		
+	}
 	
 	
 }

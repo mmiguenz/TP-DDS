@@ -4,7 +4,7 @@ import java.util.Set;
 
 public class QueComemosApp {
 	
-	private Set<Usuario> usuarios ; 
-	private Set<Receta> recetas;
+	public static Set<Usuario> usuarios ; 
+	public static Set<Receta> recetas;
 
 }

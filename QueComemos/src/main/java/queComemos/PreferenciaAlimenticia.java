@@ -35,7 +35,20 @@ public class PreferenciaAlimenticia {
 	}
 	
 	
+	public boolean leGustaAlguna(Set<String> preferencias)
+	{
+		return preferencias.stream().filter(unaPreferencia -> this.leGusta(unaPreferencia)).count() >0;
+		
+		
+	}
 	
+	
+	private boolean leGusta(String preferencia)
+	{
+		return comidasQueGusta.stream().filter(unaComida ->unaComida==preferencia).count()>0;
+		
+		
+	}
 	
 	
 

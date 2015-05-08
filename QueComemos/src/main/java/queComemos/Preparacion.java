@@ -23,15 +23,6 @@ public class Preparacion {
 	
 	
 	
-	public boolean contiene(String nombreIngrediente)
-	{
-		return  (ingredientes.stream()
-				.filter(ingrediente -> ingrediente.contiene(nombreIngrediente))).count() >0
-				|| (condimentos.stream()
-				    .filter(condimento -> condimento.contiene(nombreIngrediente))).count() >0;
-		
-		
-	}
 
 
 
@@ -69,6 +60,23 @@ public class Preparacion {
 		this.explicacion = explicacion;
 	}
 	
+
+	public boolean contiene(String nombreIngrediente)
+	{
+		return  (ingredientes.stream()
+				.filter(ingrediente -> ingrediente.contiene(nombreIngrediente))).count() >0
+				|| (condimentos.stream()
+				    .filter(condimento -> condimento.contiene(nombreIngrediente))).count() >0;
+		
+		
+	}
+	
+	public boolean validar()
+	{
+		return ingredientes.size() >0;
+		
+		
+	}
 	
 	
 }

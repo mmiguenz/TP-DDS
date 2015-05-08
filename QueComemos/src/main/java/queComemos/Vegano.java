@@ -1,5 +1,6 @@
 package queComemos;
 
+import java.util.HashSet;
 import java.util.Set;
 
 public class Vegano extends CondicionPreexistente {
@@ -30,5 +31,18 @@ public class Vegano extends CondicionPreexistente {
 	
 
 }
+	
+	public boolean validar(Usuario usr)
+	{
+		Set<String>preferenciasProhibidas= new HashSet<String>();
+		preferenciasProhibidas.add("Pollo");
+		preferenciasProhibidas.add("Carne");
+		preferenciasProhibidas.add("Chivito");
+		preferenciasProhibidas.add("Chori");
+		
+		return usr.getPreferenciaAlimenticia().leGustaAlguna(preferenciasProhibidas);
+		
+		
+	}
 	
 }
