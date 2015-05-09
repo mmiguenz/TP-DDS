@@ -154,10 +154,8 @@ public class Usuario{
 	
 	public boolean validar()
 	{
-		return this.tieneCamposObligatorios(this) && this.nombre.length()>4 && this.validaCondicionesPreexistentes(this);
-		
-		
-		
+		return this.tieneCamposObligatorios(this) && this.nombre.length()>4 && this.fechaNacimiento.isBefore(LocalDate.now()) && this.validaCondicionesPreexistentes(this);
+				
 	}
 	
 	private boolean tieneCamposObligatorios(Usuario usr)

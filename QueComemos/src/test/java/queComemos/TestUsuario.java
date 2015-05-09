@@ -149,6 +149,13 @@ public class TestUsuario {
 
 	}
 	
+	@Test
+	public void testUsuarioSinFechaDeNacimiento(){
+		usuario= new Usuario("Pedro", "Masculino", LocalDate.parse("2016-01-01"),60.0,1.7, "Leve",preferenciaAlimenticiaNoSaludable, null, null);
+		assertFalse(usuario.validar());
+
+	}
+	
 	
 	
 
