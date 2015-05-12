@@ -140,7 +140,7 @@ public class Usuario {
 
 	}
 
-	public boolean validaCondicionesPreexistentes(Usuario usr) {
+	/*debe ser private, lo cambie ara hacer los test*/public boolean validaCondicionesPreexistentes(Usuario usr) {
 		if (usr.condicionesPreexistentes == null)
 			return true;
 		else
