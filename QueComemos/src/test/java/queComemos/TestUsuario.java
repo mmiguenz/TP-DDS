@@ -150,6 +150,64 @@ public class TestUsuario {
 	}
 	
 	@Test
+	public void testUsuarioDiabeticoNoValida(){
+		Set<CondicionPreexistente> condiciones= new HashSet<CondicionPreexistente>();
+		condiciones.add(new Diabetico("Diabetico",comidasProhibidas));
+		usuario= new Usuario("Pedro", null, LocalDate.parse("1990-01-01"),60.0,1.7, "Leve",preferenciaAlimenticiaNoSaludable, condiciones, null);
+		assertFalse(usuario.validaCondicionesPreexistentes(usuario));
+
+	}
+	
+	@Test
+	public void testUsuarioDiabeticoSiValida(){
+		Set<CondicionPreexistente> condiciones= new HashSet<CondicionPreexistente>();
+		condiciones.add(new Diabetico("Diabetico",comidasProhibidas));
+		usuario= new Usuario("Pedro", "Masculino", LocalDate.parse("1990-01-01"),60.0,1.7, "Leve",preferenciaAlimenticiaNoSaludable, condiciones, null);
+		assertTrue(usuario.validaCondicionesPreexistentes(usuario));
+
+	}
+	@Test
+	public void testUsuarioCeliacoSiValida(){
+		Set<CondicionPreexistente> condiciones= new HashSet<CondicionPreexistente>();
+		condiciones.add(new Celiaco("Celiaco",comidasProhibidas));
+		usuario= new Usuario("Pedro", null, LocalDate.parse("1990-01-01"),60.0,1.7, "Leve",preferenciaAlimenticiaNoSaludable, condiciones, null);
+		assertTrue(usuario.validaCondicionesPreexistentes(usuario));
+
+	}
+	@Test
+	public void testUsuarioVeganoNoValida(){
+		Set<CondicionPreexistente> condiciones= new HashSet<CondicionPreexistente>();
+		condiciones.add(new Vegano("Vegano",comidasProhibidas));
+		usuario= new Usuario("Pedro", null, LocalDate.parse("1990-01-01"),60.0,1.7, "Leve",preferenciaAlimenticiaNoSaludable, condiciones, null);
+		assertFalse(usuario.validaCondicionesPreexistentes(usuario));
+
+	}
+	@Test
+	public void testUsuarioVeganoSiValida(){
+		Set<CondicionPreexistente> condiciones= new HashSet<CondicionPreexistente>();
+		condiciones.add(new Vegano("Vegano",comidasProhibidas));
+		usuario= new Usuario("Pedro", null, LocalDate.parse("1990-01-01"),60.0,1.7, "Leve",null, condiciones, null);
+		assertTrue(usuario.validaCondicionesPreexistentes(usuario));
+
+	}
+	
+	@Test
+	public void testUsuarioHipertensoNoValida(){
+		Set<CondicionPreexistente> condiciones= new HashSet<CondicionPreexistente>();
+		condiciones.add(new Hipertenso("Hipertenso",comidasProhibidas));
+		usuario= new Usuario("Pedro", null, LocalDate.parse("1990-01-01"),60.0,1.7, "Leve",null, condiciones, null);
+		assertFalse(usuario.validaCondicionesPreexistentes(usuario));
+
+	}
+	@Test
+	public void testUsuarioHipertensoSiValida(){
+		Set<CondicionPreexistente> condiciones= new HashSet<CondicionPreexistente>();
+		condiciones.add(new Hipertenso("Hipertenso",comidasProhibidas));
+		usuario= new Usuario("Pedro", null, LocalDate.parse("1990-01-01"),60.0,1.7, "Leve",preferenciaAlimenticiaNoSaludable, condiciones, null);
+		assertTrue(usuario.validaCondicionesPreexistentes(usuario));
+
+	}
+	@Test
 	public void testUsuarioSinFechaDeNacimiento(){
 		usuario= new Usuario("Pedro", "Masculino", LocalDate.parse("2016-01-01"),60.0,1.7, "Leve",preferenciaAlimenticiaNoSaludable, null, null);
 		assertFalse(usuario.validar());

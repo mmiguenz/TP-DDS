@@ -28,7 +28,7 @@ public class Hipertenso extends CondicionPreexistente {
 	
 	public boolean validar(Usuario usr)
 	{
-		return usr.getPreferenciaAlimenticia() != null;
+		return usr.validarHipertenso();
 		
 		
 	}

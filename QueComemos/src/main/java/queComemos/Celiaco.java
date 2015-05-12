@@ -22,6 +22,13 @@ public class Celiaco extends CondicionPreexistente {
 		
 
 }
+	
+	public boolean validar(Usuario usr)
+	{
+		return true;
+		
+		
+	}
 
 	
 }
