@@ -122,6 +122,9 @@ public class Receta {
 	 * 
 	 * }
 	 */
+	public boolean esAdecuadaPara(Usuario usr){
+		return usr.esAdecuadaLaReceta(this);
+	}
 
 	private Set<String> calcularInadecuados(Receta subReceta,
 			Preparacion preparacion) {

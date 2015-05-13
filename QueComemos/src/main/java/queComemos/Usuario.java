@@ -193,4 +193,26 @@ public class Usuario {
 
 	}
 
+
+
+	public boolean esAdecuadaLaReceta(Receta receta){
+		return this.condicionesPreexistentes.stream().allMatch(condicion -> condicion.validarReceta(this, receta));		
+	}
+	
+	public boolean validarRecetaHipertenso(Receta receta){
+		return !(receta.contiene("sal")||receta.contiene("caldo"));
+	
+	}
+	public boolean validarRecetaDiabetico(Receta receta){
+		return !(receta.contiene("azucar"));
+		/*hay que ver porque para mi esta mal los atributos de la clase receta*/
+	}
+	
+	public boolean validarRecetaVegano(Receta receta){
+		return !(receta.contiene("pollo") || receta.contiene("carne") || receta.contiene("chivito") || receta.contiene("chori"));
+	}
+	
+	/*public boolean validarRecetaCeliaco(Receta receta){
+		return true;
+	}*/
 }
