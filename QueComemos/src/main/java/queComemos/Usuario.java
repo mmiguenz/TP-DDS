@@ -111,18 +111,19 @@ public class Usuario {
 	}
 
 	public boolean sigueRutinaSaludable() {
-		if (this.condicionesPreexistentes.stream().count() == 0)
+		if (this.condicionesPreexistentes.isEmpty())
+		//if (this.condicionesPreexistentes.stream().count() == 0)
 			return (this.indiceMasaCorporal() >= 18 && this
 					.indiceMasaCorporal() <= 30);
 
 		else {
-			boolean aux = true;
+			/*boolean aux = true;
 			for (CondicionPreexistente condicion : condicionesPreexistentes) {
 				aux = aux && condicion.subSanaCondicion(this);
 
-			}
-
-			return aux;
+			}*/
+			
+			return this.condicionesPreexistentes.stream().allMatch(condicion -> condicion.subSanaCondicion(this));
 		}
 	}
 
@@ -141,12 +142,13 @@ public class Usuario {
 	}
 
 	/*debe ser private, lo cambie ara hacer los test*/public boolean validaCondicionesPreexistentes(Usuario usr) {
-		if (usr.condicionesPreexistentes == null)
+		if (usr.condicionesPreexistentes.isEmpty())
 			return true;
 		else
-			return usr.condicionesPreexistentes.size() == usr.condicionesPreexistentes
+			return usr.condicionesPreexistentes.stream().allMatch(condicion -> condicion.validar(usr));
+			/*return usr.condicionesPreexistentes.size() == usr.condicionesPreexistentes
 					.stream().filter(condicion -> condicion.validar(usr))
-					.count();
+					.count();*/
 
 	}
 	
