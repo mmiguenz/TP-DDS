@@ -153,7 +153,7 @@ public class Usuario {
 	}
 	
 	public boolean validarVegano(Set<String> preferenciasProhibidas){
-		if(this.preferenciaAlimenticia==null) {return true;}
+		if(this.preferenciaAlimenticia==null || this.preferenciaAlimenticia.getComidasQueGusta().isEmpty()) {return true;}
 		else{
 		return this.getPreferenciaAlimenticia().leGustaAlguna(
 				preferenciasProhibidas);
