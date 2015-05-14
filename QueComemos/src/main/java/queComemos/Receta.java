@@ -14,19 +14,22 @@ public class Receta {
 	private Preparacion preparacion;
 	private String dificultad;
 	private String temporada;
-	private Receta subReceta;
-	private Set<String> inadecuados;
+	private Set<Receta> subRecetas;
+	private Set<CondicionPreexistente> inadecuados;
 
 	public Receta(String nombre, double calorias, Preparacion preparacion,
-			String dificultad, String temporada, Receta subReceta) {
+			String dificultad, String temporada, Set<Receta> subRecetas, Set<CondicionPreexistente> inadecuados) {
 
+		
+		
 		this.nombre = nombre;
 		this.calorias = calorias;
 		this.preparacion = preparacion;
 		this.dificultad = dificultad;
 		this.temporada = temporada;
-		this.subReceta = subReceta;
-		this.inadecuados = calcularInadecuados(subReceta, preparacion);
+		this.subRecetas = subRecetas;
+		this.inadecuados = inadecuados;
+				
 
 	}
 
@@ -70,34 +73,35 @@ public class Receta {
 		this.temporada = temporada;
 	}
 
-	public Receta getSubReceta() {
-		return subReceta;
+	public Set<Receta> getSubRecetas() {
+		return subRecetas;
 	}
 
-	public void setSubReceta(Receta subReceta) {
-		this.subReceta = subReceta;
+	public void setSubRecetas(Set<Receta> subRecetas) {
+		this.subRecetas = subRecetas;
 	}
 
-	public Set<String> getInadecuados() {
+	public Set<CondicionPreexistente> getInadecuados() {
 		return inadecuados;
 	}
 
-	public void setInadecuados(Set<String> inadecuados) {
+	public void setInadecuados(Set<CondicionPreexistente> inadecuados) {
 		this.inadecuados = inadecuados;
 	}
 
 	public boolean contiene(String nombreIngrediente) {
-		if (subReceta == null)
+		if (subRecetas.isEmpty())
 			return preparacion.contiene(nombreIngrediente);
 		else
 			return preparacion.contiene(nombreIngrediente)
-					|| subReceta.contiene(nombreIngrediente);
+					|| subRecetas.stream().anyMatch(receta ->receta.contiene(nombreIngrediente));
 
 	}
 
 	public boolean contieneAlguna(Set<String> comidas) {
 
-		return comidas.stream().filter(comida -> this.contiene(comida)).count() > 0;
+		return comidas.stream().anyMatch((comida -> this.contiene(comida)));
+		//return comidas.stream().filter(comida -> this.contiene(comida)).count() > 0;
 
 		/*
 		 * for (String comida : comidas) {

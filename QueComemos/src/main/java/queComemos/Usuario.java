@@ -181,8 +181,7 @@ public class Usuario {
 
 	public void modificarUnaReceta(Receta recetaModificada) {
 
-		misRecetas.removeIf(receta -> receta.getNombre() == recetaModificada
-				.getNombre());
+		misRecetas.removeIf(receta -> receta.equals(recetaModificada));
 		this.agregarReceta(recetaModificada);
 
 	}

@@ -37,7 +37,8 @@ public class PreferenciaAlimenticia {
 	
 	public boolean leGustaAlguna(Set<String> preferencias)
 	{
-		return preferencias.stream().filter(unaPreferencia -> this.leGusta(unaPreferencia)).count() >0;
+		return preferencias.stream().anyMatch((unaPreferencia -> this.leGusta(unaPreferencia)));
+		//return preferencias.stream().filter(unaPreferencia -> this.leGusta(unaPreferencia)).count() >0;
 		
 		
 	}
@@ -45,7 +46,9 @@ public class PreferenciaAlimenticia {
 	
 	private boolean leGusta(String preferencia)
 	{
-		return comidasQueGusta.stream().filter(unaComida ->unaComida==preferencia).count()>0;
+		
+		return comidasQueGusta.stream().anyMatch((unaComida ->unaComida==preferencia));
+		//return comidasQueGusta.stream().filter(unaComida ->unaComida==preferencia).count()>0;
 		
 		
 	}

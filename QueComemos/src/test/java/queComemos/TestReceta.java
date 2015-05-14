@@ -15,8 +15,8 @@ public class TestReceta {
 	private Preparacion preparacion ;
 	private String dificultad;
 	private String temporada;
-	private Receta subReceta;
-	private Set<String> inadecuados;
+	private Set<Receta> subRecetas;
+	private Set<CondicionPreexistente> inadecuados;
 
 	@Before
 	public void setUp() throws Exception {
@@ -24,6 +24,8 @@ public class TestReceta {
 	Set<String>	instrucciones = new HashSet<String>();
 	Set<Ingrediente> ingredientes = new HashSet<Ingrediente>();
 	Set<Ingrediente>condimentos = new HashSet<Ingrediente>();
+	subRecetas=new HashSet<Receta>();
+	inadecuados=new HashSet<CondicionPreexistente>();
 		
 		instrucciones.add("Preparar");
 		instrucciones.add("Revolver");
@@ -53,15 +55,22 @@ public class TestReceta {
 
 	@Test
 	public void testInadecuadoParaHipertenso() {
+		Set<String> comidas= new HashSet<String>();
+		Hipertenso hipertenso = new Hipertenso("Hipertenso",comidas);
+		inadecuados.add(hipertenso);
 		
-		 Receta receta = new Receta("CarneAlHorno",1524.0,preparacion,dificultad,temporada,subReceta=null );
-		 assertTrue(receta.getInadecuados().contains("Hipertenso"));
+		 Receta receta = new Receta("CarneAlHorno",1524.0,preparacion,dificultad,temporada,subRecetas,inadecuados);
+		 assertTrue(receta.getInadecuados().contains(hipertenso));
 	}
 	
 	@Test
 	public void testNoInadecuadoParaDiabetico() {
+		Set<String> comidas= new HashSet<String>();
+		Diabetico diabetico = new Diabetico("diabetico",comidas);
+		inadecuados.add(diabetico);
 		
-		 Receta receta = new Receta("CarneAlHorno",1524.0,preparacion,dificultad,temporada,subReceta=null );
+		
+		 Receta receta = new Receta("CarneAlHorno",1524.0,preparacion,dificultad,temporada,subRecetas,inadecuados);
 		 assertFalse(receta.getInadecuados().contains("Diabetico"));
 	}
 	
@@ -69,7 +78,7 @@ public class TestReceta {
 	@Test
 	public void testRecetaContieneUnaComida()
 	{
-		 Receta receta = new Receta("CarneAlHorno",1524.0,preparacion,dificultad,temporada,subReceta=null );
+		 Receta receta = new Receta("CarneAlHorno",1524.0,preparacion,dificultad,temporada,subRecetas,inadecuados);
 		 assertTrue(receta.contiene("Carne"));
 		
 		
@@ -79,7 +88,7 @@ public class TestReceta {
 	@Test
 	public void testRecetaNoContieneUnaComida()
 	{
-		 Receta receta = new Receta("CarneAlHorno",1524.0,preparacion,dificultad,temporada,subReceta=null );
+		Receta receta = new Receta("CarneAlHorno",1524.0,preparacion,dificultad,temporada,subRecetas,inadecuados);
 		 assertFalse(receta.contiene("Chinchulin"));
 		
 		
@@ -88,7 +97,7 @@ public class TestReceta {
 	@Test
 	public void testRecetaContieneAlgunaComidaDeUnaLista()
 	{
-		 Receta receta = new Receta("CarneAlHorno",1524.0,preparacion,dificultad,temporada,subReceta=null );
+		Receta receta = new Receta("CarneAlHorno",1524.0,preparacion,dificultad,temporada,subRecetas,inadecuados);
 		Set<String> conjuntoDeComidas = new HashSet<String>();
 		
 		conjuntoDeComidas.add("Miel");
@@ -108,7 +117,7 @@ public class TestReceta {
 	@Test
 	public void testRecetaNoContieneAlgunaComidaDeUnaLista()
 	{
-		 Receta receta = new Receta("CarneAlHorno",1524.0,preparacion,dificultad,temporada,subReceta=null );
+		Receta receta = new Receta("CarneAlHorno",1524.0,preparacion,dificultad,temporada,subRecetas,inadecuados);
 		Set<String> conjuntoDeComidas = new HashSet<String>();
 		
 		conjuntoDeComidas.add("Miel");

@@ -63,17 +63,17 @@ public class Preparacion {
 
 	public boolean contiene(String nombreIngrediente)
 	{
-		return  (ingredientes.stream()
-				.filter(ingrediente -> ingrediente.contiene(nombreIngrediente))).count() >0
-				|| (condimentos.stream()
-				    .filter(condimento -> condimento.contiene(nombreIngrediente))).count() >0;
+		return  (ingredientes.stream().anyMatch((ingrediente -> ingrediente.contiene(nombreIngrediente))))
+				//.filter(ingrediente -> ingrediente.contiene(nombreIngrediente))).count() >0
+				|| (condimentos.stream().anyMatch((condimento -> condimento.contiene(nombreIngrediente))));
+				  //  .filter(condimento -> condimento.contiene(nombreIngrediente))).count() >0;
 		
 		
 	}
 	
 	public boolean validar()
 	{
-		return ingredientes.size() >0;
+		return ! ingredientes.isEmpty();
 		
 		
 	}
