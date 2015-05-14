@@ -29,8 +29,8 @@ public class Diabetico extends CondicionPreexistente {
 
 	}
 	
-	public boolean validarReceta(Usuario usr, Receta receta){
-		return usr.validarRecetaDiabetico(receta);
+	public boolean esAptaReceta(Usuario usr, Receta receta){
+		return usr.esAptaRecetaDiabetico(receta);
 	}
 
 }

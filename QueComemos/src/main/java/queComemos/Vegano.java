@@ -46,7 +46,7 @@ public class Vegano extends CondicionPreexistente {
 
 	}
 	
-	public boolean validarReceta(Usuario usr, Receta receta){
-		return usr.validarRecetaVegano(receta);
+	public boolean esAptaReceta(Usuario usr, Receta receta){
+		return usr.esAptaRecetaVegano(receta);
 	}
 }

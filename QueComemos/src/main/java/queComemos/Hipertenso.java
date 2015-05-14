@@ -32,8 +32,8 @@ public class Hipertenso extends CondicionPreexistente {
 
 	}
 	
-	public boolean validarReceta(Usuario usr, Receta receta){
-		return usr.validarRecetaHipertenso(receta);
+	public boolean esAptaReceta(Usuario usr, Receta receta){
+		return usr.esAptaRecetaHipertenso(receta);
 	}
 
 }

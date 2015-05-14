@@ -25,8 +25,8 @@ public class Celiaco extends CondicionPreexistente {
 		return true;
 
 	}
-	public boolean validarReceta(Usuario usr, Receta receta){
-		//return usr.validarRecetaCeliaco(receta);
+	public boolean esAptaReceta(Usuario usr, Receta receta){
+		//return usr.esAptaRecetaCeliaco(receta);
 		return true;
 	}
 
