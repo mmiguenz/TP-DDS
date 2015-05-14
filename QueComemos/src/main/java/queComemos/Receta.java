@@ -122,10 +122,11 @@ public class Receta {
 	 * 
 	 * }
 	 */
+	/*este metodo va de la mano con los que estan en usuario y en cada clase de condionPreexistente para calcular para quien es inadecuada la receta*/
 	public boolean esAdecuadaPara(Usuario usr){
 		return usr.esAdecuadaLaReceta(this);
 	}
-
+/*para mi con algunos cambios es como lo habias planteado vos, porque nunca te pide que calcules si una receta es adecuada para un usuario en particular*/
 	private Set<String> calcularInadecuados(Receta subReceta,
 			Preparacion preparacion) {
 
