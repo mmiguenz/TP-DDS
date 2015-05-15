@@ -30,6 +30,8 @@ public class TestUsuario {
 		comidasQueGustaUsrNoSaludable.add("Fritos");
 		comidasQueGustaUsrNoSaludable.add("Snacks");
 
+		
+		
 		comidasQueDisgustaUsr.add("Verduras");
 
 		preferenciaAlimenticiaSaludable = new PreferenciaAlimenticia(
@@ -41,7 +43,7 @@ public class TestUsuario {
 		comidasProhibidas.add("Pan");
 
 	}
-
+	
 	@Test
 	public void testIMCPesoyEstaturaPositiva() {
 
@@ -155,7 +157,7 @@ public class TestUsuario {
 	}
 
 	@Test
-	public void testUsuarioCeliacoSiValida() {
+	public void testUsuarioCeliacoValidaConPreferenciasAlimenticiasNoSaludables() {
 		Set<CondicionPreexistente> condiciones = new HashSet<CondicionPreexistente>();
 		condiciones.add(new Celiaco("Celiaco", comidasProhibidas));
 		usuario = new Usuario("Pedro", null, LocalDate.parse("1990-01-01"),
@@ -164,7 +166,18 @@ public class TestUsuario {
 		assertTrue(usuario.validaCondicionesPreexistentes(usuario));
 
 	}
+	
+	@Test
+	public void testUsuarioCeliacoValidaConPreferenciasAlimenticiasSaludables() {
+		Set<CondicionPreexistente> condiciones = new HashSet<CondicionPreexistente>();
+		condiciones.add(new Celiaco("Celiaco", comidasProhibidas));
+		usuario = new Usuario("Pedro", null, LocalDate.parse("1990-01-01"),
+				60.0, 1.7, "Leve", null, condiciones, null);
+		assertTrue(usuario.validaCondicionesPreexistentes(usuario));
+		
+	}
 
+	
 	@Test
 	public void testUsuarioVeganoNoValida() {
 		Set<CondicionPreexistente> condiciones = new HashSet<CondicionPreexistente>();

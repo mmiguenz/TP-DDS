@@ -21,17 +21,16 @@ public class Vegano extends CondicionPreexistente {
 		if (subReceta == null)
 			return !((preparacion.contiene("pollo"))
 					|| (preparacion.contiene("carne"))
-					|| (preparacion.contiene("chivito")) || (preparacion
-						.contiene("chori")));
+					|| (preparacion.contiene("chivito")) || (preparacion.contiene("chori")));
 		else
 			return !((preparacion.contiene("pollo"))
 					|| (preparacion.contiene("carne"))
-					|| (preparacion.contiene("chivito")) || (preparacion
-						.contiene("chori")))
+					|| (preparacion.contiene("chivito"))
+					|| (preparacion.contiene("chori")))
 					|| !((subReceta.contiene("pollo"))
-							|| (subReceta.contiene("carne"))
-							|| (subReceta.contiene("chivito")) || (subReceta
-								.contiene("chori")));
+					|| (subReceta.contiene("carne"))
+					|| (subReceta.contiene("chivito")) 
+					|| (subReceta.contiene("chori")));
 
 	}
 
