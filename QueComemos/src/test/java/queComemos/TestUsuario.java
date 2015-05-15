@@ -12,6 +12,8 @@ import org.junit.Test;
 public class TestUsuario {
 
 	private Usuario usuario;
+	private Receta receta;
+	private Preparacion preparacion;
 	private PreferenciaAlimenticia preferenciaAlimenticiaSaludable;
 	private PreferenciaAlimenticia preferenciaAlimenticiaNoSaludable;
 	private Set<String> comidasProhibidas;
@@ -43,6 +45,8 @@ public class TestUsuario {
 		comidasProhibidas.add("Pan");
 
 	}
+	
+	
 	
 	@Test
 	public void testIMCPesoyEstaturaPositiva() {
@@ -157,7 +161,7 @@ public class TestUsuario {
 	}
 
 	@Test
-	public void testUsuarioCeliacoValidaConPreferenciasAlimenticiasNoSaludables() {
+	public void testUsuarioCeliacoValidaConPreferenciaAlimenticiaNoSaludable() {
 		Set<CondicionPreexistente> condiciones = new HashSet<CondicionPreexistente>();
 		condiciones.add(new Celiaco("Celiaco", comidasProhibidas));
 		usuario = new Usuario("Pedro", null, LocalDate.parse("1990-01-01"),
@@ -168,11 +172,11 @@ public class TestUsuario {
 	}
 	
 	@Test
-	public void testUsuarioCeliacoValidaConPreferenciasAlimenticiasSaludables() {
+	public void testUsuarioCeliacoValidaConPreferenciaAlimenticiaSaludable() {
 		Set<CondicionPreexistente> condiciones = new HashSet<CondicionPreexistente>();
 		condiciones.add(new Celiaco("Celiaco", comidasProhibidas));
 		usuario = new Usuario("Pedro", null, LocalDate.parse("1990-01-01"),
-				60.0, 1.7, "Leve", null, condiciones, null);
+				60.0, 1.7, "Leve", preferenciaAlimenticiaSaludable, condiciones, null);
 		assertTrue(usuario.validaCondicionesPreexistentes(usuario));
 		
 	}
