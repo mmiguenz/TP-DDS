@@ -13,13 +13,13 @@ public class Usuario {
 	private Double estatura;
 	private String rutina;
 	private PreferenciaAlimenticia preferenciaAlimenticia;
-	private Set<CondicionPreexistente> condicionesPreexistentes;
+	private Set<CondicionPreexistenteI> condicionesPreexistentes;
 	private Set<Receta> misRecetas;
 
 	public Usuario(String nombre, String sexo, LocalDate fechaNacimiento,
 			Double peso, Double estatura, String rutina,
 			PreferenciaAlimenticia preferenciaAlimenticia,
-			Set<CondicionPreexistente> condicionesPreexistentes,
+			Set<CondicionPreexistenteI> condicionesPreexistentes,
 			Set<Receta> misRecetas) {
 		this.setNombre(nombre);
 		this.setSexo(sexo);
@@ -89,12 +89,12 @@ public class Usuario {
 		this.preferenciaAlimenticia = preferenciaAlimenticia;
 	}
 
-	public Set<CondicionPreexistente> getCondicionesPreexistentes() {
+	public Set<CondicionPreexistenteI> getCondicionesPreexistentes() {
 		return condicionesPreexistentes;
 	}
 
 	public void setCondicionesPreexistentes(
-			Set<CondicionPreexistente> condicionesPreexistentes) {
+			Set<CondicionPreexistenteI> condicionesPreexistentes) {
 		this.condicionesPreexistentes = condicionesPreexistentes;
 	}
 
@@ -141,17 +141,19 @@ public class Usuario {
 
 	}
 
-	/*debe ser private, lo cambie ara hacer los test*/public boolean validaCondicionesPreexistentes(Usuario usr) {
+	public boolean validaCondicionesPreexistentes(Usuario usr) {
 		if (usr.condicionesPreexistentes.isEmpty())
 			return true;
 		else
-			return usr.condicionesPreexistentes.stream().allMatch(condicion -> condicion.validar(usr));
+			return usr.condicionesPreexistentes.stream().allMatch(condicion -> condicion.subSanaCondicion(usr));
 			/*return usr.condicionesPreexistentes.size() == usr.condicionesPreexistentes
 					.stream().filter(condicion -> condicion.validar(usr))
 					.count();*/
 
 	}
 	
+
+	/*
 	public boolean validarVegano(Set<String> preferenciasProhibidas){
 		if(this.preferenciaAlimenticia==null || this.preferenciaAlimenticia.getComidasQueGusta().isEmpty()) {return true;}
 		else{
@@ -168,7 +170,7 @@ public class Usuario {
 		
 		return this.preferenciaAlimenticia != null;
 	}
-
+*/
 
 	public void agregarReceta(Receta receta) {
 
@@ -187,8 +189,8 @@ public class Usuario {
 	}
 
 	public boolean puedeVer(Receta receta) {
-		return misRecetas.contains(receta)
-				|| QueComemosApp.recetas.contains(receta);
+		return esAdecuadaLaReceta(receta) && 
+				(misRecetas.contains(receta) || QueComemosApp.recetas.contains(receta));
 
 	}
 
@@ -196,23 +198,29 @@ public class Usuario {
 /*de aca para abajo lo hice porque dijo ue el usuario era quien debia saber si una receta es valida para una condicion preexistente (cosa que para mi esta mal porque deberia saberlo la clase vegaano, diabetico, celiaco o hipertenso)*/
 	/*falta arreglar lo que comente y testearlo*/
 	public boolean esAdecuadaLaReceta(Receta receta){
-		return this.condicionesPreexistentes.stream().allMatch(condicion -> condicion.esAptaReceta(this, receta));		
+		return this.condicionesPreexistentes.stream().allMatch(condicion -> condicion.esAptaReceta(receta));		
 	}
 	
-	public boolean esAptaRecetaHipertenso(Receta receta){
+	/*public boolean esAptaRecetaHipertenso(Receta receta){
 		return !(receta.contiene("sal")||receta.contiene("caldo"));
-		/*creo que es una combinacion de los dos metodos que hay que usar para diabeticos y para veganos, porque hay que preguntarle si tiene como ingredientes y como condimentos por la sal y por el caldo*/
+		
+		
+		
+		/*creo que es una combinacion de los dos metodos que hay que usar para diabeticos y para veganos, porque hay que preguntarle si tiene como ingredientes y como condimentos por la sal y por el caldo
 	
-	}
-	public boolean esAptaRecetaDiabetico(Receta receta){
-		return !(receta.contiene("azucar"));
-		/*hay que hacer un metodo que busque en los condimentos y preguntarle si la receta tiene azucar y 100 o mas gramos*/
-	}
+	}*/
+	/*public boolean esAptaRecetaDiabetico(Receta receta){
+		
+		
+		return !(receta.buscaIngrediente("azucar").getCantidad() >100.0  );
+		
+		/*hay que hacer un metodo que busque en los condimentos y preguntarle si la receta tiene azucar y 100 o mas gramos
+	}*/
 	
-	public boolean esAptaRecetaVegano(Receta receta){
+	/*public boolean esAptaRecetaVegano(Receta receta){
 		return !(receta.contiene("pollo") || receta.contiene("carne") || receta.contiene("chivito") || receta.contiene("chori"));
-		/*si estas seguro que el receta.contiene va a receta.preparacion.ingrediente y de la lista de ingredientes busca si algun nonmbre es igual al que le pases por parametro dejalo asi, sino habria que hacer un metodo que sea algo asi recete.getPreparacion().getIngrediente().stream().anyMatch(y la condicion)*/
-	}
+		/*si estas seguro que el receta.contiene va a receta.preparacion.ingrediente y de la lista de ingredientes busca si algun nonmbre es igual al que le pases por parametro dejalo asi, sino habria que hacer un metodo que sea algo asi recete.getPreparacion().getIngrediente().stream().anyMatch(y la condicion)
+	}*/
 	
 	/*public boolean esAptaRecetaCeliaco(Receta receta){
 		return true;

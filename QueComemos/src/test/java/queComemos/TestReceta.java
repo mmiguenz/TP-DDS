@@ -16,16 +16,16 @@ public class TestReceta {
 	private String dificultad;
 	private String temporada;
 	private Set<Receta> subRecetas;
-	private Set<CondicionPreexistente> inadecuados;
+	private Set<	CondicionPreexistenteI> inadecuados;
 
 	@Before
 	public void setUp() throws Exception {
-		
+	
 	Set<String>	instrucciones = new HashSet<String>();
 	Set<Ingrediente> ingredientes = new HashSet<Ingrediente>();
 	Set<Ingrediente>condimentos = new HashSet<Ingrediente>();
 	subRecetas=new HashSet<Receta>();
-	inadecuados=new HashSet<CondicionPreexistente>();
+	inadecuados=new HashSet<CondicionPreexistenteI>();
 		
 		instrucciones.add("Preparar");
 		instrucciones.add("Revolver");

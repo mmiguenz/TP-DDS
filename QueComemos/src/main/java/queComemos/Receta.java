@@ -15,10 +15,10 @@ public class Receta {
 	private String dificultad;
 	private String temporada;
 	private Set<Receta> subRecetas;
-	private Set<CondicionPreexistente> inadecuados;
+	private Set<CondicionPreexistenteI> inadecuados;
 
 	public Receta(String nombre, double calorias, Preparacion preparacion,
-			String dificultad, String temporada, Set<Receta> subRecetas, Set<CondicionPreexistente> inadecuados) {
+			String dificultad, String temporada, Set<Receta> subRecetas, Set<CondicionPreexistenteI> inadecuados) {
 
 		
 		
@@ -28,7 +28,7 @@ public class Receta {
 		this.dificultad = dificultad;
 		this.temporada = temporada;
 		this.subRecetas = subRecetas;
-		this.inadecuados = inadecuados;
+		this.inadecuados = calcularInadecuados(this);
 				
 
 	}
@@ -81,11 +81,11 @@ public class Receta {
 		this.subRecetas = subRecetas;
 	}
 
-	public Set<CondicionPreexistente> getInadecuados() {
+	public Set<CondicionPreexistenteI> getInadecuados() {
 		return inadecuados;
 	}
 
-	public void setInadecuados(Set<CondicionPreexistente> inadecuados) {
+	public void setInadecuados(Set<CondicionPreexistenteI> inadecuados) {
 		this.inadecuados = inadecuados;
 	}
 
@@ -131,29 +131,26 @@ public class Receta {
 		return usr.esAdecuadaLaReceta(this);
 	}
 /*para mi con algunos cambios es como lo habias planteado vos, porque nunca te pide que calcules si una receta es adecuada para un usuario en particular*/
-	private Set<String> calcularInadecuados(Receta subReceta,
-			Preparacion preparacion) {
+	private Set<CondicionPreexistenteI> calcularInadecuados(Receta receta) {
 
-		Set<String> inadecuados = new HashSet<String>();
-
-		if (!(Hipertenso.esRecomendable(subReceta, preparacion)))
-			inadecuados.add("Hipertenso");
-
-		if (!(Diabetico.esRecomendable(calorias, subReceta, preparacion)))
-			inadecuados.add("Diabetico");
-
-		if (!(Celiaco.esRecomendable(calorias, subReceta, preparacion)))
-			inadecuados.add("Celiaco");
-
-		if (!(Vegano.esRecomendable(subReceta, preparacion)))
-			inadecuados.add("Vegano");
-
-		return inadecuados;
+		
+		return QueComemosApp.calcularInadecuadosParaReceta(receta);
+				
 	}
 
 	public boolean validar() {
 		return preparacion.validar() && (calorias >= 10 && calorias <= 5000);
 
 	}
+	
+	
+	public Ingrediente buscaIngrediente(String ingre)
+	{
+		return preparacion.buscaIngrediente(ingre);
+		
+		
+	}
+	
+	
 
 }
