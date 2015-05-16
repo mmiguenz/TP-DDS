@@ -187,6 +187,12 @@ public class Usuario {
 		this.agregarReceta(recetaModificada);
 
 	}
+	
+	public void modificaUnaRecetaPublica(String nombre, String nuevoNombre){
+		Receta recetaModificada= QueComemosApp.modificarRecetaPublica(nombre, nuevoNombre);
+		this.agregarReceta(recetaModificada);
+		
+	}
 
 	public boolean puedeVer(Receta receta) {
 		return esAdecuadaLaReceta(receta) && 
