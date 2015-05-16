@@ -91,7 +91,7 @@ public class TestUsuario {
 	@Test
 	public void testUsuarioQueSigueRutinaSaludableCumpleIMCYCondiocionesPreexistentes() {
 
-		Set<CondicionPreexistente> condicionesSaludables = new HashSet<CondicionPreexistente>();
+		Set<CondicionPreexistenteI> condicionesSaludables = new HashSet<CondicionPreexistenteI>();
 
 		usuario = new Usuario("Alejandro", "Masculino",
 				LocalDate.parse("1994-10-05"), 74.0, 1.82, "Mediano",
@@ -103,7 +103,7 @@ public class TestUsuario {
 	@Test
 	public void testUsuarioQueSigueRutinaSaludableNoCumpleIMCYSiCondiocionesPreexistentes() {
 
-		Set<CondicionPreexistente> condicionesSaludables = new HashSet<CondicionPreexistente>();
+		Set<CondicionPreexistenteI> condicionesSaludables = new HashSet<CondicionPreexistenteI>();
 
 		usuario = new Usuario("Alejandro", "Masculino",
 				LocalDate.parse("1994-10-05"), 150.0, 1.82, "Mediano",
@@ -115,7 +115,7 @@ public class TestUsuario {
 	@Test
 	public void testUsuarioQueSigueRutinaSaludableCumpleIMCYSubsanaCondiocionesPreexistentes() {
 
-		Set<CondicionPreexistente> condiciones = new HashSet<CondicionPreexistente>();
+		Set<CondicionPreexistenteI> condiciones = new HashSet<CondicionPreexistenteI>();
 		condiciones.add(new Celiaco("Celiaco", comidasProhibidas));
 		condiciones.add(new Diabetico("Diabetico", comidasProhibidas));
 
@@ -129,7 +129,7 @@ public class TestUsuario {
 
 	@Test
 	public void testUsuarioDiabeticoNoSigueRutinaSaludable() {
-		Set<CondicionPreexistente> condiciones = new HashSet<CondicionPreexistente>();
+		Set<CondicionPreexistenteI> condiciones = new HashSet<CondicionPreexistenteI>();
 		condiciones.add(new Diabetico("Diabetico", comidasProhibidas));
 		usuario = new Usuario("Pedro", "Masculino",
 				LocalDate.parse("1990-01-01"), 60.0, 1.7, "Leve",
@@ -140,7 +140,7 @@ public class TestUsuario {
 
 	@Test
 	public void testUsuarioDiabeticoNoValida() {
-		Set<CondicionPreexistente> condiciones = new HashSet<CondicionPreexistente>();
+		Set<CondicionPreexistenteI> condiciones = new HashSet<CondicionPreexistenteI>();
 		condiciones.add(new Diabetico("Diabetico", comidasProhibidas));
 		usuario = new Usuario("Pedro", null, LocalDate.parse("1990-01-01"),
 				60.0, 1.7, "Leve", preferenciaAlimenticiaNoSaludable,
@@ -151,7 +151,7 @@ public class TestUsuario {
 
 	@Test
 	public void testUsuarioDiabeticoSiValida() {
-		Set<CondicionPreexistente> condiciones = new HashSet<CondicionPreexistente>();
+		Set<CondicionPreexistenteI> condiciones = new HashSet<CondicionPreexistenteI>();
 		condiciones.add(new Diabetico("Diabetico", comidasProhibidas));
 		usuario = new Usuario("Pedro", "Masculino",
 				LocalDate.parse("1990-01-01"), 60.0, 1.7, "Leve",
@@ -160,9 +160,11 @@ public class TestUsuario {
 
 	}
 
-	@Test
+	
+
 	public void testUsuarioCeliacoValidaConPreferenciaAlimenticiaNoSaludable() {
-		Set<CondicionPreexistente> condiciones = new HashSet<CondicionPreexistente>();
+		Set<CondicionPreexistenteI> condiciones = new HashSet<CondicionPreexistenteI>();
+
 		condiciones.add(new Celiaco("Celiaco", comidasProhibidas));
 		usuario = new Usuario("Pedro", null, LocalDate.parse("1990-01-01"),
 				60.0, 1.7, "Leve", preferenciaAlimenticiaNoSaludable,
@@ -173,7 +175,7 @@ public class TestUsuario {
 	
 	@Test
 	public void testUsuarioCeliacoValidaConPreferenciaAlimenticiaSaludable() {
-		Set<CondicionPreexistente> condiciones = new HashSet<CondicionPreexistente>();
+		Set<CondicionPreexistenteI> condiciones = new HashSet<CondicionPreexistenteI>();
 		condiciones.add(new Celiaco("Celiaco", comidasProhibidas));
 		usuario = new Usuario("Pedro", null, LocalDate.parse("1990-01-01"),
 				60.0, 1.7, "Leve", preferenciaAlimenticiaSaludable, condiciones, null);
@@ -184,7 +186,7 @@ public class TestUsuario {
 	
 	@Test
 	public void testUsuarioVeganoNoValida() {
-		Set<CondicionPreexistente> condiciones = new HashSet<CondicionPreexistente>();
+		Set<CondicionPreexistenteI> condiciones = new HashSet<CondicionPreexistenteI>();
 		condiciones.add(new Vegano("Vegano", comidasProhibidas));
 		usuario = new Usuario("Pedro", null, LocalDate.parse("1990-01-01"),
 				60.0, 1.7, "Leve", preferenciaAlimenticiaNoSaludable,
@@ -195,7 +197,7 @@ public class TestUsuario {
 
 	@Test
 	public void testUsuarioVeganoSiValida() {
-		Set<CondicionPreexistente> condiciones = new HashSet<CondicionPreexistente>();
+		Set<CondicionPreexistenteI> condiciones = new HashSet<CondicionPreexistenteI>();
 		condiciones.add(new Vegano("Vegano", comidasProhibidas));
 		usuario = new Usuario("Pedro", null, LocalDate.parse("1990-01-01"),
 				60.0, 1.7, "Leve", null, condiciones, null);
@@ -205,7 +207,7 @@ public class TestUsuario {
 
 	@Test
 	public void testUsuarioHipertensoNoValida() {
-		Set<CondicionPreexistente> condiciones = new HashSet<CondicionPreexistente>();
+		Set<CondicionPreexistenteI> condiciones = new HashSet<CondicionPreexistenteI>();
 		condiciones.add(new Hipertenso("Hipertenso", comidasProhibidas));
 		usuario = new Usuario("Pedro", null, LocalDate.parse("1990-01-01"),
 				60.0, 1.7, "Leve", null, condiciones, null);
@@ -215,7 +217,7 @@ public class TestUsuario {
 
 	@Test
 	public void testUsuarioHipertensoSiValida() {
-		Set<CondicionPreexistente> condiciones = new HashSet<CondicionPreexistente>();
+		Set<CondicionPreexistenteI> condiciones = new HashSet<CondicionPreexistenteI>();
 		condiciones.add(new Hipertenso("Hipertenso", comidasProhibidas));
 		usuario = new Usuario("Pedro", null, LocalDate.parse("1990-01-01"),
 				60.0, 1.7, "Leve", preferenciaAlimenticiaNoSaludable,

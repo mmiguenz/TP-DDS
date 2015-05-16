@@ -71,6 +71,26 @@ public class Preparacion {
 		
 	}
 	
+	
+	public Ingrediente buscaIngrediente(String ingre)
+	{
+		if (ingredientes.stream().anyMatch(ingrediente -> ingrediente.getNombre().equals(ingre)))
+		{
+			return (Ingrediente) ingredientes.stream().filter(ingrediente -> (ingrediente.getNombre().equals(ingre)));
+			
+		} else
+			
+		{
+			return (Ingrediente) condimentos.stream().filter(condimento -> (condimento.getNombre().equals(ingre)));
+			
+		}
+			
+			
+			
+		
+		
+	}
+	
 	public boolean validar()
 	{
 		return ! ingredientes.isEmpty();

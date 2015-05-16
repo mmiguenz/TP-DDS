@@ -3,49 +3,52 @@ package queComemos;
 import java.util.HashSet;
 import java.util.Set;
 
-public class Vegano extends CondicionPreexistente {
+public class Vegano implements CondicionPreexistenteI {
 
+	private String  nombre;
+	private Set<String> comidasProhibidas;
+	
+	
 	public Vegano(String nombre, Set<String> comidasProhibidas) {
-		super(nombre, comidasProhibidas);
+		this.nombre=nombre;
+		this.comidasProhibidas=comidasProhibidas;
 
 	}
 
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+
+	public Set<String> getComidasProhibidas() {
+		return comidasProhibidas;
+	}
+
+	
+	public void setComidasProhibidas(Set<String> comidasProhibidas) {
+		this.comidasProhibidas = comidasProhibidas;
+	}
+
+	@Override
 	public boolean subSanaCondicion(Usuario usuario) {
 		return usuario.getPreferenciaAlimenticia().getComidasQueGusta()
 				.stream().filter(unaComida -> unaComida == "frutas").count() > 0;
 
 	}
 
-	public static boolean esRecomendable(Receta subReceta,
-			Preparacion preparacion) {
-		if (subReceta == null)
-			return !((preparacion.contiene("pollo"))
-					|| (preparacion.contiene("carne"))
-					|| (preparacion.contiene("chivito")) || (preparacion.contiene("chori")));
-		else
-			return !((preparacion.contiene("pollo"))
-					|| (preparacion.contiene("carne"))
-					|| (preparacion.contiene("chivito"))
-					|| (preparacion.contiene("chori")))
-					|| !((subReceta.contiene("pollo"))
-					|| (subReceta.contiene("carne"))
-					|| (subReceta.contiene("chivito")) 
-					|| (subReceta.contiene("chori")));
 
-	}
-
-	public boolean validar(Usuario usr) {
-		Set<String> preferenciasProhibidas = new HashSet<String>();
-		preferenciasProhibidas.add("Pollo");
-		preferenciasProhibidas.add("Carne");
-		preferenciasProhibidas.add("Chivito");
-		preferenciasProhibidas.add("Chori");
-		
-		return usr.validarVegano(preferenciasProhibidas);
-
-	}
+	/*public boolean validar(Usuario usr) {
+		usr.getPreferenciaAlimenticia().getComidasQueGusta().stream().anyMatch(comida ->comidasProhibidas.contains(comida));
+	}*/
 	
-	public boolean esAptaReceta(Usuario usr, Receta receta){
-		return usr.esAptaRecetaVegano(receta);
+	@Override
+	public boolean esAptaReceta(Receta receta){
+		return !( comidasProhibidas.stream().anyMatch(comida -> receta.contiene(comida)));
 	}
+
+	
 }

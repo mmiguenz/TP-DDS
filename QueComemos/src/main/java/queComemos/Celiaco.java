@@ -2,32 +2,57 @@ package queComemos;
 
 import java.util.Set;
 
-public class Celiaco extends CondicionPreexistente {
+public class Celiaco implements CondicionPreexistenteI {
 
 	public Celiaco(String nombre, Set<String> comidasProhibidas) {
-		super(nombre, comidasProhibidas);
-
+		super();
+		this.nombre = nombre;
+		this.comidasProhibidas = comidasProhibidas;
 	}
+
+
+
+	public String getNombre() {
+		return nombre;
+	}
+
+
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+
+
+	public Set<String> getComidasProhibidas() {
+		return comidasProhibidas;
+	}
+
+
+
+	public void setComidasProhibidas(Set<String> comidasProhibidas) {
+		this.comidasProhibidas = comidasProhibidas;
+	}
+	private String nombre;
+	private Set<String> comidasProhibidas;
 
 	public boolean subSanaCondicion(Usuario usuario) {
 
 		return true;
 	}
 
-	public static boolean esRecomendable(double calorias, Receta subReceta,
-			Preparacion preparacion) {
-
-		return true;
-
-	}
+	
 
 	public boolean validar(Usuario usr) {
 		return true;
 
 	}
-	public boolean esAptaReceta(Usuario usr, Receta receta){
+	public boolean esAptaReceta(Receta receta){
 		//return usr.esAptaRecetaCeliaco(receta);
 		return true;
 	}
 
+
+
+	
 }

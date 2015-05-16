@@ -2,38 +2,56 @@ package queComemos;
 
 import java.util.Set;
 
-public class Hipertenso extends CondicionPreexistente {
+public class Hipertenso implements CondicionPreexistenteI {
+	
+	private String nombre;
+	private Set<String>comidasProhibidas;
+	
+
 
 	public Hipertenso(String nombre, Set<String> comidasProhibidas) {
-		super(nombre, comidasProhibidas);
-
+		super();
+		this.nombre = nombre;
+		this.comidasProhibidas = comidasProhibidas;
 	}
+
+
+	public String getNombre() {
+		return nombre;
+	}
+
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+
+	public Set<String> getComidasProhibidas() {
+		return comidasProhibidas;
+	}
+
+
+	public void setComidasProhibidas(Set<String> comidasProhibidas) {
+		this.comidasProhibidas = comidasProhibidas;
+	}
+
 
 	public boolean subSanaCondicion(Usuario usuario) {
 
 		return usuario.getRutina() == "Intensiva";
 	}
 
-	public static boolean esRecomendable(Receta subReceta,
-			Preparacion preparacion) {
 
-		if (subReceta == null)
-			return !((preparacion.contiene("Caldo")) || (preparacion
-					.contiene("Sal")));
-		else
-			return (!((preparacion.contiene("Caldo")) || (preparacion
-					.contiene("Sal"))) || !((subReceta.contiene("Caldo")) || (subReceta
-					.contiene("Sal"))));
-
-	}
-
-	public boolean validar(Usuario usr) {
+/*	public boolean validar(Usuario usr) {
 		return usr.validarHipertenso();
 
-	}
+	}*/
 	
-	public boolean esAptaReceta(Usuario usr, Receta receta){
-		return usr.esAptaRecetaHipertenso(receta);
+	public boolean esAptaReceta(Receta receta){
+		return ! comidasProhibidas.stream().anyMatch(comida -> receta.contiene(comida));
 	}
+
+
+
 
 }
