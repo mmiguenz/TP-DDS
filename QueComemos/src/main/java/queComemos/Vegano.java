@@ -23,10 +23,12 @@ public class Vegano implements CondicionPreexistenteI {
 		this.nombre = nombre;
 	}
 
+
 	public Set<String> getComidasProhibidas() {
 		return comidasProhibidas;
 	}
 
+	
 	public void setComidasProhibidas(Set<String> comidasProhibidas) {
 		this.comidasProhibidas = comidasProhibidas;
 	}
