@@ -16,5 +16,24 @@ public class QueComemosApp {
 		
 	}
 
+	public static Receta modificarRecetaPublica (String nombre, String nuevoNombre)
+	{
+
+	  Receta recetaAModificar = buscarRecetaPorNombre(nombre);
+	  recetaAModificar.setNombre(nuevoNombre);
+	  return recetaAModificar;
+	  
+	}
+
+	  
+	  
+	  private static Receta buscarRecetaPorNombre (String nombre){
+		  for (Receta receta : recetas ){
+			  if (receta.getNombre().equals(nombre)){
+				  return receta;
+			  }
+		  }
+	  return null;
+	  }
 }
 
