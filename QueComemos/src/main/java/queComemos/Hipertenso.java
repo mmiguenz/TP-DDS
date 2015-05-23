@@ -42,11 +42,6 @@ public class Hipertenso implements CondicionPreexistenteI {
 	}
 
 
-/*	public boolean validar(Usuario usr) {
-		return usr.validarHipertenso();
-
-	}*/
-	
 	public boolean esAptaReceta(Receta receta){
 		return ! comidasProhibidas.stream().anyMatch(comida -> receta.contiene(comida));
 	}

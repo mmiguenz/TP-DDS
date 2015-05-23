@@ -29,6 +29,7 @@ public class Receta {
 		this.temporada = temporada;
 		this.subRecetas = subRecetas;
 		this.inadecuados = calcularInadecuados(this);
+		//this.inadecuados = inadecuados;
 				
 
 	}
@@ -101,36 +102,14 @@ public class Receta {
 	public boolean contieneAlguna(Set<String> comidas) {
 
 		return comidas.stream().anyMatch((comida -> this.contiene(comida)));
-		//return comidas.stream().filter(comida -> this.contiene(comida)).count() > 0;
-
-		/*
-		 * for (String comida : comidas) {
-		 * 
-		 * if (this.contiene(comida)) return true;
-		 * 
-		 * }
-		 * 
-		 * return false
-		 */
-
+	
 	}
 
-	/*
-	 * public boolean esADecuadaPara(Usuario usuario) {
-	 * 
-	 * return usuario.getCondicionesPreexistentes().stream().map(condicion ->
-	 * condicion.getComidasProhibidas()) .filter(comidasProhibidas ->
-	 * this.contieneAlguna((List<String>) comidasProhibidas)).count() > 0;
-	 * 
-	 * 
-	 * 
-	 * }
-	 */
-	/*este metodo va de la mano con los que estan en usuario y en cada clase de condionPreexistente para calcular para quien es inadecuada la receta*/
+
 	public boolean esAdecuadaPara(Usuario usr){
 		return usr.esAdecuadaLaReceta(this);
 	}
-/*para mi con algunos cambios es como lo habias planteado vos, porque nunca te pide que calcules si una receta es adecuada para un usuario en particular*/
+
 	private Set<CondicionPreexistenteI> calcularInadecuados(Receta receta) {
 
 		

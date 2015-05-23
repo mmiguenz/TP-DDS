@@ -48,7 +48,7 @@ public class Celiaco implements CondicionPreexistenteI {
 
 	}
 	public boolean esAptaReceta(Receta receta){
-		//return usr.esAptaRecetaCeliaco(receta);
+		
 		return true;
 	}
 

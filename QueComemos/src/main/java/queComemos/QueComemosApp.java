@@ -1,5 +1,6 @@
 package queComemos;
 
+import java.util.HashSet;
 import java.util.Set;
 
 public class QueComemosApp {
@@ -9,10 +10,22 @@ public class QueComemosApp {
 	public static Set<CondicionPreexistenteI> inadecuados;
 
 
+	@SuppressWarnings("unchecked")
 	public static Set<CondicionPreexistenteI> calcularInadecuadosParaReceta(Receta receta)
 	{
-		return (Set<CondicionPreexistenteI>) inadecuados.stream().filter(inadecuado -> inadecuado.esAptaReceta(receta));
 		
+		for (CondicionPreexistenteI inadecuado : inadecuados)
+		{
+			if (!  inadecuado.esAptaReceta(receta))
+			{
+				inadecuados.add(inadecuado);
+				
+			}
+			
+			
+		}
+		
+		return inadecuados ;
 		
 	}
 

@@ -42,6 +42,8 @@ public   class Ingrediente  {
 	public double getCantidad() {
 		return cantidad;
 	}
+	
+	
 
 
 	public void setCantidad(double cantidad) {

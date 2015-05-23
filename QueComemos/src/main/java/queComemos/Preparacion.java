@@ -76,12 +76,12 @@ public class Preparacion {
 	{
 		if (ingredientes.stream().anyMatch(ingrediente -> ingrediente.getNombre().equals(ingre)))
 		{
-			return (Ingrediente) ingredientes.stream().filter(ingrediente -> (ingrediente.getNombre().equals(ingre)));
+			return this.buscarPorNombre(ingre, ingredientes);
 			
 		} else
 			
 		{
-			return (Ingrediente) condimentos.stream().filter(condimento -> (condimento.getNombre().equals(ingre)));
+			return this.buscarPorNombre(ingre, condimentos);
 			
 		}
 			
@@ -99,4 +99,25 @@ public class Preparacion {
 	}
 	
 	
+
+
+
+private Ingrediente buscarPorNombre(String nombre,Set<Ingrediente> ingredientes)
+{
+	for (Ingrediente ingrediente : ingredientes)
+	{
+		
+		if (ingrediente.getNombre().equals(nombre))
+		{
+			
+			return ingrediente;
+			
+		}
+		
+	}
+	
+	return new Ingrediente("","",.0);
+	
+}
+
 }

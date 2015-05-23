@@ -41,9 +41,7 @@ public class Vegano implements CondicionPreexistenteI {
 	}
 
 
-	/*public boolean validar(Usuario usr) {
-		usr.getPreferenciaAlimenticia().getComidasQueGusta().stream().anyMatch(comida ->comidasProhibidas.contains(comida));
-	}*/
+
 	
 	@Override
 	public boolean esAptaReceta(Receta receta){

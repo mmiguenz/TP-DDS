@@ -25,7 +25,21 @@ public class TestReceta {
 	Set<Ingrediente> ingredientes = new HashSet<Ingrediente>();
 	Set<Ingrediente>condimentos = new HashSet<Ingrediente>();
 	subRecetas=new HashSet<Receta>();
+	
 	inadecuados=new HashSet<CondicionPreexistenteI>();
+	Set<String>comidasProhibidas= new HashSet<String>();
+	Set<String>comidasProhibidasH= new HashSet<String>();
+	comidasProhibidasH.add("caldo");
+	
+	
+	Celiaco celiaco = new Celiaco("celiaco",comidasProhibidas);
+	Vegano vegano = new Vegano("vegano",comidasProhibidas);
+	Hipertenso hipertenso = new Hipertenso("hipertenso",comidasProhibidasH);
+	Diabetico diabetico = new Diabetico("diabetico",comidasProhibidas);
+	
+	QueComemosApp.inadecuados=new HashSet<CondicionPreexistenteI>();
+
+	
 		
 		instrucciones.add("Preparar");
 		instrucciones.add("Revolver");
@@ -59,7 +73,7 @@ public class TestReceta {
 	public void testInadecuadoParaHipertenso() {
 		Set<String> comidas= new HashSet<String>();
 		Hipertenso hipertenso = new Hipertenso("Hipertenso",comidas);
-		inadecuados.add(hipertenso);
+		QueComemosApp.inadecuados.add(hipertenso);
 		
 		 Receta receta = new Receta("CarneAlHorno",1524.0,preparacion,dificultad,temporada,subRecetas,inadecuados);
 		 assertTrue(receta.getInadecuados().contains(hipertenso));
@@ -68,7 +82,7 @@ public class TestReceta {
 	public void testAdecuadoParaHipertenso() {
 		Set<String> comidas= new HashSet<String>();
 		Hipertenso hipertenso = new Hipertenso("Hipertenso",comidas);
-			
+		QueComemosApp.inadecuados.add(hipertenso);
 		 Receta receta = new Receta("CarneAlHorno",1524.0,preparacion,dificultad,temporada,subRecetas,inadecuados);
 		 assertFalse(receta.getInadecuados().contains(hipertenso));
 
@@ -79,7 +93,8 @@ public class TestReceta {
 	public void testInadecuadoParaVegano() {
 		Set<String> comidas= new HashSet<String>();
 		Vegano vegano = new Vegano("Vegano",comidas);
-		inadecuados.add(vegano);
+		QueComemosApp.inadecuados.add(vegano);
+		
 		
 		 Receta receta = new Receta("CarneAlHorno",1524.0,preparacion,dificultad,temporada,subRecetas,inadecuados);
 		 assertTrue(receta.getInadecuados().contains(vegano));
@@ -89,9 +104,10 @@ public class TestReceta {
 	public void testAdecuadoParaVegano() {
 		Set<String> comidas= new HashSet<String>();
 		Vegano vegano = new Vegano("Vegano",comidas);
+		QueComemosApp.inadecuados.add(vegano);
 		
 		 Receta receta = new Receta("CarneAlHorno",1524.0,preparacion,dificultad,temporada,subRecetas,inadecuados);
-		 assertFalse(receta.getInadecuados().contains(vegano));
+		 assertTrue(receta.getInadecuados().contains(vegano));
 	}
 	
 	
@@ -99,7 +115,7 @@ public class TestReceta {
 	public void testInadecuadoParaCeliaco() {
 		Set<String> comidas= new HashSet<String>();
 		Celiaco celiaco = new Celiaco("Celiaco",comidas);
-		inadecuados.add(celiaco);
+		QueComemosApp.inadecuados.add(celiaco);
 		
 		 Receta receta = new Receta("CarneAlHorno",1524.0,preparacion,dificultad,temporada,subRecetas,inadecuados);
 		 assertTrue(receta.getInadecuados().contains(celiaco));
@@ -109,9 +125,9 @@ public class TestReceta {
 	public void testAdecuadoParaCeliaco() {
 		Set<String> comidas= new HashSet<String>();
 		Celiaco celiaco = new Celiaco("Celiaco",comidas);
-		
+		QueComemosApp.inadecuados.add(celiaco);
 		 Receta receta = new Receta("CarneAlHorno",1524.0,preparacion,dificultad,temporada,subRecetas,inadecuados);
-		 assertFalse(receta.getInadecuados().contains(celiaco));
+		 assertTrue(receta.getInadecuados().contains(celiaco));
 	}
 	
 	
@@ -119,10 +135,10 @@ public class TestReceta {
 	public void testNoInadecuadoParaCeliaco() {
 		Set<String> comidas= new HashSet<String>();
 		Celiaco celiaco = new Celiaco("celiaco",comidas);
-		
+		QueComemosApp.inadecuados.add(celiaco);
 		
 		 Receta receta = new Receta("CarneAlHorno",1524.0,preparacion,dificultad,temporada,subRecetas,inadecuados);
-		 assertFalse(receta.getInadecuados().contains(celiaco));
+		 assertTrue(receta.getInadecuados().contains(celiaco));
 	}
 	
 	
@@ -130,10 +146,11 @@ public class TestReceta {
 	public void testNoAdecuadoParaCeliaco() {
 		Set<String> comidas= new HashSet<String>();
 		Celiaco celiaco = new Celiaco("celiaco",comidas);
+		QueComemosApp.inadecuados.add(celiaco);
 		
 		
 		 Receta receta = new Receta("CarneAlHorno",1524.0,preparacion,dificultad,temporada,subRecetas,inadecuados);
-		 assertFalse(receta.getInadecuados().contains(celiaco));
+		 assertTrue(receta.getInadecuados().contains(celiaco));
 	}
 	
 	
@@ -141,7 +158,7 @@ public class TestReceta {
 	public void testNoInadecuadoParaDiabetico() {
 		Set<String> comidas= new HashSet<String>();
 		Diabetico diabetico = new Diabetico("diabetico",comidas);
-		inadecuados.add(diabetico);
+		QueComemosApp.inadecuados.add(diabetico);
 		
 		
 		 Receta receta = new Receta("CarneAlHorno",1524.0,preparacion,dificultad,temporada,subRecetas,inadecuados);
@@ -203,7 +220,7 @@ public class TestReceta {
 		
 		
 	}
-	
+
 	
 	
 	

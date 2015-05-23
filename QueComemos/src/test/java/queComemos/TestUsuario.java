@@ -156,7 +156,7 @@ public class TestUsuario {
 		usuario = new Usuario("Pedro", "Masculino",
 				LocalDate.parse("1990-01-01"), 60.0, 1.7, "Leve",
 				preferenciaAlimenticiaNoSaludable, condiciones, null);
-		assertTrue(usuario.validaCondicionesPreexistentes(usuario));
+		assertFalse(usuario.validaCondicionesPreexistentes(usuario));
 
 	}
 
@@ -199,9 +199,10 @@ public class TestUsuario {
 	public void testUsuarioVeganoSiValida() {
 		Set<CondicionPreexistenteI> condiciones = new HashSet<CondicionPreexistenteI>();
 		condiciones.add(new Vegano("Vegano", comidasProhibidas));
+		PreferenciaAlimenticia prefe = new PreferenciaAlimenticia(new HashSet<String>(),new HashSet<String>());
 		usuario = new Usuario("Pedro", null, LocalDate.parse("1990-01-01"),
-				60.0, 1.7, "Leve", null, condiciones, null);
-		assertTrue(usuario.validaCondicionesPreexistentes(usuario));
+				60.0, 1.7, "Leve", prefe, condiciones, null);
+		assertFalse(usuario.validaCondicionesPreexistentes(usuario));
 
 	}
 
@@ -222,7 +223,7 @@ public class TestUsuario {
 		usuario = new Usuario("Pedro", null, LocalDate.parse("1990-01-01"),
 				60.0, 1.7, "Leve", preferenciaAlimenticiaNoSaludable,
 				condiciones, null);
-		assertTrue(usuario.validaCondicionesPreexistentes(usuario));
+		assertFalse(usuario.validaCondicionesPreexistentes(usuario));
 
 	}
 
