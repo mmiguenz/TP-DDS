@@ -235,5 +235,143 @@ public class TestUsuario {
 		assertFalse(usuario.validar());
 
 	}
+	
+	@Test
+	public void testAgregarReceta()
+	{
+
+		Set<String>	instrucciones = new HashSet<String>();
+		Set<Ingrediente> ingredientes = new HashSet<Ingrediente>();
+		Set<Ingrediente>condimentos = new HashSet<Ingrediente>();
+		Set<Receta> subRecetas=new HashSet<Receta>();
+		
+		Set<CondicionPreexistenteI> inadecuados=new HashSet<CondicionPreexistenteI>();
+		Set<String>comidasProhibidas= new HashSet<String>();
+		Set<String>comidasProhibidasH= new HashSet<String>();
+		comidasProhibidasH.add("caldo");
+		
+		
+		Celiaco celiaco = new Celiaco("celiaco",comidasProhibidas);
+		Vegano vegano = new Vegano("vegano",comidasProhibidas);
+		Hipertenso hipertenso = new Hipertenso("hipertenso",comidasProhibidasH);
+		Diabetico diabetico = new Diabetico("diabetico",comidasProhibidas);
+		
+		
+		
+			
+			instrucciones.add("Preparar");
+			instrucciones.add("Revolver");
+			instrucciones.add("Hornear");
+			
+			Ingrediente sal= new Ingrediente("Sal","grs",100);
+			Ingrediente carne= new Ingrediente("Carne","kg",2);
+			Ingrediente papas= new Ingrediente("papa","kg",3);
+			Ingrediente mayonesa= new Ingrediente("Mayonesa","grs",100);
+			Ingrediente azucar= new Ingrediente("Azucar","grs",150);
+			
+			ingredientes.add(azucar);
+			ingredientes.add(carne);
+			ingredientes.add(papas);
+			condimentos.add(mayonesa);
+			condimentos.add(sal);
+		
+		     preparacion = new Preparacion(ingredientes,condimentos,instrucciones);
+			 String dificultad = "Baja";
+			 String temporada= "Verano";
+		
+				QueComemosApp.inadecuados=new HashSet<CondicionPreexistenteI>();
+				
+		Usuario usr = new Usuario ("juan","masculino",LocalDate.parse("2016-01-01"), 60.0, 1.7, "Leve",
+					preferenciaAlimenticiaNoSaludable,new HashSet<CondicionPreexistenteI>(),new HashSet<Receta>());
+		
+		
+		
+		Receta receta = new Receta("PolloConPapas", 50.0,  preparacion,dificultad,temporada,subRecetas,inadecuados);
+		
+		usr.agregarReceta(receta);
+		
+		assertTrue(usr.getMisRecetas().size()>0);
+		
+	}
+		
+		
+		@Test
+		public void testModificarRecetaPublica()
+		{
+			
+			QueComemosApp.inadecuados=new HashSet<CondicionPreexistenteI>();
+			Set<String>	instrucciones = new HashSet<String>();
+			Set<Ingrediente> ingredientes = new HashSet<Ingrediente>();
+			Set<Ingrediente>condimentos = new HashSet<Ingrediente>();
+			Set<Receta> subRecetas=new HashSet<Receta>();
+			
+			Set<CondicionPreexistenteI> inadecuados=new HashSet<CondicionPreexistenteI>();
+			Set<String>comidasProhibidas= new HashSet<String>();
+			Set<String>comidasProhibidasH= new HashSet<String>();
+			comidasProhibidasH.add("caldo");
+			
+			
+			Celiaco celiaco = new Celiaco("celiaco",comidasProhibidas);
+			Vegano vegano = new Vegano("vegano",comidasProhibidas);
+			Hipertenso hipertenso = new Hipertenso("hipertenso",comidasProhibidasH);
+			Diabetico diabetico = new Diabetico("diabetico",comidasProhibidas);
+			
+			
+			
+				
+				instrucciones.add("Preparar");
+				instrucciones.add("Revolver");
+				instrucciones.add("Hornear");
+				
+				Ingrediente sal= new Ingrediente("Sal","grs",100);
+				Ingrediente carne= new Ingrediente("Carne","kg",2);
+				Ingrediente papas= new Ingrediente("papa","kg",3);
+				Ingrediente mayonesa= new Ingrediente("Mayonesa","grs",100);
+				Ingrediente azucar= new Ingrediente("Azucar","grs",150);
+				
+				ingredientes.add(azucar);
+				ingredientes.add(carne);
+				ingredientes.add(papas);
+				condimentos.add(mayonesa);
+				condimentos.add(sal);
+			
+			     preparacion = new Preparacion(ingredientes,condimentos,instrucciones);
+				 String dificultad = "Baja";
+				 String temporada= "Verano";
+			
+			
+			Usuario usr = new Usuario ("juan","masculino",LocalDate.parse("2016-01-01"), 60.0, 1.7, "Leve",
+						preferenciaAlimenticiaNoSaludable,new HashSet<CondicionPreexistenteI>(),new HashSet<Receta>());
+			
+			
+			
+			Receta receta = new Receta("PolloConPapas", 50.0,preparacion,dificultad,temporada,subRecetas,inadecuados);
+		
+			QueComemosApp.recetas.add(receta);
+			
+			usr.modificaUnaRecetaPublica("PolloConPapas", "SoloPollo");
+			assertTrue(usr.getMisRecetas().size()>0);
+			assertTrue(usr.getMisRecetas().stream().anyMatch(rec -> rec.getNombre().equals("SoloPollo")));
+			assertTrue(QueComemosApp.recetas.stream().anyMatch(orec -> orec.getNombre().equals("PolloConPapas")));
+			
+			
+		}
+		
 
 }
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+

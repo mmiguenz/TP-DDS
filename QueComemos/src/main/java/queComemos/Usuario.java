@@ -29,6 +29,7 @@ public class Usuario {
 		this.setRutina(rutina);
 		this.setPreferenciaAlimenticia(preferenciaAlimenticia);
 		this.setCondicionesPreexistentes(condicionesPreexistentes);
+		this.setMisRecetas(misRecetas);
 
 	}
 
