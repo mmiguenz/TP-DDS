@@ -51,8 +51,10 @@ public class TestGrupo {
 	
 	@Test
 	public void testEstaJuanEnElGrupo() {
-		
-		grupo = new Grupo("grupo 1", usuariosColeccion, null);
+	
+	
+	
+		grupo = new Grupo("UnNombre" , usuariosColeccion, null);
 		assertTrue(grupo.getUsuarios().stream().anyMatch(usr->usr.getNombre().equals("Juan")));
 	}
 	

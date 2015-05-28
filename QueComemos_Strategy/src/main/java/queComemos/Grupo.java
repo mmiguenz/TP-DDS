@@ -14,7 +14,7 @@ public class Grupo {
 	public Grupo(String nombre, Set<Usuario> usuario,
 			PreferenciaAlimenticia preferenciaAlimenticia) {
 		this.setNombre(nombre);
-		//this.setUsuarios(usuario);
+		this.setUsuarios(usuario);
 		this.setPreferenciaAlimenticia(preferenciaAlimenticia);
 		
 	}
