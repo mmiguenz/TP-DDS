@@ -10,6 +10,17 @@ public class QueComemosApp {
 	public static Set<CondicionPreexistenteI> inadecuados;
 
 
+	
+	public static void inicializar()
+	
+	{
+		usuarios = new HashSet<Usuario>();
+		recetas = new HashSet<Receta>();
+		inadecuados = new HashSet<CondicionPreexistenteI>();
+		
+		
+	}
+	
 	@SuppressWarnings("unchecked")
 	public static Set<CondicionPreexistenteI> calcularInadecuadosParaReceta(Receta receta)
 	{
@@ -69,6 +80,14 @@ public class QueComemosApp {
 		 
 		  Receta recetaClon = new Receta (receta.getNombre(),receta.getCalorias(),receta.getPreparacion(),receta.getDificultad(),receta.getTemporada(),receta.getSubRecetas(),receta.getInadecuados());
 		  return recetaClon;
+		  
+	  }
+	  
+	  
+	  public static boolean puedeSugerir(Receta receta , Usuario usr)
+	  {
+		  return usr.esAdecuadaLaReceta(receta);
+		  
 		  
 	  }
 	  
