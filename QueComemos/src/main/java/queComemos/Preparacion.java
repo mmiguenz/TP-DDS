@@ -72,6 +72,12 @@ public class Preparacion {
 	}
 	
 	
+	public boolean leGusta(Set<String> cosasQueLeGustan){
+		
+		return (cosasQueLeGustan.stream().anyMatch(cosas->this.contiene(cosas)));
+	}
+	
+	
 	public Ingrediente buscaIngrediente(String ingre)
 	{
 		if (ingredientes.stream().anyMatch(ingrediente -> ingrediente.getNombre().equals(ingre)))

@@ -109,6 +109,11 @@ public class Receta {
 	public boolean esAdecuadaPara(Usuario usr){
 		return usr.esAdecuadaLaReceta(this);
 	}
+	
+	public boolean esAdecuadaParaGrupo(Set<Usuario> usuarios){
+		return (usuarios.stream().allMatch(usr->this.esAdecuadaPara(usr)));
+	}
+	
 
 	public Set<CondicionPreexistenteI> calcularInadecuados() {
 
@@ -128,6 +133,11 @@ public class Receta {
 		return preparacion.buscaIngrediente(ingre);
 		
 		
+	}
+	
+	public boolean leGustaAlGrupo(PreferenciaAlimenticia preferenciaAlimenticia){
+		
+		return ((this.getPreparacion().leGusta(preferenciaAlimenticia.getComidasQueGusta())) && !(this.getPreparacion().leGusta(preferenciaAlimenticia.getComidasQueDisgusta())));
 	}
 	
 	

@@ -49,14 +49,11 @@ public class Grupo {
 		this.preferenciaAlimenticia = preferenciaAlimenticia;
 	}
 	
-	//falta validar que ningun elemento de las preferencias alimenticias del grupo coincida con las preferencias de cada usuario
-	/*
-	public boolean validar(PreferenciaAlimenticia preferencia){
-		preferencia.getComidasQueDisgusta().forEach();
-		//usuarios.forEach((Usuario usuario)->usuario.getPreferenciaAlimenticia().getComidasQueDisgusta());
+	public void sugerir(Receta receta){
+		
+		receta.leGustaAlGrupo(preferenciaAlimenticia);
+		
 	}
-	*/
-		
-		
-
+	
+	
 }
