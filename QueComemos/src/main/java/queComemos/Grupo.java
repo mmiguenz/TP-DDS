@@ -35,9 +35,9 @@ public class Grupo {
 		this.usuarios=user;
 	}
 	
-	/*public void agregarUsuario(Usuario user){
+	public void agregarUsuario(Usuario user){
 		this.usuarios.add(user);
-	}*/
+	}
 	
 	
 	public PreferenciaAlimenticia getPreferenciaAlimenticia() {

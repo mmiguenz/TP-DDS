@@ -52,10 +52,26 @@ public class TestGrupo {
 	@Test
 	public void testEstaJuanEnElGrupo() {
 	
-	
-	
 		grupo = new Grupo("UnNombre" , usuariosColeccion, null);
 		assertTrue(grupo.getUsuarios().stream().anyMatch(usr->usr.getNombre().equals("Juan")));
+	}
+	
+	@Test
+	public void testEstaPepoEnElGrupo() {
+	
+		grupo = new Grupo("UnNombre" , usuariosColeccion, null);
+		Usuario usuario3 = new Usuario("Pepo", "Masculino",
+				LocalDate.parse("1990-01-01"), 60.0, 1.7, "Leve",
+				null, null, null);
+		grupo.agregarUsuario(usuario3);
+		assertTrue(grupo.getUsuarios().stream().anyMatch(usr->usr.getNombre().equals("Pepo")));
+	}
+	
+	@Test
+	public void testNoEstaPepoEnElGrupo() {
+	
+		grupo = new Grupo("UnNombre" , usuariosColeccion, null);
+		assertFalse(grupo.getUsuarios().stream().anyMatch(usr->usr.getNombre().equals("Pepo")));
 	}
 	
 
