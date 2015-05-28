@@ -28,7 +28,7 @@ public class Receta {
 		this.dificultad = dificultad;
 		this.temporada = temporada;
 		this.subRecetas = subRecetas;
-		this.inadecuados = calcularInadecuados(this);
+		this.inadecuados = calcularInadecuados();
 		//this.inadecuados = inadecuados;
 				
 
@@ -110,10 +110,10 @@ public class Receta {
 		return usr.esAdecuadaLaReceta(this);
 	}
 
-	private Set<CondicionPreexistenteI> calcularInadecuados(Receta receta) {
+	public Set<CondicionPreexistenteI> calcularInadecuados() {
 
 		
-		return QueComemosApp.calcularInadecuadosParaReceta(receta);
+		return QueComemosApp.calcularInadecuadosParaReceta(this);
 				
 	}
 

@@ -349,7 +349,7 @@ public class TestUsuario {
 		
 			QueComemosApp.recetas.add(receta);
 			
-			usr.modificaUnaRecetaPublica("PolloConPapas", "SoloPollo");
+			usr.modificaUnaRecetaPublica("PolloConPapas", "SoloPollo",null,null,null,null);
 			assertTrue(usr.getMisRecetas().size()>0);
 			assertTrue(usr.getMisRecetas().stream().anyMatch(rec -> rec.getNombre().equals("SoloPollo")));
 			assertTrue(QueComemosApp.recetas.stream().anyMatch(orec -> orec.getNombre().equals("PolloConPapas")));

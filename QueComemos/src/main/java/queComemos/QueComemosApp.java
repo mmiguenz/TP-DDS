@@ -29,15 +29,26 @@ public class QueComemosApp {
 		
 	}
 
-	public static Receta modificarRecetaPublica (String nombre, String nuevoNombre)
+	public static Receta modificarRecetaPublica (String nombre, String nuevoNombre,Double calorias, Preparacion preparacion,Set<Receta>subRecetas,String dificultad)
 	{
 
 	  Receta recetaPublica = buscarRecetaPorNombre(nombre);
 	  Receta recetaAModificar = clonarReceta(recetaPublica);
-	  if (!recetaPublica.getNombre().equals(nuevoNombre) && nuevoNombre !=null)
+	  if (nuevoNombre !=null)
 		  recetaAModificar.setNombre(nuevoNombre);
+	  if (calorias != null)
+		  recetaAModificar.setCalorias(calorias);
+	  if (preparacion != null)
+		  recetaAModificar.setPreparacion(preparacion);
+	 if  (subRecetas != null)
+		 recetaAModificar.setSubRecetas(subRecetas);
+	 if (dificultad != null )
+		 recetaAModificar.setDificultad(dificultad);
+	 
+	 
 	  
-	  
+	 recetaAModificar.calcularInadecuados() ; 
+	 
 	  return recetaAModificar;
 	  
 	}

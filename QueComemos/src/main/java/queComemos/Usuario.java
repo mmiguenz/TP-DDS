@@ -164,8 +164,8 @@ public class Usuario {
 
 	}
 	
-	public void modificaUnaRecetaPublica(String nombre, String nuevoNombre){
-		Receta recetaModificada= QueComemosApp.modificarRecetaPublica(nombre, nuevoNombre);
+	public void modificaUnaRecetaPublica(String nombre, String nuevoNombre,Double calorias, Preparacion preparacion,Set<Receta>subRecetas,String dificultad){
+		Receta recetaModificada= QueComemosApp.modificarRecetaPublica( nombre,  nuevoNombre, calorias, preparacion,subRecetas, dificultad);
 		this.agregarReceta(recetaModificada);
 		
 	}
