@@ -50,8 +50,9 @@ public class Grupo {
 	}
 	
 	public boolean puedeSugerir(Receta receta){
-		
-		return receta.leGustaAlGrupo(preferenciaAlimenticia);
+		return (usuarios.stream().allMatch(usr->usr.esAdecuadaLaReceta(receta)) 
+				&& receta.leGustaAlGrupo(preferenciaAlimenticia));
+		//return receta.leGustaAlGrupo(preferenciaAlimenticia);
 		
 	}
 	
