@@ -49,9 +49,9 @@ public class Grupo {
 		this.preferenciaAlimenticia = preferenciaAlimenticia;
 	}
 	
-	public void sugerir(Receta receta){
+	public boolean sugerir(Receta receta){
 		
-		receta.leGustaAlGrupo(preferenciaAlimenticia);
+		return receta.leGustaAlGrupo(preferenciaAlimenticia);
 		
 	}
 	
