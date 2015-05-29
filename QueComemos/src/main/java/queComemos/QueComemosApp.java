@@ -91,6 +91,16 @@ public class QueComemosApp {
 		  
 	  }
 	  
+	  public static boolean puedeSugerir(Receta receta ,Grupo grupo)
+	  {
+		  return grupo.puedeSugerir(receta);
+		  
+		  
+	  }
+	  
+	  
+	  
+	  
 	  
 }
 
