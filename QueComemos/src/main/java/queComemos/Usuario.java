@@ -200,6 +200,11 @@ public class Usuario {
 		this.favoritas.add(receta);
 		
 	}
+
+	public boolean leGusta(Receta receta) {
+		// Falta implementar ya que no especifia bajo que criterio
+		return true;
+	}
 	
 	
 	
