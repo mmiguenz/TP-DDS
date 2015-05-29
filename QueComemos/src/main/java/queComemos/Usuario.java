@@ -8,6 +8,15 @@ public class Usuario {
 
 	private String nombre;
 	private String sexo;
+	public Set<Receta> getFavoritas() {
+		return favoritas;
+	}
+
+	public void setFavoritas(Set<Receta> favoritas) {
+		this.favoritas = favoritas;
+	}
+
+
 	private LocalDate fechaNacimiento;
 	private Double peso;
 	private Double estatura;
@@ -15,6 +24,7 @@ public class Usuario {
 	private PreferenciaAlimenticia preferenciaAlimenticia;
 	private Set<CondicionPreexistenteI> condicionesPreexistentes;
 	private Set<Receta> misRecetas;
+	private Set<Receta> favoritas;
 
 	public Usuario(String nombre, String sexo, LocalDate fechaNacimiento,
 			Double peso, Double estatura, String rutina,
@@ -30,6 +40,7 @@ public class Usuario {
 		this.setPreferenciaAlimenticia(preferenciaAlimenticia);
 		this.setCondicionesPreexistentes(condicionesPreexistentes);
 		this.setMisRecetas(misRecetas);
+		this.favoritas= new HashSet<Receta>();
 
 	}
 
@@ -182,6 +193,14 @@ public class Usuario {
 		return this.condicionesPreexistentes.stream().allMatch(condicion -> condicion.esAptaReceta(receta))
 				&& this.preferenciaAlimenticia.getComidasQueDisgusta().stream().anyMatch(comida -> receta.contiene(comida));		
 	}
+	
+	
+	public void marcarComoFavorita(Receta receta)
+	{
+		this.favoritas.add(receta);
+		
+	}
+	
 	
 	
 }

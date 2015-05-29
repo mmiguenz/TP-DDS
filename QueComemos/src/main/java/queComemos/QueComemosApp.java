@@ -6,8 +6,10 @@ import java.util.Set;
 public class QueComemosApp {
 	
 	public static Set<Usuario> usuarios ; 
-	public static Set<Receta> recetas= new HashSet<Receta>();
+	public static Set<Receta> recetas;
 	public static Set<CondicionPreexistenteI> inadecuados;
+	public static Set<Grupo> grupos;
+	
 
 
 	
@@ -17,6 +19,7 @@ public class QueComemosApp {
 		usuarios = new HashSet<Usuario>();
 		recetas = new HashSet<Receta>();
 		inadecuados = new HashSet<CondicionPreexistenteI>();
+		grupos = new HashSet<Grupo>();
 		
 		
 	}
@@ -98,6 +101,51 @@ public class QueComemosApp {
 		  
 	  }
 	  
+	  
+	  public static Set<Receta> mostrarRecetasAccesiblesPorUsuario(Usuario usr)
+	  {
+		  
+		  Set<Receta> resultado = new HashSet<Receta>();
+		  
+		  resultado.addAll(recetas);
+		  resultado.addAll(usr.getMisRecetas());
+		  Set<Grupo> gruposDeUsuario = buscarGruposDeUsuario(usr);
+		  
+		  for (Grupo grupo : gruposDeUsuario )
+		  {
+			  for (Usuario usuario: grupo.getUsuarios())
+			  {
+				  resultado.addAll(usuario.getMisRecetas());
+				  
+				  
+			  }
+			  
+			  
+		  }
+		  
+		  return resultado ;
+		  
+		  
+		  
+		  
+	  }
+	  
+	  
+	  private static Set<Grupo> buscarGruposDeUsuario(Usuario usr)
+	  {
+		  Set<Grupo> gruposDeUsuario = new HashSet<Grupo>();
+		  
+		 
+		  for (Grupo grupo : grupos )
+		  {
+			  if (grupo.getUsuarios().contains(usr))
+				  gruposDeUsuario.add(grupo);
+			  
+		  }
+		  
+		  return gruposDeUsuario;
+		  
+	  }
 	  
 	  
 	  

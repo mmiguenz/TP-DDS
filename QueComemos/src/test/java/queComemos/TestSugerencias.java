@@ -168,7 +168,7 @@ public class TestSugerencias {
 		PreferenciaAlimenticia preferencia1=new PreferenciaAlimenticia(comidasGusta1,comidasNoGusta1);
 		Usuario usuario1 = new Usuario("Pedro", "Masculino",
 				LocalDate.parse("1990-01-01"), 60.0, 1.7, "Leve",
-				preferencia1, condiciones, null);
+				preferencia1, condiciones, new HashSet<Receta>());
 		
 		Set<String> comidasGusta2= new HashSet<String>();
 		comidasGusta2.add("Carne");
@@ -178,7 +178,7 @@ public class TestSugerencias {
 		PreferenciaAlimenticia preferencia2=new PreferenciaAlimenticia(comidasGusta2,comidasNoGusta2);
 		Usuario usuario2 = new Usuario("Juan", "Masculino",
 				LocalDate.parse("1990-01-01"), 60.0, 1.7, "Leve",
-				preferencia2, null, null);
+				preferencia2, new HashSet<CondicionPreexistenteI>(), new HashSet<Receta>());
 		
 		Set<String> comidasGusta3= new HashSet<String>();
 		comidasGusta3.add("pescado");
@@ -187,7 +187,7 @@ public class TestSugerencias {
 		PreferenciaAlimenticia preferencia3=new PreferenciaAlimenticia(comidasGusta3,comidasNoGusta3);
 		Usuario usuario3 = new Usuario("Pepo", "Masculino",
 				LocalDate.parse("1990-01-01"), 60.0, 1.7, "Leve",
-				preferencia3, null, null);
+				preferencia3, new HashSet<CondicionPreexistenteI>(), new HashSet<Receta>());
 		
 		Set<Usuario> usuariosColeccion = new HashSet<Usuario>();
 		usuariosColeccion.add(usuario1);
@@ -201,7 +201,7 @@ public class TestSugerencias {
 		Grupo grupo = new Grupo("UnNombre" , usuariosColeccion, preferencia);	
 
 		
-		assertFalse(grupo.puedeSugerir(receta));
+		assertTrue(grupo.puedeSugerir(receta));
 	}
 	
 }
