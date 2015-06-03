@@ -4,6 +4,8 @@ jdk:
 
 before_install: cd QueComemos
 
+script: mvn clean cobertura:check -B -V
+
 notifications:
   email:
    - jaecisneros@gmail.com
@@ -13,3 +15,6 @@ notifications:
    - aleee.eb@gmail.com
    - franscagnetti@hotmail.com
    - hernan.juri@gmail.com
+
+on_success: change
+on_failure: always
