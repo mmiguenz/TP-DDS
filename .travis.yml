@@ -4,6 +4,7 @@ jdk:
 
 before_install: cd QueComemos
 
+install: mvn clean install -DskipTests=true -Dmaven.javadoc.skip=true -Dcobertura.skip=true -B -V
 script: mvn clean cobertura:check -B -V
 
 notifications:
