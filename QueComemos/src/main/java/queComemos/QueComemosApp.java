@@ -158,6 +158,22 @@ public class QueComemosApp {
 		  
 	  }
 	  
+	  public static Set<Receta> consultarRecetas(Usuario usr,Set<FiltroI> filtros, ProcesamientoI procesamiento)
+	  {
+		  Set<Receta> consultaResul =QueComemosApp.mostrarRecetasAccesiblesPorUsuario(usr);
+		  
+		  for (FiltroI filtro : filtros)
+		  {
+			  consultaResul = filtro.filtrar(consultaResul,usr);
+			  
+			  
+		  }
+		  
+		  return procesamiento.procesar(consultaResul);
+		  
+		  
+	  }
+	  
 	  
 	  
 }
