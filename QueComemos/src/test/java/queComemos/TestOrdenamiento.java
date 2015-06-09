@@ -89,12 +89,12 @@ public class TestOrdenamiento {
 		
 	
 	recetas.add( new Receta("PolloConPapasA", 60.0,preparacion,dificultad,temporada,subRecetas,inadecuados));
-	//recetas.add( new Receta("CarneAlHornoA",4524.0,preparacion,dificultad,temporada,subRecetas,inadecuados));
+	recetas.add( new Receta("CarneAlHornoA",4524.0,preparacion,dificultad,temporada,subRecetas,inadecuados));
 	recetas.add( new Receta("CarneAlHornoB",1534.0,preparacion,dificultad,temporada,subRecetas,inadecuados));
 	recetas.add( new Receta("PolloConPapasB", 80.0,preparacion,dificultad,temporada,subRecetas,inadecuados));
 	recetas.add( new Receta("CarneAlHornoC",124.0,preparacion,dificultad,temporada,subRecetas,inadecuados));
 	recetas.add( new Receta("PolloConPapasC", 550.0,preparacion,dificultad,temporada,subRecetas,inadecuados));
-	recetas.add( new Receta("CarneAlHornoD",1574.0,preparacion,dificultad,temporada,subRecetas,inadecuados));
+	recetas.add( new Receta("AA",1574.0,preparacion,dificultad,temporada,subRecetas,inadecuados));
 	recetas.add( new Receta("PolloConPapasA", 21600.0,preparacion,dificultad,temporada,subRecetas,inadecuados));		
 	
 	
@@ -103,18 +103,32 @@ public class TestOrdenamiento {
 	}
 
 	@Test
-	public void test() {
+	public void testOrdernarPorCalorias() {
 		
 		CriterioOrdenamientoI criterio =  new OrdenarPorCalorias();
 		ProcesamientoI orden = new Ordenar(criterio);
 		
 		List<Receta> recetasOrdenadas =  orden.procesar(recetas);
-		String n = recetasOrdenadas.stream().findFirst().get().getNombre();
+		
 		assertTrue(recetasOrdenadas.stream().findFirst().get().getNombre().equals("PolloConPapasA"));
 		
 		
 		
 		
+	}	@Test
+	public void testOrdernarPorNombre() {
+		
+		CriterioOrdenamientoI criterio =  new OrdenarPorNombre();
+		ProcesamientoI orden = new Ordenar(criterio);
+		
+		List<Receta> recetasOrdenadas =  orden.procesar(recetas);
+	
+		assertTrue(recetasOrdenadas.stream().findFirst().get().getNombre().equals("AA"));
+		
+		
+		
+		
 	}
+	
 
 }
