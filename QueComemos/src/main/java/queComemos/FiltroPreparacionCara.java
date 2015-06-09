@@ -14,7 +14,8 @@ public class FiltroPreparacionCara implements FiltroI {
 		comidasCaras.add("alcaparras");
 		
 		
-		recetas.removeIf(receta -> receta.contieneAlguna(comidasCaras));
+		//recetas.removeIf(receta -> receta.contieneAlguna(comidasCaras));
+		recetas.stream().filter(receta -> !receta.contieneAlguna(comidasCaras));
 		return recetas ;
 		
 		
