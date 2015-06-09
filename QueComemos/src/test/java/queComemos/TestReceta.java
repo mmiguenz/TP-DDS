@@ -2,8 +2,8 @@ package queComemos;
 
 import static org.junit.Assert.*;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -15,20 +15,20 @@ public class TestReceta {
 	private Preparacion preparacion ;
 	private String dificultad;
 	private String temporada;
-	private Set<Receta> subRecetas;
-	private Set<	CondicionPreexistenteI> inadecuados;
+	private List<Receta> subRecetas;
+	private List<	CondicionPreexistenteI> inadecuados;
 
 	@Before
 	public void setUp() throws Exception {
 	
-	Set<String>	instrucciones = new HashSet<String>();
-	Set<Ingrediente> ingredientes = new HashSet<Ingrediente>();
-	Set<Ingrediente>condimentos = new HashSet<Ingrediente>();
-	subRecetas=new HashSet<Receta>();
+	List<String>	instrucciones = new ArrayList<String>();
+	List<Ingrediente> ingredientes = new ArrayList<Ingrediente>();
+	List<Ingrediente>condimentos = new ArrayList<Ingrediente>();
+	subRecetas=new ArrayList<Receta>();
 	
-	inadecuados=new HashSet<CondicionPreexistenteI>();
-	Set<String>comidasProhibidas= new HashSet<String>();
-	Set<String>comidasProhibidasH= new HashSet<String>();
+	inadecuados=new ArrayList<CondicionPreexistenteI>();
+	List<String>comidasProhibidas= new ArrayList<String>();
+	List<String>comidasProhibidasH= new ArrayList<String>();
 	comidasProhibidasH.add("caldo");
 	
 	
@@ -37,7 +37,7 @@ public class TestReceta {
 	Hipertenso hipertenso = new Hipertenso("hipertenso",comidasProhibidasH);
 	Diabetico diabetico = new Diabetico("diabetico",comidasProhibidas);
 	
-	QueComemosApp.inadecuados=new HashSet<CondicionPreexistenteI>();
+	QueComemosApp.inadecuados=new ArrayList<CondicionPreexistenteI>();
 
 	
 		
@@ -71,7 +71,7 @@ public class TestReceta {
 
 	@Test
 	public void testInadecuadoParaHipertenso() {
-		Set<String> comidas= new HashSet<String>();
+		List<String> comidas= new ArrayList<String>();
 		comidas.add("Sal");
 		Hipertenso hipertenso = new Hipertenso("Hipertenso",comidas);
 		QueComemosApp.inadecuados.add(hipertenso);
@@ -81,7 +81,7 @@ public class TestReceta {
 	}
 	
 	public void testAdecuadoParaHipertenso() {
-		Set<String> comidas= new HashSet<String>();
+		List<String> comidas= new ArrayList<String>();
 		Hipertenso hipertenso = new Hipertenso("Hipertenso",comidas);
 		QueComemosApp.inicializar();
 		QueComemosApp.inadecuados.add(hipertenso);
@@ -93,7 +93,7 @@ public class TestReceta {
 	
 	@Test
 	public void testInadecuadoParaVegano() {
-		Set<String> comidas= new HashSet<String>();
+		List<String> comidas= new ArrayList<String>();
 		comidas.add("Carne");
 		Vegano vegano = new Vegano("Vegano",comidas);
 		QueComemosApp.inadecuados.add(vegano);
@@ -105,7 +105,7 @@ public class TestReceta {
 	
 	@Test
 	public void testAdecuadoParaVegano() {
-		Set<String> comidas= new HashSet<String>();
+		List<String> comidas= new ArrayList<String>();
 		Vegano vegano = new Vegano("Vegano",comidas);
 		QueComemosApp.inadecuados.add(vegano);
 		
@@ -116,7 +116,7 @@ public class TestReceta {
 	
 	@Test
 	public void testInadecuadoParaCeliaco() {
-		Set<String> comidas= new HashSet<String>();
+		List<String> comidas= new ArrayList<String>();
 		Celiaco celiaco = new Celiaco("Celiaco",comidas);
 		QueComemosApp.inadecuados.add(celiaco);
 		
@@ -126,7 +126,7 @@ public class TestReceta {
 	
 	@Test
 	public void testAdecuadoParaCeliaco() {
-		Set<String> comidas= new HashSet<String>();
+		List<String> comidas= new ArrayList<String>();
 		Celiaco celiaco = new Celiaco("Celiaco",comidas);
 		QueComemosApp.inadecuados.add(celiaco);
 		 Receta receta = new Receta("CarneAlHorno",1524.0,preparacion,dificultad,temporada,subRecetas,inadecuados);
@@ -136,7 +136,7 @@ public class TestReceta {
 	
 	@Test
 	public void testNoInadecuadoParaCeliaco() {
-		Set<String> comidas= new HashSet<String>();
+		List<String> comidas= new ArrayList<String>();
 		Celiaco celiaco = new Celiaco("celiaco",comidas);
 		QueComemosApp.inadecuados.add(celiaco);
 		
@@ -147,7 +147,7 @@ public class TestReceta {
 	
 	@Test
 	public void testNoAdecuadoParaCeliaco() {
-		Set<String> comidas= new HashSet<String>();
+		List<String> comidas= new ArrayList<String>();
 		Celiaco celiaco = new Celiaco("celiaco",comidas);
 		QueComemosApp.inadecuados.add(celiaco);
 		
@@ -159,7 +159,7 @@ public class TestReceta {
 	
 	@Test
 	public void testNoInadecuadoParaDiabetico() {
-		Set<String> comidas= new HashSet<String>();
+		List<String> comidas= new ArrayList<String>();
 		Diabetico diabetico = new Diabetico("diabetico",comidas);
 		QueComemosApp.inadecuados.add(diabetico);
 		
@@ -192,7 +192,7 @@ public class TestReceta {
 	public void testRecetaContieneAlgunaComidaDeUnaLista()
 	{
 		Receta receta = new Receta("CarneAlHorno",1524.0,preparacion,dificultad,temporada,subRecetas,inadecuados);
-		Set<String> conjuntoDeComidas = new HashSet<String>();
+		List<String> conjuntoDeComidas = new ArrayList<String>();
 		
 		conjuntoDeComidas.add("Miel");
 		conjuntoDeComidas.add("Carne");
@@ -209,7 +209,7 @@ public class TestReceta {
 	public void testRecetaNoContieneAlgunaComidaDeUnaLista()
 	{
 		Receta receta = new Receta("CarneAlHorno",1524.0,preparacion,dificultad,temporada,subRecetas,inadecuados);
-		Set<String> conjuntoDeComidas = new HashSet<String>();
+		List<String> conjuntoDeComidas = new ArrayList<String>();
 		
 		conjuntoDeComidas.add("Miel");
 		conjuntoDeComidas.add("Pescado");

@@ -1,10 +1,10 @@
 package queComemos;
 
-import java.util.Set;
+import java.util.List;
 
 public class Celiaco implements CondicionPreexistenteI {
 
-	public Celiaco(String nombre, Set<String> comidasProhibidas) {
+	public Celiaco(String nombre, List<String> comidasProhibidas) {
 		super();
 		this.nombre = nombre;
 		this.comidasProhibidas = comidasProhibidas;
@@ -24,17 +24,17 @@ public class Celiaco implements CondicionPreexistenteI {
 
 
 
-	public Set<String> getComidasProhibidas() {
+	public List<String> getComidasProhibidas() {
 		return comidasProhibidas;
 	}
 
 
 
-	public void setComidasProhibidas(Set<String> comidasProhibidas) {
+	public void setComidasProhibidas(List<String> comidasProhibidas) {
 		this.comidasProhibidas = comidasProhibidas;
 	}
 	private String nombre;
-	private Set<String> comidasProhibidas;
+	private List<String> comidasProhibidas;
 
 	public boolean subSanaCondicion(Usuario usuario) {
 

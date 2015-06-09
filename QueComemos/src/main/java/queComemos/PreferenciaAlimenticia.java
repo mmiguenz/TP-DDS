@@ -1,41 +1,41 @@
 package queComemos;
 
-import java.util.Set;
+import java.util.List;
 
 public class PreferenciaAlimenticia {
 	
-	private Set<String> comidasQueGusta;
-	private Set<String> comidasQueDisgusta;
+	private List<String> comidasQueGusta;
+	private List<String> comidasQueDisgusta;
 	
 	
-	public PreferenciaAlimenticia(Set<String> comidasQueGusta,Set<String> comidasQueDisgusta) {
+	public PreferenciaAlimenticia(List<String> comidasQueGusta,List<String> comidasQueDisgusta) {
 	
 		this.comidasQueGusta = comidasQueGusta;
 		this.comidasQueDisgusta = comidasQueDisgusta;
 	}
 
 
-	public Set<String> getComidasQueGusta() {
+	public List<String> getComidasQueGusta() {
 		return comidasQueGusta;
 	}
 
 
-	public void setComidasQueGusta(Set<String> comidasQueGusta) {
+	public void setComidasQueGusta(List<String> comidasQueGusta) {
 		this.comidasQueGusta = comidasQueGusta;
 	}
 
 
-	public Set<String> getComidasQueDisgusta() {
+	public List<String> getComidasQueDisgusta() {
 		return comidasQueDisgusta;
 	}
 
 
-	public void setComidasQueDisgusta(Set<String> comidasQueDisgusta) {
+	public void setComidasQueDisgusta(List<String> comidasQueDisgusta) {
 		this.comidasQueDisgusta = comidasQueDisgusta;
 	}
 	
 	
-	public boolean leGustaAlguna(Set<String> preferencias)
+	public boolean leGustaAlguna(List<String> preferencias)
 	{
 		return preferencias.stream().anyMatch((unaPreferencia -> this.leGusta(unaPreferencia)));
 		

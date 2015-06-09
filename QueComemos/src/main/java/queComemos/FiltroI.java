@@ -1,9 +1,9 @@
 package queComemos;
 
-import java.util.Set;
+import java.util.List;
 
 public interface FiltroI {
 	
-	public Set<Receta> filtrar (Set<Receta> recetas,Usuario usr);
+	public List<Receta> filtrar (List<Receta> recetas,Usuario usr);
 
 }

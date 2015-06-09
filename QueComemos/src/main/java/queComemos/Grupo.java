@@ -1,17 +1,17 @@
 package queComemos;
 
 import java.time.LocalDate;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Grupo {
 
 	private String nombre;
-	private Set<Usuario> usuarios;
+	private List<Usuario> usuarios;
 	private PreferenciaAlimenticia preferenciaAlimenticia;
 	
 
-	public Grupo(String nombre, Set<Usuario> usuario,
+	public Grupo(String nombre, List<Usuario> usuario,
 			PreferenciaAlimenticia preferenciaAlimenticia) {
 		this.setNombre(nombre);
 		this.setUsuarios(usuario);
@@ -27,11 +27,11 @@ public class Grupo {
 		this.nombre = nombre;
 	}
 	
-	public Set<Usuario> getUsuarios() {
+	public List<Usuario> getUsuarios() {
 		return usuarios;
 	}
 
-	public void setUsuarios(Set<Usuario> user) {
+	public void setUsuarios(List<Usuario> user) {
 		this.usuarios=user;
 	}
 	

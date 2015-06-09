@@ -1,15 +1,15 @@
 package queComemos;
 
-import java.util.Set;
+import java.util.List;
 
 public class Hipertenso implements CondicionPreexistenteI {
 	
 	private String nombre;
-	private Set<String>comidasProhibidas;
+	private List<String>comidasProhibidas;
 	
 
 
-	public Hipertenso(String nombre, Set<String> comidasProhibidas) {
+	public Hipertenso(String nombre, List<String> comidasProhibidas) {
 		super();
 		this.nombre = nombre;
 		this.comidasProhibidas = comidasProhibidas;
@@ -26,12 +26,12 @@ public class Hipertenso implements CondicionPreexistenteI {
 	}
 
 
-	public Set<String> getComidasProhibidas() {
+	public List<String> getComidasProhibidas() {
 		return comidasProhibidas;
 	}
 
 
-	public void setComidasProhibidas(Set<String> comidasProhibidas) {
+	public void setComidasProhibidas(List<String> comidasProhibidas) {
 		this.comidasProhibidas = comidasProhibidas;
 	}
 

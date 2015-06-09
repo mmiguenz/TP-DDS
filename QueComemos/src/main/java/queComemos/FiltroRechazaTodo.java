@@ -1,13 +1,13 @@
 package queComemos;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 public class FiltroRechazaTodo implements FiltroI {
 
 	@Override
-	public Set<Receta> filtrar(Set<Receta> recetas, Usuario usr) {
-		return new HashSet<Receta>();
+	public List<Receta> filtrar(List<Receta> recetas, Usuario usr) {
+		return new ArrayList<Receta>();
 	}
 
 }

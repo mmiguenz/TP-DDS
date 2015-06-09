@@ -1,18 +1,18 @@
 package queComemos;
 
 import java.time.LocalDate;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Usuario {
 
 	private String nombre;
 	private String sexo;
-	public Set<Receta> getFavoritas() {
+	public List<Receta> getFavoritas() {
 		return favoritas;
 	}
 
-	public void setFavoritas(Set<Receta> favoritas) {
+	public void setFavoritas(List<Receta> favoritas) {
 		this.favoritas = favoritas;
 	}
 
@@ -22,15 +22,15 @@ public class Usuario {
 	private Double estatura;
 	private String rutina;
 	private PreferenciaAlimenticia preferenciaAlimenticia;
-	private Set<CondicionPreexistenteI> condicionesPreexistentes;
-	private Set<Receta> misRecetas;
-	private Set<Receta> favoritas;
+	private List<CondicionPreexistenteI> condicionesPreexistentes;
+	private List<Receta> misRecetas;
+	private List<Receta> favoritas;
 
 	public Usuario(String nombre, String sexo, LocalDate fechaNacimiento,
 			Double peso, Double estatura, String rutina,
 			PreferenciaAlimenticia preferenciaAlimenticia,
-			Set<CondicionPreexistenteI> condicionesPreexistentes,
-			Set<Receta> misRecetas) {
+			List<CondicionPreexistenteI> condicionesPreexistentes,
+			List<Receta> misRecetas) {
 		this.setNombre(nombre);
 		this.setSexo(sexo);
 		this.setFechaNacimiento(fechaNacimiento);
@@ -40,7 +40,7 @@ public class Usuario {
 		this.setPreferenciaAlimenticia(preferenciaAlimenticia);
 		this.setCondicionesPreexistentes(condicionesPreexistentes);
 		this.setMisRecetas(misRecetas);
-		this.favoritas= new HashSet<Receta>();
+		this.favoritas= new ArrayList<Receta>();
 
 	}
 
@@ -101,20 +101,20 @@ public class Usuario {
 		this.preferenciaAlimenticia = preferenciaAlimenticia;
 	}
 
-	public Set<CondicionPreexistenteI> getCondicionesPreexistentes() {
+	public List<CondicionPreexistenteI> getCondicionesPreexistentes() {
 		return condicionesPreexistentes;
 	}
 
 	public void setCondicionesPreexistentes(
-			Set<CondicionPreexistenteI> condicionesPreexistentes) {
+			List<CondicionPreexistenteI> condicionesPreexistentes) {
 		this.condicionesPreexistentes = condicionesPreexistentes;
 	}
 
-	public Set<Receta> getMisRecetas() {
+	public List<Receta> getMisRecetas() {
 		return misRecetas;
 	}
 
-	public void setMisRecetas(Set<Receta> misRecetas) {
+	public void setMisRecetas(List<Receta> misRecetas) {
 		this.misRecetas = misRecetas;
 	}
 
@@ -175,7 +175,7 @@ public class Usuario {
 
 	}
 	
-	public void modificaUnaRecetaPublica(String nombre, String nuevoNombre,Double calorias, Preparacion preparacion,Set<Receta>subRecetas,String dificultad){
+	public void modificaUnaRecetaPublica(String nombre, String nuevoNombre,Double calorias, Preparacion preparacion,List<Receta>subRecetas,String dificultad){
 		Receta recetaModificada= QueComemosApp.modificarRecetaPublica( nombre,  nuevoNombre, calorias, preparacion,subRecetas, dificultad);
 		this.agregarReceta(recetaModificada);
 		

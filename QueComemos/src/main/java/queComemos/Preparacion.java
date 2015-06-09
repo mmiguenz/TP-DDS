@@ -1,16 +1,16 @@
 package queComemos;
 
-import java.util.Set;
+import java.util.List;
 
 public class Preparacion {
 
-	private Set<Ingrediente> ingredientes;
-	private Set<Ingrediente> condimentos;
-	private Set<String> explicacion;
+	private List<Ingrediente> ingredientes;
+	private List<Ingrediente> condimentos;
+	private List<String> explicacion;
 	
 	
 	
-	public Preparacion(Set<Ingrediente> ingredientes, Set<Ingrediente> condimentos,Set<String> explicacion)
+	public Preparacion(List<Ingrediente> ingredientes, List<Ingrediente> condimentos,List<String> explicacion)
 	{
 		
 		this.ingredientes=ingredientes;
@@ -26,37 +26,37 @@ public class Preparacion {
 
 
 
-	public Set<Ingrediente> getIngredientes() {
+	public List<Ingrediente> getIngredientes() {
 		return ingredientes;
 	}
 
 
 
-	public void setIngredientes(Set<Ingrediente> ingredientes) {
+	public void setIngredientes(List<Ingrediente> ingredientes) {
 		this.ingredientes = ingredientes;
 	}
 
 
 
-	public Set<Ingrediente> getCondimentos() {
+	public List<Ingrediente> getCondimentos() {
 		return condimentos;
 	}
 
 
 
-	public void setCondimentos(Set<Ingrediente> condimentos) {
+	public void setCondimentos(List<Ingrediente> condimentos) {
 		this.condimentos = condimentos;
 	}
 
 
 
-	public Set<String> getExplicacion() {
+	public List<String> getExplicacion() {
 		return explicacion;
 	}
 
 
 
-	public void setExplicacion(Set<String> explicacion) {
+	public void setExplicacion(List<String> explicacion) {
 		this.explicacion = explicacion;
 	}
 	
@@ -72,7 +72,7 @@ public class Preparacion {
 	}
 	
 	
-	public boolean leGusta(Set<String> cosasQueLeGustan){
+	public boolean leGusta(List<String> cosasQueLeGustan){
 		
 		return (cosasQueLeGustan.stream().anyMatch(cosas->this.contiene(cosas)));
 	}
@@ -108,7 +108,7 @@ public class Preparacion {
 
 
 
-private Ingrediente buscarPorNombre(String nombre,Set<Ingrediente> ingredientes)
+private Ingrediente buscarPorNombre(String nombre,List<Ingrediente> ingredientes)
 {
 	for (Ingrediente ingrediente : ingredientes)
 	{

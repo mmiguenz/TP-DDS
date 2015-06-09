@@ -1,15 +1,17 @@
 package queComemos;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 public class QueComemosApp {
 	
-	public static Set<Usuario> usuarios ; 
-	public static Set<Receta> recetas;
-	public static Set<CondicionPreexistenteI> inadecuados;
-	public static Set<Grupo> grupos;
+	public static List<Usuario> usuarios ; 
+	public static List<Receta> recetas;
+	public static List<CondicionPreexistenteI> inadecuados;
+	public static List<Grupo> grupos;
 	
 
 
@@ -17,27 +19,27 @@ public class QueComemosApp {
 	public static void inicializar()
 	
 	{
-		usuarios = new HashSet<Usuario>();
-		recetas = new HashSet<Receta>();
-		inadecuados = new HashSet<CondicionPreexistenteI>();
+		usuarios = new ArrayList<Usuario>();
+		recetas = new ArrayList<Receta>();
+		inadecuados = new ArrayList<CondicionPreexistenteI>();
 		
-		grupos = new HashSet<Grupo>();
+		grupos = new ArrayList<Grupo>();
 		
 		
 	}
 	
 	@SuppressWarnings("unchecked")
-	public static Set<CondicionPreexistenteI> calcularInadecuadosParaReceta(Receta receta)
+	public static List<CondicionPreexistenteI> calcularInadecuadosParaReceta(Receta receta)
 	{
 			
 		  return  inadecuados.stream().filter(inadecuado->! inadecuado.esAptaReceta(receta))
-				    .collect(Collectors.toSet());
+				    .collect(Collectors.toList());
 	}
 		
 		
 	
 
-	public static Receta modificarRecetaPublica (String nombre, String nuevoNombre,Double calorias, Preparacion preparacion,Set<Receta>subRecetas,String dificultad)
+	public static Receta modificarRecetaPublica (String nombre, String nuevoNombre,Double calorias, Preparacion preparacion,List<Receta>subRecetas,String dificultad)
 	{
 
 	  Receta recetaPublica = buscarRecetaPorNombre(nombre);
@@ -96,14 +98,14 @@ public class QueComemosApp {
 	  }
 	  
 	  
-	  public static Set<Receta> mostrarRecetasAccesiblesPorUsuario(Usuario usr)
+	  public static List<Receta> mostrarRecetasAccesiblesPorUsuario(Usuario usr)
 	  {
 		  
 		  Set<Receta> resultado = new HashSet<Receta>();
 		  
 		  resultado.addAll(recetas);
 		  resultado.addAll(usr.getMisRecetas());
-		  Set<Grupo> gruposDeUsuario = buscarGruposDeUsuario(usr);
+		  List<Grupo> gruposDeUsuario = buscarGruposDeUsuario(usr);
 		  
 		  for (Grupo grupo : gruposDeUsuario )
 		  {
@@ -117,7 +119,7 @@ public class QueComemosApp {
 			  
 		  }
 		  
-		  return resultado ;
+		  return resultado.stream().collect(Collectors.toList()) ;
 		  
 		  
 		  
@@ -125,9 +127,9 @@ public class QueComemosApp {
 	  }
 	  
 	  
-	  private static Set<Grupo> buscarGruposDeUsuario(Usuario usr)
+	  private static List<Grupo> buscarGruposDeUsuario(Usuario usr)
 	  {
-		  Set<Grupo> gruposDeUsuario = new HashSet<Grupo>();
+		  List<Grupo> gruposDeUsuario = new ArrayList<Grupo>();
 		  
 		 
 		  for (Grupo grupo : grupos )
@@ -142,9 +144,9 @@ public class QueComemosApp {
 	  }
 	  
 	  
-	  public static Set<Receta> consultarRecetas(Usuario usr,Set<FiltroI> filtros)
+	  public static List<Receta> consultarRecetas(Usuario usr,List<FiltroI> filtros)
 	  {
-		  Set<Receta> consultaResul =QueComemosApp.mostrarRecetasAccesiblesPorUsuario(usr);
+		  List<Receta> consultaResul =QueComemosApp.mostrarRecetasAccesiblesPorUsuario(usr);
 		  
 		  for (FiltroI filtro : filtros)
 		  {
@@ -158,9 +160,9 @@ public class QueComemosApp {
 		  
 	  }
 	  
-	  public static Set<Receta> consultarRecetas(Usuario usr,Set<FiltroI> filtros, ProcesamientoI procesamiento)
+	  public static List<Receta> consultarRecetas(Usuario usr,List<FiltroI> filtros, ProcesamientoI procesamiento)
 	  {
-		  Set<Receta> consultaResul =QueComemosApp.mostrarRecetasAccesiblesPorUsuario(usr);
+		  List<Receta> consultaResul =QueComemosApp.mostrarRecetasAccesiblesPorUsuario(usr);
 		  
 		  for (FiltroI filtro : filtros)
 		  {

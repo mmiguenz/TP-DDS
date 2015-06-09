@@ -1,9 +1,9 @@
 package queComemos;
 
 import java.util.ArrayList;
-import java.util.HashSet;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
+import java.util.List;
 import java.util.stream.Stream;
 
 
@@ -14,11 +14,11 @@ public class Receta {
 	private Preparacion preparacion;
 	private String dificultad;
 	private String temporada;
-	private Set<Receta> subRecetas;
-	private Set<CondicionPreexistenteI> inadecuados;
+	private List<Receta> subRecetas;
+	private List<CondicionPreexistenteI> inadecuados;
 
 	public Receta(String nombre, double calorias, Preparacion preparacion,
-			String dificultad, String temporada, Set<Receta> subRecetas, Set<CondicionPreexistenteI> inadecuados) {
+			String dificultad, String temporada, List<Receta> subRecetas, List<CondicionPreexistenteI> inadecuados) {
 
 		
 		
@@ -74,19 +74,19 @@ public class Receta {
 		this.temporada = temporada;
 	}
 
-	public Set<Receta> getSubRecetas() {
+	public List<Receta> getSubRecetas() {
 		return subRecetas;
 	}
 
-	public void setSubRecetas(Set<Receta> subRecetas) {
+	public void setSubRecetas(List<Receta> subRecetas) {
 		this.subRecetas = subRecetas;
 	}
 
-	public Set<CondicionPreexistenteI> getInadecuados() {
+	public List<CondicionPreexistenteI> getInadecuados() {
 		return inadecuados;
 	}
 
-	public void setInadecuados(Set<CondicionPreexistenteI> inadecuados) {
+	public void setInadecuados(List<CondicionPreexistenteI> inadecuados) {
 		this.inadecuados = inadecuados;
 	}
 
@@ -99,7 +99,7 @@ public class Receta {
 
 	}
 
-	public boolean contieneAlguna(Set<String> comidas) {
+	public boolean contieneAlguna(List<String> comidas) {
 
 		return comidas.stream().anyMatch((comida -> this.contiene(comida)));
 	
@@ -110,12 +110,12 @@ public class Receta {
 		return usr.esAdecuadaLaReceta(this);
 	}
 	
-	public boolean esAdecuadaParaGrupo(Set<Usuario> usuarios){
+	public boolean esAdecuadaParaGrupo(List<Usuario> usuarios){
 		return (usuarios.stream().allMatch(usr->this.esAdecuadaPara(usr)));
 	}
 	
 
-	public Set<CondicionPreexistenteI> calcularInadecuados() {
+	public List<CondicionPreexistenteI> calcularInadecuados() {
 
 		
 		return QueComemosApp.calcularInadecuadosParaReceta(this);

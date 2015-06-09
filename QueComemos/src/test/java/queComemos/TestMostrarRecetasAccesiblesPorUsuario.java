@@ -3,8 +3,8 @@ package queComemos;
 import static org.junit.Assert.*;
 
 import java.time.LocalDate;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -22,9 +22,9 @@ public class TestMostrarRecetasAccesiblesPorUsuario {
 	@Test
 	public void test() {
 		QueComemosApp.inicializar();
-		Set<String> comidasQueGustaUsrSaludable = new HashSet<String>();
-		Set<String> comidasQueGustaUsrNoSaludable = new HashSet<String>();
-		Set<String> comidasQueDisgustaUsr = new HashSet<String>();
+		List<String> comidasQueGustaUsrSaludable = new ArrayList<String>();
+		List<String> comidasQueGustaUsrNoSaludable = new ArrayList<String>();
+		List<String> comidasQueDisgustaUsr = new ArrayList<String>();
 
 		comidasQueGustaUsrSaludable.add("Fruta");
 		comidasQueGustaUsrSaludable.add("Carne");
@@ -42,17 +42,17 @@ public class TestMostrarRecetasAccesiblesPorUsuario {
 		PreferenciaAlimenticia preferenciaAlimenticiaNoSaludable = new PreferenciaAlimenticia(
 				comidasQueGustaUsrNoSaludable, comidasQueDisgustaUsr);
 
-		Set<String>comidasProhibidas = new HashSet<String>();
+		List<String>comidasProhibidas = new ArrayList<String>();
 		comidasProhibidas.add("Pan");
 
 		
-		Set<String>	instrucciones = new HashSet<String>();
-		Set<Ingrediente> ingredientes = new HashSet<Ingrediente>();
-		Set<Ingrediente>condimentos = new HashSet<Ingrediente>();
-		Set<Receta> subRecetas=new HashSet<Receta>();
+		List<String>	instrucciones = new ArrayList<String>();
+		List<Ingrediente> ingredientes = new ArrayList<Ingrediente>();
+		List<Ingrediente>condimentos = new ArrayList<Ingrediente>();
+		List<Receta> subRecetas=new ArrayList<Receta>();
 		
-		Set<CondicionPreexistenteI> inadecuados=new HashSet<CondicionPreexistenteI>();
-		Set<String>comidasProhibidasH= new HashSet<String>();
+		List<CondicionPreexistenteI> inadecuados=new ArrayList<CondicionPreexistenteI>();
+		List<String>comidasProhibidasH= new ArrayList<String>();
 		comidasProhibidasH.add("caldo");
 		
 		
@@ -86,7 +86,7 @@ public class TestMostrarRecetasAccesiblesPorUsuario {
 		
 		
 		Usuario usr = new Usuario ("juan","masculino",LocalDate.parse("2016-01-01"), 60.0, 1.7, "Leve",
-					preferenciaAlimenticiaNoSaludable,new HashSet<CondicionPreexistenteI>(),new HashSet<Receta>());
+					preferenciaAlimenticiaNoSaludable,new ArrayList<CondicionPreexistenteI>(),new ArrayList<Receta>());
 		
 		
 		
@@ -96,7 +96,7 @@ public class TestMostrarRecetasAccesiblesPorUsuario {
 		QueComemosApp.recetas.add(receta);
 		usr.getMisRecetas().add(receta2);
 		
-		Set<Receta> recetasVisibles = QueComemosApp.mostrarRecetasAccesiblesPorUsuario(usr);
+		List<Receta> recetasVisibles = QueComemosApp.mostrarRecetasAccesiblesPorUsuario(usr);
 		
 		
 		

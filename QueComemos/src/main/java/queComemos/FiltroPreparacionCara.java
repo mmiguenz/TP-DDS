@@ -1,14 +1,14 @@
 package queComemos;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.stream.Collectors;
 
 public class FiltroPreparacionCara implements FiltroI {
 
 	@Override
-	public Set<Receta> filtrar(Set<Receta> recetas, Usuario usr) {
-		Set<String> comidasCaras  = new HashSet<String>();
+	public List<Receta> filtrar(List<Receta> recetas, Usuario usr) {
+		List<String> comidasCaras  = new ArrayList<String>();
 		comidasCaras.add("lechon");
 		comidasCaras.add("lomo");
 		comidasCaras.add("salmon");
@@ -17,7 +17,7 @@ public class FiltroPreparacionCara implements FiltroI {
 		
 		//recetas.removeIf(receta -> receta.contieneAlguna(comidasCaras));
 
-    return 	recetas.stream().filter(receta -> !receta.contieneAlguna(comidasCaras)).collect(Collectors.toSet());
+    return 	recetas.stream().filter(receta -> !receta.contieneAlguna(comidasCaras)).collect(Collectors.toList());
      
 
 	}

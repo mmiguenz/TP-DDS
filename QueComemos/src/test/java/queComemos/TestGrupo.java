@@ -3,8 +3,8 @@ package queComemos;
 import static org.junit.Assert.*;
 
 import java.time.LocalDate;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -12,7 +12,7 @@ import org.junit.Test;
 public class TestGrupo {
 	
 	private Grupo grupo;
-	private Set<Usuario> usuariosColeccion;
+	private List<Usuario> usuariosColeccion;
 	
 	@Before
 	public void setUp() throws Exception {
@@ -24,7 +24,7 @@ public class TestGrupo {
 				LocalDate.parse("1990-01-01"), 60.0, 1.7, "Leve",
 				null, null, null);
 
-		usuariosColeccion = new HashSet<Usuario>();
+		usuariosColeccion = new ArrayList<Usuario>();
 		usuariosColeccion.add(usuario1);
 		usuariosColeccion.add(usuario2);
 

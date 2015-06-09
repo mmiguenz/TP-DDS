@@ -3,8 +3,8 @@ package queComemos;
 import static org.junit.Assert.*;
 
 import java.time.LocalDate;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -20,8 +20,8 @@ public class TestConsultarRecetasDeUnUsuario {
 		
 
 		
-		Set<String> comidasQueGusta = new HashSet<String>();
-		Set<String> comidasQueDisgusta = new HashSet<String>();
+		List<String> comidasQueGusta = new ArrayList<String>();
+		List<String> comidasQueDisgusta = new ArrayList<String>();
 		comidasQueGusta.add("pollo");
 		comidasQueGusta.add("carne");
 		comidasQueDisgusta.add("tomate");
@@ -30,25 +30,25 @@ public class TestConsultarRecetasDeUnUsuario {
 		PreferenciaAlimenticia preferenciaAlimenticia = new PreferenciaAlimenticia(comidasQueGusta,comidasQueDisgusta);
 		
 		
-		Set<CondicionPreexistenteI> condiciones = new HashSet<CondicionPreexistenteI>();
-		Set<String> comidasProhibidas = new HashSet<String>();
+		List<CondicionPreexistenteI> condiciones = new ArrayList<CondicionPreexistenteI>();
+		List<String> comidasProhibidas = new ArrayList<String>();
 		comidasProhibidas.add("pan");
 		comidasProhibidas.add("salame");
 		Celiaco celiaco = new Celiaco("celiaco",comidasProhibidas);
 		Hipertenso hipertenso= new Hipertenso("hipertenso",comidasProhibidas);
-		Vegano vegano = new Vegano("vegano",new HashSet<String>());
-		Diabetico diabetico =  new Diabetico("Diabetico",new HashSet<String>());
+		Vegano vegano = new Vegano("vegano",new ArrayList<String>());
+		Diabetico diabetico =  new Diabetico("Diabetico",new ArrayList<String>());
 		
 		condiciones.add(hipertenso);
 		condiciones.add(celiaco);
 		
 		
-		Usuario usr = new Usuario("Juan","Masculino",LocalDate.parse("1994-08-05"),90.0,175.0,"Leve",preferenciaAlimenticia,condiciones,new HashSet<Receta>());
+		Usuario usr = new Usuario("Juan","Masculino",LocalDate.parse("1994-08-05"),90.0,175.0,"Leve",preferenciaAlimenticia,condiciones,new ArrayList<Receta>());
 		
-		Set<String>	instrucciones = new HashSet<String>();
-		Set<Ingrediente> ingredientes = new HashSet<Ingrediente>();
-		Set<Ingrediente>condimentos = new HashSet<Ingrediente>();
-		Set<Receta> subRecetas=new HashSet<Receta>();
+		List<String>	instrucciones = new ArrayList<String>();
+		List<Ingrediente> ingredientes = new ArrayList<Ingrediente>();
+		List<Ingrediente>condimentos = new ArrayList<Ingrediente>();
+		List<Receta> subRecetas=new ArrayList<Receta>();
 		
 
 		instrucciones.add("Preparar");
@@ -82,7 +82,7 @@ public class TestConsultarRecetasDeUnUsuario {
 
 		
 		
-		Set<FiltroI> filtros = new HashSet<FiltroI>();
+		List<FiltroI> filtros = new ArrayList<FiltroI>();
 		FiltroI filtroPorGusto = new FiltroParaUsuariosConSobrepeso();
 		FiltroI filtroPreparacionCara = new FiltroPreparacionCara();
 		FiltroI filtroSobrePeso= new FiltroParaUsuariosConSobrepeso();
@@ -91,7 +91,7 @@ public class TestConsultarRecetasDeUnUsuario {
 		filtros.add(filtroPreparacionCara);
 		filtros.add(filtroPorGusto);
 		
-		Set<Receta> resultadoConsulta =QueComemosApp.consultarRecetas(usr, filtros);
+		List<Receta> resultadoConsulta =QueComemosApp.consultarRecetas(usr, filtros);
 		
 		assertTrue(resultadoConsulta.contains(receta));
 		
@@ -103,8 +103,8 @@ public class TestConsultarRecetasDeUnUsuario {
 	@Test
 	public void tesConsultaRecetasDeUsuarioUsoFiltroRechazaTodo()
 	{
-		Set<String> comidasQueGusta = new HashSet<String>();
-		Set<String> comidasQueDisgusta = new HashSet<String>();
+		List<String> comidasQueGusta = new ArrayList<String>();
+		List<String> comidasQueDisgusta = new ArrayList<String>();
 		comidasQueGusta.add("pollo");
 		comidasQueGusta.add("carne");
 		comidasQueDisgusta.add("tomate");
@@ -113,25 +113,25 @@ public class TestConsultarRecetasDeUnUsuario {
 		PreferenciaAlimenticia preferenciaAlimenticia = new PreferenciaAlimenticia(comidasQueGusta,comidasQueDisgusta);
 		
 		
-		Set<CondicionPreexistenteI> condiciones = new HashSet<CondicionPreexistenteI>();
-		Set<String> comidasProhibidas = new HashSet<String>();
+		List<CondicionPreexistenteI> condiciones = new ArrayList<CondicionPreexistenteI>();
+		List<String> comidasProhibidas = new ArrayList<String>();
 		comidasProhibidas.add("pan");
 		comidasProhibidas.add("salame");
 		Celiaco celiaco = new Celiaco("celiaco",comidasProhibidas);
 		Hipertenso hipertenso= new Hipertenso("hipertenso",comidasProhibidas);
-		Vegano vegano = new Vegano("vegano",new HashSet<String>());
-		Diabetico diabetico =  new Diabetico("Diabetico",new HashSet<String>());
+		Vegano vegano = new Vegano("vegano",new ArrayList<String>());
+		Diabetico diabetico =  new Diabetico("Diabetico",new ArrayList<String>());
 		
 		condiciones.add(hipertenso);
 		condiciones.add(celiaco);
 		
 		
-		Usuario usr = new Usuario("Juan","Masculino",LocalDate.parse("1994-08-05"),90.0,175.0,"Leve",preferenciaAlimenticia,condiciones,new HashSet<Receta>());
+		Usuario usr = new Usuario("Juan","Masculino",LocalDate.parse("1994-08-05"),90.0,175.0,"Leve",preferenciaAlimenticia,condiciones,new ArrayList<Receta>());
 		
-		Set<String>	instrucciones = new HashSet<String>();
-		Set<Ingrediente> ingredientes = new HashSet<Ingrediente>();
-		Set<Ingrediente>condimentos = new HashSet<Ingrediente>();
-		Set<Receta> subRecetas=new HashSet<Receta>();
+		List<String>	instrucciones = new ArrayList<String>();
+		List<Ingrediente> ingredientes = new ArrayList<Ingrediente>();
+		List<Ingrediente>condimentos = new ArrayList<Ingrediente>();
+		List<Receta> subRecetas=new ArrayList<Receta>();
 		
 
 		instrucciones.add("Preparar");
@@ -166,7 +166,7 @@ public class TestConsultarRecetasDeUnUsuario {
 
 		
 		
-		Set<FiltroI> filtros = new HashSet<FiltroI>();
+		List<FiltroI> filtros = new ArrayList<FiltroI>();
 		FiltroParaUsuariosConSobrepeso filtroPorGusto = new FiltroParaUsuariosConSobrepeso();
 		FiltroPreparacionCara filtroPreparacionCara = new FiltroPreparacionCara();
 		FiltroParaUsuariosConSobrepeso filtroSobrePeso= new FiltroParaUsuariosConSobrepeso();
@@ -177,7 +177,7 @@ public class TestConsultarRecetasDeUnUsuario {
 		filtros.add(filtroPorGusto);
 		filtros.add(filtroRechazaTodo);
 		
-		Set<Receta> resultadoConsulta =QueComemosApp.consultarRecetas(usr, filtros);
+		List<Receta> resultadoConsulta =QueComemosApp.consultarRecetas(usr, filtros);
 		
 		assertTrue(resultadoConsulta.isEmpty());
 		

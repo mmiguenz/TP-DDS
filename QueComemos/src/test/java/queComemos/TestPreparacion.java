@@ -2,24 +2,24 @@ package queComemos;
 
 import static org.junit.Assert.*;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
 
 public class TestPreparacion {
 	
-	Set<String> instrucciones;
-	Set<Ingrediente> ingredientes;
-	Set<Ingrediente> condimentos;
+	List<String> instrucciones;
+	List<Ingrediente> ingredientes;
+	List<Ingrediente> condimentos;
 
 	@Before
 	public void setUp() throws Exception {
 		
-		instrucciones = new HashSet<String>();
-		ingredientes = new HashSet<Ingrediente>();
-		condimentos = new HashSet<Ingrediente>();
+		instrucciones = new ArrayList<String>();
+		ingredientes = new ArrayList<Ingrediente>();
+		condimentos = new ArrayList<Ingrediente>();
 		
 		instrucciones.add("Preparar");
 		instrucciones.add("Revolver");

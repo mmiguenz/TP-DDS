@@ -3,8 +3,8 @@ package queComemos;
 import static org.junit.Assert.*;
 
 import java.time.LocalDate;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -16,15 +16,15 @@ public class TestUsuario {
 	private Preparacion preparacion;
 	private PreferenciaAlimenticia preferenciaAlimenticiaSaludable;
 	private PreferenciaAlimenticia preferenciaAlimenticiaNoSaludable;
-	private Set<String> comidasProhibidas;
+	private List<String> comidasProhibidas;
 
 	@Before
 	public void setUp() throws Exception {
 		
 		QueComemosApp.inicializar();
-		Set<String> comidasQueGustaUsrSaludable = new HashSet<String>();
-		Set<String> comidasQueGustaUsrNoSaludable = new HashSet<String>();
-		Set<String> comidasQueDisgustaUsr = new HashSet<String>();
+		List<String> comidasQueGustaUsrSaludable = new ArrayList<String>();
+		List<String> comidasQueGustaUsrNoSaludable = new ArrayList<String>();
+		List<String> comidasQueDisgustaUsr = new ArrayList<String>();
 
 		comidasQueGustaUsrSaludable.add("Fruta");
 		comidasQueGustaUsrSaludable.add("Carne");
@@ -42,7 +42,7 @@ public class TestUsuario {
 		preferenciaAlimenticiaNoSaludable = new PreferenciaAlimenticia(
 				comidasQueGustaUsrNoSaludable, comidasQueDisgustaUsr);
 
-		comidasProhibidas = new HashSet<String>();
+		comidasProhibidas = new ArrayList<String>();
 		comidasProhibidas.add("Pan");
 
 	}
@@ -92,7 +92,7 @@ public class TestUsuario {
 	@Test
 	public void testUsuarioQueSigueRutinaSaludableCumpleIMCYCondiocionesPreexistentes() {
 
-		Set<CondicionPreexistenteI> condicionesSaludables = new HashSet<CondicionPreexistenteI>();
+		List<CondicionPreexistenteI> condicionesSaludables = new ArrayList<CondicionPreexistenteI>();
 
 		usuario = new Usuario("Alejandro", "Masculino",
 				LocalDate.parse("1994-10-05"), 74.0, 1.82, "Mediano",
@@ -104,7 +104,7 @@ public class TestUsuario {
 	@Test
 	public void testUsuarioQueSigueRutinaSaludableNoCumpleIMCYSiCondiocionesPreexistentes() {
 
-		Set<CondicionPreexistenteI> condicionesSaludables = new HashSet<CondicionPreexistenteI>();
+		List<CondicionPreexistenteI> condicionesSaludables = new ArrayList<CondicionPreexistenteI>();
 
 		usuario = new Usuario("Alejandro", "Masculino",
 				LocalDate.parse("1994-10-05"), 150.0, 1.82, "Mediano",
@@ -116,7 +116,7 @@ public class TestUsuario {
 	@Test
 	public void testUsuarioQueSigueRutinaSaludableCumpleIMCYSubsanaCondiocionesPreexistentes() {
 
-		Set<CondicionPreexistenteI> condiciones = new HashSet<CondicionPreexistenteI>();
+		List<CondicionPreexistenteI> condiciones = new ArrayList<CondicionPreexistenteI>();
 		condiciones.add(new Celiaco("Celiaco", comidasProhibidas));
 		condiciones.add(new Diabetico("Diabetico", comidasProhibidas));
 
@@ -130,7 +130,7 @@ public class TestUsuario {
 
 	@Test
 	public void testUsuarioDiabeticoNoSigueRutinaSaludable() {
-		Set<CondicionPreexistenteI> condiciones = new HashSet<CondicionPreexistenteI>();
+		List<CondicionPreexistenteI> condiciones = new ArrayList<CondicionPreexistenteI>();
 		condiciones.add(new Diabetico("Diabetico", comidasProhibidas));
 		usuario = new Usuario("Pedro", "Masculino",
 				LocalDate.parse("1990-01-01"), 60.0, 1.7, "Leve",
@@ -141,7 +141,7 @@ public class TestUsuario {
 
 	@Test
 	public void testUsuarioDiabeticoNoValida() {
-		Set<CondicionPreexistenteI> condiciones = new HashSet<CondicionPreexistenteI>();
+		List<CondicionPreexistenteI> condiciones = new ArrayList<CondicionPreexistenteI>();
 		condiciones.add(new Diabetico("Diabetico", comidasProhibidas));
 		usuario = new Usuario("Pedro", null, LocalDate.parse("1990-01-01"),
 				60.0, 1.7, "Leve", preferenciaAlimenticiaNoSaludable,
@@ -152,7 +152,7 @@ public class TestUsuario {
 
 	@Test
 	public void testUsuarioDiabeticoSiValida() {
-		Set<CondicionPreexistenteI> condiciones = new HashSet<CondicionPreexistenteI>();
+		List<CondicionPreexistenteI> condiciones = new ArrayList<CondicionPreexistenteI>();
 		condiciones.add(new Diabetico("Diabetico", comidasProhibidas));
 		usuario = new Usuario("Pedro", "Masculino",
 				LocalDate.parse("1990-01-01"), 60.0, 1.7, "Leve",
@@ -164,7 +164,7 @@ public class TestUsuario {
 	
 
 	public void testUsuarioCeliacoValidaConPreferenciaAlimenticiaNoSaludable() {
-		Set<CondicionPreexistenteI> condiciones = new HashSet<CondicionPreexistenteI>();
+		List<CondicionPreexistenteI> condiciones = new ArrayList<CondicionPreexistenteI>();
 
 		condiciones.add(new Celiaco("Celiaco", comidasProhibidas));
 		usuario = new Usuario("Pedro", null, LocalDate.parse("1990-01-01"),
@@ -176,7 +176,7 @@ public class TestUsuario {
 	
 	@Test
 	public void testUsuarioCeliacoValidaConPreferenciaAlimenticiaSaludable() {
-		Set<CondicionPreexistenteI> condiciones = new HashSet<CondicionPreexistenteI>();
+		List<CondicionPreexistenteI> condiciones = new ArrayList<CondicionPreexistenteI>();
 		condiciones.add(new Celiaco("Celiaco", comidasProhibidas));
 		usuario = new Usuario("Pedro", null, LocalDate.parse("1990-01-01"),
 				60.0, 1.7, "Leve", preferenciaAlimenticiaSaludable, condiciones, null);
@@ -187,7 +187,7 @@ public class TestUsuario {
 	
 	@Test
 	public void testUsuarioVeganoNoValida() {
-		Set<CondicionPreexistenteI> condiciones = new HashSet<CondicionPreexistenteI>();
+		List<CondicionPreexistenteI> condiciones = new ArrayList<CondicionPreexistenteI>();
 		condiciones.add(new Vegano("Vegano", comidasProhibidas));
 		usuario = new Usuario("Pedro", null, LocalDate.parse("1990-01-01"),
 				60.0, 1.7, "Leve", preferenciaAlimenticiaNoSaludable,
@@ -198,9 +198,9 @@ public class TestUsuario {
 
 	@Test
 	public void testUsuarioVeganoSiValida() {
-		Set<CondicionPreexistenteI> condiciones = new HashSet<CondicionPreexistenteI>();
+		List<CondicionPreexistenteI> condiciones = new ArrayList<CondicionPreexistenteI>();
 		condiciones.add(new Vegano("Vegano", comidasProhibidas));
-		PreferenciaAlimenticia prefe = new PreferenciaAlimenticia(new HashSet<String>(),new HashSet<String>());
+		PreferenciaAlimenticia prefe = new PreferenciaAlimenticia(new ArrayList<String>(),new ArrayList<String>());
 		usuario = new Usuario("Pedro", null, LocalDate.parse("1990-01-01"),
 				60.0, 1.7, "Leve", prefe, condiciones, null);
 		assertFalse(usuario.validaCondicionesPreexistentes(usuario));
@@ -209,7 +209,7 @@ public class TestUsuario {
 
 	@Test
 	public void testUsuarioHipertensoNoValida() {
-		Set<CondicionPreexistenteI> condiciones = new HashSet<CondicionPreexistenteI>();
+		List<CondicionPreexistenteI> condiciones = new ArrayList<CondicionPreexistenteI>();
 		condiciones.add(new Hipertenso("Hipertenso", comidasProhibidas));
 		usuario = new Usuario("Pedro", null, LocalDate.parse("1990-01-01"),
 				60.0, 1.7, "Leve", null, condiciones, null);
@@ -219,7 +219,7 @@ public class TestUsuario {
 
 	@Test
 	public void testUsuarioHipertensoSiValida() {
-		Set<CondicionPreexistenteI> condiciones = new HashSet<CondicionPreexistenteI>();
+		List<CondicionPreexistenteI> condiciones = new ArrayList<CondicionPreexistenteI>();
 		condiciones.add(new Hipertenso("Hipertenso", comidasProhibidas));
 		usuario = new Usuario("Pedro", null, LocalDate.parse("1990-01-01"),
 				60.0, 1.7, "Leve", preferenciaAlimenticiaNoSaludable,
@@ -241,14 +241,14 @@ public class TestUsuario {
 	public void testAgregarReceta()
 	{
 
-		Set<String>	instrucciones = new HashSet<String>();
-		Set<Ingrediente> ingredientes = new HashSet<Ingrediente>();
-		Set<Ingrediente>condimentos = new HashSet<Ingrediente>();
-		Set<Receta> subRecetas=new HashSet<Receta>();
+		List<String>	instrucciones = new ArrayList<String>();
+		List<Ingrediente> ingredientes = new ArrayList<Ingrediente>();
+		List<Ingrediente>condimentos = new ArrayList<Ingrediente>();
+		List<Receta> subRecetas=new ArrayList<Receta>();
 		
-		Set<CondicionPreexistenteI> inadecuados=new HashSet<CondicionPreexistenteI>();
-		Set<String>comidasProhibidas= new HashSet<String>();
-		Set<String>comidasProhibidasH= new HashSet<String>();
+		List<CondicionPreexistenteI> inadecuados=new ArrayList<CondicionPreexistenteI>();
+		List<String>comidasProhibidas= new ArrayList<String>();
+		List<String>comidasProhibidasH= new ArrayList<String>();
 		comidasProhibidasH.add("caldo");
 		
 		
@@ -280,10 +280,10 @@ public class TestUsuario {
 			 String dificultad = "Baja";
 			 String temporada= "Verano";
 		
-				QueComemosApp.inadecuados=new HashSet<CondicionPreexistenteI>();
+				QueComemosApp.inadecuados=new ArrayList<CondicionPreexistenteI>();
 				
 		Usuario usr = new Usuario ("juan","masculino",LocalDate.parse("2016-01-01"), 60.0, 1.7, "Leve",
-					preferenciaAlimenticiaNoSaludable,new HashSet<CondicionPreexistenteI>(),new HashSet<Receta>());
+					preferenciaAlimenticiaNoSaludable,new ArrayList<CondicionPreexistenteI>(),new ArrayList<Receta>());
 		
 		
 		
@@ -300,15 +300,15 @@ public class TestUsuario {
 		public void testModificarRecetaPublica()
 		{
 			
-			QueComemosApp.inadecuados=new HashSet<CondicionPreexistenteI>();
-			Set<String>	instrucciones = new HashSet<String>();
-			Set<Ingrediente> ingredientes = new HashSet<Ingrediente>();
-			Set<Ingrediente>condimentos = new HashSet<Ingrediente>();
-			Set<Receta> subRecetas=new HashSet<Receta>();
+			QueComemosApp.inadecuados=new ArrayList<CondicionPreexistenteI>();
+			List<String>	instrucciones = new ArrayList<String>();
+			List<Ingrediente> ingredientes = new ArrayList<Ingrediente>();
+			List<Ingrediente>condimentos = new ArrayList<Ingrediente>();
+			List<Receta> subRecetas=new ArrayList<Receta>();
 			
-			Set<CondicionPreexistenteI> inadecuados=new HashSet<CondicionPreexistenteI>();
-			Set<String>comidasProhibidas= new HashSet<String>();
-			Set<String>comidasProhibidasH= new HashSet<String>();
+			List<CondicionPreexistenteI> inadecuados=new ArrayList<CondicionPreexistenteI>();
+			List<String>comidasProhibidas= new ArrayList<String>();
+			List<String>comidasProhibidasH= new ArrayList<String>();
 			comidasProhibidasH.add("caldo");
 			
 			
@@ -342,7 +342,7 @@ public class TestUsuario {
 			
 			
 			Usuario usr = new Usuario ("juan","masculino",LocalDate.parse("2016-01-01"), 60.0, 1.7, "Leve",
-						preferenciaAlimenticiaNoSaludable,new HashSet<CondicionPreexistenteI>(),new HashSet<Receta>());
+						preferenciaAlimenticiaNoSaludable,new ArrayList<CondicionPreexistenteI>(),new ArrayList<Receta>());
 			
 			
 			
@@ -364,14 +364,14 @@ public class TestUsuario {
 		public void testMarcarReceta()
 		
 		{
-			Set<String>	instrucciones = new HashSet<String>();
-			Set<Ingrediente> ingredientes = new HashSet<Ingrediente>();
-			Set<Ingrediente>condimentos = new HashSet<Ingrediente>();
-			Set<Receta> subRecetas=new HashSet<Receta>();
+			List<String>	instrucciones = new ArrayList<String>();
+			List<Ingrediente> ingredientes = new ArrayList<Ingrediente>();
+			List<Ingrediente>condimentos = new ArrayList<Ingrediente>();
+			List<Receta> subRecetas=new ArrayList<Receta>();
 			
-			Set<CondicionPreexistenteI> inadecuados=new HashSet<CondicionPreexistenteI>();
-			Set<String>comidasProhibidas= new HashSet<String>();
-			Set<String>comidasProhibidasH= new HashSet<String>();
+			List<CondicionPreexistenteI> inadecuados=new ArrayList<CondicionPreexistenteI>();
+			List<String>comidasProhibidas= new ArrayList<String>();
+			List<String>comidasProhibidasH= new ArrayList<String>();
 			comidasProhibidasH.add("caldo");
 			
 			
@@ -405,7 +405,7 @@ public class TestUsuario {
 			
 			
 			Usuario usr = new Usuario ("juan","masculino",LocalDate.parse("2016-01-01"), 60.0, 1.7, "Leve",
-						preferenciaAlimenticiaNoSaludable,new HashSet<CondicionPreexistenteI>(),new HashSet<Receta>());
+						preferenciaAlimenticiaNoSaludable,new ArrayList<CondicionPreexistenteI>(),new ArrayList<Receta>());
 			
 			
 			

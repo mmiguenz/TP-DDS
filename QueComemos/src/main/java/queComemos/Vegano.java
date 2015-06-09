@@ -1,15 +1,15 @@
 package queComemos;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Vegano implements CondicionPreexistenteI {
 
 	private String  nombre;
-	private Set<String> comidasProhibidas;
+	private List<String> comidasProhibidas;
 	
 	
-	public Vegano(String nombre, Set<String> comidasProhibidas) {
+	public Vegano(String nombre, List<String> comidasProhibidas) {
 		this.nombre=nombre;
 		this.comidasProhibidas=comidasProhibidas;
 
@@ -24,12 +24,12 @@ public class Vegano implements CondicionPreexistenteI {
 	}
 
 
-	public Set<String> getComidasProhibidas() {
+	public List<String> getComidasProhibidas() {
 		return comidasProhibidas;
 	}
 
 	
-	public void setComidasProhibidas(Set<String> comidasProhibidas) {
+	public void setComidasProhibidas(List<String> comidasProhibidas) {
 		this.comidasProhibidas = comidasProhibidas;
 	}
 
