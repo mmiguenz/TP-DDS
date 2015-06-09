@@ -143,6 +143,7 @@ public class TestConsultarRecetasDeUnUsuario {
 		Ingrediente papas= new Ingrediente("papa","kg",3);
 		Ingrediente mayonesa= new Ingrediente("Mayonesa","grs",100);
 		Ingrediente azucar= new Ingrediente("Azucar","grs",150);
+		Ingrediente lomo = new Ingrediente("lomo","kg",1);
 		
 		ingredientes.add(azucar);
 		ingredientes.add(carne);

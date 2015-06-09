@@ -1,6 +1,7 @@
 package queComemos;
 
 import java.util.Set;
+import java.util.stream.Collectors;
 
 public class FiltroGustoDeUsuario implements FiltroI {
 
@@ -8,8 +9,8 @@ public class FiltroGustoDeUsuario implements FiltroI {
 	public Set<Receta> filtrar(Set<Receta> recetas, Usuario usr) {
 	
 		//recetas.removeIf(receta -> ! usr.leGusta(receta));
-		recetas.stream().filter(receta-> usr.leGusta(receta));
-		return recetas;
+		return recetas.stream().filter(receta-> usr.leGusta(receta)).collect(Collectors.toSet());
+		
 	}
 
 	

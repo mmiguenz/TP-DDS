@@ -2,6 +2,8 @@ package queComemos;
 
 import java.util.Set;
 
+import java.util.stream.Collectors;
+
 public class FiltroParaUsuariosConSobrepeso implements FiltroI {
 
 	@Override
@@ -9,9 +11,10 @@ public class FiltroParaUsuariosConSobrepeso implements FiltroI {
 		
 		if (usr.indiceMasaCorporal()> 50) // lo implemeto asi ya que no queda claro bajo que condiciones esta en sobrepeso.
 		//recetas.removeIf(receta -> receta.getCalorias()>500  );
-			recetas.stream().filter(receta->receta.getCalorias()<500);
+			return 	recetas.stream().filter(receta->receta.getCalorias()<500).collect(Collectors.toSet());
+		else 
+			return recetas;
 		
-		return recetas;
 	}
 	
 	

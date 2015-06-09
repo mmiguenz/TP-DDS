@@ -2,6 +2,7 @@ package queComemos;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 public class FiltroPreparacionCara implements FiltroI {
 
@@ -15,10 +16,10 @@ public class FiltroPreparacionCara implements FiltroI {
 		
 		
 		//recetas.removeIf(receta -> receta.contieneAlguna(comidasCaras));
-		recetas.stream().filter(receta -> !receta.contieneAlguna(comidasCaras));
-		return recetas ;
-		
-		
+
+    return 	recetas.stream().filter(receta -> !receta.contieneAlguna(comidasCaras)).collect(Collectors.toSet());
+     
+
 	}
 	
 	
