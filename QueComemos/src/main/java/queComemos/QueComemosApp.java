@@ -2,6 +2,7 @@ package queComemos;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 public class QueComemosApp {
 	
@@ -19,6 +20,7 @@ public class QueComemosApp {
 		usuarios = new HashSet<Usuario>();
 		recetas = new HashSet<Receta>();
 		inadecuados = new HashSet<CondicionPreexistenteI>();
+		
 		grupos = new HashSet<Grupo>();
 		
 		
@@ -27,21 +29,13 @@ public class QueComemosApp {
 	@SuppressWarnings("unchecked")
 	public static Set<CondicionPreexistenteI> calcularInadecuadosParaReceta(Receta receta)
 	{
-		
-		for (CondicionPreexistenteI inadecuado : inadecuados)
-		{
-			if (!  inadecuado.esAptaReceta(receta))
-			{
-				inadecuados.add(inadecuado);
-				
-			}
 			
-			
-		}
-		
-		return inadecuados ;
-		
+		  return  inadecuados.stream().filter(inadecuado->! inadecuado.esAptaReceta(receta))
+				    .collect(Collectors.toSet());
 	}
+		
+		
+	
 
 	public static Receta modificarRecetaPublica (String nombre, String nuevoNombre,Double calorias, Preparacion preparacion,Set<Receta>subRecetas,String dificultad)
 	{

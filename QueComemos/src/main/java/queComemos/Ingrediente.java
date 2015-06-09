@@ -59,7 +59,7 @@ public   class Ingrediente  {
 	public boolean contiene(String nombreIngrediente)
 	{
 	
-				return nombre ==nombreIngrediente;
+				return nombre.equals( nombreIngrediente);
 	
 	
 		

@@ -72,6 +72,7 @@ public class TestReceta {
 	@Test
 	public void testInadecuadoParaHipertenso() {
 		Set<String> comidas= new HashSet<String>();
+		comidas.add("Sal");
 		Hipertenso hipertenso = new Hipertenso("Hipertenso",comidas);
 		QueComemosApp.inadecuados.add(hipertenso);
 		
@@ -82,6 +83,7 @@ public class TestReceta {
 	public void testAdecuadoParaHipertenso() {
 		Set<String> comidas= new HashSet<String>();
 		Hipertenso hipertenso = new Hipertenso("Hipertenso",comidas);
+		QueComemosApp.inicializar();
 		QueComemosApp.inadecuados.add(hipertenso);
 		 Receta receta = new Receta("CarneAlHorno",1524.0,preparacion,dificultad,temporada,subRecetas,inadecuados);
 		 assertFalse(receta.getInadecuados().contains(hipertenso));
@@ -92,6 +94,7 @@ public class TestReceta {
 	@Test
 	public void testInadecuadoParaVegano() {
 		Set<String> comidas= new HashSet<String>();
+		comidas.add("Carne");
 		Vegano vegano = new Vegano("Vegano",comidas);
 		QueComemosApp.inadecuados.add(vegano);
 		
@@ -107,7 +110,7 @@ public class TestReceta {
 		QueComemosApp.inadecuados.add(vegano);
 		
 		 Receta receta = new Receta("CarneAlHorno",1524.0,preparacion,dificultad,temporada,subRecetas,inadecuados);
-		 assertTrue(receta.getInadecuados().contains(vegano));
+		 assertFalse(receta.getInadecuados().contains(vegano));
 	}
 	
 	
@@ -118,7 +121,7 @@ public class TestReceta {
 		QueComemosApp.inadecuados.add(celiaco);
 		
 		 Receta receta = new Receta("CarneAlHorno",1524.0,preparacion,dificultad,temporada,subRecetas,inadecuados);
-		 assertTrue(receta.getInadecuados().contains(celiaco));
+		 assertFalse(receta.getInadecuados().contains(celiaco));
 	}
 	
 	@Test
@@ -127,7 +130,7 @@ public class TestReceta {
 		Celiaco celiaco = new Celiaco("Celiaco",comidas);
 		QueComemosApp.inadecuados.add(celiaco);
 		 Receta receta = new Receta("CarneAlHorno",1524.0,preparacion,dificultad,temporada,subRecetas,inadecuados);
-		 assertTrue(receta.getInadecuados().contains(celiaco));
+		 assertFalse(receta.getInadecuados().contains(celiaco));
 	}
 	
 	
@@ -138,7 +141,7 @@ public class TestReceta {
 		QueComemosApp.inadecuados.add(celiaco);
 		
 		 Receta receta = new Receta("CarneAlHorno",1524.0,preparacion,dificultad,temporada,subRecetas,inadecuados);
-		 assertTrue(receta.getInadecuados().contains(celiaco));
+		 assertFalse(receta.getInadecuados().contains(celiaco));
 	}
 	
 	
@@ -150,7 +153,7 @@ public class TestReceta {
 		
 		
 		 Receta receta = new Receta("CarneAlHorno",1524.0,preparacion,dificultad,temporada,subRecetas,inadecuados);
-		 assertTrue(receta.getInadecuados().contains(celiaco));
+		 assertFalse(receta.getInadecuados().contains(celiaco));
 	}
 	
 	
