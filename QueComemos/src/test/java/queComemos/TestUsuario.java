@@ -9,6 +9,11 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
+import condicionesPreexistentes.Celiaco;
+import condicionesPreexistentes.Diabetico;
+import condicionesPreexistentes.Hipertenso;
+import condicionesPreexistentes.Vegano;
+
 public class TestUsuario {
 
 	private Usuario usuario;

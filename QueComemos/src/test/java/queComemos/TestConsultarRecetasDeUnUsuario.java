@@ -9,6 +9,14 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
+import condicionesPreexistentes.Celiaco;
+import condicionesPreexistentes.Diabetico;
+import condicionesPreexistentes.Hipertenso;
+import condicionesPreexistentes.Vegano;
+import filtros.FiltroParaUsuariosConSobrepeso;
+import filtros.FiltroPreparacionCara;
+import filtros.FiltroRechazaTodo;
+
 public class TestConsultarRecetasDeUnUsuario {
 
 	@Before
