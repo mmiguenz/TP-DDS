@@ -8,6 +8,7 @@ import org.json.*;
 
 import javax.json.*;
 
+import queComemos.entrega3.dominio.Dificultad;
 import queComemos.entrega3.repositorio.BusquedaRecetas;
 import queComemos.entrega3.repositorio.RepoRecetas;
 
@@ -32,14 +33,36 @@ public class RepoRecetasAd {
 	
 	
 	
-	/*public List<Receta> consultaEnRepoExterno(ConsultaAd consulta)
+	public List<Receta> consultaEnRepoExterno(ConsultaRepoExtAd consulta)
 	{
 		
+		BusquedaRecetas busqueda = new BusquedaRecetas();
+		RepoRecetas repo = new RepoRecetas();
+		busqueda.setNombre(consulta.getNombre());
 		
-		return null ;
+		if (consulta.getDificultad().contains("dificil"))
+			busqueda.setDificultad(Dificultad.DIFICIL);
+		
+		if (consulta.getDificultad().contains("mediana"))
+			busqueda.setDificultad(Dificultad.MEDIANA);
 		
 		
-	}*/
+		if (consulta.getDificultad().contains("facil"))
+			busqueda.setDificultad(Dificultad.FACIL);
+		
+		
+		consulta.getPalabrasClaves().forEach(palabra -> busqueda.agregarPalabraClave(palabra));
+		
+		
+		String resultado =  repo.getRecetas(busqueda);
+		return this.mapiarResultado(resultado);
+		
+		
+		
+
+		
+		
+	}
 	
 	
 	

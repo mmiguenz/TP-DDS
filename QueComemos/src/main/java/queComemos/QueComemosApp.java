@@ -120,11 +120,24 @@ public class QueComemosApp {
 			  
 		  }
 		  
+		  try {
+		  
 		  RepoRecetasAd repoRecetasExterno = new RepoRecetasAd();
+		 
 		  resultado.addAll(repoRecetasExterno.traerTodasRecetasExternas());
 		  
+		 
 		  return resultado.stream().collect(Collectors.toList()) ;
 		  
+		  }
+		  
+		  catch (RuntimeException ex)
+		  {
+			  
+			  ex.printStackTrace();
+			  return resultado.stream().collect(Collectors.toList()) ;
+			  
+		  }
 		  
 		  
 		  
@@ -179,6 +192,27 @@ public class QueComemosApp {
 		  
 		  
 	  }
+	  
+	  
+	  public static List<Receta> consultarEnRepoExterno(ConsultaRepoExtAd consulta )
+	  {
+		  try {
+			  
+		  
+		  RepoRecetasAd repo  = new RepoRecetasAd();
+		   return repo.consultaEnRepoExterno(consulta);
+		  }
+		  catch (RuntimeException ex)
+		  {
+			  ex.printStackTrace();
+			  return null ;
+			  
+			  
+		  }
+		  
+		  
+	  }
+	  	
 	  
 	  
 	  
