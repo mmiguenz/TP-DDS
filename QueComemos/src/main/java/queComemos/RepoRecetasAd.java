@@ -28,18 +28,23 @@ public class RepoRecetasAd {
 		
 		return  this.mapiarResultado(resultado);
 		
-
-		
-	
-		
-
-		
 	}
 	
 	
 	
+	/*public List<Receta> consultaEnRepoExterno(ConsultaAd consulta)
+	{
+		
+		
+		return null ;
+		
+		
+	}*/
 	
-	public   List<Receta> mapiarResultado(String resultado)
+	
+	
+	
+	private   List<Receta> mapiarResultado(String resultado)
 
 	{
 		
