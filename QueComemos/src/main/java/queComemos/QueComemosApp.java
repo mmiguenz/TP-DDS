@@ -13,6 +13,7 @@ public class QueComemosApp {
 	public static List<CondicionPreexistenteI> inadecuados;
 	public static List<Grupo> grupos;
 	
+	
 
 
 	
@@ -24,7 +25,7 @@ public class QueComemosApp {
 		inadecuados = new ArrayList<CondicionPreexistenteI>();
 		
 		grupos = new ArrayList<Grupo>();
-		
+	
 		
 	}
 	
@@ -118,6 +119,9 @@ public class QueComemosApp {
 			  
 			  
 		  }
+		  
+		  RepoRecetasAd repoRecetasExterno = new RepoRecetasAd();
+		  resultado.addAll(repoRecetasExterno.traerTodasRecetasExternas());
 		  
 		  return resultado.stream().collect(Collectors.toList()) ;
 		  
