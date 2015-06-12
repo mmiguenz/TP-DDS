@@ -25,7 +25,6 @@ public class Usuario {
 	private List<CondicionPreexistenteI> condicionesPreexistentes;
 	private List<Receta> misRecetas;
 	private List<Receta> favoritas;
-	private ObservadorDeVeganos obsDeVeganos;
 
 	public Usuario(String nombre, String sexo, LocalDate fechaNacimiento,
 			Double peso, Double estatura, String rutina,
@@ -183,10 +182,6 @@ public class Usuario {
 	}
 
 	public boolean puedeVer(Receta receta) {
-		if ((this.getCondicionesPreexistentes().stream().anyMatch(con->con.getNombre().equals("Vegano")))
-			&& receta.getDificultad().equals("dificil")){
-			obsDeVeganos.notificar();
-		}
 		return esAdecuadaLaReceta(receta) && 
 				(misRecetas.contains(receta) || QueComemosApp.recetas.contains(receta));
 

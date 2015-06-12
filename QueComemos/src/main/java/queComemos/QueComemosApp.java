@@ -12,7 +12,6 @@ public class QueComemosApp {
 	public static List<Receta> recetas;
 	public static List<CondicionPreexistenteI> inadecuados;
 	public static List<Grupo> grupos;
-	public static ObservadorDeRecetas observadorDeRecetas;
 	
 	
 
@@ -70,7 +69,6 @@ public class QueComemosApp {
 	  private static Receta buscarRecetaPorNombre (String nombre){
 		  for (Receta receta : recetas ){
 			  if (receta.getNombre().equals(nombre)){
-				  observadorDeRecetas.notificar(receta);
 				  return receta;
 			  }
 		  }
@@ -174,8 +172,6 @@ public class QueComemosApp {
 			  
 		  }
 		  
-		  
-		  observadorDeRecetas.notificar(consultaResul);
 		  return consultaResul;
 		  
 		  
@@ -192,7 +188,6 @@ public class QueComemosApp {
 			  
 		  }
 		  
-		  observadorDeRecetas.notificar(consultaResul);
 		  return procesamiento.procesar(consultaResul);
 		  
 		  
@@ -216,20 +211,6 @@ public class QueComemosApp {
 		  }
 		  
 		  
-	  }
-	  
-	  
-	  public Receta recetaMasConsultada(){
-		  int max=0;
-		  String nombreMasConsultada="null";
-		  for (Receta receta : this.recetas)
-		  {
-			  if(receta.getcantidadDeConsultas()>max){
-				  max=receta.getcantidadDeConsultas();
-				  nombreMasConsultada=receta.getNombre();				  
-			  }			  
-		  }
-		  return (buscarRecetaPorNombre(nombreMasConsultada));
 	  }
 	  	
 	  

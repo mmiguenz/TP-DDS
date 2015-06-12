@@ -16,8 +16,6 @@ public class Receta {
 	private String temporada;
 	private List<Receta> subRecetas;
 	private List<CondicionPreexistenteI> inadecuados;
-	private int cantidadDeConsultas;
-	
 
 	public Receta(String nombre, double calorias, Preparacion preparacion,
 			String dificultad, String temporada, List<Receta> subRecetas, List<CondicionPreexistenteI> inadecuados) {
@@ -31,7 +29,6 @@ public class Receta {
 		this.temporada = temporada;
 		this.subRecetas = subRecetas;
 		this.inadecuados = calcularInadecuados();
-		this.cantidadDeConsultas=0;
 		//this.inadecuados = inadecuados;
 				
 
@@ -92,12 +89,6 @@ public class Receta {
 	public void setInadecuados(List<CondicionPreexistenteI> inadecuados) {
 		this.inadecuados = inadecuados;
 	}
-	
-	public int getcantidadDeConsultas() {
-		return cantidadDeConsultas;
-	}
-	
-	
 
 	public boolean contiene(String nombreIngrediente) {
 		if (subRecetas.isEmpty())
@@ -147,10 +138,6 @@ public class Receta {
 	public boolean leGustaAlGrupo(PreferenciaAlimenticia preferenciaAlimenticia){
 		
 		return ((this.getPreparacion().leGusta(preferenciaAlimenticia.getComidasQueGusta())) && !(this.getPreparacion().leGusta(preferenciaAlimenticia.getComidasQueDisgusta())));
-	}
-
-	public void teConsulte() {
-		this.cantidadDeConsultas=this.cantidadDeConsultas+1;
 	}
 	
 	
