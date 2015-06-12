@@ -8,6 +8,8 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
+import queComemos.entrega3.creacionales.RecetaBuilder;
+
 public class TestRepoRecetasAd {
 
 	@Before
@@ -79,8 +81,8 @@ public class TestRepoRecetasAd {
 	
     {
 		QueComemosApp.inicializar();	
-		ConsultaRepoExtAd consulta = new ConsultaRepoExtAd("ensalada" ,"facil",new ArrayList<String>());
-	  assertEquals(QueComemosApp.consultarEnRepoExterno(consulta).size(),2);
+		ConsultaRepoExtAd consulta = new ConsultaRepoExtAd("ensalada" ,null,new ArrayList<String>());
+	  assertEquals(QueComemosApp.consultarEnRepoExterno(consulta).size(),3);
 					
 		
 		
@@ -88,11 +90,7 @@ public class TestRepoRecetasAd {
 		
 	}
 	
-	/*
-	 * =============================================================
-	 * Falta Implementar para que le pueda llegar nula la dificultad 
-	 * =============================================================
-	 */
+
 	
 	@Test
 	public void TestconsultarEnRepoExternoPorPalabras()
@@ -105,9 +103,33 @@ public class TestRepoRecetasAd {
 		palabrasClave.add("ricota");
 		palabrasClave.add("cassatta");
 		
-		ConsultaRepoExtAd consulta = new ConsultaRepoExtAd("ensalada" ,"facil",palabrasClave);
+		ConsultaRepoExtAd consulta = new ConsultaRepoExtAd(null ,null,palabrasClave);
+		
+	  assertEquals(QueComemosApp.consultarEnRepoExterno(consulta).size(),3);
+					
+		
+		
+		
+		
+	}
+	
+	
+	@Test
+	public void TestconsultarEnRepoExternoPorTodo()
+	
+    {
+		QueComemosApp.inicializar();	
+		
+		List<String> palabrasClave = new ArrayList<>();
+		palabrasClave.add("lechuga");
+		palabrasClave.add("croutons");
+		palabrasClave.add("parmesano");
+		
+		ConsultaRepoExtAd consulta = new ConsultaRepoExtAd("ensalada caesar" ,"facil",palabrasClave);
 		
 	  assertEquals(QueComemosApp.consultarEnRepoExterno(consulta).size(),1);
+	  
+		
 					
 		
 		

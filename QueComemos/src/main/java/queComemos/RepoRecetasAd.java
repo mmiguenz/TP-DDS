@@ -39,16 +39,10 @@ public class RepoRecetasAd {
 		BusquedaRecetas busqueda = new BusquedaRecetas();
 		RepoRecetas repo = new RepoRecetas();
 		busqueda.setNombre(consulta.getNombre());
-		
-		if (consulta.getDificultad().contains("dificil"))
-			busqueda.setDificultad(Dificultad.DIFICIL);
-		
-		if (consulta.getDificultad().contains("mediana"))
-			busqueda.setDificultad(Dificultad.MEDIANA);
+		busqueda.setDificultad(consulta.dificultad());
 		
 		
-		if (consulta.getDificultad().contains("facil"))
-			busqueda.setDificultad(Dificultad.FACIL);
+		
 		
 		
 		consulta.getPalabrasClaves().forEach(palabra -> busqueda.agregarPalabraClave(palabra));

@@ -2,6 +2,8 @@ package queComemos;
 
 import java.util.List;
 
+import queComemos.entrega3.dominio.Dificultad;
+
 public class ConsultaRepoExtAd {
 	
 	private String nombre;
@@ -49,4 +51,24 @@ public class ConsultaRepoExtAd {
 		this.palabrasClaves = palabrasClaves;
 	}
 
+
+	public Dificultad dificultad() {
+		
+	if (dificultad != null)
+	{
+		
+	switch (dificultad){
+	case "facil": return Dificultad.FACIL;
+	case "mediana": return Dificultad.MEDIANA;
+	case "dificil": return Dificultad.DIFICIL;
+	default: return null; 
+	} 
+	
+	
+	}
+	
+	return null;
+		
+	}
+		
 }
