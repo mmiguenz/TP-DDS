@@ -4,7 +4,10 @@ import static org.junit.Assert.*;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
+
+import observadores.ObserverVecesConsultada;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -419,8 +422,6 @@ public class TestUsuario {
 			usr.marcarComoFavorita(receta);
 			
 			assertTrue(usr.getFavoritas().contains(receta));
-		
-			
 		}
 		
 

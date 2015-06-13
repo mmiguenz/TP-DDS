@@ -191,7 +191,8 @@ public class Usuario {
 
 	public boolean esAdecuadaLaReceta(Receta receta){
 		return this.condicionesPreexistentes.stream().allMatch(condicion -> condicion.esAptaReceta(receta))
-				&& this.preferenciaAlimenticia.getComidasQueDisgusta().stream().anyMatch(comida -> receta.contiene(comida));		
+				&& !this.preferenciaAlimenticia.getComidasQueDisgusta().stream().anyMatch(comida -> receta.contiene(comida));		
+	
 	}
 	
 	

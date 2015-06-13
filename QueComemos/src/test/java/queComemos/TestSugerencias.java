@@ -106,7 +106,7 @@ public class TestSugerencias {
 		
 
 		
-		assertFalse(QueComemosApp.puedeSugerir(receta, usr));
+		assertTrue(QueComemosApp.puedeSugerir(receta, usr));
 	}
 	
 	/*@Test

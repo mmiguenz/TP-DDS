@@ -2,12 +2,16 @@ package queComemos;
 
 import java.util.ArrayList;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Stream;
+import java.util.Observable;
+import java.util.Observer;
 
 
-public class Receta {
+public class Receta extends Observable{
 
 	private String nombre;
 	private double calorias;
@@ -16,6 +20,7 @@ public class Receta {
 	private String temporada;
 	private List<Receta> subRecetas;
 	private List<CondicionPreexistenteI> inadecuados;
+	private Set<ObservadorI> observadores;
 
 	public Receta(String nombre, double calorias, Preparacion preparacion,
 			String dificultad, String temporada, List<Receta> subRecetas, List<CondicionPreexistenteI> inadecuados) {
@@ -30,7 +35,7 @@ public class Receta {
 		this.subRecetas = subRecetas;
 		this.inadecuados = calcularInadecuados();
 		//this.inadecuados = inadecuados;
-				
+		this.observadores= new HashSet<ObservadorI>();
 
 	}
 
@@ -107,7 +112,14 @@ public class Receta {
 
 
 	public boolean esAdecuadaPara(Usuario usr){
-		return usr.esAdecuadaLaReceta(this);
+		////////////////////////////////////////////////////////////////////////
+		if (usr.esAdecuadaLaReceta(this)){
+			this.observadores.forEach(obs->obs.notificar(usr, this));
+			return true;
+		}else{
+			return false;
+		}
+		
 	}
 	
 	public boolean esAdecuadaParaGrupo(List<Usuario> usuarios){
@@ -138,6 +150,10 @@ public class Receta {
 	public boolean leGustaAlGrupo(PreferenciaAlimenticia preferenciaAlimenticia){
 		
 		return ((this.getPreparacion().leGusta(preferenciaAlimenticia.getComidasQueGusta())) && !(this.getPreparacion().leGusta(preferenciaAlimenticia.getComidasQueDisgusta())));
+	}
+	
+	public void agregarObservador(ObservadorI obsNuevo){
+		this.observadores.add(obsNuevo);
 	}
 	
 	
