@@ -63,7 +63,7 @@ public class TestAprobacionDeSolicitudes {
 		Usuario usr5 = new Usuario(5,"juan", "", LocalDate.parse("1994-05-06"), 10.0, 20.5, "Intensa", preferencia, condiciones1, new ArrayList<Receta>());
 		Usuario usr6 = new Usuario(6,"sebastian", "", LocalDate.parse("1994-05-06"), 10.0, 20.5, "Intensa", preferencia, condiciones1, new ArrayList<Receta>());
 		Usuario usr7 = new Usuario(7,"matias", "", LocalDate.parse("1994-05-06"), 10.0, 20.5, "Intensa", preferencia, condiciones3, new ArrayList<Receta>());
-		Usuario usr8 = new Usuario(8,"matias", "", LocalDate.parse("1994-05-06"), 10.0, 20.5, "Intensa", preferencia, condiciones3, new ArrayList<Receta>());
+		Usuario usr8 = new Usuario(8,"juan", "", LocalDate.parse("1994-05-06"), 10.0, 20.5, "Intensa", preferencia, condiciones3, new ArrayList<Receta>());
 		Usuario usr9 = new Usuario(9,"matias", "", LocalDate.parse("1994-05-06"), 10.0, 20.5, "Intensa", preferencia, condiciones1, new ArrayList<Receta>());
 		
 		usuarios.add(usr1);
@@ -86,8 +86,16 @@ public class TestAprobacionDeSolicitudes {
 	}
 
 	@Test
-	public void test() {
-		fail("Not yet implemented");
+	public void testAprobaciones() {
+		
+		CriterioAprobacionI criterio = new CriteroApruebaSiEsJuan(); 
+		ApplicationsManager administrador  =  new ApplicationsManager(usuarios,criterio);
+		
+		assertEquals(administrador.getMotivosRechazos().size(),6);
+		
+		
+		
+		
 	}
 
 }

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class applicationsManager {
+public class ApplicationsManager {
 	
 	
 	private List<Usuario> pendientesDeAprobacion;
@@ -17,9 +17,11 @@ public class applicationsManager {
 	
 	
 	
-	public applicationsManager(List<Usuario> pendientesDeAprobacion) {
+	public ApplicationsManager(List<Usuario> pendientesDeAprobacion, CriterioAprobacionI criterio) {
 
 		this.pendientesDeAprobacion = pendientesDeAprobacion;
+		this.criterio= criterio;
+		this.motivosRechazos  = new ArrayList<Aprobacion>();
 		this.procesarSolicitudes();
 	}
 
