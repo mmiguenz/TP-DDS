@@ -1,72 +1,78 @@
 package queComemos;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class applicationsManager {
 	
 	
-	public static List<Usuario> pendientesDeAprobacion;
-	public static List<Aprobacion> motivosRechazos;
+	private List<Usuario> pendientesDeAprobacion;
+	private  List<Aprobacion> motivosRechazos;
+	private CriterioAprobacionI criterio;
 	
 	
 	
 	
-	  public static void  procesarSolicitudes()
+	
+	
+	
+	public applicationsManager(List<Usuario> pendientesDeAprobacion) {
+
+		this.pendientesDeAprobacion = pendientesDeAprobacion;
+		this.procesarSolicitudes();
+	}
+
+
+	
+	
+	
+	  public  List<Usuario> getPendientesDeAprobacion() {
+		return pendientesDeAprobacion;
+	}
+
+
+
+	public  void setPendientesDeAprobacion(
+			List<Usuario> pendientesDeAprobacion) {
+		this.pendientesDeAprobacion = pendientesDeAprobacion;
+	}
+
+
+
+	public  List<Aprobacion> getMotivosRechazos() {
+		return this.motivosRechazos;
+	}
+
+
+
+	public  void setMotivosRechazos(List<Aprobacion> motivosRechazos) {
+		this.motivosRechazos = motivosRechazos;
+	}
+
+
+
+
+
+	public  void  procesarSolicitudes()
 	  {
 		  
-		  pendientesDeAprobacion.forEach( solicitud -> aprobar(solicitud));
+		List<Aprobacion> aprobaciones=  new ArrayList<Aprobacion>() ;
+		  pendientesDeAprobacion.forEach(solicitud -> aprobaciones.add(criterio.aprobar(solicitud)));
+		  
+		  
+		  motivosRechazos.addAll(aprobaciones.stream().filter(aprobacion -> ! aprobacion.isOk() ).collect(Collectors.toList()));
 		  
 		  
 	  }
 
 
 
-	private static void aprobar(Usuario solicitud) {
-		
-		if (cumpleCondicion(solicitud).isOk())
-		{	
-		RepoUsuarios.add(solicitud);
-		}else{
-			
-			
-			motivosRechazos.add(cumpleCondicion(solicitud));
-		 
-			
-			
-		}
-		
-		
-		
-	}
 
 
 
-	@SuppressWarnings("unused")
-	private static Aprobacion cumpleCondicion(Usuario solicitud) {
-		
-		Aprobacion aprobacion =  new Aprobacion(solicitud);
-		
-		if(true) 
-		{
-			
-			aprobacion.setOk(true);
-			
-			
-		}else 
-		{
-			
-			aprobacion.setOk(false);
-			aprobacion.setMotivo("AlgunMotivo");
-			
-			
-			
-		}
-		
-		return aprobacion;
-		
-	}
-	  
 
+	
 	
 	
 
