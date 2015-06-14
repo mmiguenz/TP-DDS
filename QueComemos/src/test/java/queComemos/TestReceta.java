@@ -255,7 +255,7 @@ public class TestReceta {
 		List<CondicionPreexistenteI> condiciones = new ArrayList<CondicionPreexistenteI>();
 		condiciones.add(new Vegano("Vegano", comidasProhibidas));
 				
-		Usuario usuario =new Usuario("pedro","Hombre",LocalDate.parse("1990-01-01"),60.0,1.70,
+		Usuario usuario =new Usuario(2,"pedro","Hombre",LocalDate.parse("1990-01-01"),60.0,1.70,
 				"Leve",preferencia,condiciones,null);
 		
 		//assertTrue(usuario.validar());

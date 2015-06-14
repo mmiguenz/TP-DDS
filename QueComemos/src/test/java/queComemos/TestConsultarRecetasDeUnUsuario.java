@@ -51,7 +51,7 @@ public class TestConsultarRecetasDeUnUsuario {
 		condiciones.add(celiaco);
 		
 		
-		Usuario usr = new Usuario("Juan","Masculino",LocalDate.parse("1994-08-05"),90.0,175.0,"Leve",preferenciaAlimenticia,condiciones,new ArrayList<Receta>());
+		Usuario usr = new Usuario(3,"Juan","Masculino",LocalDate.parse("1994-08-05"),90.0,175.0,"Leve",preferenciaAlimenticia,condiciones,new ArrayList<Receta>());
 		
 		List<String>	instrucciones = new ArrayList<String>();
 		List<Ingrediente> ingredientes = new ArrayList<Ingrediente>();
@@ -134,7 +134,7 @@ public class TestConsultarRecetasDeUnUsuario {
 		condiciones.add(celiaco);
 		
 		
-		Usuario usr = new Usuario("Juan","Masculino",LocalDate.parse("1994-08-05"),90.0,175.0,"Leve",preferenciaAlimenticia,condiciones,new ArrayList<Receta>());
+		Usuario usr = new Usuario(3,"Juan","Masculino",LocalDate.parse("1994-08-05"),90.0,175.0,"Leve",preferenciaAlimenticia,condiciones,new ArrayList<Receta>());
 		
 		List<String>	instrucciones = new ArrayList<String>();
 		List<Ingrediente> ingredientes = new ArrayList<Ingrediente>();

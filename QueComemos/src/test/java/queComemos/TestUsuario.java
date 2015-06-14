@@ -60,7 +60,7 @@ public class TestUsuario {
 	@Test
 	public void testIMCPesoyEstaturaPositiva() {
 
-		usuario = new Usuario("Matias", "Masculino",
+		usuario = new Usuario(5,"Matias", "Masculino",
 				LocalDate.parse("1994-08-05"), 70.0, 1.75, "Leve", null, null,
 				null);
 		assertEquals(22.85, usuario.indiceMasaCorporal(), 0.1);
@@ -70,7 +70,7 @@ public class TestUsuario {
 	@Test
 	public void testIMCPPesoYEstaturaF() {
 
-		usuario = new Usuario("Juan", "Masculino",
+		usuario = new Usuario(3,"Juan", "Masculino",
 				LocalDate.parse("1998-08-05"), 80.0, 1.75, "Leve", null, null,
 				null);
 		assertEquals(26.12, usuario.indiceMasaCorporal(), 0.1);
@@ -80,7 +80,7 @@ public class TestUsuario {
 	@Test
 	public void testIMCPeso66Estatura172() {
 
-		usuario = new Usuario("Juan", "Masculino",
+		usuario = new Usuario(2,"Juan", "Masculino",
 				LocalDate.parse("1994-10-05"), 66.0, 1.75, "Intensivo", null,
 				null, null);
 		assertEquals(21.55, usuario.indiceMasaCorporal(), 0.1);
@@ -90,7 +90,7 @@ public class TestUsuario {
 	@Test
 	public void testIMCPesoYEstaturaAB() {
 
-		usuario = new Usuario("Alejandro", "Masculino",
+		usuario = new Usuario(1,"Alejandro", "Masculino",
 				LocalDate.parse("1994-10-05"), 74.0, 1.82, "Mediano", null,
 				null, null);
 		assertEquals(22.40, usuario.indiceMasaCorporal(), 0.1);
@@ -102,7 +102,7 @@ public class TestUsuario {
 
 		List<CondicionPreexistenteI> condicionesSaludables = new ArrayList<CondicionPreexistenteI>();
 
-		usuario = new Usuario("Alejandro", "Masculino",
+		usuario = new Usuario(8,"Alejandro", "Masculino",
 				LocalDate.parse("1994-10-05"), 74.0, 1.82, "Mediano",
 				preferenciaAlimenticiaSaludable, condicionesSaludables, null);
 		assertTrue(usuario.sigueRutinaSaludable());
@@ -114,7 +114,7 @@ public class TestUsuario {
 
 		List<CondicionPreexistenteI> condicionesSaludables = new ArrayList<CondicionPreexistenteI>();
 
-		usuario = new Usuario("Alejandro", "Masculino",
+		usuario = new Usuario(8,"Alejandro", "Masculino",
 				LocalDate.parse("1994-10-05"), 150.0, 1.82, "Mediano",
 				preferenciaAlimenticiaSaludable, condicionesSaludables, null);
 		assertFalse(usuario.sigueRutinaSaludable());
@@ -128,7 +128,7 @@ public class TestUsuario {
 		condiciones.add(new Celiaco("Celiaco", comidasProhibidas));
 		condiciones.add(new Diabetico("Diabetico", comidasProhibidas));
 
-		usuario = new Usuario("Alejandro", "Masculino",
+		usuario = new Usuario(9,"Alejandro", "Masculino",
 				LocalDate.parse("1994-10-05"), 69.0, 1.82, "Activa",
 				preferenciaAlimenticiaSaludable, condiciones, null);
 		assertTrue(usuario.sigueRutinaSaludable());
@@ -140,7 +140,7 @@ public class TestUsuario {
 	public void testUsuarioDiabeticoNoSigueRutinaSaludable() {
 		List<CondicionPreexistenteI> condiciones = new ArrayList<CondicionPreexistenteI>();
 		condiciones.add(new Diabetico("Diabetico", comidasProhibidas));
-		usuario = new Usuario("Pedro", "Masculino",
+		usuario = new Usuario(43,"Pedro", "Masculino",
 				LocalDate.parse("1990-01-01"), 60.0, 1.7, "Leve",
 				preferenciaAlimenticiaNoSaludable, condiciones, null);
 		assertFalse(usuario.sigueRutinaSaludable());
@@ -151,7 +151,7 @@ public class TestUsuario {
 	public void testUsuarioDiabeticoNoValida() {
 		List<CondicionPreexistenteI> condiciones = new ArrayList<CondicionPreexistenteI>();
 		condiciones.add(new Diabetico("Diabetico", comidasProhibidas));
-		usuario = new Usuario("Pedro", null, LocalDate.parse("1990-01-01"),
+		usuario = new Usuario(32,"Pedro", null, LocalDate.parse("1990-01-01"),
 				60.0, 1.7, "Leve", preferenciaAlimenticiaNoSaludable,
 				condiciones, null);
 		assertFalse(usuario.validaCondicionesPreexistentes(usuario));
@@ -162,7 +162,7 @@ public class TestUsuario {
 	public void testUsuarioDiabeticoSiValida() {
 		List<CondicionPreexistenteI> condiciones = new ArrayList<CondicionPreexistenteI>();
 		condiciones.add(new Diabetico("Diabetico", comidasProhibidas));
-		usuario = new Usuario("Pedro", "Masculino",
+		usuario = new Usuario(30,"Pedro", "Masculino",
 				LocalDate.parse("1990-01-01"), 60.0, 1.7, "Leve",
 				preferenciaAlimenticiaNoSaludable, condiciones, null);
 		assertFalse(usuario.validaCondicionesPreexistentes(usuario));
@@ -175,7 +175,7 @@ public class TestUsuario {
 		List<CondicionPreexistenteI> condiciones = new ArrayList<CondicionPreexistenteI>();
 
 		condiciones.add(new Celiaco("Celiaco", comidasProhibidas));
-		usuario = new Usuario("Pedro", null, LocalDate.parse("1990-01-01"),
+		usuario = new Usuario(1,"Pedro", null, LocalDate.parse("1990-01-01"),
 				60.0, 1.7, "Leve", preferenciaAlimenticiaNoSaludable,
 				condiciones, null);
 		assertTrue(usuario.validaCondicionesPreexistentes(usuario));
@@ -186,7 +186,7 @@ public class TestUsuario {
 	public void testUsuarioCeliacoValidaConPreferenciaAlimenticiaSaludable() {
 		List<CondicionPreexistenteI> condiciones = new ArrayList<CondicionPreexistenteI>();
 		condiciones.add(new Celiaco("Celiaco", comidasProhibidas));
-		usuario = new Usuario("Pedro", null, LocalDate.parse("1990-01-01"),
+		usuario = new Usuario(4,"Pedro", null, LocalDate.parse("1990-01-01"),
 				60.0, 1.7, "Leve", preferenciaAlimenticiaSaludable, condiciones, null);
 		assertTrue(usuario.validaCondicionesPreexistentes(usuario));
 		
@@ -197,7 +197,7 @@ public class TestUsuario {
 	public void testUsuarioVeganoNoValida() {
 		List<CondicionPreexistenteI> condiciones = new ArrayList<CondicionPreexistenteI>();
 		condiciones.add(new Vegano("Vegano", comidasProhibidas));
-		usuario = new Usuario("Pedro", null, LocalDate.parse("1990-01-01"),
+		usuario = new Usuario(3,"Pedro", null, LocalDate.parse("1990-01-01"),
 				60.0, 1.7, "Leve", preferenciaAlimenticiaNoSaludable,
 				condiciones, null);
 		assertFalse(usuario.validaCondicionesPreexistentes(usuario));
@@ -209,7 +209,7 @@ public class TestUsuario {
 		List<CondicionPreexistenteI> condiciones = new ArrayList<CondicionPreexistenteI>();
 		condiciones.add(new Vegano("Vegano", comidasProhibidas));
 		PreferenciaAlimenticia prefe = new PreferenciaAlimenticia(new ArrayList<String>(),new ArrayList<String>());
-		usuario = new Usuario("Pedro", null, LocalDate.parse("1990-01-01"),
+		usuario = new Usuario(1,"Pedro", null, LocalDate.parse("1990-01-01"),
 				60.0, 1.7, "Leve", prefe, condiciones, null);
 		assertFalse(usuario.validaCondicionesPreexistentes(usuario));
 
@@ -219,7 +219,7 @@ public class TestUsuario {
 	public void testUsuarioHipertensoNoValida() {
 		List<CondicionPreexistenteI> condiciones = new ArrayList<CondicionPreexistenteI>();
 		condiciones.add(new Hipertenso("Hipertenso", comidasProhibidas));
-		usuario = new Usuario("Pedro", null, LocalDate.parse("1990-01-01"),
+		usuario = new Usuario(1,"Pedro", null, LocalDate.parse("1990-01-01"),
 				60.0, 1.7, "Leve", null, condiciones, null);
 		assertFalse(usuario.validaCondicionesPreexistentes(usuario));
 
@@ -229,7 +229,7 @@ public class TestUsuario {
 	public void testUsuarioHipertensoSiValida() {
 		List<CondicionPreexistenteI> condiciones = new ArrayList<CondicionPreexistenteI>();
 		condiciones.add(new Hipertenso("Hipertenso", comidasProhibidas));
-		usuario = new Usuario("Pedro", null, LocalDate.parse("1990-01-01"),
+		usuario = new Usuario(1,"Pedro", null, LocalDate.parse("1990-01-01"),
 				60.0, 1.7, "Leve", preferenciaAlimenticiaNoSaludable,
 				condiciones, null);
 		assertFalse(usuario.validaCondicionesPreexistentes(usuario));
@@ -238,7 +238,7 @@ public class TestUsuario {
 
 	@Test
 	public void testUsuarioSinFechaDeNacimiento() {
-		usuario = new Usuario("Pedro", "Masculino",
+		usuario = new Usuario(1,"Pedro", "Masculino",
 				LocalDate.parse("2016-01-01"), 60.0, 1.7, "Leve",
 				preferenciaAlimenticiaNoSaludable, null, null);
 		assertFalse(usuario.validar());
@@ -290,7 +290,7 @@ public class TestUsuario {
 		
 				QueComemosApp.inadecuados=new ArrayList<CondicionPreexistenteI>();
 				
-		Usuario usr = new Usuario ("juan","masculino",LocalDate.parse("2016-01-01"), 60.0, 1.7, "Leve",
+		Usuario usr = new Usuario (1,"juan","masculino",LocalDate.parse("2016-01-01"), 60.0, 1.7, "Leve",
 					preferenciaAlimenticiaNoSaludable,new ArrayList<CondicionPreexistenteI>(),new ArrayList<Receta>());
 		
 		
@@ -349,7 +349,7 @@ public class TestUsuario {
 				 String temporada= "Verano";
 			
 			
-			Usuario usr = new Usuario ("juan","masculino",LocalDate.parse("2016-01-01"), 60.0, 1.7, "Leve",
+			Usuario usr = new Usuario (2,"juan","masculino",LocalDate.parse("2016-01-01"), 60.0, 1.7, "Leve",
 						preferenciaAlimenticiaNoSaludable,new ArrayList<CondicionPreexistenteI>(),new ArrayList<Receta>());
 			
 			
@@ -412,7 +412,7 @@ public class TestUsuario {
 				 String temporada= "Verano";
 			
 			
-			Usuario usr = new Usuario ("juan","masculino",LocalDate.parse("2016-01-01"), 60.0, 1.7, "Leve",
+			Usuario usr = new Usuario (3,"juan","masculino",LocalDate.parse("2016-01-01"), 60.0, 1.7, "Leve",
 						preferenciaAlimenticiaNoSaludable,new ArrayList<CondicionPreexistenteI>(),new ArrayList<Receta>());
 			
 			

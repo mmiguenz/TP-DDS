@@ -89,7 +89,7 @@ public class TestSugerencias {
 		 receta = new Receta("CarneAlHorno",1524.0,preparacion,dificultad,temporada,new ArrayList<Receta>() ,inadecuados);
 	
 		
-		usr = new Usuario("Matias", "Masculino",
+		usr = new Usuario(4,"Matias", "Masculino",
 				LocalDate.parse("1994-08-05"), 70.0, 1.75, "Leve", preferenciaAlimenticiaSaludable, new ArrayList<CondicionPreexistenteI>(),
 				null);
 		
@@ -173,7 +173,7 @@ public class TestSugerencias {
 		List<String> comidasNoGusta1= new ArrayList<String>();
 		comidasNoGusta1.add("pescado");
 		PreferenciaAlimenticia preferencia1=new PreferenciaAlimenticia(comidasGusta1,comidasNoGusta1);
-		Usuario usuario1 = new Usuario("Pedro", "Masculino",
+		Usuario usuario1 = new Usuario(1,"Pedro", "Masculino",
 				LocalDate.parse("1990-01-01"), 60.0, 1.7, "Leve",
 				preferencia1, condiciones, new ArrayList<Receta>());
 		
@@ -183,7 +183,7 @@ public class TestSugerencias {
 		List<String> comidasNoGusta2= new ArrayList<String>();
 		comidasNoGusta2.add("cucaracha");
 		PreferenciaAlimenticia preferencia2=new PreferenciaAlimenticia(comidasGusta2,comidasNoGusta2);
-		Usuario usuario2 = new Usuario("Juan", "Masculino",
+		Usuario usuario2 = new Usuario(2,"Juan", "Masculino",
 				LocalDate.parse("1990-01-01"), 60.0, 1.7, "Leve",
 				preferencia2, new ArrayList<CondicionPreexistenteI>(), new ArrayList<Receta>());
 		
@@ -192,7 +192,7 @@ public class TestSugerencias {
 		List<String> comidasNoGusta3= new ArrayList<String>();
 		comidasNoGusta3.add("Carne");
 		PreferenciaAlimenticia preferencia3=new PreferenciaAlimenticia(comidasGusta3,comidasNoGusta3);
-		Usuario usuario3 = new Usuario("Pepo", "Masculino",
+		Usuario usuario3 = new Usuario(3,"Pepo", "Masculino",
 				LocalDate.parse("1990-01-01"), 60.0, 1.7, "Leve",
 				preferencia3, new ArrayList<CondicionPreexistenteI>(), new ArrayList<Receta>());
 		

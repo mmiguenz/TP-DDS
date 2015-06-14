@@ -8,14 +8,13 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-public class QueComemosApp implements RepoUsuarios {
+public class QueComemosApp  {
 	
 	public static List<Usuario> usuarios ; 
 	public static List<Receta> recetas;
 	public static List<CondicionPreexistenteI> inadecuados;
-	public static List<Grupo> grupos;
-	
-	public static List<Usuario> pendientesDeAprobacion;
+	public static List<Grupo> grupos;	
+
 	
 	
 
@@ -218,60 +217,8 @@ public class QueComemosApp implements RepoUsuarios {
 	  }
 	  
 	  
-	  public void generarPerfil(Usuario user){
-		  Perfil perfil = new Perfil(user);
-		 // perfil.agrega(user);
-		  pendientesDeAprobacion.add(user);
-		  
-	  }
 	  
-		public void procesarSolicitudes(Set<Perfil> perfilesPendientes) throws FalloValidacionException{
-			
-			Set<Perfil> perfilesAceptados = new HashSet();
-			perfilesAceptados = (Set<Perfil>) perfilesPendientes.stream().filter(solicitud -> solicitud.validate(solicitud) );
-			for(Perfil perfil : perfilesAceptados){
-				usuarios.add(perfil.user);
-			}
-		}
 
-		@Override
-		public void add(Usuario user) {
-			usuarios.add(user);
-			
-		}
-
-		@Override
-		public void remove(Usuario user) {
-			usuarios.remove(user);
-			
-		}
-
-		@Override
-		public void update(Usuario user){
-			usuarios.removeIf(usuario -> usuario.getNombre() == user.getNombre()) ;
-			usuarios.add(user);
-			
-		}
-
-		@Override
-		public Usuario get(String nombre) {
-			  for (Usuario usuario : usuarios ){
-				  if (usuario.getNombre().equals(nombre)){
-					  return usuario;
-				  }
-			  }
-			return null;
-		}
-
-		@Override
-		public Set<Usuario> list(Usuario user) {
-			return (Set<Usuario>) usuarios.stream().filter( usuario -> usuario.getNombre().equals(user.getNombre()) ).collect( Collectors.toList() );
-			
-		}
-
-	  	
-	  
-	  
 	  
 }
 

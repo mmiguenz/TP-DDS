@@ -17,10 +17,10 @@ public class TestGrupo {
 	@Before
 	public void setUp() throws Exception {
 
-		Usuario usuario1 = new Usuario("Pedro", "Masculino",
+		Usuario usuario1 = new Usuario(3,"Pedro", "Masculino",
 				LocalDate.parse("1990-01-01"), 60.0, 1.7, "Leve",
 				null, null, null);
-		Usuario usuario2 = new Usuario("Juan", "Masculino",
+		Usuario usuario2 = new Usuario(4,"Juan", "Masculino",
 				LocalDate.parse("1990-01-01"), 60.0, 1.7, "Leve",
 				null, null, null);
 
@@ -60,7 +60,7 @@ public class TestGrupo {
 	public void testEstaPepoEnElGrupo() {
 	
 		grupo = new Grupo("UnNombre" , usuariosColeccion, null);
-		Usuario usuario3 = new Usuario("Pepo", "Masculino",
+		Usuario usuario3 = new Usuario(5,"Pepo", "Masculino",
 				LocalDate.parse("1990-01-01"), 60.0, 1.7, "Leve",
 				null, null, null);
 		grupo.agregarUsuario(usuario3);

@@ -1,17 +1,88 @@
 package queComemos;
 
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
-public interface RepoUsuarios {
+public class RepoUsuarios {
 	
-	public void add(Usuario user);
+	public static List<Usuario> usuarios= new ArrayList<Usuario>() ;
 	
-	public void remove(Usuario user);
 	
-	public void update(Usuario user);
 	
-	public Usuario get(String nombre);
+	public static void add(Usuario usr){
+		
+		usuarios.add(usr);
+				
+		
+	}
 	
-	public Set<Usuario> list(Usuario user);
+	
+	public static void remove(Usuario usr)
+	{
+				
+		usuarios.remove(usr);
+		
+	}
+	
+	
+	public static void update(Usuario usr )
+	{
+		 long c = usuarios.stream().filter(usuario -> usuario.getUsuarioID().equals(usr.getUsuarioID())).count();
+		
+		Usuario usrOriginal =  usuarios.stream().filter(usuario -> usuario.getUsuarioID().equals(usr.getUsuarioID())).collect(Collectors.toList()).get(0);
+		
+		usrOriginal.setNombre(usr.getNombre());
+		usrOriginal.setCondicionesPreexistentes(usr.getCondicionesPreexistentes());
+		usrOriginal.setEstatura(usr.getEstatura());
+		usrOriginal.setFavoritas(usr.getFavoritas());
+		usrOriginal.setFechaNacimiento(usr.getFechaNacimiento());
+		usrOriginal.setMisRecetas(usr.getMisRecetas());
+		usrOriginal.setPeso(usr.getPeso());
+		usrOriginal.setPreferenciaAlimenticia(usr.getPreferenciaAlimenticia());
+		usrOriginal.setRutina(usr.getRutina());
+		usrOriginal.setSexo(usr.getSexo());
+		
+		
+	}
+
+
+	public static Usuario get(Usuario usr)
+	{
+		
+		return usuarios.stream().filter(usuario -> usuario.getNombre().equals(usr.getNombre())).collect(Collectors.toList()).get(0);
+		
+		
+		
+	}
+	
+	
+	
+	public static List<Usuario> list(Usuario usr )
+	{
+		if(usr.getCondicionesPreexistentes() == null || usr.getCondicionesPreexistentes().isEmpty())
+		{
+		
+			return usuarios.stream().filter(usuario -> usuario.getNombre().equals(usr.getNombre())).collect(Collectors.toList());
+						
+			
+			
+		} else {
+			
+		
+			
+			
+			return usuarios.stream().filter(usuario -> usuario.getNombre().equals(usr.getNombre()) && usuario.getCondicionesPreexistentes().containsAll(usr.getCondicionesPreexistentes())).collect(Collectors.toList());
+		
+		
+		
+		
+				}
+	
+	}
+
+	
+	
 
 }
+

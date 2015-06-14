@@ -6,8 +6,20 @@ import java.util.List;
 
 public class Usuario {
 
+	private Integer usuarioID;
 	private String nombre;
 	private String sexo;
+	private LocalDate fechaNacimiento;
+	private Double peso;
+	private Double estatura;
+	private String rutina;
+	private PreferenciaAlimenticia preferenciaAlimenticia;
+	private List<CondicionPreexistenteI> condicionesPreexistentes;
+	private List<Receta> misRecetas;
+	private List<Receta> favoritas;
+	
+	
+	
 	public List<Receta> getFavoritas() {
 		return favoritas;
 	}
@@ -17,20 +29,13 @@ public class Usuario {
 	}
 
 
-	private LocalDate fechaNacimiento;
-	private Double peso;
-	private Double estatura;
-	private String rutina;
-	private PreferenciaAlimenticia preferenciaAlimenticia;
-	private List<CondicionPreexistenteI> condicionesPreexistentes;
-	private List<Receta> misRecetas;
-	private List<Receta> favoritas;
-
-	public Usuario(String nombre, String sexo, LocalDate fechaNacimiento,
+	public Usuario(Integer usuarioID,String nombre, String sexo, LocalDate fechaNacimiento,
 			Double peso, Double estatura, String rutina,
 			PreferenciaAlimenticia preferenciaAlimenticia,
 			List<CondicionPreexistenteI> condicionesPreexistentes,
 			List<Receta> misRecetas) {
+		
+		this.usuarioID= usuarioID;
 		this.setNombre(nombre);
 		this.setSexo(sexo);
 		this.setFechaNacimiento(fechaNacimiento);
@@ -41,6 +46,7 @@ public class Usuario {
 		this.setCondicionesPreexistentes(condicionesPreexistentes);
 		this.setMisRecetas(misRecetas);
 		this.favoritas= new ArrayList<Receta>();
+		
 
 	}
 
@@ -206,7 +212,17 @@ public class Usuario {
 		// Falta implementar ya que no especifia bajo que criterio
 		return true;
 	}
+
+	public Integer getUsuarioID() {
+		return usuarioID;
+	}
+
+	public void setUsuarioID(Integer usuarioID) {
+		this.usuarioID = usuarioID;
+	}
+
 	
+		
 	
 	
 }

@@ -90,7 +90,7 @@ public class TestMostrarRecetasAccesiblesPorUsuario {
 			 String temporada= "Verano";
 		
 		
-		Usuario usr = new Usuario ("juan","masculino",LocalDate.parse("2016-01-01"), 60.0, 1.7, "Leve",
+		Usuario usr = new Usuario (3,"juan","masculino",LocalDate.parse("2016-01-01"), 60.0, 1.7, "Leve",
 					preferenciaAlimenticiaNoSaludable,new ArrayList<CondicionPreexistenteI>(),new ArrayList<Receta>());
 		
 		
