@@ -111,7 +111,7 @@ public class Receta extends Observable{
 	}
 
 
-	public boolean esAdecuadaPara(Usuario usr){
+	/*public boolean esAdecuadaPara(Usuario usr){
 		////////////////////////////////////////////////////////////////////////
 		if (usr.esAdecuadaLaReceta(this)){
 			this.observadores.forEach(obs->obs.notificar(usr, this));
@@ -120,10 +120,10 @@ public class Receta extends Observable{
 			return false;
 		}
 		
-	}
+	}*/
 	
 	public boolean esAdecuadaParaGrupo(List<Usuario> usuarios){
-		return (usuarios.stream().allMatch(usr->this.esAdecuadaPara(usr)));
+		return (usuarios.stream().allMatch(usr->usr.esAdecuadaLaReceta(this)));
 	}
 	
 

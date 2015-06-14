@@ -302,7 +302,7 @@ public class TestReceta {
 		//assertFalse(usuario.getPreferenciaAlimenticia().getComidasQueDisgusta().stream().anyMatch(comida -> receta.contiene("Carne")));
 		//assertTrue(usuario.getCondicionesPreexistentes().stream().allMatch(condicion -> condicion.esAptaReceta(receta)));
 		//assertTrue(receta.esAdecuadaPara(usuario));
-		receta.esAdecuadaPara(usuario);
+		usuario.esAdecuadaLaReceta(receta);
 		
 		//assertTrue((usuario.getCondicionesPreexistentes()).stream().anyMatch(cond->cond.getNombre().equals("Vegano"))
 		//		&& receta.getDificultad().equals("Dificil"));
