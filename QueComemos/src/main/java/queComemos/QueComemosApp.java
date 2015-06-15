@@ -151,13 +151,14 @@ public class QueComemosApp  {
 	  {
 		  List<Grupo> gruposDeUsuario = new ArrayList<Grupo>();
 		  
-		 
-		  for (Grupo grupo : grupos )
-		  {
-			  if (grupo.getUsuarios().contains(usr))
-				  gruposDeUsuario.add(grupo);
-			  
-		  }
+		if (!(grupos == null || grupos.isEmpty())) {
+
+			for (Grupo grupo : grupos) {
+				if (grupo.getUsuarios().contains(usr))
+					gruposDeUsuario.add(grupo);
+
+			}
+		}
 		  
 		  return gruposDeUsuario;
 		  
@@ -175,6 +176,8 @@ public class QueComemosApp  {
 			  
 		  }
 		  
+		  consultaResul.forEach(rec->rec.notificarObs(usr));
+		  
 		  return consultaResul;
 		  
 		  
@@ -191,7 +194,12 @@ public class QueComemosApp  {
 			  
 		  }
 		  
-		  return procesamiento.procesar(consultaResul);
+		  consultaResul=procesamiento.procesar(consultaResul);
+		  
+		  consultaResul.forEach(rec->rec.notificarObs(usr));
+
+		  
+		  return consultaResul;
 		  
 		  
 	  }

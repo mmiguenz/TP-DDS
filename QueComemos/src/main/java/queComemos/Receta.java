@@ -7,11 +7,9 @@ import java.util.List;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Stream;
-import java.util.Observable;
-import java.util.Observer;
 
 
-public class Receta extends Observable{
+public class Receta {
 
 	private String nombre;
 	private double calorias;
@@ -156,6 +154,9 @@ public class Receta extends Observable{
 		this.observadores.add(obsNuevo);
 	}
 	
+	public void notificarObs(Usuario usr){
+		this.observadores.forEach(obs->obs.notificar(usr, this));
+	}
 	
 
 }
