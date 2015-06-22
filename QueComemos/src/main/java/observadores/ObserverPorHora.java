@@ -9,7 +9,7 @@ import queComemos.Receta;
 import queComemos.Usuario;
 
 public class ObserverPorHora implements ObservadorI{
-	public Map<Integer,Integer> recetasConsultadasPorHora;
+	private Map<Integer,Integer> recetasConsultadasPorHora;
 	
 	public ObserverPorHora(){
 		recetasConsultadasPorHora=new HashMap<Integer,Integer>();
