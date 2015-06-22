@@ -9,7 +9,7 @@ import queComemos.Receta;
 import queComemos.Usuario;
 
 public class ObserverPorHora implements ObservadorI{
-	private Map<Integer,Integer> recetasConsultadasPorHora;
+	public Map<Integer,Integer> recetasConsultadasPorHora;
 	
 	public ObserverPorHora(){
 		recetasConsultadasPorHora=new HashMap<Integer,Integer>();
@@ -29,7 +29,10 @@ public class ObserverPorHora implements ObservadorI{
 	}
 	
 	public Integer consultadasEnLaHora(Integer hora){
-		return this.recetasConsultadasPorHora.get(hora);
+		if(this.recetasConsultadasPorHora.containsKey(hora)){
+			return this.recetasConsultadasPorHora.get(hora);
+		}
+		return 0;
 	}
 
 }
