@@ -3,6 +3,7 @@ package queComemos;
 import static org.junit.Assert.*;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -565,7 +566,8 @@ public class TestObserver {
 		
 		//assertTrue((usuario.getCondicionesPreexistentes()).stream().anyMatch(cond->cond.getNombre().equals("Vegano"))
 			//	&& receta.getDificultad().equals("Dificil"));
-		assertEquals(obPH.consultadasEnLaHora(18),1.0,0.001);
+		
+		assertEquals(obPH.consultadasEnLaHora(LocalDateTime.now().getHour()),1.0,0.001);
 				
 	}
 
