@@ -29,7 +29,10 @@ public class ObserverPorHora implements ObservadorI{
 	}
 	
 	public Integer consultadasEnLaHora(Integer hora){
-		return this.recetasConsultadasPorHora.get(hora);
+		if(this.recetasConsultadasPorHora.containsKey(hora)){
+			return this.recetasConsultadasPorHora.get(hora);
+		}
+		return 0;
 	}
 
 }
