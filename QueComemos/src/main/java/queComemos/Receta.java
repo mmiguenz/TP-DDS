@@ -154,6 +154,13 @@ public class Receta {
 		this.observadores.add(obsNuevo);
 	}
 	
+	public boolean estaElObservador(ObservadorI obs){
+		if(this.observadores.isEmpty()){
+			return false;
+		}
+		return this.observadores.contains(obs);
+	}
+	
 	public void notificarObs(Usuario usr){
 		this.observadores.forEach(obs->obs.notificar(usr, this));
 	}
