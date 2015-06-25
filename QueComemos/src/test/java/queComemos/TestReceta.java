@@ -244,7 +244,7 @@ public class TestReceta {
 		
 		receta.agregarObservador(obs);
 		
-		assertTrue(receta.getObservadores().contains(obs));
+		assertTrue(receta.estaElObservador(obs));
 		
 		
 	}
