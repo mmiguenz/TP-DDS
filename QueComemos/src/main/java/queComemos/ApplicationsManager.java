@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 public class ApplicationsManager {
 	
 	
-	private List<Usuario> pendientesDeAprobacion;
+	private List<Usuario> pendientesDeAprobacion = new ArrayList<>();
 	private  List<Aprobacion> motivosRechazos;
 	private CriterioAprobacionI criterio;
 	
@@ -24,6 +24,18 @@ public class ApplicationsManager {
 		this.motivosRechazos  = new ArrayList<Aprobacion>();
 		this.procesarSolicitudes();
 	}
+	
+	
+	public ApplicationsManager(List<Usuario> pendientesDeAprobacion)
+	{
+		this.pendientesDeAprobacion= pendientesDeAprobacion;
+			
+		this.motivosRechazos  = new ArrayList<Aprobacion>();
+
+		
+		
+	}
+	
 
 
 	
@@ -55,6 +67,31 @@ public class ApplicationsManager {
 
 
 
+	
+	
+	
+	public void aprueba(Usuario usr)
+	{
+		
+		pendientesDeAprobacion.remove(usr);
+		
+	}
+	
+	public void desAprueba(Usuario usr,String motivo)
+	{
+		
+		Aprobacion desa = new Aprobacion(usr);
+		desa.setMotivo(motivo);
+		desa.setOk(false);
+		pendientesDeAprobacion.remove(usr);
+		
+		this.motivosRechazos.add(desa);
+		
+	}
+
+	
+	
+	
 
 	public  void  procesarSolicitudes()
 	  {
