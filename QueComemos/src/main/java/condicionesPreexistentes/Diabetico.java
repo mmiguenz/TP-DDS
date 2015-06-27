@@ -46,12 +46,14 @@ public class Diabetico implements CondicionPreexistenteI {
 
 	}
 
-
+	public boolean subSanaCondicionBuilder(String rutina, Double peso, List<String> comidas){
+		return (rutina== "Activa" && peso <= 70.0);
+	}
 
 	
 	public boolean esAptaReceta(Receta receta){
 		
-		return !(receta.buscaIngrediente("azucar").getCantidad() >100.0  );
+		return !(receta.buscaIngrediente("azucar").getCantidad() >100.0 || receta.buscaIngrediente("Azucar").getCantidad() >100.0 );
 	}
 
 	

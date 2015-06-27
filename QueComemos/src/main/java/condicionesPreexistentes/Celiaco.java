@@ -44,8 +44,10 @@ public class Celiaco implements CondicionPreexistenteI {
 
 		return true;
 	}
-
 	
+	public boolean subSanaCondicionBuilder(String rutina, Double peso, List<String> comidas){
+		return true;
+	}	
 
 	public boolean validar(Usuario usr) {
 		return true;

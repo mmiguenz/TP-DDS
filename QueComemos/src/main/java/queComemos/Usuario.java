@@ -42,7 +42,11 @@ public class Usuario {
 		this.setPeso(peso);
 		this.setEstatura(estatura);
 		this.setRutina(rutina);
-		this.setPreferenciaAlimenticia(preferenciaAlimenticia);
+		if(!(preferenciaAlimenticia==null)){
+			this.setPreferenciaAlimenticia(preferenciaAlimenticia);
+		}else{
+			this.preferenciaAlimenticia=new PreferenciaAlimenticia(new ArrayList<String>(),new ArrayList<String>());
+		}
 		this.setCondicionesPreexistentes(condicionesPreexistentes);
 		this.setMisRecetas(misRecetas);
 		this.favoritas= new ArrayList<Receta>();

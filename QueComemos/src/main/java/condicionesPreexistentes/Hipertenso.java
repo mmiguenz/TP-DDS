@@ -45,6 +45,9 @@ public class Hipertenso implements CondicionPreexistenteI {
 		return usuario.getRutina() == "Intensiva";
 	}
 
+	public boolean subSanaCondicionBuilder(String rutina, Double peso, List<String> comidas){
+		return (rutina == "Intensiva");
+	}
 
 	public boolean esAptaReceta(Receta receta){
 		return ! comidasProhibidas.stream().anyMatch(comida -> receta.contiene(comida));

@@ -44,7 +44,9 @@ public class Vegano implements CondicionPreexistenteI {
 
 	}
 
-
+	public boolean subSanaCondicionBuilder(String rutina, Double peso, List<String> comidas){
+		return (comidas.stream().anyMatch(c->c.equals("frutas")));
+	}
 
 	
 	@Override
