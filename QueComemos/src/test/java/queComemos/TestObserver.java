@@ -34,7 +34,7 @@ public class TestObserver {
 		
 		comidasQueDisgustaUsr.add("Carne");
 		
-		PreferenciaAlimenticia preferencia=new PreferenciaAlimenticia(
+		GustosSobreAlimentos preferencia=new GustosSobreAlimentos(
 				comidasQueGustaUsrSaludable, comidasQueDisgustaUsr);
 		
 		List<String> comidasProhibidas = new ArrayList<String>();
@@ -151,7 +151,7 @@ public class TestObserver {
 		
 		comidasQueDisgustaUsr.add("Carne");
 		
-		PreferenciaAlimenticia preferencia=new PreferenciaAlimenticia(
+		GustosSobreAlimentos preferencia=new GustosSobreAlimentos(
 				comidasQueGustaUsrSaludable, comidasQueDisgustaUsr);
 		
 		List<String> comidasProhibidas = new ArrayList<String>();
@@ -258,7 +258,7 @@ public class TestObserver {
 		
 		comidasQueDisgustaUsr.add("Carne");
 		
-		PreferenciaAlimenticia preferencia=new PreferenciaAlimenticia(
+		GustosSobreAlimentos preferencia=new GustosSobreAlimentos(
 				comidasQueGustaUsrSaludable, comidasQueDisgustaUsr);
 		
 		List<String> comidasProhibidas = new ArrayList<String>();
@@ -366,7 +366,7 @@ public class TestObserver {
 		
 		comidasQueDisgustaUsr.add("Carne");
 		
-		PreferenciaAlimenticia preferencia=new PreferenciaAlimenticia(
+		GustosSobreAlimentos preferencia=new GustosSobreAlimentos(
 				comidasQueGustaUsrSaludable, comidasQueDisgustaUsr);
 		
 		List<String> comidasProhibidas = new ArrayList<String>();
@@ -474,7 +474,7 @@ public class TestObserver {
 		
 		comidasQueDisgustaUsr.add("Carne");
 		
-		PreferenciaAlimenticia preferencia=new PreferenciaAlimenticia(
+		GustosSobreAlimentos preferencia=new GustosSobreAlimentos(
 				comidasQueGustaUsrSaludable, comidasQueDisgustaUsr);
 		
 		List<String> comidasProhibidas = new ArrayList<String>();
@@ -582,7 +582,7 @@ public class TestObserver {
 		
 		comidasQueDisgustaUsr.add("Carne");
 		
-		PreferenciaAlimenticia preferencia=new PreferenciaAlimenticia(
+		GustosSobreAlimentos preferencia=new GustosSobreAlimentos(
 				comidasQueGustaUsrSaludable, comidasQueDisgustaUsr);
 		
 		List<String> comidasProhibidas = new ArrayList<String>();

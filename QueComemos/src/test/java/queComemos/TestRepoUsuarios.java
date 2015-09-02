@@ -26,7 +26,7 @@ public class TestRepoUsuarios {
 		RepoUsuarios.usuarios= new ArrayList<Usuario>();
 		usuarios = new ArrayList<Usuario>();
 		
-		PreferenciaAlimenticia preferencia = new PreferenciaAlimenticia(new ArrayList<String>(),new ArrayList<String>());
+		GustosSobreAlimentos preferencia = new GustosSobreAlimentos(new ArrayList<String>(),new ArrayList<String>());
 		
 		
 		
@@ -135,7 +135,7 @@ public class TestRepoUsuarios {
 	public void testRepoUsuarioUpdateCambioNombre() {
 		
 
-		PreferenciaAlimenticia preferencia = new PreferenciaAlimenticia(new ArrayList<String>(),new ArrayList<String>());
+		GustosSobreAlimentos preferencia = new GustosSobreAlimentos(new ArrayList<String>(),new ArrayList<String>());
 
 		List<CondicionPreexistenteI> condiciones3 = new ArrayList<>();
 		
@@ -174,7 +174,7 @@ public class TestRepoUsuarios {
 	public void testGetUsuario()
 	{
 		
-		PreferenciaAlimenticia preferencia = new PreferenciaAlimenticia(new ArrayList<String>(),new ArrayList<String>());
+		GustosSobreAlimentos preferencia = new GustosSobreAlimentos(new ArrayList<String>(),new ArrayList<String>());
 		
 	
 		CondicionPreexistenteI vegano = new Vegano("vegano",new ArrayList<String>());
@@ -229,7 +229,7 @@ public class TestRepoUsuarios {
 		RepoUsuarios.usuarios= new ArrayList<Usuario>();
 		usuarios = new ArrayList<Usuario>();
 		
-		PreferenciaAlimenticia preferencia = new PreferenciaAlimenticia(new ArrayList<String>(),new ArrayList<String>());
+		GustosSobreAlimentos preferencia = new GustosSobreAlimentos(new ArrayList<String>(),new ArrayList<String>());
 		
 		
 		

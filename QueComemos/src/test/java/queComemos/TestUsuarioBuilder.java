@@ -32,7 +32,7 @@ public class TestUsuarioBuilder{
 	private CondicionPreexistenteI vegano;
 	private CondicionPreexistenteI hipertenso;
 	private List<CondicionPreexistenteI> condiciones;
-	private PreferenciaAlimenticia preferenciaParaVegano;
+	private GustosSobreAlimentos preferenciaParaVegano;
 	
 	@Before
 	public void setUp() throws Exception {
@@ -63,7 +63,7 @@ public class TestUsuarioBuilder{
 		
 		List<String>comidasParaVegano= new ArrayList<String>();
 		comidasParaVegano.add("frutas");
-		preferenciaParaVegano = new PreferenciaAlimenticia(comidasParaVegano,new ArrayList<String>());
+		preferenciaParaVegano = new GustosSobreAlimentos(comidasParaVegano,new ArrayList<String>());
 	}
 
 	@Test
@@ -179,7 +179,7 @@ public class TestUsuarioBuilder{
 		List<String> comidasQueDisgustaUsr = new ArrayList<String>();
 		comidasQueDisgustaUsr.add("Carne");
 		
-		PreferenciaAlimenticia preferencia=new PreferenciaAlimenticia(
+		GustosSobreAlimentos preferencia=new GustosSobreAlimentos(
 				comidasQueGustaUsrSaludable, comidasQueDisgustaUsr);
 		
 		condiciones.add(vegano);
@@ -236,7 +236,7 @@ public class TestUsuarioBuilder{
 		List<String> comidasQueDisgustaUsr = new ArrayList<String>();
 		comidasQueDisgustaUsr.add("Carne");
 		
-		PreferenciaAlimenticia preferencia=new PreferenciaAlimenticia(
+		GustosSobreAlimentos preferencia=new GustosSobreAlimentos(
 				comidasQueGustaUsrSaludable, comidasQueDisgustaUsr);
 		
 		condiciones.add(vegano);

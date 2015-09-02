@@ -22,8 +22,8 @@ public class TestUsuario {
 	private Usuario usuario;
 	private Receta receta;
 	private Preparacion preparacion;
-	private PreferenciaAlimenticia preferenciaAlimenticiaSaludable;
-	private PreferenciaAlimenticia preferenciaAlimenticiaNoSaludable;
+	private GustosSobreAlimentos preferenciaAlimenticiaSaludable;
+	private GustosSobreAlimentos preferenciaAlimenticiaNoSaludable;
 	private List<String> comidasProhibidas;
 
 	@Before
@@ -45,9 +45,9 @@ public class TestUsuario {
 		
 		comidasQueDisgustaUsr.add("Verduras");
 
-		preferenciaAlimenticiaSaludable = new PreferenciaAlimenticia(
+		preferenciaAlimenticiaSaludable = new GustosSobreAlimentos(
 				comidasQueGustaUsrSaludable, comidasQueDisgustaUsr);
-		preferenciaAlimenticiaNoSaludable = new PreferenciaAlimenticia(
+		preferenciaAlimenticiaNoSaludable = new GustosSobreAlimentos(
 				comidasQueGustaUsrNoSaludable, comidasQueDisgustaUsr);
 
 		comidasProhibidas = new ArrayList<String>();
@@ -208,7 +208,7 @@ public class TestUsuario {
 	public void testUsuarioVeganoSiValida() {
 		List<CondicionPreexistenteI> condiciones = new ArrayList<CondicionPreexistenteI>();
 		condiciones.add(new Vegano("Vegano", comidasProhibidas));
-		PreferenciaAlimenticia prefe = new PreferenciaAlimenticia(new ArrayList<String>(),new ArrayList<String>());
+		GustosSobreAlimentos prefe = new GustosSobreAlimentos(new ArrayList<String>(),new ArrayList<String>());
 		usuario = new Usuario(1,"Pedro", null, LocalDate.parse("1990-01-01"),
 				60.0, 1.7, "Leve", prefe, condiciones, null);
 		assertFalse(usuario.validaCondicionesPreexistentes(usuario));

@@ -145,7 +145,7 @@ public class Receta {
 		
 	}
 	
-	public boolean leGustaAlGrupo(PreferenciaAlimenticia preferenciaAlimenticia){
+	public boolean leGustaAlGrupo(GustosSobreAlimentos preferenciaAlimenticia){
 		
 		return ((this.getPreparacion().leGusta(preferenciaAlimenticia.getComidasQueGusta())) && !(this.getPreparacion().leGusta(preferenciaAlimenticia.getComidasQueDisgusta())));
 	}

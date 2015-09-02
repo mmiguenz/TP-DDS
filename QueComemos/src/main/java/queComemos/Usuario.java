@@ -13,7 +13,7 @@ public class Usuario {
 	private Double peso;
 	private Double estatura;
 	private String rutina;
-	private PreferenciaAlimenticia preferenciaAlimenticia;
+	private GustosSobreAlimentos preferenciaAlimenticia;
 	private List<CondicionPreexistenteI> condicionesPreexistentes;
 	private List<Receta> misRecetas;
 	private List<Receta> favoritas;
@@ -31,7 +31,7 @@ public class Usuario {
 
 	public Usuario(Integer usuarioID,String nombre, String sexo, LocalDate fechaNacimiento,
 			Double peso, Double estatura, String rutina,
-			PreferenciaAlimenticia preferenciaAlimenticia,
+			GustosSobreAlimentos preferenciaAlimenticia,
 			List<CondicionPreexistenteI> condicionesPreexistentes,
 			List<Receta> misRecetas) {
 		
@@ -45,7 +45,7 @@ public class Usuario {
 		if(!(preferenciaAlimenticia==null)){
 			this.setPreferenciaAlimenticia(preferenciaAlimenticia);
 		}else{
-			this.preferenciaAlimenticia=new PreferenciaAlimenticia(new ArrayList<String>(),new ArrayList<String>());
+			this.preferenciaAlimenticia=new GustosSobreAlimentos(new ArrayList<String>(),new ArrayList<String>());
 		}
 		this.setCondicionesPreexistentes(condicionesPreexistentes);
 		this.setMisRecetas(misRecetas);
@@ -102,12 +102,12 @@ public class Usuario {
 		this.estatura = estatura;
 	}
 
-	public PreferenciaAlimenticia getPreferenciaAlimenticia() {
+	public GustosSobreAlimentos getPreferenciaAlimenticia() {
 		return preferenciaAlimenticia;
 	}
 
 	public void setPreferenciaAlimenticia(
-			PreferenciaAlimenticia preferenciaAlimenticia) {
+			GustosSobreAlimentos preferenciaAlimenticia) {
 		this.preferenciaAlimenticia = preferenciaAlimenticia;
 	}
 

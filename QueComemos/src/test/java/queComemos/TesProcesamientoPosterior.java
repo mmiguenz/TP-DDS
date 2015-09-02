@@ -35,7 +35,7 @@ public class TesProcesamientoPosterior {
 		comidasQueDisgusta.add("tomate");
 		comidasQueDisgusta.add("pescado");
 		
-		PreferenciaAlimenticia preferenciaAlimenticia = new PreferenciaAlimenticia(comidasQueGusta,comidasQueDisgusta);
+		GustosSobreAlimentos preferenciaAlimenticia = new GustosSobreAlimentos(comidasQueGusta,comidasQueDisgusta);
 		
 		
 		List<CondicionPreexistenteI> condiciones = new ArrayList<CondicionPreexistenteI>();
@@ -117,7 +117,7 @@ public class TesProcesamientoPosterior {
 		comidasQueDisgusta.add("tomate");
 		comidasQueDisgusta.add("pescado");
 		
-		PreferenciaAlimenticia preferenciaAlimenticia = new PreferenciaAlimenticia(comidasQueGusta,comidasQueDisgusta);
+		GustosSobreAlimentos preferenciaAlimenticia = new GustosSobreAlimentos(comidasQueGusta,comidasQueDisgusta);
 		
 		
 		List<CondicionPreexistenteI> condiciones = new ArrayList<CondicionPreexistenteI>();

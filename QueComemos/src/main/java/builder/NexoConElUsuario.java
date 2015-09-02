@@ -3,7 +3,7 @@ package builder;
 import java.util.List;
 
 import queComemos.CondicionPreexistenteI;
-import queComemos.PreferenciaAlimenticia;
+import queComemos.GustosSobreAlimentos;
 
 public class NexoConElUsuario {
 	private CondicionBuilder condicion;

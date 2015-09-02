@@ -24,7 +24,7 @@ public class TestAprobacionDeSolicitudes {
 				
 		 usuarios = new ArrayList<Usuario>();
 		
-		PreferenciaAlimenticia preferencia = new PreferenciaAlimenticia(new ArrayList<String>(),new ArrayList<String>());
+		GustosSobreAlimentos preferencia = new GustosSobreAlimentos(new ArrayList<String>(),new ArrayList<String>());
 		
 		
 		
@@ -89,7 +89,7 @@ public class TestAprobacionDeSolicitudes {
 	public void testAprobacionesAutomaticas() {
 		
 		CriterioAprobacionI criterio = new CriteroApruebaSiEsJuan(); 
-		ApplicationsManager administrador  =  new ApplicationsManager(usuarios,criterio);
+		ManejoDeSolicitudes administrador  =  new ManejoDeSolicitudes(usuarios,criterio);
 		
 		assertEquals(administrador.getMotivosRechazos().size(),6);
 		
@@ -102,7 +102,7 @@ public class TestAprobacionDeSolicitudes {
 	@Test
 	public void testAprobacionesManuales() {
 		
-		PreferenciaAlimenticia preferencia = new PreferenciaAlimenticia(new ArrayList<String>(),new ArrayList<String>());
+		GustosSobreAlimentos preferencia = new GustosSobreAlimentos(new ArrayList<String>(),new ArrayList<String>());
 		
 		
 		
@@ -140,7 +140,7 @@ public class TestAprobacionDeSolicitudes {
 		Usuario usr8 = new Usuario(8,"juan", "", LocalDate.parse("1994-05-06"), 10.0, 20.5, "Intensa", preferencia, condiciones3, new ArrayList<Receta>());
 		Usuario usr9 = new Usuario(9,"matias", "", LocalDate.parse("1994-05-06"), 10.0, 20.5, "Intensa", preferencia, condiciones1, new ArrayList<Receta>());
 		
-		ApplicationsManager administrador  =  new ApplicationsManager(usuarios);		
+		ManejoDeSolicitudes administrador  =  new ManejoDeSolicitudes(usuarios);		
 		
 		administrador.aprueba(usr1);
 		administrador.aprueba(usr2);

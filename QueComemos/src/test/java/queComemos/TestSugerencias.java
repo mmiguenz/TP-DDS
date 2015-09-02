@@ -81,7 +81,7 @@ public class TestSugerencias {
 				
 				comidasQueDisgustaUsr.add("Verduras");
 
-			PreferenciaAlimenticia	preferenciaAlimenticiaSaludable = new PreferenciaAlimenticia(
+			GustosSobreAlimentos	preferenciaAlimenticiaSaludable = new GustosSobreAlimentos(
 						comidasQueGustaUsrSaludable, comidasQueDisgustaUsr);
 			
 
@@ -172,7 +172,7 @@ public class TestSugerencias {
 		comidasGusta1.add("pollo");
 		List<String> comidasNoGusta1= new ArrayList<String>();
 		comidasNoGusta1.add("pescado");
-		PreferenciaAlimenticia preferencia1=new PreferenciaAlimenticia(comidasGusta1,comidasNoGusta1);
+		GustosSobreAlimentos preferencia1=new GustosSobreAlimentos(comidasGusta1,comidasNoGusta1);
 		Usuario usuario1 = new Usuario(1,"Pedro", "Masculino",
 				LocalDate.parse("1990-01-01"), 60.0, 1.7, "Leve",
 				preferencia1, condiciones, new ArrayList<Receta>());
@@ -182,7 +182,7 @@ public class TestSugerencias {
 		comidasGusta2.add("pescado");
 		List<String> comidasNoGusta2= new ArrayList<String>();
 		comidasNoGusta2.add("cucaracha");
-		PreferenciaAlimenticia preferencia2=new PreferenciaAlimenticia(comidasGusta2,comidasNoGusta2);
+		GustosSobreAlimentos preferencia2=new GustosSobreAlimentos(comidasGusta2,comidasNoGusta2);
 		Usuario usuario2 = new Usuario(2,"Juan", "Masculino",
 				LocalDate.parse("1990-01-01"), 60.0, 1.7, "Leve",
 				preferencia2, new ArrayList<CondicionPreexistenteI>(), new ArrayList<Receta>());
@@ -191,7 +191,7 @@ public class TestSugerencias {
 		comidasGusta3.add("pescado");
 		List<String> comidasNoGusta3= new ArrayList<String>();
 		comidasNoGusta3.add("Carne");
-		PreferenciaAlimenticia preferencia3=new PreferenciaAlimenticia(comidasGusta3,comidasNoGusta3);
+		GustosSobreAlimentos preferencia3=new GustosSobreAlimentos(comidasGusta3,comidasNoGusta3);
 		Usuario usuario3 = new Usuario(3,"Pepo", "Masculino",
 				LocalDate.parse("1990-01-01"), 60.0, 1.7, "Leve",
 				preferencia3, new ArrayList<CondicionPreexistenteI>(), new ArrayList<Receta>());
@@ -204,7 +204,7 @@ public class TestSugerencias {
 		comidasGusta.add("Carne");
 		List<String> comidasNoGusta= new ArrayList<String>();
 		comidasNoGusta.add("lavandina");
-		PreferenciaAlimenticia preferencia=new PreferenciaAlimenticia(comidasGusta,comidasNoGusta);
+		GustosSobreAlimentos preferencia=new GustosSobreAlimentos(comidasGusta,comidasNoGusta);
 		Grupo grupo = new Grupo("UnNombre" , usuariosColeccion, preferencia);	
 
 		

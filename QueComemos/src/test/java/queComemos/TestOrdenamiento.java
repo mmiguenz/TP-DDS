@@ -43,9 +43,9 @@ public class TestOrdenamiento {
 		
 		comidasQueDisgustaUsr.add("Verduras");
 
-		PreferenciaAlimenticia preferenciaAlimenticiaSaludable = new PreferenciaAlimenticia(
+		GustosSobreAlimentos preferenciaAlimenticiaSaludable = new GustosSobreAlimentos(
 				comidasQueGustaUsrSaludable, comidasQueDisgustaUsr);
-		PreferenciaAlimenticia preferenciaAlimenticiaNoSaludable = new PreferenciaAlimenticia(
+		GustosSobreAlimentos preferenciaAlimenticiaNoSaludable = new GustosSobreAlimentos(
 				comidasQueGustaUsrNoSaludable, comidasQueDisgustaUsr);
 
 		List<String>comidasProhibidas = new ArrayList<String>();

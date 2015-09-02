@@ -1,7 +1,5 @@
 package queComemos;
 
-
-
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -15,11 +13,6 @@ public class QueComemosApp  {
 	public static List<CondicionPreexistenteI> inadecuados;
 	public static List<Grupo> grupos;	
 
-	
-	
-
-
-	
 	public static void inicializar()
 	
 	{

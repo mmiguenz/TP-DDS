@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import queComemos.CondicionPreexistenteI;
-import queComemos.PreferenciaAlimenticia;
+import queComemos.GustosSobreAlimentos;
 import queComemos.Receta;
 import queComemos.Usuario;
 
@@ -19,7 +19,7 @@ public class UsuarioBuilder {
 	private String rutina;
 	private List<String> comidasQueGusta;
 	private List<String> comidasQueDisgusta;
-	private PreferenciaAlimenticia preferenciaAlimenticia;
+	private GustosSobreAlimentos preferenciaAlimenticia;
 	private List<CondicionPreexistenteI> condicionesPreexistentes;
 	private List<Receta> misRecetas;
 	private List<Receta> favoritas;
@@ -160,7 +160,7 @@ public class UsuarioBuilder {
 	
 	public Usuario crearUsuario() throws Exception{
 		if(validar()){
-			this.preferenciaAlimenticia=new PreferenciaAlimenticia(this.comidasQueGusta,this.comidasQueDisgusta);
+			this.preferenciaAlimenticia=new GustosSobreAlimentos(this.comidasQueGusta,this.comidasQueDisgusta);
 			Usuario usuario= new Usuario(this.usuarioID,
 					this.nombre,
 					this.sexo,
