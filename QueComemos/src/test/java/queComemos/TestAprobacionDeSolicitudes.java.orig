@@ -49,10 +49,7 @@ public class TestAprobacionDeSolicitudes {
 		condiciones3.add(vegano);
 		condiciones3.add(hipertenso);
 		
-		
-		
-		
-		
+				
 		
 		
 		
@@ -89,7 +86,11 @@ public class TestAprobacionDeSolicitudes {
 	public void testAprobacionesAutomaticas() {
 		
 		CriterioAprobacionI criterio = new CriteroApruebaSiEsJuan(); 
+<<<<<<< HEAD
 		ManejoDeSolicitudes administrador  =  new ManejoDeSolicitudes(usuarios,criterio);
+=======
+		ManejadorDeSolicitudes administrador  =  new ManejadorDeSolicitudes(usuarios,criterio);
+>>>>>>> 8c4ce3d3d3cc9e3c5c6b396ed2e20024f8db92c0
 		
 		assertEquals(administrador.getMotivosRechazos().size(),6);
 		
@@ -102,7 +103,29 @@ public class TestAprobacionDeSolicitudes {
 	@Test
 	public void testAprobacionesManuales() {
 		
+<<<<<<< HEAD
 		GustosSobreAlimentos preferencia = new GustosSobreAlimentos(new ArrayList<String>(),new ArrayList<String>());
+		
+		
+		
+		CondicionPreexistenteI celiaco = new Celiaco("celiaco",new ArrayList<String>());
+		CondicionPreexistenteI diabetico = new Diabetico("diabetico",new ArrayList<String>());
+		CondicionPreexistenteI vegano = new Vegano("vegano",new ArrayList<String>());
+		CondicionPreexistenteI hipertenso = new Hipertenso("Hipertenso",new ArrayList<String>());
+		
+		List<CondicionPreexistenteI> condiciones1 = new ArrayList<>();
+		List<CondicionPreexistenteI> condiciones2 = new ArrayList<>();
+		List<CondicionPreexistenteI> condiciones3 = new ArrayList<>();
+		
+		
+		condiciones1.add(vegano);
+		condiciones1.add(hipertenso);
+		
+		condiciones2.add(celiaco);
+		condiciones2.add(diabetico);
+=======
+	
+>>>>>>> 8c4ce3d3d3cc9e3c5c6b396ed2e20024f8db92c0
 		
 		List<Usuario> usuariosM = new ArrayList<>();
 		
@@ -110,7 +133,32 @@ public class TestAprobacionDeSolicitudes {
 		
 		ManejadorDeSolicitudes administrador  =  new ManejadorDeSolicitudes(usuarios);		
 		
+<<<<<<< HEAD
+		
+		Usuario usr1 = new Usuario(1,"martin", "", LocalDate.parse("1994-05-06"), 10.0, 20.5, "Intensa", preferencia, condiciones3, new ArrayList<Receta>());
+		Usuario usr2 = new Usuario(2,"pablo", "", LocalDate.parse("1994-05-06"), 10.0, 20.5, "Intensa", preferencia, condiciones3, new ArrayList<Receta>());
+		Usuario usr3 = new Usuario(3,"analia", "", LocalDate.parse("1994-05-06"), 10.0, 20.5, "Intensa", preferencia, condiciones2, new ArrayList<Receta>());
+		Usuario usr4 = new Usuario(4,"juana", "", LocalDate.parse("1994-05-06"), 10.0, 20.5, "Intensa", preferencia, condiciones2, new ArrayList<Receta>());
+		Usuario usr5 = new Usuario(5,"juan", "", LocalDate.parse("1994-05-06"), 10.0, 20.5, "Intensa", preferencia, condiciones1, new ArrayList<Receta>());
+		Usuario usr6 = new Usuario(6,"sebastian", "", LocalDate.parse("1994-05-06"), 10.0, 20.5, "Intensa", preferencia, condiciones1, new ArrayList<Receta>());
+		Usuario usr7 = new Usuario(7,"matias", "", LocalDate.parse("1994-05-06"), 10.0, 20.5, "Intensa", preferencia, condiciones3, new ArrayList<Receta>());
+		Usuario usr8 = new Usuario(8,"juan", "", LocalDate.parse("1994-05-06"), 10.0, 20.5, "Intensa", preferencia, condiciones3, new ArrayList<Receta>());
+		Usuario usr9 = new Usuario(9,"matias", "", LocalDate.parse("1994-05-06"), 10.0, 20.5, "Intensa", preferencia, condiciones1, new ArrayList<Receta>());
+		
+		ManejoDeSolicitudes administrador  =  new ManejoDeSolicitudes(usuarios);		
+		
+		administrador.aprueba(usr1);
+		administrador.aprueba(usr2);
+		administrador.aprueba(usr3);
+		administrador.desAprueba(usr4,"NoMeCaeBien");
+		administrador.desAprueba(usr5,"NoMeCaeBien");
+		administrador.aprueba(usr6);
+		administrador.aprueba(usr7);
+		administrador.desAprueba(usr8,"NoMeCaeBien");
+		administrador.aprueba(usr9);
+=======
 			
+>>>>>>> 8c4ce3d3d3cc9e3c5c6b396ed2e20024f8db92c0
 		
 		
 		administrador.aprueba(usuariosM.get(0));
