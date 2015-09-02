@@ -9,15 +9,15 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
+import procesamientos.TomarDiezPrimeros;
 import condicionesPreexistentes.Celiaco;
 import condicionesPreexistentes.Diabetico;
 import condicionesPreexistentes.Hipertenso;
 import condicionesPreexistentes.Vegano;
 import filtros.FiltroParaUsuariosConSobrepeso;
 import filtros.FiltroPreparacionCara;
-import filtros.FiltroRechazaTodo;
 
-public class TestConsultarRecetasDeUnUsuario {
+public class TestProcesamientoPosterior {
 	
 	private	PreferenciaAlimenticia preferenciaAlimenticia; 
 	private List<String> comidasProhibidas;
@@ -34,8 +34,8 @@ public class TestConsultarRecetasDeUnUsuario {
 	@Before
 	public void setUp() throws Exception {
 		
-
-	// Preferencia Alimenticia
+	
+		// Preferencia Alimenticia
 		
 		List<String> comidasQueGusta = new ArrayList<String>();
 		List<String> comidasQueDisgusta = new ArrayList<String>();
@@ -62,14 +62,8 @@ public class TestConsultarRecetasDeUnUsuario {
 		 diabetico =  new Diabetico("Diabetico",new ArrayList<String>());
 		 
 		
-		  // Iniciar QueComemos
-		  
 		 
-			QueComemosApp.inicializar();
-			QueComemosApp.inadecuados.add(diabetico);
-			QueComemosApp.inadecuados.add(celiaco);
-			QueComemosApp.inadecuados.add(hipertenso);
-			QueComemosApp.inadecuados.add(vegano);
+		 QueComemosApp.inicializar();
 		 
 		 
 		 // Crear Receta 
@@ -101,9 +95,7 @@ public class TestConsultarRecetasDeUnUsuario {
 			
 			
 			 receta = new Receta("CarneAlHorno",1524.0,preparacion,"baja","verano",subRecetas,condiciones);
-    		QueComemosApp.recetas.add(receta);
-			
-			
+			QueComemosApp.recetas.add(receta);
 		 
 		 
 		 
@@ -116,82 +108,69 @@ public class TestConsultarRecetasDeUnUsuario {
 		  
 		  
 		  
-		
+		  // Iniciar QueComemos
+		  
 			
 
-		
+			QueComemosApp.inadecuados.add(diabetico);
+			QueComemosApp.inadecuados.add(celiaco);
+			QueComemosApp.inadecuados.add(hipertenso);
+			QueComemosApp.inadecuados.add(vegano);
+			
+			
+			
+			FiltroI filtroPorGusto = new FiltroParaUsuariosConSobrepeso();
+			FiltroI filtroPreparacionCara = new FiltroPreparacionCara();
+			FiltroI filtroSobrePeso= new FiltroParaUsuariosConSobrepeso();
+			
+			filtros.add(filtroSobrePeso);
+			filtros.add(filtroPreparacionCara);
+			filtros.add(filtroPorGusto);
+			
+		 
+		 
+
 		
 		
 	}
 
 	@Test
-	public void testConsultaSobreRecetasVisiblesDeUsuario() {
+	public void testProcesamientoPosteriorTomar10Primeros() {
+		
 			
 	
-		
 		condiciones.add(hipertenso);
 		condiciones.add(celiaco);
 		
 		
-		Usuario usr = new Usuario(3,"Juan","Masculino",LocalDate.parse("1994-08-05"),90.0,175.0,"Leve",preferenciaAlimenticia,condiciones,new ArrayList<Receta>());
-	
-
+		Usuario usr = new Usuario(1,"Juan","Masculino",LocalDate.parse("1994-08-05"),90.0,175.0,"Leve",preferenciaAlimenticia,condiciones,new ArrayList<Receta>());					
+		
+		ProcesamientoI procesamiento = new TomarDiezPrimeros();
+		
+		List<Receta> resultadoConsulta =QueComemosApp.consultarRecetas(usr, filtros,procesamiento);
+		
+		assertTrue(resultadoConsulta.size() <= 10);
 		
 		
-		List<FiltroI> filtros = new ArrayList<FiltroI>();
-		FiltroI filtroPorGusto = new FiltroParaUsuariosConSobrepeso();
-		FiltroI filtroPreparacionCara = new FiltroPreparacionCara();
-		FiltroI filtroSobrePeso= new FiltroParaUsuariosConSobrepeso();
-		
-		filtros.add(filtroSobrePeso);
-		filtros.add(filtroPreparacionCara);
-		filtros.add(filtroPorGusto);
-		
-		List<Receta> resultadoConsulta =QueComemosApp.consultarRecetas(usr, filtros);
-		
-		assertTrue(resultadoConsulta.contains(receta));
-		
-		
-		
-
 	}
 	
 	@Test
-	public void tesConsultaRecetasDeUsuarioUsoFiltroRechazaTodo()
-	{
+	public void testProcesamientoPosteriorDevuelveSiEsPar() {
 		
-		
+	
 		condiciones.add(hipertenso);
 		condiciones.add(celiaco);
 		
 		
-		Usuario usr = new Usuario(3,"Juan","Masculino",LocalDate.parse("1994-08-05"),90.0,175.0,"Leve",preferenciaAlimenticia,condiciones,new ArrayList<Receta>());
-				
+		Usuario usr = new Usuario(2,"Juan","Masculino",LocalDate.parse("1994-08-05"),90.0,175.0,"Leve",preferenciaAlimenticia,condiciones,new ArrayList<Receta>());
+	
+		ProcesamientoI procesamiento = new TomarDiezPrimeros();
 		
-		List<FiltroI> filtros = new ArrayList<FiltroI>();
-		FiltroParaUsuariosConSobrepeso filtroPorGusto = new FiltroParaUsuariosConSobrepeso();
-		FiltroPreparacionCara filtroPreparacionCara = new FiltroPreparacionCara();
-		FiltroParaUsuariosConSobrepeso filtroSobrePeso= new FiltroParaUsuariosConSobrepeso();
-		FiltroI filtroRechazaTodo = new FiltroRechazaTodo();
+		List<Receta> resultadoConsulta =QueComemosApp.consultarRecetas(usr, filtros,procesamiento);
 		
-		filtros.add(filtroSobrePeso);
-		filtros.add(filtroPreparacionCara);
-		filtros.add(filtroPorGusto);
-		filtros.add(filtroRechazaTodo);
-		
-		List<Receta> resultadoConsulta =QueComemosApp.consultarRecetas(usr, filtros);
-		
-		assertTrue(resultadoConsulta.isEmpty());
-		
-		
-		
+		assertFalse(resultadoConsulta.size() / 2 == 0);
 		
 	}
-	
-	
-	
-	
-	
-	
+
 
 }

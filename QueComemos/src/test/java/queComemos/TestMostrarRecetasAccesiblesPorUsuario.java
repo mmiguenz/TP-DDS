@@ -15,17 +15,15 @@ import condicionesPreexistentes.Hipertenso;
 import condicionesPreexistentes.Vegano;
 
 public class TestMostrarRecetasAccesiblesPorUsuario {
+	
+	private Usuario usr;
+	private Receta receta;
+	private Receta receta2;
 
 	
 
 	@Before
 	public void setUp() throws Exception {
-
-		
-	}
-
-	@Test
-	public void test() {
 		QueComemosApp.inicializar();
 		List<String> comidasQueGustaUsrSaludable = new ArrayList<String>();
 		List<String> comidasQueGustaUsrNoSaludable = new ArrayList<String>();
@@ -90,20 +88,26 @@ public class TestMostrarRecetasAccesiblesPorUsuario {
 			 String temporada= "Verano";
 		
 		
-		Usuario usr = new Usuario (3,"juan","masculino",LocalDate.parse("2016-01-01"), 60.0, 1.7, "Leve",
+		 usr = new Usuario (3,"juan","masculino",LocalDate.parse("2016-01-01"), 60.0, 1.7, "Leve",
 					preferenciaAlimenticiaNoSaludable,new ArrayList<CondicionPreexistenteI>(),new ArrayList<Receta>());
 		
 		
 		
-		 Receta receta = new Receta("PolloConPapas", 50.0,preparacion,dificultad,temporada,subRecetas,inadecuados);
-		Receta receta2 = new Receta("CarneAlHorno",1524.0,preparacion,dificultad,temporada,subRecetas,inadecuados);
+		  receta = new Receta("PolloConPapas", 50.0,preparacion,dificultad,temporada,subRecetas,inadecuados);
+		 receta2 = new Receta("CarneAlHorno",1524.0,preparacion,dificultad,temporada,subRecetas,inadecuados);
 		
 		QueComemosApp.recetas.add(receta);
 		usr.getMisRecetas().add(receta2);
+
+		
+	}
+
+	@Test
+	public void testMostrarRecetasVisibles() {
+	
 		
 		List<Receta> recetasVisibles = QueComemosApp.mostrarRecetasAccesiblesPorUsuario(usr);
-		
-		
+				
 		
 		assertTrue(recetasVisibles.contains(receta) && recetasVisibles.contains(receta2));
 		
