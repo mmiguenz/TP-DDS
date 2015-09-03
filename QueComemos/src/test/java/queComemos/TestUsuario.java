@@ -12,6 +12,7 @@ import observadores.ObserverVecesConsultada;
 import org.junit.Before;
 import org.junit.Test;
 
+import ar.edu.utn.frba.dds.tpAnual.queComemos.GustosSobreAlimentos;
 import condicionesPreexistentes.Celiaco;
 import condicionesPreexistentes.Diabetico;
 import condicionesPreexistentes.Hipertenso;

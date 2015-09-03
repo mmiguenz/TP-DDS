@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import queComemos.CondicionPreexistenteI;
-import queComemos.GustosSobreAlimentos;
+import ar.edu.utn.frba.dds.tpAnual.queComemos.GustosSobreAlimentos;
 import queComemos.Receta;
 import queComemos.Usuario;
 

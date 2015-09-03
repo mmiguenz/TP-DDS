@@ -83,15 +83,11 @@ public class QueComemosApp  {
 	  public static boolean puedeSugerir(Receta receta , Usuario usr)
 	  {
 		  return usr.esAdecuadaLaReceta(receta);
-		  
-		  
 	  }
 	  
 	  public static boolean puedeSugerir(Receta receta ,Grupo grupo)
 	  {
 		  return grupo.puedeSugerir(receta);
-		  
-		  
 	  }
 	  
 	  
@@ -109,34 +105,21 @@ public class QueComemosApp  {
 			  for (Usuario usuario: grupo.getUsuarios())
 			  {
 				  resultado.addAll(usuario.getMisRecetas());
-				  
-				  
 			  }
-			  
-			  
 		  }
 		  
 		  try {
 		  
 		  RepoRecetasAd repoRecetasExterno = new RepoRecetasAd();
-		 
 		  resultado.addAll(repoRecetasExterno.traerTodasRecetasExternas());
-		  
-		 
 		  return resultado.stream().collect(Collectors.toList()) ;
-		  
 		  }
 		  
 		  catch (RuntimeException ex)
 		  {
-			  
 			  ex.printStackTrace();
 			  return resultado.stream().collect(Collectors.toList()) ;
-			  
 		  }
-		  
-		  
-		  
 	  }
 	  
 	  
@@ -149,7 +132,6 @@ public class QueComemosApp  {
 			for (Grupo grupo : grupos) {
 				if (grupo.getUsuarios().contains(usr))
 					gruposDeUsuario.add(grupo);
-
 			}
 		}
 		  
@@ -165,15 +147,9 @@ public class QueComemosApp  {
 		  for (FiltroI filtro : filtros)
 		  {
 			  consultaResul = filtro.filtrar(consultaResul,usr);
-			  
-			  
 		  }
-		  
 		  consultaResul.forEach(rec->rec.notificarObs(usr));
-		  
 		  return consultaResul;
-		  
-		  
 	  }
 	  
 	  public static List<Receta> consultarRecetas(Usuario usr,List<FiltroI> filtros, ProcesamientoI procesamiento)

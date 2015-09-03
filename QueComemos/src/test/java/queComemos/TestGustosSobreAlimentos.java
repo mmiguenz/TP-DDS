@@ -8,6 +8,8 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
+import ar.edu.utn.frba.dds.tpAnual.queComemos.GustosSobreAlimentos;
+
 public class TestGustosSobreAlimentos {
 
 	List<String> alimentosAceptados, alimentosRechazados, listaComidas;
