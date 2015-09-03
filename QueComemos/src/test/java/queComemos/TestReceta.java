@@ -249,9 +249,7 @@ public class TestReceta {
 		
 	}
 	
-	//@SuppressWarnings("deprecation")
-
-
+	
 	
 	
 	

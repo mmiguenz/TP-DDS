@@ -11,18 +11,22 @@ import org.junit.Test;
 import queComemos.entrega3.creacionales.RecetaBuilder;
 
 public class TestRepoRecetasAd {
+	
+	private ConsultaRepoExtAd consulta;
 
 	@Before
 	public void setUp() throws Exception {
+		
+		QueComemosApp.inicializar();
+		
+		
 	}
 
 	@Test
 	public void testTraerREcetasRepoExternoSon12() {
 		
-		QueComemosApp.inicializar();
-		RepoRecetasAd  repo = new  RepoRecetasAd();
 		
-		
+		RepoRecetasAd  repo = new  RepoRecetasAd();	
 		
 		assertEquals(repo.traerTodasRecetasExternas().size(),12 );
 		
@@ -34,8 +38,8 @@ public class TestRepoRecetasAd {
 	public void TestconsultarEnRepoExternoPorDificultadDificil()
 	
     {
-		QueComemosApp.inicializar();	
-		ConsultaRepoExtAd consulta = new ConsultaRepoExtAd(null,"dificil",new ArrayList<String>());
+			
+		 consulta = new ConsultaRepoExtAd(null,"dificil",new ArrayList<String>());
 		  assertEquals(QueComemosApp.consultarEnRepoExterno(consulta).size(),2);
 			
 			
@@ -49,8 +53,8 @@ public class TestRepoRecetasAd {
 	public void TestconsultarEnRepoExternoPorDificultadFacil()
 	
     {
-		QueComemosApp.inicializar();	
-		ConsultaRepoExtAd consulta = new ConsultaRepoExtAd(null,"facil",new ArrayList<String>());
+			
+		 consulta = new ConsultaRepoExtAd(null,"facil",new ArrayList<String>());
 		  assertEquals(QueComemosApp.consultarEnRepoExterno(consulta).size(),6);
 			
 			
@@ -65,8 +69,8 @@ public class TestRepoRecetasAd {
 	public void TestconsultarEnRepoExternoPorDificultadMediana()
 	
     {
-		QueComemosApp.inicializar();	
-		ConsultaRepoExtAd consulta = new ConsultaRepoExtAd(null,"mediana",new ArrayList<String>());
+			
+		 consulta = new ConsultaRepoExtAd(null,"mediana",new ArrayList<String>());
 		  assertEquals(QueComemosApp.consultarEnRepoExterno(consulta).size(),4);
 					
 		
@@ -80,8 +84,8 @@ public class TestRepoRecetasAd {
 	public void TestconsultarEnRepoExternoPorNombre()
 	
     {
-		QueComemosApp.inicializar();	
-		ConsultaRepoExtAd consulta = new ConsultaRepoExtAd("ensalada" ,null,new ArrayList<String>());
+			
+	 consulta = new ConsultaRepoExtAd("ensalada" ,null,new ArrayList<String>());
 	  assertEquals(QueComemosApp.consultarEnRepoExterno(consulta).size(),3);
 					
 		
@@ -96,14 +100,14 @@ public class TestRepoRecetasAd {
 	public void TestconsultarEnRepoExternoPorPalabras()
 	
     {
-		QueComemosApp.inicializar();	
+			
 		
 		List<String> palabrasClave = new ArrayList<>();
 		palabrasClave.add("lechuga");
 		palabrasClave.add("ricota");
 		palabrasClave.add("cassatta");
 		
-		ConsultaRepoExtAd consulta = new ConsultaRepoExtAd(null ,null,palabrasClave);
+		 consulta = new ConsultaRepoExtAd(null ,null,palabrasClave);
 		
 	  assertEquals(QueComemosApp.consultarEnRepoExterno(consulta).size(),3);
 					
@@ -118,17 +122,16 @@ public class TestRepoRecetasAd {
 	public void TestconsultarEnRepoExternoPorTodo()
 	
     {
-		QueComemosApp.inicializar();	
+			
 		
 		List<String> palabrasClave = new ArrayList<>();
 		palabrasClave.add("lechuga");
 		palabrasClave.add("croutons");
 		palabrasClave.add("parmesano");
 		
-		ConsultaRepoExtAd consulta = new ConsultaRepoExtAd("ensalada caesar" ,"facil",palabrasClave);
+		 consulta = new ConsultaRepoExtAd("ensalada caesar" ,"facil",palabrasClave);
 		
 	  assertEquals(QueComemosApp.consultarEnRepoExterno(consulta).size(),1);
-	  
 		
 					
 		
