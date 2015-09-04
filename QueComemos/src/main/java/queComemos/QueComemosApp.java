@@ -148,7 +148,7 @@ public class QueComemosApp  {
 		  {
 			  consultaResul = filtro.filtrar(consultaResul,usr);
 		  }
-		  consultaResul.forEach(rec->rec.notificarObs(usr));
+
 		  return consultaResul;
 	  }
 	  
@@ -165,8 +165,7 @@ public class QueComemosApp  {
 		  
 		  consultaResul=procesamiento.procesar(consultaResul);
 		  
-		  consultaResul.forEach(rec->rec.notificarObs(usr));
-
+		  
 		  
 		  return consultaResul;
 		  

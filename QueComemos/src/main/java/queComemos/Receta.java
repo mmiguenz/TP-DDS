@@ -20,7 +20,7 @@ public class Receta {
 	private String temporada;
 	private List<Receta> subRecetas;
 	private List<CondicionPreexistenteI> inadecuados;
-	private Set<ObservadorI> observadores;
+
 
 	public Receta(String nombre, double calorias, Preparacion preparacion,
 			String dificultad, String temporada, List<Receta> subRecetas, List<CondicionPreexistenteI> inadecuados) {
@@ -34,8 +34,7 @@ public class Receta {
 		this.temporada = temporada;
 		this.subRecetas = subRecetas;
 		this.inadecuados = calcularInadecuados();
-		//this.inadecuados = inadecuados;
-		this.observadores= new HashSet<ObservadorI>();
+
 
 	}
 
@@ -152,20 +151,7 @@ public class Receta {
 		return ((this.getPreparacion().leGusta(preferenciaAlimenticia.getComidasQueGusta())) && !(this.getPreparacion().leGusta(preferenciaAlimenticia.getComidasQueDisgusta())));
 	}
 	
-	public void agregarObservador(ObservadorI obsNuevo){
-		this.observadores.add(obsNuevo);
-	}
-	
-	public boolean estaElObservador(ObservadorI obs){
-		if(this.observadores.isEmpty()){
-			return false;
-		}
-		return this.observadores.contains(obs);
-	}
-	
-	public void notificarObs(Usuario usr){
-		this.observadores.forEach(obs->obs.notificar(usr, this));
-	}
+
 	
 
 }

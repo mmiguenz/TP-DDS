@@ -3,11 +3,20 @@ package observadores;
 import java.util.HashMap;
 import java.util.Map;
 
+import queComemos.Consulta;
 import queComemos.Receta;
 import queComemos.ObservadorI;
 import queComemos.Usuario;
 
 public class ObserverVecesConsultada implements ObservadorI{
+
+	@Override
+	public void notificar(Consulta consulta) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	/*
 	private Map<Receta,Integer> recetasConsultadas;
 	
 	public ObserverVecesConsultada(){
@@ -37,5 +46,5 @@ public class ObserverVecesConsultada implements ObservadorI{
 		return nombreMasConsultada;
 		
 	}
-
+*/
 }

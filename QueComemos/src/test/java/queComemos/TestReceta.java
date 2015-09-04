@@ -235,22 +235,7 @@ public class TestReceta {
 	}
 	
 	
-	@Test 
-	public void testAgregarObservador ()
-	{
-		Receta receta = new Receta("CarneAlHorno",1524.0,preparacion,dificultad,temporada,subRecetas,inadecuados);
-		
-		ObservadorI obs = new ObserverPorHora ();
-		
-		receta.agregarObservador(obs);
-		
-		assertTrue(receta.estaElObservador(obs));
-		
-		
-	}
-	
-	
-	
+
 	
 	
 
