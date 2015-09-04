@@ -9,6 +9,7 @@ import java.util.Set;
 import java.util.stream.Stream;
 
 import ar.edu.utn.frba.dds.tpAnual.queComemos.GustosSobreAlimentos;
+import ar.edu.utn.frba.dds.tpAnual.queComemos.recetas.Recetario;
 
 
 public class Receta {
@@ -130,7 +131,7 @@ public class Receta {
 	public List<CondicionPreexistenteI> calcularInadecuados() {
 
 		
-		return QueComemosApp.calcularInadecuadosParaReceta(this);
+		return Recetario.calcularInadecuadosParaReceta(this);
 				
 	}
 

@@ -10,6 +10,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import ar.edu.utn.frba.dds.tpAnual.queComemos.GustosSobreAlimentos;
+import ar.edu.utn.frba.dds.tpAnual.queComemos.recetas.Recetario;
 import procesamientos.TomarDiezPrimeros;
 import condicionesPreexistentes.Celiaco;
 import condicionesPreexistentes.Diabetico;
@@ -64,7 +65,7 @@ public class TestProcesamientoPosterior {
 		 
 		
 		 
-		 QueComemosApp.inicializar();
+//		 Recetario.inicializar();
 		 
 		 
 		 // Crear Receta 
@@ -96,7 +97,7 @@ public class TestProcesamientoPosterior {
 			
 			
 			 receta = new Receta("CarneAlHorno",1524.0,preparacion,"baja","verano",subRecetas,condiciones);
-			QueComemosApp.recetas.add(receta);
+			Recetario.recetas.add(receta);
 		 
 		 
 		 
@@ -113,10 +114,10 @@ public class TestProcesamientoPosterior {
 		  
 			
 
-			QueComemosApp.inadecuados.add(diabetico);
-			QueComemosApp.inadecuados.add(celiaco);
-			QueComemosApp.inadecuados.add(hipertenso);
-			QueComemosApp.inadecuados.add(vegano);
+			Recetario.inadecuados.add(diabetico);
+			Recetario.inadecuados.add(celiaco);
+			Recetario.inadecuados.add(hipertenso);
+			Recetario.inadecuados.add(vegano);
 			
 			
 			
@@ -148,7 +149,7 @@ public class TestProcesamientoPosterior {
 		
 		ProcesamientoI procesamiento = new TomarDiezPrimeros();
 		
-		List<Receta> resultadoConsulta =QueComemosApp.consultarRecetas(usr, filtros,procesamiento);
+		List<Receta> resultadoConsulta =Recetario.consultarRecetas(usr, filtros,procesamiento);
 		
 		assertTrue(resultadoConsulta.size() <= 10);
 		
@@ -167,7 +168,7 @@ public class TestProcesamientoPosterior {
 	
 		ProcesamientoI procesamiento = new TomarDiezPrimeros();
 		
-		List<Receta> resultadoConsulta =QueComemosApp.consultarRecetas(usr, filtros,procesamiento);
+		List<Receta> resultadoConsulta =Recetario.consultarRecetas(usr, filtros,procesamiento);
 		
 		assertFalse(resultadoConsulta.size() / 2 == 0);
 		

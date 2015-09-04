@@ -13,6 +13,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import ar.edu.utn.frba.dds.tpAnual.queComemos.GustosSobreAlimentos;
+import ar.edu.utn.frba.dds.tpAnual.queComemos.recetas.Recetario;
 import condicionesPreexistentes.Celiaco;
 import condicionesPreexistentes.Diabetico;
 import condicionesPreexistentes.Hipertenso;
@@ -30,7 +31,6 @@ public class TestUsuario {
 	@Before
 	public void setUp() throws Exception {
 		
-		QueComemosApp.inicializar();
 		List<String> comidasQueGustaUsrSaludable = new ArrayList<String>();
 		List<String> comidasQueGustaUsrNoSaludable = new ArrayList<String>();
 		List<String> comidasQueDisgustaUsr = new ArrayList<String>();
@@ -292,7 +292,7 @@ public class TestUsuario {
 	public void testAgregarReceta()
 	{
 
-		QueComemosApp.inadecuados=new ArrayList<CondicionPreexistenteI>();
+//		Recetario.inadecuados=new ArrayList<CondicionPreexistenteI>();
 				
 		Usuario usr = new Usuario (1,"juan","masculino",LocalDate.parse("2016-01-01"), 60.0, 1.7, "Leve",
 					preferenciaAlimenticiaNoSaludable,new ArrayList<CondicionPreexistenteI>(),new ArrayList<Receta>());
@@ -320,12 +320,12 @@ public class TestUsuario {
 					
 		
 			
-			QueComemosApp.recetas.add(receta);
+			Recetario.recetas.add(receta);
 			
 			usr.modificaUnaRecetaPublica("PolloConPapas", "SoloPollo",null,null,null,null);
 			assertTrue(usr.getMisRecetas().size()>0);
 			assertTrue(usr.getMisRecetas().stream().anyMatch(rec -> rec.getNombre().equals("SoloPollo")));
-			assertTrue(QueComemosApp.recetas.stream().anyMatch(orec -> orec.getNombre().equals("PolloConPapas")));
+			assertTrue(Recetario.recetas.stream().anyMatch(orec -> orec.getNombre().equals("PolloConPapas")));
 			
 			
 		}

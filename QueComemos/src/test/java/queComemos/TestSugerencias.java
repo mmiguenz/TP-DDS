@@ -39,7 +39,7 @@ public class TestSugerencias {
 		Hipertenso hipertenso = new Hipertenso("hipertenso",comidasProhibidasH);
 		Diabetico diabetico = new Diabetico("diabetico",comidasProhibidas);
 		
-		QueComemosApp.inadecuados=new ArrayList<CondicionPreexistenteI>();
+//		QueComemosApp.inadecuados=new ArrayList<CondicionPreexistenteI>();
 
 		
 			
@@ -153,14 +153,13 @@ public class TestSugerencias {
 
 	@Test
 	public void testNoPuedeSugerirCarneAlHornoAUsuario() {
-		QueComemosApp.inicializar();
-		QueComemosApp.usuarios.add(usr);
-		QueComemosApp.recetas.add(receta);
+//		QueComemosApp.inicializar();
+//		QueComemosApp.usuarios.add(usr);
 		
 		
 
 		
-		assertTrue(QueComemosApp.puedeSugerir(receta, usr));
+		assertTrue(usr.esAdecuadaLaReceta(receta));
 	}
 	
 		

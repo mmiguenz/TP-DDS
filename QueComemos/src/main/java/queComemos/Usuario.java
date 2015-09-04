@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ar.edu.utn.frba.dds.tpAnual.queComemos.GustosSobreAlimentos;
+import ar.edu.utn.frba.dds.tpAnual.queComemos.recetas.Recetario;
 
 public class Usuario {
 
@@ -188,14 +189,14 @@ public class Usuario {
 	}
 	
 	public void modificaUnaRecetaPublica(String nombre, String nuevoNombre,Double calorias, Preparacion preparacion,List<Receta>subRecetas,String dificultad){
-		Receta recetaModificada= QueComemosApp.modificarRecetaPublica( nombre,  nuevoNombre, calorias, preparacion,subRecetas, dificultad);
+		Receta recetaModificada= Recetario.modificarRecetaPublica( nombre,  nuevoNombre, calorias, preparacion,subRecetas, dificultad);
 		this.agregarReceta(recetaModificada);
 		
 	}
 
 	public boolean puedeVer(Receta receta) {
 		return esAdecuadaLaReceta(receta) && 
-				(misRecetas.contains(receta) || QueComemosApp.recetas.contains(receta));
+				(misRecetas.contains(receta) || Recetario.recetas.contains(receta));
 
 	}
 

@@ -11,6 +11,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import ar.edu.utn.frba.dds.tpAnual.queComemos.GustosSobreAlimentos;
+import ar.edu.utn.frba.dds.tpAnual.queComemos.recetas.Recetario;
 import condicionesPreexistentes.Celiaco;
 import condicionesPreexistentes.Diabetico;
 import condicionesPreexistentes.Hipertenso;
@@ -49,29 +50,29 @@ public class TestObserver {
 		 usuario =new Usuario(2,"pedro","Hombre",LocalDate.parse("1990-01-01"),60.0,1.70,
 				"Leve",preferencia,condiciones,null);
 		
-		QueComemosApp.inadecuados=new ArrayList<CondicionPreexistenteI>();
+		Recetario.inadecuados=new ArrayList<CondicionPreexistenteI>();
 		
 		List<String> comidas= new ArrayList<String>();
 		
-		Celiaco celiacoQueComemosApp = new Celiaco("Celiaco",comidas);
-		QueComemosApp.inadecuados.add(celiacoQueComemosApp);
+		Celiaco celiacoRecetario = new Celiaco("Celiaco",comidas);
+		Recetario.inadecuados.add(celiacoRecetario);
 		
-		Diabetico diabeticoQueComemosApp = new Diabetico("Diabetico",comidas);
-		QueComemosApp.inadecuados.add(diabeticoQueComemosApp);
+		Diabetico diabeticoRecetario = new Diabetico("Diabetico",comidas);
+		Recetario.inadecuados.add(diabeticoRecetario);
 		
 		List<String> comidasHipertenso= new ArrayList<String>();
 		comidasHipertenso.add("Sal");
 		comidasHipertenso.add("Caldo");
-		Hipertenso hipertensoQueComemosApp = new Hipertenso("Hipertenso",comidasHipertenso);
-		QueComemosApp.inadecuados.add(hipertensoQueComemosApp);
+		Hipertenso hipertensoRecetario = new Hipertenso("Hipertenso",comidasHipertenso);
+		Recetario.inadecuados.add(hipertensoRecetario);
 		
 		List<String> comidasVegano= new ArrayList<String>();
 		comidasHipertenso.add("Pollo");
 		comidasHipertenso.add("Carne");
 		comidasHipertenso.add("Chivito");
 		comidasHipertenso.add("Coredero");
-		Vegano veganoQueComemosApp = new Vegano("Vegano",comidasVegano);
-		QueComemosApp.inadecuados.add(veganoQueComemosApp);
+		Vegano veganoRecetario = new Vegano("Vegano",comidasVegano);
+		Recetario.inadecuados.add(veganoRecetario);
 		
 		//assertTrue(usuario.validar());
 		
@@ -128,9 +129,9 @@ public class TestObserver {
 		
 		List<FiltroI> filtros = new ArrayList<FiltroI>();
 		List<Receta> recetasConsultadas=new ArrayList<Receta>();
-		List<Receta> recetasQueComemosApp =new ArrayList<Receta>();
-		QueComemosApp.recetas=recetasQueComemosApp;
-		recetasConsultadas=QueComemosApp.consultarRecetas(usuario, filtros);
+		List<Receta> recetasRecetario =new ArrayList<Receta>();
+		Recetario.recetas=recetasRecetario;
+		recetasConsultadas=Recetario.consultarRecetas(usuario, filtros);
 		
 		
 		assertEquals((obVeg.veganosConsultaronRecetasDificiles()),1.0,0.001);
@@ -160,9 +161,9 @@ public class TestObserver {
 		
 		List<FiltroI> filtros = new ArrayList<FiltroI>();
 		List<Receta> recetasConsultadas=new ArrayList<Receta>();
-		List<Receta> recetasQueComemosApp =new ArrayList<Receta>();
-		QueComemosApp.recetas=recetasQueComemosApp;
-		recetasConsultadas=QueComemosApp.consultarRecetas(usuario, filtros);
+		List<Receta> recetasRecetario =new ArrayList<Receta>();
+		Recetario.recetas=recetasRecetario;
+		recetasConsultadas=Recetario.consultarRecetas(usuario, filtros);
 		
 		assertEquals(1,(obVeg.veganosConsultaronRecetasDificiles()),0.001);
 				
@@ -197,29 +198,29 @@ public class TestObserver {
 		Usuario usuario =new Usuario(2,"pedro","Hombre",LocalDate.parse("1990-01-01"),60.0,1.70,
 				"Leve",preferencia,condiciones,null);
 		
-		QueComemosApp.inadecuados=new ArrayList<CondicionPreexistenteI>();
+		Recetario.inadecuados=new ArrayList<CondicionPreexistenteI>();
 		
 		List<String> comidas= new ArrayList<String>();
 		
-		Celiaco celiacoQueComemosApp = new Celiaco("Celiaco",comidas);
-		QueComemosApp.inadecuados.add(celiacoQueComemosApp);
+		Celiaco celiacoRecetario = new Celiaco("Celiaco",comidas);
+		Recetario.inadecuados.add(celiacoRecetario);
 		
-		Diabetico diabeticoQueComemosApp = new Diabetico("Diabetico",comidas);
-		QueComemosApp.inadecuados.add(diabeticoQueComemosApp);
+		Diabetico diabeticoRecetario = new Diabetico("Diabetico",comidas);
+		Recetario.inadecuados.add(diabeticoRecetario);
 		
 		List<String> comidasHipertenso= new ArrayList<String>();
 		comidasHipertenso.add("Sal");
 		comidasHipertenso.add("Caldo");
-		Hipertenso hipertensoQueComemosApp = new Hipertenso("Hipertenso",comidasHipertenso);
-		QueComemosApp.inadecuados.add(hipertensoQueComemosApp);
+		Hipertenso hipertensoRecetario = new Hipertenso("Hipertenso",comidasHipertenso);
+		Recetario.inadecuados.add(hipertensoRecetario);
 		
 		List<String> comidasVegano= new ArrayList<String>();
 		comidasHipertenso.add("Pollo");
 		comidasHipertenso.add("Carne");
 		comidasHipertenso.add("Chivito");
 		comidasHipertenso.add("Coredero");
-		Vegano veganoQueComemosApp = new Vegano("Vegano",comidasVegano);
-		QueComemosApp.inadecuados.add(veganoQueComemosApp);
+		Vegano veganoRecetario = new Vegano("Vegano",comidasVegano);
+		Recetario.inadecuados.add(veganoRecetario);
 		
 		//assertTrue(usuario.validar());
 		
@@ -271,9 +272,9 @@ public class TestObserver {
 		
 		List<FiltroI> filtros = new ArrayList<FiltroI>();
 		List<Receta> recetasConsultadas=new ArrayList<Receta>();
-		List<Receta> recetasQueComemosApp =new ArrayList<Receta>();
-		QueComemosApp.recetas=recetasQueComemosApp;
-		recetasConsultadas=QueComemosApp.consultarRecetas(usuario, filtros);
+		List<Receta> recetasRecetario =new ArrayList<Receta>();
+		Recetario.recetas=recetasRecetario;
+		recetasConsultadas=Recetario.consultarRecetas(usuario, filtros);
 		
 		//assertTrue((usuario.getCondicionesPreexistentes()).stream().anyMatch(cond->cond.getNombre().equals("Vegano"))
 			//	&& receta.getDificultad().equals("Dificil"));
@@ -305,29 +306,29 @@ public class TestObserver {
 		Usuario usuario =new Usuario(2,"pedro","Hombre",LocalDate.parse("1990-01-01"),60.0,1.70,
 				"Leve",preferencia,condiciones,null);
 		
-		QueComemosApp.inadecuados=new ArrayList<CondicionPreexistenteI>();
+		Recetario.inadecuados=new ArrayList<CondicionPreexistenteI>();
 		
 		List<String> comidas= new ArrayList<String>();
 		
-		Celiaco celiacoQueComemosApp = new Celiaco("Celiaco",comidas);
-		QueComemosApp.inadecuados.add(celiacoQueComemosApp);
+		Celiaco celiacoRecetario = new Celiaco("Celiaco",comidas);
+		Recetario.inadecuados.add(celiacoRecetario);
 		
-		Diabetico diabeticoQueComemosApp = new Diabetico("Diabetico",comidas);
-		QueComemosApp.inadecuados.add(diabeticoQueComemosApp);
+		Diabetico diabeticoRecetario = new Diabetico("Diabetico",comidas);
+		Recetario.inadecuados.add(diabeticoRecetario);
 		
 		List<String> comidasHipertenso= new ArrayList<String>();
 		comidasHipertenso.add("Sal");
 		comidasHipertenso.add("Caldo");
-		Hipertenso hipertensoQueComemosApp = new Hipertenso("Hipertenso",comidasHipertenso);
-		QueComemosApp.inadecuados.add(hipertensoQueComemosApp);
+		Hipertenso hipertensoRecetario = new Hipertenso("Hipertenso",comidasHipertenso);
+		Recetario.inadecuados.add(hipertensoRecetario);
 		
 		List<String> comidasVegano= new ArrayList<String>();
 		comidasHipertenso.add("Pollo");
 		comidasHipertenso.add("Carne");
 		comidasHipertenso.add("Chivito");
 		comidasHipertenso.add("Coredero");
-		Vegano veganoQueComemosApp = new Vegano("Vegano",comidasVegano);
-		QueComemosApp.inadecuados.add(veganoQueComemosApp);
+		Vegano veganoRecetario = new Vegano("Vegano",comidasVegano);
+		Recetario.inadecuados.add(veganoRecetario);
 		
 		//assertTrue(usuario.validar());
 		
@@ -379,9 +380,9 @@ public class TestObserver {
 		
 		List<FiltroI> filtros = new ArrayList<FiltroI>();
 		List<Receta> recetasConsultadas=new ArrayList<Receta>();
-		List<Receta> recetasQueComemosApp =new ArrayList<Receta>();
-		QueComemosApp.recetas=recetasQueComemosApp;
-		recetasConsultadas=QueComemosApp.consultarRecetas(usuario, filtros);
+		List<Receta> recetasRecetario =new ArrayList<Receta>();
+		Recetario.recetas=recetasRecetario;
+		recetasConsultadas=Recetario.consultarRecetas(usuario, filtros);
 		
 		//assertTrue((usuario.getCondicionesPreexistentes()).stream().anyMatch(cond->cond.getNombre().equals("Vegano"))
 			//	&& receta.getDificultad().equals("Dificil"));
@@ -413,29 +414,29 @@ public class TestObserver {
 		Usuario usuario =new Usuario(2,"pedro","Hombre",LocalDate.parse("1990-01-01"),60.0,1.70,
 				"Leve",preferencia,condiciones,null);
 		
-		QueComemosApp.inadecuados=new ArrayList<CondicionPreexistenteI>();
+		Recetario.inadecuados=new ArrayList<CondicionPreexistenteI>();
 		
 		List<String> comidas= new ArrayList<String>();
 		
-		Celiaco celiacoQueComemosApp = new Celiaco("Celiaco",comidas);
-		QueComemosApp.inadecuados.add(celiacoQueComemosApp);
+		Celiaco celiacoRecetario = new Celiaco("Celiaco",comidas);
+		Recetario.inadecuados.add(celiacoRecetario);
 		
-		Diabetico diabeticoQueComemosApp = new Diabetico("Diabetico",comidas);
-		QueComemosApp.inadecuados.add(diabeticoQueComemosApp);
+		Diabetico diabeticoRecetario = new Diabetico("Diabetico",comidas);
+		Recetario.inadecuados.add(diabeticoRecetario);
 		
 		List<String> comidasHipertenso= new ArrayList<String>();
 		comidasHipertenso.add("Sal");
 		comidasHipertenso.add("Caldo");
-		Hipertenso hipertensoQueComemosApp = new Hipertenso("Hipertenso",comidasHipertenso);
-		QueComemosApp.inadecuados.add(hipertensoQueComemosApp);
+		Hipertenso hipertensoRecetario = new Hipertenso("Hipertenso",comidasHipertenso);
+		Recetario.inadecuados.add(hipertensoRecetario);
 		
 		List<String> comidasVegano= new ArrayList<String>();
 		comidasHipertenso.add("Pollo");
 		comidasHipertenso.add("Carne");
 		comidasHipertenso.add("Chivito");
 		comidasHipertenso.add("Coredero");
-		Vegano veganoQueComemosApp = new Vegano("Vegano",comidasVegano);
-		QueComemosApp.inadecuados.add(veganoQueComemosApp);
+		Vegano veganoRecetario = new Vegano("Vegano",comidasVegano);
+		Recetario.inadecuados.add(veganoRecetario);
 		
 		//assertTrue(usuario.validar());
 		
@@ -487,9 +488,9 @@ public class TestObserver {
 		
 		List<FiltroI> filtros = new ArrayList<FiltroI>();
 		List<Receta> recetasConsultadas=new ArrayList<Receta>();
-		List<Receta> recetasQueComemosApp =new ArrayList<Receta>();
-		QueComemosApp.recetas=recetasQueComemosApp;
-		recetasConsultadas=QueComemosApp.consultarRecetas(usuario, filtros);
+		List<Receta> recetasRecetario =new ArrayList<Receta>();
+		Recetario.recetas=recetasRecetario;
+		recetasConsultadas=Recetario.consultarRecetas(usuario, filtros);
 		
 		//assertTrue((usuario.getCondicionesPreexistentes()).stream().anyMatch(cond->cond.getNombre().equals("Vegano"))
 			//	&& receta.getDificultad().equals("Dificil"));

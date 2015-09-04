@@ -10,6 +10,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import ar.edu.utn.frba.dds.tpAnual.queComemos.GustosSobreAlimentos;
+import ar.edu.utn.frba.dds.tpAnual.queComemos.recetas.Recetario;
 import condicionesPreexistentes.Celiaco;
 import condicionesPreexistentes.Diabetico;
 import condicionesPreexistentes.Hipertenso;
@@ -25,7 +26,6 @@ public class TestMostrarRecetasAccesiblesPorUsuario {
 
 	@Before
 	public void setUp() throws Exception {
-		QueComemosApp.inicializar();
 		List<String> comidasQueGustaUsrSaludable = new ArrayList<String>();
 		List<String> comidasQueGustaUsrNoSaludable = new ArrayList<String>();
 		List<String> comidasQueDisgustaUsr = new ArrayList<String>();
@@ -97,7 +97,7 @@ public class TestMostrarRecetasAccesiblesPorUsuario {
 		  receta = new Receta("PolloConPapas", 50.0,preparacion,dificultad,temporada,subRecetas,inadecuados);
 		 receta2 = new Receta("CarneAlHorno",1524.0,preparacion,dificultad,temporada,subRecetas,inadecuados);
 		
-		QueComemosApp.recetas.add(receta);
+		Recetario.recetas.add(receta);
 		usr.getMisRecetas().add(receta2);
 
 		
@@ -107,7 +107,7 @@ public class TestMostrarRecetasAccesiblesPorUsuario {
 	public void testMostrarRecetasVisibles() {
 	
 		
-		List<Receta> recetasVisibles = QueComemosApp.mostrarRecetasAccesiblesPorUsuario(usr);
+		List<Receta> recetasVisibles = Recetario.mostrarRecetasAccesiblesPorUsuario(usr);
 				
 		
 		assertTrue(recetasVisibles.contains(receta) && recetasVisibles.contains(receta2));

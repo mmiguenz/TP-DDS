@@ -15,6 +15,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import ar.edu.utn.frba.dds.tpAnual.queComemos.GustosSobreAlimentos;
+import ar.edu.utn.frba.dds.tpAnual.queComemos.recetas.Recetario;
 import condicionesPreexistentes.Celiaco;
 import condicionesPreexistentes.Diabetico;
 import condicionesPreexistentes.Hipertenso;
@@ -37,28 +38,28 @@ public class TestUsuarioBuilder{
 	
 	@Before
 	public void setUp() throws Exception {
-		QueComemosApp.inicializar();
+//		Recetario.inicializar();
 		NexoConElUsuario nexo= new NexoConElUsuario();
 		
 		DiabeticoBuilder diabeticobuilder= new DiabeticoBuilder();
 		nexo.setCondicion(diabeticobuilder);
 		diabetico = nexo.crear();
-		QueComemosApp.inadecuados.add(diabetico);
+		Recetario.inadecuados.add(diabetico);
 		
 		CeliacoBuilder celiacobuilder= new CeliacoBuilder();
 		nexo.setCondicion(celiacobuilder);
 		celiaco = nexo.crear();
-		QueComemosApp.inadecuados.add(celiaco);
+		Recetario.inadecuados.add(celiaco);
 		
 		VeganoBuilder veganobuilder= new VeganoBuilder();
 		nexo.setCondicion(veganobuilder);
 		vegano = nexo.crear();
-		QueComemosApp.inadecuados.add(vegano);
+		Recetario.inadecuados.add(vegano);
 		
 		HipertensoBuilder hipertensobuilder= new HipertensoBuilder();
 		nexo.setCondicion(hipertensobuilder);
 		hipertenso = nexo.crear();
-		QueComemosApp.inadecuados.add(hipertenso);
+		Recetario.inadecuados.add(hipertenso);
 		
 		condiciones= new ArrayList<CondicionPreexistenteI>();
 		
@@ -188,11 +189,11 @@ public class TestUsuarioBuilder{
 		Usuario usuario =new Usuario(2,"pedro","Hombre",LocalDate.parse("1990-01-01"),60.0,1.70,
 				"Leve",preferencia,condiciones,null);
 		
-		QueComemosApp.inadecuados=new ArrayList<CondicionPreexistenteI>();		
-		QueComemosApp.inadecuados.add(diabetico);
-		QueComemosApp.inadecuados.add(celiaco);
-		QueComemosApp.inadecuados.add(vegano);
-		QueComemosApp.inadecuados.add(hipertenso);
+		Recetario.inadecuados=new ArrayList<CondicionPreexistenteI>();		
+		Recetario.inadecuados.add(diabetico);
+		Recetario.inadecuados.add(celiaco);
+		Recetario.inadecuados.add(vegano);
+		Recetario.inadecuados.add(hipertenso);
 				
 		Ingrediente sal= new Ingrediente("Sal","grs",10);
 		Ingrediente papas= new Ingrediente("Papa","kg",3);
@@ -246,11 +247,11 @@ public class TestUsuarioBuilder{
 		Usuario usuario =new Usuario(2,"pedro","Hombre",LocalDate.parse("1990-01-01"),60.0,1.70,
 				"Activa",preferencia,condiciones,null);
 		
-		QueComemosApp.inadecuados=new ArrayList<CondicionPreexistenteI>();		
-		QueComemosApp.inadecuados.add(diabetico);
-		QueComemosApp.inadecuados.add(celiaco);
-		QueComemosApp.inadecuados.add(vegano);
-		QueComemosApp.inadecuados.add(hipertenso);
+		Recetario.inadecuados=new ArrayList<CondicionPreexistenteI>();		
+		Recetario.inadecuados.add(diabetico);
+		Recetario.inadecuados.add(celiaco);
+		Recetario.inadecuados.add(vegano);
+		Recetario.inadecuados.add(hipertenso);
 				
 		Ingrediente sal= new Ingrediente("Sal","grs",10);
 		Ingrediente papas= new Ingrediente("Papa","kg",3);

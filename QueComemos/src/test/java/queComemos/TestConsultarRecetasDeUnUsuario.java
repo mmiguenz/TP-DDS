@@ -10,6 +10,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import ar.edu.utn.frba.dds.tpAnual.queComemos.GustosSobreAlimentos;
+import ar.edu.utn.frba.dds.tpAnual.queComemos.recetas.Recetario;
 import condicionesPreexistentes.Celiaco;
 import condicionesPreexistentes.Diabetico;
 import condicionesPreexistentes.Hipertenso;
@@ -66,11 +67,11 @@ public class TestConsultarRecetasDeUnUsuario {
 		  // Iniciar QueComemos
 		  
 		 
-			QueComemosApp.inicializar();
-			QueComemosApp.inadecuados.add(diabetico);
-			QueComemosApp.inadecuados.add(celiaco);
-			QueComemosApp.inadecuados.add(hipertenso);
-			QueComemosApp.inadecuados.add(vegano);
+//			Recetario.inicializar();
+			Recetario.inadecuados.add(diabetico);
+			Recetario.inadecuados.add(celiaco);
+			Recetario.inadecuados.add(hipertenso);
+			Recetario.inadecuados.add(vegano);
 		 
 		 
 		 // Crear Receta 
@@ -102,7 +103,7 @@ public class TestConsultarRecetasDeUnUsuario {
 			
 			
 			 receta = new Receta("CarneAlHorno",1524.0,preparacion,"baja","verano",subRecetas,condiciones);
-    		QueComemosApp.recetas.add(receta);
+    		Recetario.recetas.add(receta);
 			
 			
 		 
@@ -148,7 +149,7 @@ public class TestConsultarRecetasDeUnUsuario {
 		filtros.add(filtroPreparacionCara);
 		filtros.add(filtroPorGusto);
 		
-		List<Receta> resultadoConsulta =QueComemosApp.consultarRecetas(usr, filtros);
+		List<Receta> resultadoConsulta =Recetario.consultarRecetas(usr, filtros);
 		
 		assertTrue(resultadoConsulta.contains(receta));
 		
@@ -180,7 +181,7 @@ public class TestConsultarRecetasDeUnUsuario {
 		filtros.add(filtroPorGusto);
 		filtros.add(filtroRechazaTodo);
 		
-		List<Receta> resultadoConsulta =QueComemosApp.consultarRecetas(usr, filtros);
+		List<Receta> resultadoConsulta =Recetario.consultarRecetas(usr, filtros);
 		
 		assertTrue(resultadoConsulta.isEmpty());
 		

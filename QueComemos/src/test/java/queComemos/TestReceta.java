@@ -9,6 +9,7 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
+import ar.edu.utn.frba.dds.tpAnual.queComemos.recetas.Recetario;
 import condicionesPreexistentes.Celiaco;
 import condicionesPreexistentes.Diabetico;
 import condicionesPreexistentes.Hipertenso;
@@ -47,7 +48,7 @@ public class TestReceta {
 	Hipertenso hipertenso = new Hipertenso("hipertenso",comidasProhibidasH);
 	Diabetico diabetico = new Diabetico("diabetico",comidasProhibidas);
 	
-	QueComemosApp.inadecuados=new ArrayList<CondicionPreexistenteI>();
+//	QueComemosApp.inadecuados=new ArrayList<CondicionPreexistenteI>();
 
 	
 		
@@ -84,7 +85,7 @@ public class TestReceta {
 		List<String> comidas= new ArrayList<String>();
 		comidas.add("Sal");
 		Hipertenso hipertenso = new Hipertenso("Hipertenso",comidas);
-		QueComemosApp.inadecuados.add(hipertenso);
+		Recetario.inadecuados.add(hipertenso);
 		
 		 Receta receta = new Receta("CarneAlHorno",1524.0,preparacion,dificultad,temporada,subRecetas,inadecuados);
 		 assertTrue(receta.getInadecuados().contains(hipertenso));
@@ -93,8 +94,8 @@ public class TestReceta {
 	public void testAdecuadoParaHipertenso() {
 		List<String> comidas= new ArrayList<String>();
 		Hipertenso hipertenso = new Hipertenso("Hipertenso",comidas);
-		QueComemosApp.inicializar();
-		QueComemosApp.inadecuados.add(hipertenso);
+//		QueComemosApp.inicializar();
+		Recetario.inadecuados.add(hipertenso);
 		 Receta receta = new Receta("CarneAlHorno",1524.0,preparacion,dificultad,temporada,subRecetas,inadecuados);
 		 assertFalse(receta.getInadecuados().contains(hipertenso));
 
@@ -106,7 +107,7 @@ public class TestReceta {
 		List<String> comidas= new ArrayList<String>();
 		comidas.add("Carne");
 		Vegano vegano = new Vegano("Vegano",comidas);
-		QueComemosApp.inadecuados.add(vegano);
+		Recetario.inadecuados.add(vegano);
 		
 		
 		 Receta receta = new Receta("CarneAlHorno",1524.0,preparacion,dificultad,temporada,subRecetas,inadecuados);
@@ -117,7 +118,7 @@ public class TestReceta {
 	public void testAdecuadoParaVegano() {
 		List<String> comidas= new ArrayList<String>();
 		Vegano vegano = new Vegano("Vegano",comidas);
-		QueComemosApp.inadecuados.add(vegano);
+		Recetario.inadecuados.add(vegano);
 		
 		 Receta receta = new Receta("CarneAlHorno",1524.0,preparacion,dificultad,temporada,subRecetas,inadecuados);
 		 assertFalse(receta.getInadecuados().contains(vegano));
@@ -128,7 +129,7 @@ public class TestReceta {
 	public void testInadecuadoParaCeliaco() {
 		List<String> comidas= new ArrayList<String>();
 		Celiaco celiaco = new Celiaco("Celiaco",comidas);
-		QueComemosApp.inadecuados.add(celiaco);
+		Recetario.inadecuados.add(celiaco);
 		
 		 Receta receta = new Receta("CarneAlHorno",1524.0,preparacion,dificultad,temporada,subRecetas,inadecuados);
 		 assertFalse(receta.getInadecuados().contains(celiaco));
@@ -138,7 +139,7 @@ public class TestReceta {
 	public void testAdecuadoParaCeliaco() {
 		List<String> comidas= new ArrayList<String>();
 		Celiaco celiaco = new Celiaco("Celiaco",comidas);
-		QueComemosApp.inadecuados.add(celiaco);
+		Recetario.inadecuados.add(celiaco);
 		 Receta receta = new Receta("CarneAlHorno",1524.0,preparacion,dificultad,temporada,subRecetas,inadecuados);
 		 assertFalse(receta.getInadecuados().contains(celiaco));
 	}
@@ -148,7 +149,7 @@ public class TestReceta {
 	public void testNoInadecuadoParaCeliaco() {
 		List<String> comidas= new ArrayList<String>();
 		Celiaco celiaco = new Celiaco("celiaco",comidas);
-		QueComemosApp.inadecuados.add(celiaco);
+		Recetario.inadecuados.add(celiaco);
 		
 		 Receta receta = new Receta("CarneAlHorno",1524.0,preparacion,dificultad,temporada,subRecetas,inadecuados);
 		 assertFalse(receta.getInadecuados().contains(celiaco));
@@ -159,7 +160,7 @@ public class TestReceta {
 	public void testNoAdecuadoParaCeliaco() {
 		List<String> comidas= new ArrayList<String>();
 		Celiaco celiaco = new Celiaco("celiaco",comidas);
-		QueComemosApp.inadecuados.add(celiaco);
+		Recetario.inadecuados.add(celiaco);
 		
 		
 		 Receta receta = new Receta("CarneAlHorno",1524.0,preparacion,dificultad,temporada,subRecetas,inadecuados);
@@ -171,7 +172,7 @@ public class TestReceta {
 	public void testNoInadecuadoParaDiabetico() {
 		List<String> comidas= new ArrayList<String>();
 		Diabetico diabetico = new Diabetico("diabetico",comidas);
-		QueComemosApp.inadecuados.add(diabetico);
+		Recetario.inadecuados.add(diabetico);
 		
 		
 		 Receta receta = new Receta("CarneAlHorno",1524.0,preparacion,dificultad,temporada,subRecetas,inadecuados);

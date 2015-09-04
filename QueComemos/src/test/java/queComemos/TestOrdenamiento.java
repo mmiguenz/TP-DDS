@@ -68,8 +68,6 @@ public class TestOrdenamiento {
 		Hipertenso hipertenso = new Hipertenso("hipertenso",comidasProhibidasH);
 		Diabetico diabetico = new Diabetico("diabetico",comidasProhibidas);
 		
-		
-		
 			
 			instrucciones.add("Preparar");
 			instrucciones.add("Revolver");
@@ -91,7 +89,6 @@ public class TestOrdenamiento {
 			 String dificultad = "Baja";
 			 String temporada= "Verano";
 		
-		QueComemosApp.inicializar();
 		
 		
 		

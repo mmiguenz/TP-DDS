@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 public class RepoUsuarios {
 	
 	public static List<Usuario> usuarios= new ArrayList<Usuario>() ;
-	
+	public static List<Grupo> grupos = new ArrayList<Grupo>();
 	
 	
 	public static void add(Usuario usr){
@@ -16,6 +16,22 @@ public class RepoUsuarios {
 				
 		
 	}
+	
+	  public static List<Grupo> buscarGruposDeUsuario(Usuario usr)
+	  {
+		  List<Grupo> gruposDeUsuario = new ArrayList<Grupo>();
+		  
+		if (!(grupos == null || grupos.isEmpty())) {
+
+			for (Grupo grupo : grupos) {
+				if (grupo.getUsuarios().contains(usr))
+					gruposDeUsuario.add(grupo);
+			}
+		}
+		  
+		  return gruposDeUsuario;
+		  
+	  }
 	
 	
 	public static void remove(Usuario usr)

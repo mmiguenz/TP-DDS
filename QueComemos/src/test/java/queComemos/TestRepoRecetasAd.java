@@ -8,6 +8,7 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
+import ar.edu.utn.frba.dds.tpAnual.queComemos.recetas.Recetario;
 import queComemos.entrega3.creacionales.RecetaBuilder;
 
 public class TestRepoRecetasAd {
@@ -17,7 +18,6 @@ public class TestRepoRecetasAd {
 	@Before
 	public void setUp() throws Exception {
 		
-		QueComemosApp.inicializar();
 		
 		
 	}
@@ -40,7 +40,7 @@ public class TestRepoRecetasAd {
     {
 			
 		 consulta = new ConsultaRepoExtAd(null,"dificil",new ArrayList<String>());
-		  assertEquals(QueComemosApp.consultarEnRepoExterno(consulta).size(),2);
+		  assertEquals(Recetario.consultarEnRepoExterno(consulta).size(),2);
 			
 			
 		
@@ -55,7 +55,7 @@ public class TestRepoRecetasAd {
     {
 			
 		 consulta = new ConsultaRepoExtAd(null,"facil",new ArrayList<String>());
-		  assertEquals(QueComemosApp.consultarEnRepoExterno(consulta).size(),6);
+		  assertEquals(Recetario.consultarEnRepoExterno(consulta).size(),6);
 			
 			
 		
@@ -71,7 +71,7 @@ public class TestRepoRecetasAd {
     {
 			
 		 consulta = new ConsultaRepoExtAd(null,"mediana",new ArrayList<String>());
-		  assertEquals(QueComemosApp.consultarEnRepoExterno(consulta).size(),4);
+		  assertEquals(Recetario.consultarEnRepoExterno(consulta).size(),4);
 					
 		
 		
@@ -86,7 +86,7 @@ public class TestRepoRecetasAd {
     {
 			
 	 consulta = new ConsultaRepoExtAd("ensalada" ,null,new ArrayList<String>());
-	  assertEquals(QueComemosApp.consultarEnRepoExterno(consulta).size(),3);
+	  assertEquals(Recetario.consultarEnRepoExterno(consulta).size(),3);
 					
 		
 		
@@ -109,7 +109,7 @@ public class TestRepoRecetasAd {
 		
 		 consulta = new ConsultaRepoExtAd(null ,null,palabrasClave);
 		
-	  assertEquals(QueComemosApp.consultarEnRepoExterno(consulta).size(),3);
+	  assertEquals(Recetario.consultarEnRepoExterno(consulta).size(),3);
 					
 		
 		
@@ -131,7 +131,7 @@ public class TestRepoRecetasAd {
 		
 		 consulta = new ConsultaRepoExtAd("ensalada caesar" ,"facil",palabrasClave);
 		
-	  assertEquals(QueComemosApp.consultarEnRepoExterno(consulta).size(),1);
+	  assertEquals(Recetario.consultarEnRepoExterno(consulta).size(),1);
 		
 					
 		
