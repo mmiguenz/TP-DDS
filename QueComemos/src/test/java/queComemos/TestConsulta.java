@@ -40,7 +40,6 @@ public class TestConsulta {
 	filtros.add(unFiltro);
 	filtros.add(otroFiltro);
 	
-	QueComemosApp.inicializar();
 	
 	
 

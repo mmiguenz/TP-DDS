@@ -42,7 +42,6 @@ public class TestMonitoreoDeConsultas {
 		
 	
 		
-		QueComemosApp.inicializar();
 		
 		
 		

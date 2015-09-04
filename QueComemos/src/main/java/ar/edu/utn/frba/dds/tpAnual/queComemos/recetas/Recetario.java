@@ -100,7 +100,7 @@ public class Recetario {
 		  {
 			  consultaResul = filtro.filtrar(consultaResul,usr);
 		  }
-		  consultaResul.forEach(rec->rec.notificarObs(usr));
+//		  consultaResul.forEach(rec->rec.notificarObs(usr));
 		  return consultaResul;
 	  }
 	  
@@ -117,7 +117,7 @@ public class Recetario {
 		  
 		  consultaResul=procesamiento.procesar(consultaResul);
 		  
-		  consultaResul.forEach(rec->rec.notificarObs(usr));
+//		  consultaResul.forEach(rec->rec.notificarObs(usr));
 
 		  
 		  return consultaResul;

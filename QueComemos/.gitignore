@@ -3,3 +3,4 @@
 .classpath
 quecomemos.ucls
 .gitignore
+*.orig

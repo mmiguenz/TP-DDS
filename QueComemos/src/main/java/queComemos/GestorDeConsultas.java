@@ -3,6 +3,8 @@ package queComemos;
 import java.util.ArrayList;
 import java.util.List;
 
+import ar.edu.utn.frba.dds.tpAnual.queComemos.recetas.Recetario;
+
 
 public class GestorDeConsultas {
 	
@@ -56,9 +58,9 @@ public void consultarRecetas (Consulta consulta )
 	 List<Receta> recetasEncontradas = new ArrayList<>(); 
 	
 	if(consulta.getProcesamientoPosterior() == null)	
-		recetasEncontradas = QueComemosApp.consultarRecetas(consulta.getUsr(), consulta.getFiltros());
+		recetasEncontradas = Recetario.consultarRecetas(consulta.getUsr(), consulta.getFiltros());
 	else 
-		recetasEncontradas = QueComemosApp.consultarRecetas(consulta.getUsr(), consulta.getFiltros(),consulta.getProcesamientoPosterior());
+		recetasEncontradas = Recetario.consultarRecetas(consulta.getUsr(), consulta.getFiltros(),consulta.getProcesamientoPosterior());
 	
 			
 	 consulta.setResultadoConsulta(recetasEncontradas);
