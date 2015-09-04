@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 
 public class RepoUsuarios {
 	
-	public static List<Usuario> usuarios= new ArrayList<Usuario>() ;
+	public static List<Usuario> usuarios= new ArrayList<Usuario>();
 	public static List<Grupo> grupos = new ArrayList<Grupo>();
 	
 	
@@ -85,8 +85,7 @@ public class RepoUsuarios {
 			
 		} else {
 			
-		
-			
+					
 			
 			return usuarios.stream().filter(usuario -> usuario.getNombre().equals(usr.getNombre()) && usuario.getCondicionesPreexistentes().containsAll(usr.getCondicionesPreexistentes())).collect(Collectors.toList());
 		

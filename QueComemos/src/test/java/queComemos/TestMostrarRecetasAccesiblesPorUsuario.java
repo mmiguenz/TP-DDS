@@ -41,10 +41,8 @@ public class TestMostrarRecetasAccesiblesPorUsuario {
 		
 		comidasQueDisgustaUsr.add("Verduras");
 
-		GustosSobreAlimentos preferenciaAlimenticiaSaludable = new GustosSobreAlimentos(
-				comidasQueGustaUsrSaludable, comidasQueDisgustaUsr);
-		GustosSobreAlimentos preferenciaAlimenticiaNoSaludable = new GustosSobreAlimentos(
-				comidasQueGustaUsrNoSaludable, comidasQueDisgustaUsr);
+		GustosSobreAlimentos preferenciaAlimenticiaSaludable = new GustosSobreAlimentos(comidasQueGustaUsrSaludable, comidasQueDisgustaUsr);
+		GustosSobreAlimentos preferenciaAlimenticiaNoSaludable = new GustosSobreAlimentos(comidasQueGustaUsrNoSaludable, comidasQueDisgustaUsr);
 
 		List<String>comidasProhibidas = new ArrayList<String>();
 		comidasProhibidas.add("Pan");

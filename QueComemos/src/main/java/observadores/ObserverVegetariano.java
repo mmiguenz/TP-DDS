@@ -1,10 +1,18 @@
 package observadores;
 
+import queComemos.Consulta;
 import queComemos.ObservadorI;
 import queComemos.Receta;
 import queComemos.Usuario;
 
 public class ObserverVegetariano implements ObservadorI{
+
+	@Override
+	public void notificar(Consulta consulta) {
+		// TODO Auto-generated method stub
+		
+	}
+	/*
 	double cuantosVeganosConsultaron;
 	
 	public ObserverVegetariano(){
@@ -22,5 +30,5 @@ public class ObserverVegetariano implements ObservadorI{
 	public double veganosConsultaronRecetasDificiles(){
 		return this.cuantosVeganosConsultaron;		
 	}
-
+*/
 }
