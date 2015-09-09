@@ -1,11 +1,12 @@
 package procesamientos;
 
+import interfaces.ProcesamientoI;
+
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import queComemos.ProcesamientoI;
-import queComemos.Receta;
+import receta.Receta;
 
 public class TomarDiezPrimeros implements ProcesamientoI {
 

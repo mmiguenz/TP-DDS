@@ -1,6 +1,8 @@
 package queComemos;
 
 import static org.junit.Assert.*;
+import interfaces.CondicionPreexistenteI;
+import interfaces.FiltroI;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -9,8 +11,13 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
-import ar.edu.utn.frba.dds.tpAnual.queComemos.GustosSobreAlimentos;
-import ar.edu.utn.frba.dds.tpAnual.queComemos.recetas.Recetario;
+import receta.Ingrediente;
+import receta.Preparacion;
+import receta.Receta;
+import repositorios.Consulta;
+import repositorios.Recetario;
+import usuario.GustosSobreAlimentos;
+import usuario.Usuario;
 import condicionesPreexistentes.Celiaco;
 import condicionesPreexistentes.Diabetico;
 import condicionesPreexistentes.Hipertenso;
@@ -30,6 +37,10 @@ public class TestConsultarRecetasDeUnUsuario {
 	private Diabetico diabetico;
 	private  List<FiltroI> filtros; 
 	private Receta receta;
+	private FiltroPreparacionCara filtroPreparacionCara;
+	private FiltroParaUsuariosConSobrepeso filtroSobrePeso;
+	private FiltroRechazaTodo filtroRechazaTodo;
+	private Usuario usr;
 	
 	
 
@@ -104,54 +115,40 @@ public class TestConsultarRecetasDeUnUsuario {
 			
 			 receta = new Receta("CarneAlHorno",1524.0,preparacion,"baja","verano",subRecetas,condiciones);
     		Recetario.recetas.add(receta);
+    		
+    		
+    		
+    		condiciones.add(hipertenso);
+    		condiciones.add(celiaco);
+    		
+    		
+    		 usr = new Usuario(3,"Juan","Masculino",LocalDate.parse("1994-08-05"),90.0,175.0,"Leve",preferenciaAlimenticia,condiciones,new ArrayList<Receta>());
 			
-			
-		 
-		 
-		 
+	
 		 
 		 
 		 //Filtros 
 		 
-		  filtros = new ArrayList<FiltroI>();
-		  
-		  
-		  
-		  
-		
-			
+    		
+    		 filtroPreparacionCara = new FiltroPreparacionCara();
+    		 filtroSobrePeso= new FiltroParaUsuariosConSobrepeso();
+    		 filtroRechazaTodo = new FiltroRechazaTodo();
+    		 
 
-		
-		
-		
 	}
 
 	@Test
 	public void testConsultaSobreRecetasVisiblesDeUsuario() {
 			
-	
 		
-		condiciones.add(hipertenso);
-		condiciones.add(celiaco);
-		
-		
-		Usuario usr = new Usuario(3,"Juan","Masculino",LocalDate.parse("1994-08-05"),90.0,175.0,"Leve",preferenciaAlimenticia,condiciones,new ArrayList<Receta>());
-	
 
+		Consulta consultaRecetas = new Consulta(usr);
+		consultaRecetas.agregarFiltro(filtroSobrePeso);
+		consultaRecetas.consultarRecetas();
 		
+	
 		
-		List<FiltroI> filtros = new ArrayList<FiltroI>();
-		FiltroI filtroPorGusto = new FiltroParaUsuariosConSobrepeso();
-		FiltroI filtroPreparacionCara = new FiltroPreparacionCara();
-		FiltroI filtroSobrePeso= new FiltroParaUsuariosConSobrepeso();
-		
-		filtros.add(filtroSobrePeso);
-		filtros.add(filtroPreparacionCara);
-		filtros.add(filtroPorGusto);
-		
-		List<Receta> resultadoConsulta =Recetario.consultarRecetas(usr, filtros);
-		
-		assertTrue(resultadoConsulta.contains(receta));
+		assertTrue(consultaRecetas.obtenerResultadoConsulta().contains(receta));
 		
 		
 		
@@ -162,38 +159,22 @@ public class TestConsultarRecetasDeUnUsuario {
 	public void tesConsultaRecetasDeUsuarioUsoFiltroRechazaTodo()
 	{
 		
+			
 		
-		condiciones.add(hipertenso);
-		condiciones.add(celiaco);
+		Consulta consultaRecetas = new Consulta(usr);
+		consultaRecetas.agregarFiltro(filtroRechazaTodo);
 		
+		consultaRecetas.consultarRecetas();
 		
-		Usuario usr = new Usuario(3,"Juan","Masculino",LocalDate.parse("1994-08-05"),90.0,175.0,"Leve",preferenciaAlimenticia,condiciones,new ArrayList<Receta>());
-				
-		
-		List<FiltroI> filtros = new ArrayList<FiltroI>();
-		FiltroParaUsuariosConSobrepeso filtroPorGusto = new FiltroParaUsuariosConSobrepeso();
-		FiltroPreparacionCara filtroPreparacionCara = new FiltroPreparacionCara();
-		FiltroParaUsuariosConSobrepeso filtroSobrePeso= new FiltroParaUsuariosConSobrepeso();
-		FiltroI filtroRechazaTodo = new FiltroRechazaTodo();
-		
-		filtros.add(filtroSobrePeso);
-		filtros.add(filtroPreparacionCara);
-		filtros.add(filtroPorGusto);
-		filtros.add(filtroRechazaTodo);
-		
-		List<Receta> resultadoConsulta =Recetario.consultarRecetas(usr, filtros);
-		
-		assertTrue(resultadoConsulta.isEmpty());
+			
+		assertTrue(consultaRecetas.obtenerResultadoConsulta().isEmpty());
 		
 		
 		
 		
 	}
 	
-	
-	
-	
-	
+
 	
 
 }

@@ -1,10 +1,11 @@
 package procesamientos;
 
+import interfaces.CriterioOrdenamientoI;
+import interfaces.ProcesamientoI;
+
 import java.util.List;
 
-import queComemos.CriterioOrdenamientoI;
-import queComemos.ProcesamientoI;
-import queComemos.Receta;
+import receta.Receta;
 
 public class Ordenar implements ProcesamientoI {
 	

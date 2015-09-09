@@ -8,6 +8,9 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
+import receta.Ingrediente;
+import receta.Preparacion;
+
 public class TestPreparacion {
 	
 	List<String> instrucciones;

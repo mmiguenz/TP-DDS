@@ -8,26 +8,28 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
-import ar.edu.utn.frba.dds.tpAnual.queComemos.recetas.Recetario;
 import queComemos.entrega3.creacionales.RecetaBuilder;
+import repositorios.ConsultaRepoExtAd;
+import repositorios.Recetario;
+import repositorios.RepoRecetasAd;
 
 public class TestRepoRecetasAd {
 	
 	private ConsultaRepoExtAd consulta;
+	private RepoRecetasAd repo;
 
 	@Before
 	public void setUp() throws Exception {
 		
 		
-		
+		  repo = new  RepoRecetasAd();	
 	}
 
 	@Test
 	public void testTraerREcetasRepoExternoSon12() {
 		
 		
-		RepoRecetasAd  repo = new  RepoRecetasAd();	
-		
+				
 		assertEquals(repo.traerTodasRecetasExternas().size(),12 );
 		
 	}
@@ -40,7 +42,7 @@ public class TestRepoRecetasAd {
     {
 			
 		 consulta = new ConsultaRepoExtAd(null,"dificil",new ArrayList<String>());
-		  assertEquals(Recetario.consultarEnRepoExterno(consulta).size(),2);
+		  assertEquals(repo.consultaEnRepoExterno(consulta).size(),2);
 			
 			
 		
@@ -55,11 +57,10 @@ public class TestRepoRecetasAd {
     {
 			
 		 consulta = new ConsultaRepoExtAd(null,"facil",new ArrayList<String>());
-		  assertEquals(Recetario.consultarEnRepoExterno(consulta).size(),6);
+		  assertEquals(repo.consultaEnRepoExterno(consulta).size(),6);
 			
 			
-		
-		
+			
 		
 		
 	}
@@ -71,7 +72,7 @@ public class TestRepoRecetasAd {
     {
 			
 		 consulta = new ConsultaRepoExtAd(null,"mediana",new ArrayList<String>());
-		  assertEquals(Recetario.consultarEnRepoExterno(consulta).size(),4);
+		  assertEquals(repo.consultaEnRepoExterno(consulta).size(),4);
 					
 		
 		
@@ -86,7 +87,7 @@ public class TestRepoRecetasAd {
     {
 			
 	 consulta = new ConsultaRepoExtAd("ensalada" ,null,new ArrayList<String>());
-	  assertEquals(Recetario.consultarEnRepoExterno(consulta).size(),3);
+	  assertEquals(repo.consultaEnRepoExterno(consulta).size(),3);
 					
 		
 		
@@ -109,7 +110,7 @@ public class TestRepoRecetasAd {
 		
 		 consulta = new ConsultaRepoExtAd(null ,null,palabrasClave);
 		
-	  assertEquals(Recetario.consultarEnRepoExterno(consulta).size(),3);
+	  assertEquals(repo.consultaEnRepoExterno(consulta).size(),3);
 					
 		
 		
@@ -131,9 +132,8 @@ public class TestRepoRecetasAd {
 		
 		 consulta = new ConsultaRepoExtAd("ensalada caesar" ,"facil",palabrasClave);
 		
-	  assertEquals(Recetario.consultarEnRepoExterno(consulta).size(),1);
-		
-					
+	  assertEquals(repo.consultaEnRepoExterno(consulta).size(),1);
+						
 		
 		
 		

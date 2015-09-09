@@ -1,6 +1,9 @@
 package queComemos;
 
 import static org.junit.Assert.*;
+import interfaces.CondicionPreexistenteI;
+import interfaces.CriterioOrdenamientoI;
+import interfaces.ProcesamientoI;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -10,10 +13,13 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
-import ar.edu.utn.frba.dds.tpAnual.queComemos.GustosSobreAlimentos;
 import procesamientos.Ordenar;
 import procesamientos.OrdenarPorCalorias;
 import procesamientos.OrdenarPorNombre;
+import receta.Ingrediente;
+import receta.Preparacion;
+import receta.Receta;
+import usuario.GustosSobreAlimentos;
 import condicionesPreexistentes.Celiaco;
 import condicionesPreexistentes.Diabetico;
 import condicionesPreexistentes.Hipertenso;

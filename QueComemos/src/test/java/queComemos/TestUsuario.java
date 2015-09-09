@@ -1,19 +1,21 @@
 package queComemos;
 
 import static org.junit.Assert.*;
+import interfaces.CondicionPreexistenteI;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
-
-import observadores.ObserverVecesConsultada;
 
 import org.junit.Before;
 import org.junit.Test;
 
-import ar.edu.utn.frba.dds.tpAnual.queComemos.GustosSobreAlimentos;
-import ar.edu.utn.frba.dds.tpAnual.queComemos.recetas.Recetario;
+import receta.Ingrediente;
+import receta.Preparacion;
+import receta.Receta;
+import repositorios.Recetario;
+import usuario.GustosSobreAlimentos;
+import usuario.Usuario;
 import condicionesPreexistentes.Celiaco;
 import condicionesPreexistentes.Diabetico;
 import condicionesPreexistentes.Hipertenso;

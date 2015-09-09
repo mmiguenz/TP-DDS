@@ -1,10 +1,11 @@
 package condicionesPreexistentes;
 
+import interfaces.CondicionPreexistenteI;
+
 import java.util.List;
 
-import queComemos.CondicionPreexistenteI;
-import queComemos.Receta;
-import queComemos.Usuario;
+import receta.Receta;
+import usuario.Usuario;
 
 public class Celiaco implements CondicionPreexistenteI {
 

@@ -1,15 +1,22 @@
 package queComemos;
 
 import static org.junit.Assert.*;
+import interfaces.CondicionPreexistenteI;
+import interfaces.CriterioAprobacionI;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import manejoDeSolicitudes.CriteroApruebaSiEsJuan;
+import manejoDeSolicitudes.ManejoDeSolicitudes;
+
 import org.junit.Before;
 import org.junit.Test;
 
-import ar.edu.utn.frba.dds.tpAnual.queComemos.GustosSobreAlimentos;
+import receta.Receta;
+import usuario.GustosSobreAlimentos;
+import usuario.Usuario;
 import condicionesPreexistentes.Celiaco;
 import condicionesPreexistentes.Diabetico;
 import condicionesPreexistentes.Hipertenso;
@@ -109,7 +116,7 @@ public class TestAprobacionDeSolicitudes {
 		
 		usuariosM.addAll(usuarios);
 		
-		ManejadorDeSolicitudes administrador  =  new ManejadorDeSolicitudes(usuarios);		
+		ManejoDeSolicitudes administrador  =  new ManejoDeSolicitudes(usuarios);		
 		
 			
 		

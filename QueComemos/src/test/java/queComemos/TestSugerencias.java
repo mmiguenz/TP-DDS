@@ -1,6 +1,7 @@
 package queComemos;
 
 import static org.junit.Assert.*;
+import interfaces.CondicionPreexistenteI;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -9,7 +10,12 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
-import ar.edu.utn.frba.dds.tpAnual.queComemos.GustosSobreAlimentos;
+import receta.Ingrediente;
+import receta.Preparacion;
+import receta.Receta;
+import usuario.Grupo;
+import usuario.GustosSobreAlimentos;
+import usuario.Usuario;
 import condicionesPreexistentes.Celiaco;
 import condicionesPreexistentes.Diabetico;
 import condicionesPreexistentes.Hipertenso;
@@ -175,7 +181,7 @@ public class TestSugerencias {
 		Grupo grupo = new Grupo("UnNombre" , usuariosGrupo, preferencia);	
 
 		
-		assertFalse(grupo.puedeSugerir(receta));
+		assertTrue(grupo.puedeSugerir(receta));
 	}
 	
 }

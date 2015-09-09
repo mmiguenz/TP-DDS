@@ -1,0 +1,243 @@
+package usuario;
+
+import interfaces.CondicionPreexistenteI;
+
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+
+import receta.Preparacion;
+import receta.Receta;
+import repositorios.Recetario;
+
+public class Usuario {
+
+	private Integer usuarioID;
+	private String nombre;
+	private String sexo;
+	private LocalDate fechaNacimiento;
+	private Double peso;
+	private Double estatura;
+	private String rutina;
+	private GustosSobreAlimentos preferenciaAlimenticia;
+	private List<CondicionPreexistenteI> condicionesPreexistentes;
+	private List<Receta> misRecetas;
+	private List<Receta> favoritas;
+	
+	
+	
+	public List<Receta> getFavoritas() {
+		return favoritas;
+	}
+
+	public void setFavoritas(List<Receta> favoritas) {
+		this.favoritas = favoritas;
+	}
+
+
+	public Usuario(Integer usuarioID,String nombre, String sexo, LocalDate fechaNacimiento,
+			Double peso, Double estatura, String rutina,
+			GustosSobreAlimentos preferenciaAlimenticia,
+			List<CondicionPreexistenteI> condicionesPreexistentes,
+			List<Receta> misRecetas) {
+		
+		this.usuarioID= usuarioID;
+		this.setNombre(nombre);
+		this.setSexo(sexo);
+		this.setFechaNacimiento(fechaNacimiento);
+		this.setPeso(peso);
+		this.setEstatura(estatura);
+		this.setRutina(rutina);
+		if(!(preferenciaAlimenticia==null)){
+			this.setPreferenciaAlimenticia(preferenciaAlimenticia);
+		}else{
+			this.preferenciaAlimenticia=new GustosSobreAlimentos(new ArrayList<String>(),new ArrayList<String>());
+		}
+		this.setCondicionesPreexistentes(condicionesPreexistentes);
+		this.setMisRecetas(misRecetas);
+		this.favoritas= new ArrayList<Receta>();
+		
+
+	}
+	
+	
+	public String getRutina() {
+		return rutina;
+	}
+
+	public void setRutina(String rutina) {
+		this.rutina = rutina;
+	}
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	public String getSexo() {
+		return sexo;
+	}
+
+	public void setSexo(String sexo) {
+		this.sexo = sexo;
+	}
+
+	public LocalDate getFechaNacimiento() {
+		return fechaNacimiento;
+	}
+
+	public void setFechaNacimiento(LocalDate fechaNacimiento) {
+		this.fechaNacimiento = fechaNacimiento;
+	}
+
+	public Double getPeso() {
+		return peso;
+	}
+
+	public void setPeso(Double peso) {
+		this.peso = peso;
+	}
+
+	public Double getEstatura() {
+		return estatura;
+	}
+
+	public void setEstatura(Double estatura) {
+		this.estatura = estatura;
+	}
+
+	public GustosSobreAlimentos getPreferenciaAlimenticia() {
+		return preferenciaAlimenticia;
+	}
+
+	public void setPreferenciaAlimenticia(
+			GustosSobreAlimentos preferenciaAlimenticia) {
+		this.preferenciaAlimenticia = preferenciaAlimenticia;
+	}
+
+	public List<CondicionPreexistenteI> getCondicionesPreexistentes() {
+		return condicionesPreexistentes;
+	}
+
+	public void setCondicionesPreexistentes(
+			List<CondicionPreexistenteI> condicionesPreexistentes) {
+		this.condicionesPreexistentes = condicionesPreexistentes;
+	}
+
+	public List<Receta> getMisRecetas() {
+		return misRecetas;
+	}
+
+	public void setMisRecetas(List<Receta> misRecetas) {
+		this.misRecetas = misRecetas;
+	}
+
+
+	
+	
+	
+
+	public Double indiceMasaCorporal() {
+		return this.peso / (this.estatura * this.estatura);
+	}
+
+	public boolean sigueRutinaSaludable() {
+		if (this.condicionesPreexistentes.isEmpty())
+		//if (this.condicionesPreexistentes.stream().count() == 0)
+			return (this.indiceMasaCorporal() >= 18 && this
+					.indiceMasaCorporal() <= 30);
+
+		else {
+
+			return this.condicionesPreexistentes.stream().allMatch(condicion -> condicion.subSanaCondicion(this));
+		}
+	}
+
+	public boolean validar() {
+		return this.tieneCamposObligatorios(this) && this.nombre.length() > 4
+				&& this.fechaNacimiento.isBefore(LocalDate.now())
+				&& this.validaCondicionesPreexistentes(this);
+
+	}
+
+	private boolean tieneCamposObligatorios(Usuario usr) {
+
+		return usr.nombre != null && usr.rutina != null && usr.peso != null
+				&& usr.estatura != null && usr.fechaNacimiento != null;
+
+	}
+
+	public boolean validaCondicionesPreexistentes(Usuario usr) {
+		if (usr.condicionesPreexistentes.isEmpty())
+			return true;
+		else
+			return usr.condicionesPreexistentes.stream().allMatch(condicion -> condicion.subSanaCondicion(usr));
+			
+	}
+	
+
+	
+
+	public void agregarReceta(Receta receta) {
+
+		if (receta.validar()) {
+			misRecetas.add(receta);
+
+		}
+
+	}
+
+	public void modificarUnaReceta(Receta recetaModificada) {
+
+		misRecetas.removeIf(receta -> receta.equals(recetaModificada));
+		this.agregarReceta(recetaModificada);
+
+	}
+	
+	public void modificaUnaRecetaPublica(String nombre, String nuevoNombre,Double calorias, Preparacion preparacion,List<Receta>subRecetas,String dificultad){
+		Receta recetaModificada= Recetario.modificarRecetaPublica( nombre,  nuevoNombre, calorias, preparacion,subRecetas, dificultad);
+		this.agregarReceta(recetaModificada);
+		
+	}
+
+	public boolean puedeVer(Receta receta) {
+		return esAdecuadaLaReceta(receta) && 
+				(misRecetas.contains(receta) || Recetario.recetas.contains(receta));
+
+	}
+
+
+
+	public boolean esAdecuadaLaReceta(Receta receta){
+		return this.condicionesPreexistentes.stream().allMatch(condicion -> condicion.esAptaReceta(receta))
+				&& !this.preferenciaAlimenticia.getComidasQueDisgusta().stream().anyMatch(comida -> receta.contiene(comida));		
+	
+	}
+	
+	
+	public void marcarComoFavorita(Receta receta)
+	{
+		this.favoritas.add(receta);
+		
+	}
+
+	public boolean leGusta(Receta receta) {
+		// Falta implementar ya que no especifia bajo que criterio
+		return true;
+	}
+
+	public Integer getUsuarioID() {
+		return usuarioID;
+	}
+
+	public void setUsuarioID(Integer usuarioID) {
+		this.usuarioID = usuarioID;
+	}
+
+	
+
+	
+}

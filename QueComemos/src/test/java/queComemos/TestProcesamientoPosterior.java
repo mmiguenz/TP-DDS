@@ -1,6 +1,9 @@
 package queComemos;
 
 import static org.junit.Assert.*;
+import interfaces.CondicionPreexistenteI;
+import interfaces.FiltroI;
+import interfaces.ProcesamientoI;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -9,9 +12,14 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
-import ar.edu.utn.frba.dds.tpAnual.queComemos.GustosSobreAlimentos;
-import ar.edu.utn.frba.dds.tpAnual.queComemos.recetas.Recetario;
 import procesamientos.TomarDiezPrimeros;
+import receta.Ingrediente;
+import receta.Preparacion;
+import receta.Receta;
+import repositorios.Consulta;
+import repositorios.Recetario;
+import usuario.GustosSobreAlimentos;
+import usuario.Usuario;
 import condicionesPreexistentes.Celiaco;
 import condicionesPreexistentes.Diabetico;
 import condicionesPreexistentes.Hipertenso;
@@ -21,22 +29,25 @@ import filtros.FiltroPreparacionCara;
 
 public class TestProcesamientoPosterior {
 	
-	private	GustosSobreAlimentos preferenciaAlimenticia; 
-	private List<String> comidasProhibidas;
-	private List<CondicionPreexistenteI> condiciones; 
-	private Celiaco celiaco;
-	private Hipertenso hipertenso;
-	private Vegano vegano;
-	private Diabetico diabetico;
+
 	private  List<FiltroI> filtros; 
 	private Receta receta;
+	private Usuario usr;
 	
 	
 
 	@Before
 	public void setUp() throws Exception {
 		
-	
+		GustosSobreAlimentos preferenciaAlimenticia; 
+		 List<String> comidasProhibidas;
+		 List<CondicionPreexistenteI> condiciones; 
+		 Celiaco celiaco;
+		 Hipertenso hipertenso;
+		 Vegano vegano;
+		 Diabetico diabetico;
+		
+		
 		// Preferencia Alimenticia
 		
 		List<String> comidasQueGusta = new ArrayList<String>();
@@ -46,7 +57,7 @@ public class TestProcesamientoPosterior {
 		comidasQueDisgusta.add("tomate");
 		comidasQueDisgusta.add("pescado");
 				
-		GustosSobreAlimentos preferenciaAlimenticia = new GustosSobreAlimentos(comidasQueGusta,comidasQueDisgusta);
+		 preferenciaAlimenticia = new GustosSobreAlimentos(comidasQueGusta,comidasQueDisgusta);
 		
 		
 		// Condiciones Preexistentes
@@ -129,9 +140,12 @@ public class TestProcesamientoPosterior {
 			filtros.add(filtroPreparacionCara);
 			filtros.add(filtroPorGusto);
 			
+			condiciones.add(hipertenso);
+			condiciones.add(celiaco);
+			
 		 
 		 
-
+			 usr = new Usuario(2,"Juan","Masculino",LocalDate.parse("1994-08-05"),90.0,175.0,"Leve",preferenciaAlimenticia,condiciones,new ArrayList<Receta>());
 		
 		
 	}
@@ -141,17 +155,16 @@ public class TestProcesamientoPosterior {
 		
 			
 	
-		condiciones.add(hipertenso);
-		condiciones.add(celiaco);
-		
-		
-		Usuario usr = new Usuario(1,"Juan","Masculino",LocalDate.parse("1994-08-05"),90.0,175.0,"Leve",preferenciaAlimenticia,condiciones,new ArrayList<Receta>());					
+							
 		
 		ProcesamientoI procesamiento = new TomarDiezPrimeros();
 		
-		List<Receta> resultadoConsulta =Recetario.consultarRecetas(usr, filtros,procesamiento);
+		Consulta consultaRecetas = new Consulta(usr);
+		consultaRecetas.establecerProcesamientoPosterior(procesamiento);
+		consultaRecetas.consultarRecetas();
 		
-		assertTrue(resultadoConsulta.size() <= 10);
+		
+		assertTrue(consultaRecetas.cantidadRecetasResultado() <= 10);
 		
 		
 	}
@@ -160,17 +173,15 @@ public class TestProcesamientoPosterior {
 	public void testProcesamientoPosteriorDevuelveSiEsPar() {
 		
 	
-		condiciones.add(hipertenso);
-		condiciones.add(celiaco);
-		
-		
-		Usuario usr = new Usuario(2,"Juan","Masculino",LocalDate.parse("1994-08-05"),90.0,175.0,"Leve",preferenciaAlimenticia,condiciones,new ArrayList<Receta>());
-	
 		ProcesamientoI procesamiento = new TomarDiezPrimeros();
 		
-		List<Receta> resultadoConsulta =Recetario.consultarRecetas(usr, filtros,procesamiento);
+		Consulta consultaRecetas = new Consulta(usr);
+		consultaRecetas.establecerProcesamientoPosterior(procesamiento);
+		consultaRecetas.consultarRecetas();
 		
-		assertFalse(resultadoConsulta.size() / 2 == 0);
+		
+		assertTrue(consultaRecetas.cantidadRecetasResultado() % 2  == 0);
+		
 		
 	}
 

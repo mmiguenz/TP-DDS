@@ -1,12 +1,13 @@
 package filtros;
 
+import interfaces.FiltroI;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import queComemos.FiltroI;
-import queComemos.Receta;
-import queComemos.Usuario;
+import receta.Receta;
+import usuario.Usuario;
 
 public class FiltroPreparacionCara implements FiltroI {
 

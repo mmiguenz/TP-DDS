@@ -1,6 +1,9 @@
 package queComemos;
 
 import static org.junit.Assert.*;
+import interfaces.CondicionPreexistenteI;
+import interfaces.FiltroI;
+import interfaces.ProcesamientoI;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -12,7 +15,10 @@ import org.junit.Test;
 import filtros.FiltroGustoDeUsuario;
 import filtros.FiltroPreparacionCara;
 import procesamientos.TomarDiezPrimeros;
-import builder.UsuarioBuilder;
+import receta.Receta;
+import repositorios.Consulta;
+import usuario.Usuario;
+
 
 public class TestConsulta {
 	

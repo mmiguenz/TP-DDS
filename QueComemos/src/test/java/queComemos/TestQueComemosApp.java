@@ -1,13 +1,14 @@
 package queComemos;
 
 import static org.junit.Assert.*;
+import interfaces.CondicionPreexistenteI;
 
 import java.util.ArrayList;
 
 import org.junit.Before;
 import org.junit.Test;
 
-import ar.edu.utn.frba.dds.tpAnual.queComemos.recetas.Recetario;
+import repositorios.Recetario;
 
 public class TestQueComemosApp {
 

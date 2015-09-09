@@ -1,6 +1,7 @@
 package queComemos;
 
 import static org.junit.Assert.*;
+import interfaces.CondicionPreexistenteI;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -9,15 +10,14 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
-import ar.edu.utn.frba.dds.tpAnual.queComemos.recetas.Recetario;
 import condicionesPreexistentes.Celiaco;
 import condicionesPreexistentes.Diabetico;
 import condicionesPreexistentes.Hipertenso;
 import condicionesPreexistentes.Vegano;
-import observadores.ObserverVegetariano;
-import observadores.ObserverVecesConsultada;
-import observadores.ObserverPorSexo;
-import observadores.ObserverPorHora;
+import receta.Ingrediente;
+import receta.Preparacion;
+import receta.Receta;
+import repositorios.Recetario;
 
 public class TestReceta {
 	

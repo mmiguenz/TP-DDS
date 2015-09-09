@@ -9,6 +9,10 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
+import repositorios.Consulta;
+import usuario.Grupo;
+import usuario.Usuario;
+
 public class TestGrupo {
 	
 	private Grupo grupo;
@@ -74,5 +78,8 @@ public class TestGrupo {
 		assertFalse(grupo.getUsuarios().stream().anyMatch(usr->usr.getNombre().equals("Pepo")));
 	}
 	
+	
+	
+			
 
 }
