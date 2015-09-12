@@ -235,6 +235,82 @@ public class TestReceta {
 		
 	}
 	
+	@Test
+	public void testRecetaConSubRecetasContieneAlgunaComidaDeUnaLista()
+	{
+		
+		List<Receta>subRecetasTest = new ArrayList<>();
+		Receta subreceta = new Receta("pollo con papas",100.0,preparacion,dificultad,temporada,subRecetas,inadecuados);
+		subRecetasTest.add(subreceta);
+				
+		Receta receta = new Receta("CarneAlHorno",1524.0,preparacion,dificultad,temporada,subRecetasTest,inadecuados);
+		
+		
+		
+		List<String> conjuntoDeComidas = new ArrayList<String>();
+		
+		conjuntoDeComidas.add("Miel");
+		conjuntoDeComidas.add("Carne");
+		conjuntoDeComidas.add("Pollo");
+		
+		
+		assertTrue(receta.contieneAlguna(conjuntoDeComidas));
+		
+			
+	}
+		
+	
+	@Test
+	public void testRecetaConSubRecetasNoContieneAlgunaComidaDeUnaLista()
+	{
+		List<Receta>subRecetasTest = new ArrayList<>();
+		Receta subreceta = new Receta("pollo con papas",100.0,preparacion,dificultad,temporada,subRecetas,inadecuados);
+		subRecetasTest.add(subreceta);
+				
+		Receta receta = new Receta("CarneAlHorno",1524.0,preparacion,dificultad,temporada,subRecetasTest,inadecuados);
+		
+		List<String> conjuntoDeComidas = new ArrayList<String>();
+		
+		conjuntoDeComidas.add("Miel");
+		conjuntoDeComidas.add("Pescado");
+		conjuntoDeComidas.add("Pollo");
+		
+		
+		assertFalse(receta.contieneAlguna(conjuntoDeComidas));
+		
+			
+		
+	}
+	
+	
+	
+	
+	@Test 
+	public void testValidaReceta()
+	{
+		Receta receta = new Receta("CarneAlHorno",1524.0,preparacion,dificultad,temporada,subRecetas,inadecuados);
+				
+		assertTrue(receta.validar());
+		
+		
+	}
+	
+	
+	@Test 
+	public void testNoalidaReceta()
+	{
+		Receta receta = new Receta("CarneAlHorno",0.0,preparacion,dificultad,temporada,subRecetas,inadecuados);
+				
+		assertFalse(receta.validar());
+		
+		
+	}
+	
+	
+	
+	
+	
+	
 	
 
 	
