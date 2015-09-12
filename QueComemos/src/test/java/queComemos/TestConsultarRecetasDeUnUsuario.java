@@ -41,6 +41,7 @@ public class TestConsultarRecetasDeUnUsuario {
 	private FiltroParaUsuariosConSobrepeso filtroSobrePeso;
 	private FiltroRechazaTodo filtroRechazaTodo;
 	private Usuario usr;
+	private Usuario usrObeso;
 	
 	
 
@@ -122,7 +123,8 @@ public class TestConsultarRecetasDeUnUsuario {
     		condiciones.add(celiaco);
     		
     		
-    		 usr = new Usuario(3,"Juan","Masculino",LocalDate.parse("1994-08-05"),90.0,175.0,"Leve",preferenciaAlimenticia,condiciones,new ArrayList<Receta>());
+    		 usr = new Usuario(3,"Juan","Masculino",LocalDate.parse("1994-08-05"),1.0,175.0,"Leve",preferenciaAlimenticia,condiciones,new ArrayList<Receta>());
+    		 usrObeso = new Usuario(3,"Juan","Masculino",LocalDate.parse("1994-08-05"),10000.0,1.0,"Leve",preferenciaAlimenticia,condiciones,new ArrayList<Receta>());
 			
 	
 		 
@@ -172,6 +174,25 @@ public class TestConsultarRecetasDeUnUsuario {
 		
 		
 		
+	}
+	
+	
+	@Test
+	public void testConsultaSobreRecetasVisiblesDeUsuarioConSobrePeso() {
+			
+		
+
+		Consulta consultaRecetas = new Consulta(usrObeso);
+		consultaRecetas.agregarFiltro(filtroSobrePeso);
+		consultaRecetas.consultarRecetas();
+		
+	
+		
+		assertFalse(consultaRecetas.obtenerResultadoConsulta().contains(receta));
+		
+		
+		
+
 	}
 	
 

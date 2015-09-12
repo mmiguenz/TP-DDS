@@ -28,6 +28,11 @@ public class Recetario {
 	{
 
 		Receta recetaPublica = buscarRecetaPorNombre(nombre);
+		
+		if (recetaPublica != null )
+		{
+			
+		
 		Receta recetaAModificar = clonarReceta(recetaPublica);
 		if (nuevoNombre !=null)
 			recetaAModificar.setNombre(nuevoNombre);
@@ -40,11 +45,12 @@ public class Recetario {
 		if (dificultad != null )
 			recetaAModificar.setDificultad(dificultad);
 
-
-
 		recetaAModificar.calcularInadecuados() ; 
 
 		return recetaAModificar;
+		}
+		
+		return null;
 
 	}
 

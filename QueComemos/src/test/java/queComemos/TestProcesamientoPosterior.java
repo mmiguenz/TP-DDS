@@ -12,6 +12,7 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
+import procesamientos.ConsiderarSiEsPar;
 import procesamientos.TomarDiezPrimeros;
 import receta.Ingrediente;
 import receta.Preparacion;
@@ -173,14 +174,19 @@ public class TestProcesamientoPosterior {
 	public void testProcesamientoPosteriorDevuelveSiEsPar() {
 		
 	
-		ProcesamientoI procesamiento = new TomarDiezPrimeros();
+		ProcesamientoI procesamiento = new ConsiderarSiEsPar();
+		
+		
 		
 		Consulta consultaRecetas = new Consulta(usr);
 		consultaRecetas.establecerProcesamientoPosterior(procesamiento);
 		consultaRecetas.consultarRecetas();
 		
 		
-		assertTrue(consultaRecetas.cantidadRecetasResultado() % 2  == 0);
+						
+								
+		
+	assertTrue(consultaRecetas.cantidadRecetasResultado()  == 7);		
 		
 		
 	}
