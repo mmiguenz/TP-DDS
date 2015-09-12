@@ -72,11 +72,6 @@ public class Preparacion {
 	}
 	
 	
-	public boolean leGusta(List<String> cosasQueLeGustan){
-		
-		return (cosasQueLeGustan.stream().anyMatch(cosas->this.contiene(cosas)));
-	}
-	
 	
 	public Ingrediente buscaIngrediente(String ingre)
 	{
