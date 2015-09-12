@@ -107,7 +107,7 @@ public class TestProcesamientoPosterior {
 		 Preparacion    preparacion = new Preparacion(ingredientes,condimentos,instrucciones);
 
 			
-			
+			Recetario.recetas = new ArrayList<Receta>();
 			 receta = new Receta("CarneAlHorno",1524.0,preparacion,"baja","verano",subRecetas,condiciones);
 			Recetario.recetas.add(receta);
 		 
