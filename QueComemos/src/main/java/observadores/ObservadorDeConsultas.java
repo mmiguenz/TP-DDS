@@ -6,7 +6,7 @@ import repositorios.Consulta;
 import repositorios.Recetario;
 import interfaces.ObservadorI;
 
-public class ObservadorDeConsultasPorHora implements ObservadorI {
+public class ObservadorDeConsultas implements ObservadorI {
 
 	@Override
 	public void notificar(Consulta unaConsulta) {

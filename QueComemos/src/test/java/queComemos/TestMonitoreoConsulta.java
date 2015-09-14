@@ -9,7 +9,7 @@ import java.util.List;
 
 import interfaces.CondicionPreexistenteI;
 import interfaces.ObservadorI;
-import observadores.ObservadorDeConsultasPorHora;
+import observadores.ObservadorDeConsultas;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -68,8 +68,8 @@ public class TestMonitoreoConsulta {
 	public void testMonitorearRecetasPorHora() {
 			
 
-		 ObservadorI monitorHoraConsulta = new ObservadorDeConsultasPorHora();
-		 Recetario.observadores.add(monitorHoraConsulta);
+		 ObservadorI monitorConsulta = new ObservadorDeConsultas();
+		 Recetario.observadores.add(monitorConsulta);
 		 
 		 
 		 Consulta consulta  = new Consulta(usr);
@@ -88,5 +88,32 @@ public class TestMonitoreoConsulta {
 		
 		
 	}
+	
+	@Test
+	public void testMonitorearRecetasRecetaMasConsultada() {
+		
+
+		 ObservadorI monitorHoraConsulta = new ObservadorDeConsultas();
+		 Recetario.observadores.add(monitorHoraConsulta);
+		 
+		 
+		 Consulta consulta  = new Consulta(usr);
+		 
+		 consulta.consultarRecetas();
+		 
+	 
+		 Receta  recetaMasConsultada = Recetario.obtenerRecetaMasConsultada();
+		 
+		
+		 assertTrue(recetaMasConsultada.getNombre().equals("ensalada caesar"));
+		
+		
+		
+	}
+	
+	
+	
+	
+	
 
 }
