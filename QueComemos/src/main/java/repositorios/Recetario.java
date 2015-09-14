@@ -2,8 +2,11 @@ package repositorios;
 
 import interfaces.CondicionPreexistenteI;
 import interfaces.FiltroI;
+import interfaces.ObservadorI;
 import interfaces.ProcesamientoI;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
@@ -18,8 +21,10 @@ import usuario.Usuario;
 
 public class Recetario {
 
-	public static List<Receta> recetas = new ArrayList<Receta>();
-	public static List<CondicionPreexistenteI> inadecuados = new ArrayList<CondicionPreexistenteI>();
+	public static List<Receta> recetas;
+	public static List<CondicionPreexistenteI> inadecuados ;
+	public static List<ObservadorI>observadores;
+	public static List<Consulta> consultas;
 	
 	
 
@@ -93,6 +98,21 @@ public class Recetario {
 		  return listaRecetas;
 
 	  }
+
+	public static Long obtenerCantidadDeRecetasConsultadas(LocalDateTime horaConsultaDesde, LocalDateTime horaConsultaHasta) {
+		
+				
+		return   consultas.stream()
+				.filter(unaConsulta -> unaConsulta.estaEnRangoHorario(horaConsultaDesde,horaConsultaHasta))
+				.mapToLong(consulta -> consulta.cantidadRecetasResultado())
+				.sum();
+				
+				
+	}
 	  
+	  
+	  
+
+
 	  
 }

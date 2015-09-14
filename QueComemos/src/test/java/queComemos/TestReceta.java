@@ -2,6 +2,7 @@ package queComemos;
 
 import static org.junit.Assert.*;
 import interfaces.CondicionPreexistenteI;
+import interfaces.ObservadorI;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -31,6 +32,10 @@ public class TestReceta {
 
 	@Before
 	public void setUp() throws Exception {
+		
+		Recetario.inadecuados= new ArrayList<CondicionPreexistenteI>();
+		Recetario.recetas = new ArrayList<Receta>();
+		Recetario.observadores = new ArrayList<ObservadorI>();
 	
 	List<String>	instrucciones = new ArrayList<String>();
 	List<Ingrediente> ingredientes = new ArrayList<Ingrediente>();

@@ -3,6 +3,7 @@ package repositorios;
 import interfaces.FiltroI;
 import interfaces.ProcesamientoI;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,10 +17,7 @@ public class Consulta {
 	private ProcesamientoI procesamientoPosterior;
 	private Usuario usr ;
 	private List<Receta> resultadoConsulta;
-	
-
-	
-	
+	private LocalDateTime horaConsulta;
 	
 
 
@@ -60,6 +58,9 @@ public class Consulta {
 			resultadoConsulta = procesamientoPosterior.procesar(resultadoConsulta) ;
 		
 		
+		this.setHoraConsulta(LocalDateTime.now());
+		Recetario.observadores.forEach(obervador -> obervador.notificar(this));
+				
 		 
 		
 	}
@@ -91,9 +92,27 @@ public class Consulta {
 	}
 
 
-	public Integer cantidadRecetasResultado() {
+	public Long cantidadRecetasResultado() {
 		
-	 return  this.resultadoConsulta.size();
+	 return  this.resultadoConsulta.stream().count();
+	}
+
+
+	public LocalDateTime getHoraConsulta() {
+		return horaConsulta;
+	}
+
+
+	public void setHoraConsulta(LocalDateTime horaConsulta) {
+		this.horaConsulta = horaConsulta;
+	}
+
+
+	public boolean estaEnRangoHorario(LocalDateTime horaConsultaDesde,LocalDateTime horaConsultaHasta) {
+	
+		return (horaConsulta.isAfter(horaConsultaDesde) && horaConsulta.isBefore(horaConsultaHasta)) 
+				|| (horaConsulta.getHour() == horaConsultaDesde.getHour());
+		
 	}
 
 

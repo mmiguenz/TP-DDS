@@ -3,6 +3,7 @@ package queComemos;
 import static org.junit.Assert.*;
 import interfaces.CondicionPreexistenteI;
 import interfaces.CriterioOrdenamientoI;
+import interfaces.ObservadorI;
 import interfaces.ProcesamientoI;
 
 import java.time.LocalDate;
@@ -19,6 +20,7 @@ import procesamientos.OrdenarPorNombre;
 import receta.Ingrediente;
 import receta.Preparacion;
 import receta.Receta;
+import repositorios.Recetario;
 import usuario.GustosSobreAlimentos;
 import condicionesPreexistentes.Celiaco;
 import condicionesPreexistentes.Diabetico;
@@ -31,6 +33,11 @@ public class TestOrdenamiento {
 
 	@Before
 	public void setUp() throws Exception {
+		
+		Recetario.inadecuados= new ArrayList<CondicionPreexistenteI>();
+		Recetario.recetas = new ArrayList<Receta>();
+		Recetario.observadores = new ArrayList<ObservadorI>();
+		
 		
 		recetas = new ArrayList<Receta>();
 		
