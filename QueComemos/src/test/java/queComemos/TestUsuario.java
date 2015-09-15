@@ -26,6 +26,7 @@ public class TestUsuario {
 
 	private Usuario usuario;
 	private Receta receta;
+	private Receta recetaModificada;
 	private Preparacion preparacion;
 	private GustosSobreAlimentos preferenciaAlimenticiaSaludable;
 	private GustosSobreAlimentos preferenciaAlimenticiaNoSaludable;
@@ -102,6 +103,8 @@ public class TestUsuario {
 			 String temporada= "Verano";
 			 
 			  receta = new Receta("PolloConPapas", 50.0,preparacion,dificultad,temporada,subRecetas,inadecuados);
+			  recetaModificada = new Receta("PolloConPapasAlHorno", 50.0,preparacion,dificultad,temporada,subRecetas,inadecuados);
+			  
 
 	}
 	
@@ -184,6 +187,20 @@ public class TestUsuario {
 		assertTrue(usuario.sigueRutinaSaludable());
 
 	}
+	
+	
+	@Test
+	public void testUsuarioQueSigueRutinaSaludableSinCondicionesPreexistentes() {
+
+		List<CondicionPreexistenteI> condiciones = new ArrayList<CondicionPreexistenteI>();
+				usuario = new Usuario(9,"Alejandro", "Masculino",
+				LocalDate.parse("1994-10-05"), 69.0, 1.82, "Activa",
+				preferenciaAlimenticiaSaludable, condiciones, null);
+		assertTrue(usuario.sigueRutinaSaludable());
+
+	}
+	
+
 	
 
 	@Test
@@ -353,6 +370,44 @@ public class TestUsuario {
 			
 			assertTrue(usr.getFavoritas().contains(receta));
 		}
+		
+		
+		@Test
+		public void testValidarUsuario()
+		
+		{
+					
+			
+			Usuario usr = new Usuario (3,"juancito","masculino",LocalDate.parse("2014-01-01"), 60.0, 1.7, "Leve",
+						preferenciaAlimenticiaNoSaludable,new ArrayList<CondicionPreexistenteI>(),new ArrayList<Receta>());
+					
+				
+			
+			assertTrue(usr.validar());
+		
+		}
+		
+		
+		
+		@Test
+		public void testEsAdecuadaRecetaParaUsuario()
+		
+		{
+					
+			
+			Usuario usr = new Usuario (3,"juancito","masculino",LocalDate.parse("2014-01-01"), 60.0, 1.7, "Leve",
+						preferenciaAlimenticiaNoSaludable,new ArrayList<CondicionPreexistenteI>(),new ArrayList<Receta>());
+					
+			
+			
+				
+			
+			assertTrue(usr.esAdecuadaLaReceta(receta));
+		
+		}
+		
+
+		
 		
 
 }

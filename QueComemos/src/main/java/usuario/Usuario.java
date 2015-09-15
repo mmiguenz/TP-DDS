@@ -190,12 +190,8 @@ public class Usuario {
 
 	}
 
-	public void modificarUnaReceta(Receta recetaModificada) {
 
-		misRecetas.removeIf(receta -> receta.equals(recetaModificada));
-		this.agregarReceta(recetaModificada);
 
-	}
 	
 	public void modificaUnaRecetaPublica(String nombre, String nuevoNombre,Double calorias, Preparacion preparacion,List<Receta>subRecetas,String dificultad){
 		Receta recetaModificada= Recetario.modificarRecetaPublica( nombre,  nuevoNombre, calorias, preparacion,subRecetas, dificultad);

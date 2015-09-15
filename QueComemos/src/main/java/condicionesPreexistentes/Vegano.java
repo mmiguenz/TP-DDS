@@ -41,15 +41,11 @@ public class Vegano implements CondicionPreexistenteI {
 	@Override
 	public boolean subSanaCondicion(Usuario usuario) {
 		return usuario.getPreferenciaAlimenticia().getComidasQueGusta()
-				.stream().filter(unaComida -> unaComida == "frutas").count() > 0;
+				.stream().filter(unaComida -> unaComida.equals("frutas")).count() > 0;
 
 	}
 
-	public boolean subSanaCondicionBuilder(String rutina, Double peso, List<String> comidas){
-		return (comidas.stream().anyMatch(c->c.equals("frutas")));
-	}
 
-	
 	@Override
 	public boolean esAptaReceta(Receta receta){
 		return !( comidasProhibidas.stream().anyMatch(comida -> receta.contiene(comida)));
