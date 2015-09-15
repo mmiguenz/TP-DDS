@@ -10,6 +10,7 @@ import java.util.List;
 import interfaces.CondicionPreexistenteI;
 import interfaces.ObservadorI;
 import observadores.ObservadorDeConsultas;
+import observadores.ObservadorVeganoConsultaRecetaDificil;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -26,7 +27,8 @@ import usuario.Usuario;
 
 public class TestMonitoreoConsulta {
 	
-	private Usuario usr;
+	private Usuario usrHombre;
+	private Usuario usrMujer;
 	
 
 	@Before
@@ -36,6 +38,7 @@ public class TestMonitoreoConsulta {
 	Recetario.inadecuados =new ArrayList<CondicionPreexistenteI>();
 	Recetario.recetas= new ArrayList<Receta>();
 	Recetario.consultas = new ArrayList<Consulta>();
+	Recetario.veganosConsultandoRecetasDificiles = new ArrayList<Usuario>();
 	
 	
 	
@@ -59,7 +62,8 @@ public class TestMonitoreoConsulta {
 		condiciones.add(hipertenso);
 	 
 	 
-	  usr = new Usuario(1,"martin", "", LocalDate.parse("1994-05-06"), 10.0, 20.5, "Intensa", preferencia, condiciones, new ArrayList<Receta>());
+	  usrHombre = new Usuario(1,"martin", "masculino", LocalDate.parse("1994-05-06"), 10.0, 20.5, "Intensa", preferencia, condiciones, new ArrayList<Receta>());
+	  usrMujer = new Usuario(1,"Juana", "femenino", LocalDate.parse("1994-05-06"), 10.0, 20.5, "Intensa", preferencia, condiciones, new ArrayList<Receta>());
 	 	 	
 		
 	}
@@ -72,7 +76,7 @@ public class TestMonitoreoConsulta {
 		 Recetario.observadores.add(monitorConsulta);
 		 
 		 
-		 Consulta consulta  = new Consulta(usr);
+		 Consulta consulta  = new Consulta(usrHombre);
 		 
 		 consulta.consultarRecetas();
 		 
@@ -97,7 +101,7 @@ public class TestMonitoreoConsulta {
 		 Recetario.observadores.add(monitorHoraConsulta);
 		 
 		 
-		 Consulta consulta  = new Consulta(usr);
+		 Consulta consulta  = new Consulta(usrHombre);
 		 
 		 consulta.consultarRecetas();
 		 
@@ -110,6 +114,82 @@ public class TestMonitoreoConsulta {
 		
 		
 	}
+	
+	@Test
+	public void testMonitorearRecetasRecetaMasConsultadaPorHombres() {
+		
+
+		 ObservadorI monitorHoraConsulta = new ObservadorDeConsultas();
+		 Recetario.observadores.add(monitorHoraConsulta);
+		 
+		 
+		 Consulta consulta  = new Consulta(usrHombre);
+		 
+		 consulta.consultarRecetas();
+		 
+	 
+		 Receta  recetaMasConsultada = Recetario.obtenerRecetaMasConsultadaPorHombres();
+		 
+		
+		 assertTrue(recetaMasConsultada.getNombre().equals("ensalada caesar"));
+		
+		
+		
+	}
+	
+	
+	@Test
+	public void testMonitorearRecetasRecetaMasConsultadaPorMujeres() {
+		
+
+		 ObservadorI monitorHoraConsulta = new ObservadorDeConsultas();
+		 Recetario.observadores.add(monitorHoraConsulta);
+		 
+		 
+		 Consulta consulta  = new Consulta(usrMujer);
+		 
+		 consulta.consultarRecetas();
+		 
+	 
+		 Receta  recetaMasConsultada = Recetario.obtenerRecetaMasConsultadaPorMujeres();
+		 
+		
+		 assertTrue(recetaMasConsultada.getNombre().equals("ensalada caesar"));
+		
+		
+		
+	}
+	
+	
+	
+	@Test
+	public void testMonitorearRecetasDificilesConsultadasPorVeganos() {
+		
+
+		 ObservadorI monitorHoraConsulta = new ObservadorDeConsultas();
+		 ObservadorI monitorVeganoConsultadoDificil = new ObservadorVeganoConsultaRecetaDificil();
+		 
+		 Recetario.observadores.add(monitorHoraConsulta);
+		 Recetario.observadores.add(monitorVeganoConsultadoDificil);
+		 
+		 
+		 Consulta consulta  = new Consulta(usrHombre);
+		 
+		 consulta.consultarRecetas();
+		 
+	 
+		 List<Usuario>  veganosConsultadoDificiles = Recetario.veganosConsultandoRecetasDificiles;
+		 
+		
+		 assertTrue(veganosConsultadoDificiles.size() >=1);
+		
+		
+		
+	}
+	
+	
+	
+	
 	
 	
 	

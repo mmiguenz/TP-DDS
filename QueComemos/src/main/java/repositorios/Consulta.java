@@ -7,6 +7,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import condicionesPreexistentes.Vegano;
 import receta.Receta;
 import usuario.Usuario;
 
@@ -113,6 +114,13 @@ public class Consulta {
 		return (horaConsulta.isAfter(horaConsultaDesde) && horaConsulta.isBefore(horaConsultaHasta)) 
 				|| (horaConsulta.getHour() == horaConsultaDesde.getHour());
 		
+	}
+
+
+	public boolean esVeganoConsultandoDificil() {
+		
+		return (usr.getCondicionesPreexistentes().stream().anyMatch(condicion -> condicion.getClass().equals(Vegano.class)))
+				&& this.resultadoConsulta.stream().anyMatch(receta -> receta.getDificultad().toLowerCase().equals("dificil"));
 	}
 
 

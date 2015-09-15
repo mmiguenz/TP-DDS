@@ -28,9 +28,8 @@ public class Recetario {
 	public static List<CondicionPreexistenteI> inadecuados ;
 	public static List<ObservadorI>observadores;
 	public static List<Consulta> consultas;
+	public static List<Usuario> veganosConsultandoRecetasDificiles;
 	
-	
-
 	
 	public static Receta modificarRecetaPublica (String nombre, String nuevoNombre,Double calorias, Preparacion preparacion,List<Receta>subRecetas,String dificultad)
 	{
@@ -131,6 +130,51 @@ public class Recetario {
 		return null;
 		
 	}
+
+	public static Receta obtenerRecetaMasConsultadaPorHombres() {
+		 
+		 List<Receta> recetasConsultadas = new ArrayList<>();
+		 consultas.stream()
+		 		  .filter(consulta -> consulta.getUsr().getSexo().equals("masculino"))
+		 		  .forEach(consulta ->recetasConsultadas.addAll(consulta.obtenerResultadoConsulta()));
+		 
+						 
+		 Comparator<Receta> comparaRecetas =   (unareceta , otraReceta)  -> Long.compare(Collections.frequency(recetasConsultadas,unareceta ), Collections.frequency(recetasConsultadas,otraReceta )) ;
+		 
+		 Optional<Receta> recetaMasConsultada = recetasConsultadas.stream().max(comparaRecetas);
+		 
+		 if(recetaMasConsultada.isPresent())
+			 return  recetaMasConsultada.get();
+		
+		 
+		return null;
+		
+	}
+	
+	public static Receta obtenerRecetaMasConsultadaPorMujeres() {
+		 
+		 List<Receta> recetasConsultadas = new ArrayList<>();
+		 consultas.stream()
+		 		  .filter(consulta -> consulta.getUsr().getSexo().equals("femenino"))
+		 		  .forEach(consulta ->recetasConsultadas.addAll(consulta.obtenerResultadoConsulta()));
+		 
+						 
+		 Comparator<Receta> comparaRecetas =   (unareceta , otraReceta)  -> Long.compare(Collections.frequency(recetasConsultadas,unareceta ), Collections.frequency(recetasConsultadas,otraReceta )) ;
+		 
+		 Optional<Receta> recetaMasConsultada = recetasConsultadas.stream().max(comparaRecetas);
+		 
+		 if(recetaMasConsultada.isPresent())
+			 return  recetaMasConsultada.get();
+		
+		 
+		return null;
+		
+	}
+	
+	
+
+	  
+	
 	  
 	  
 	  
