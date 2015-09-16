@@ -15,6 +15,8 @@ import observadores.ObservadorVeganoConsultaRecetaDificil;
 import org.junit.Before;
 import org.junit.Test;
 
+import builderUsuario.UsuarioBuilder;
+import builderUsuario.UsuarioMasGenerico;
 import condicionesPreexistentes.Celiaco;
 import condicionesPreexistentes.Diabetico;
 import condicionesPreexistentes.Hipertenso;
@@ -53,17 +55,45 @@ public class TestMonitoreoConsulta {
 	 Recetario.inadecuados.add(vegano);
 	 Recetario.inadecuados.add(diabetico);
 	 
-	 
-	 GustosSobreAlimentos preferencia = new GustosSobreAlimentos(new ArrayList<String>(),new ArrayList<String>());
-	 
+	 	 	 
 	 List<CondicionPreexistenteI> condiciones = new ArrayList<>();
 	 
 		condiciones.add(vegano);
 		condiciones.add(hipertenso);
 	 
 	 
-	  usrHombre = new Usuario(1,"martin", "masculino", LocalDate.parse("1994-05-06"), 10.0, 20.5, "Intensa", preferencia, condiciones, new ArrayList<Receta>());
-	  usrMujer = new Usuario(1,"Juana", "femenino", LocalDate.parse("1994-05-06"), 10.0, 20.5, "Intensa", preferencia, condiciones, new ArrayList<Receta>());
+		UsuarioBuilder constructorUsuario = new UsuarioSinValidacion();
+		constructorUsuario.establecerNombre("martin");
+		constructorUsuario.establecerSexo("masculino");
+		constructorUsuario.establecerFechaNacimiento(LocalDate.parse("1994-05-06"));
+		constructorUsuario.establecerRutina("Intensa");
+		constructorUsuario.esVegano();
+		constructorUsuario.esHipertenso();
+		constructorUsuario.establecerEstatura(1.75);
+		constructorUsuario.establecerPeso(60.0);
+		
+		UsuarioBuilder constructorUsuarioMujer = new UsuarioSinValidacion();
+		constructorUsuarioMujer.establecerNombre("martin");
+		constructorUsuarioMujer.establecerSexo("femenino");
+		constructorUsuarioMujer.establecerFechaNacimiento(LocalDate.parse("1994-05-06"));
+		constructorUsuarioMujer.establecerRutina("Intensa");
+		constructorUsuarioMujer.esVegano();
+		constructorUsuarioMujer.esHipertenso();
+		constructorUsuarioMujer.establecerEstatura(1.75);
+		constructorUsuarioMujer.establecerPeso(60.0);
+		
+		
+		
+		
+		
+		
+		
+		
+	  usrHombre = constructorUsuario.crearUsuario();
+	  
+	  	    	  
+	  usrMujer =constructorUsuarioMujer.crearUsuario();
+			  	
 	 	 	
 		
 	}

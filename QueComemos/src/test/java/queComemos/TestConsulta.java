@@ -13,6 +13,8 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
+import builderUsuario.UsuarioBuilder;
+import builderUsuario.UsuarioMasGenerico;
 import filtros.FiltroGustoDeUsuario;
 import filtros.FiltroPreparacionCara;
 import procesamientos.TomarDiezPrimeros;
@@ -35,23 +37,33 @@ public class TestConsulta {
 		Recetario.inadecuados= new ArrayList<CondicionPreexistenteI>();
 		Recetario.recetas = new ArrayList<Receta>();
 		Recetario.observadores = new ArrayList<ObservadorI>();
+			
+		
+		filtros = new ArrayList<FiltroI>();
+		
+		
+		FiltroI unFiltro = new FiltroGustoDeUsuario();
+		FiltroI otroFiltro = new FiltroPreparacionCara();
+		
+		procesamiento = new TomarDiezPrimeros();
+		
+		
+		filtros.add(unFiltro);
+		filtros.add(otroFiltro);
+		
 	
 
-	filtros = new ArrayList<FiltroI>();
-	
-	
-	usr  = new Usuario(0,"","",LocalDate.parse("2100-01-01"),0.0,0.0,"",null,new ArrayList<CondicionPreexistenteI>(),new ArrayList<Receta>());		
+
+	UsuarioBuilder constructorDeUsuario = new UsuarioMasGenerico();
+	constructorDeUsuario.establecerNombre("Pepito");
+	constructorDeUsuario.establecerFechaNacimiento(LocalDate.parse("1994-05-06"));
+	constructorDeUsuario.establecerPeso(10.0);
+	constructorDeUsuario.establecerEstatura(20.5);
+	constructorDeUsuario.establecerRutina("Intensa");
+		
+	 usr  =  constructorDeUsuario.crearUsuario();
 			
-	
-	FiltroI unFiltro = new FiltroGustoDeUsuario();
-	FiltroI otroFiltro = new FiltroPreparacionCara();
-	
-	procesamiento = new TomarDiezPrimeros();
-	
-	
-	filtros.add(unFiltro);
-	filtros.add(otroFiltro);
-	
+
 	
 	
 

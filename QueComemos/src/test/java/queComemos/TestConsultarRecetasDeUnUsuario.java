@@ -12,6 +12,8 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
+import builderUsuario.UsuarioBuilder;
+import builderUsuario.UsuarioMasGenerico;
 import receta.Ingrediente;
 import receta.Preparacion;
 import receta.Receta;
@@ -53,18 +55,43 @@ public class TestConsultarRecetasDeUnUsuario {
 		Recetario.recetas = new ArrayList<Receta>();
 		Recetario.observadores = new ArrayList<ObservadorI>();
 		
+				
+		UsuarioBuilder constructorDeUsuarioObeso = new UsuarioSinValidacion();
+		constructorDeUsuarioObeso.establecerNombre("juan");
+		constructorDeUsuarioObeso.establecerSexo("Masculino");
+		constructorDeUsuarioObeso.establecerFechaNacimiento(LocalDate.parse("1994-08-05"));
+		constructorDeUsuarioObeso.establecerRutina("Leve");
+		constructorDeUsuarioObeso.establecerPeso(10000.0);
+		constructorDeUsuarioObeso.establecerEstatura(1.0);
+		constructorDeUsuarioObeso.leGusta("pollo");
+		constructorDeUsuarioObeso.leGusta("carne");
+		constructorDeUsuarioObeso.leDisgusta("tomate");
+		constructorDeUsuarioObeso.leDisgusta("pescado");
+		constructorDeUsuarioObeso.esHipertenso();
+		constructorDeUsuarioObeso.esCeliaco();
+		
+		
+		UsuarioBuilder constructorDeUsuario = new UsuarioSinValidacion();
+		constructorDeUsuario.establecerNombre("juan");
+		constructorDeUsuario.establecerSexo("Masculino");
+		constructorDeUsuario.establecerFechaNacimiento(LocalDate.parse("1994-08-05"));
+		constructorDeUsuario.establecerRutina("Leve");
+		constructorDeUsuario.establecerPeso(1.0);
+		constructorDeUsuario.establecerEstatura(175.0);
+		constructorDeUsuario.leGusta("pollo");
+		constructorDeUsuario.leGusta("carne");
+		constructorDeUsuario.leDisgusta("tomate");
+		constructorDeUsuario.leDisgusta("pescado");
+		constructorDeUsuario.esHipertenso();
+		constructorDeUsuario.esCeliaco();
+		
+		
+		usr = constructorDeUsuario.crearUsuario();
+		usrObeso = constructorDeUsuarioObeso.crearUsuario();
+		
+		
+		
 
-	// Preferencia Alimenticia
-		
-		List<String> comidasQueGusta = new ArrayList<String>();
-		List<String> comidasQueDisgusta = new ArrayList<String>();
-		comidasQueGusta.add("pollo");
-		comidasQueGusta.add("carne");
-		comidasQueDisgusta.add("tomate");
-		comidasQueDisgusta.add("pescado");
-		
-		GustosSobreAlimentos preferenciaAlimenticia = new GustosSobreAlimentos(comidasQueGusta,comidasQueDisgusta);
-		
 		
 		// Condiciones Preexistentes
 		
@@ -117,20 +144,13 @@ public class TestConsultarRecetasDeUnUsuario {
 			
 		 Preparacion    preparacion = new Preparacion(ingredientes,condimentos,instrucciones);
 
-			
-			
-			 receta = new Receta("CarneAlHorno",1524.0,preparacion,"baja","verano",subRecetas,condiciones);
-    		Recetario.recetas.add(receta);
+						
+		 receta = new Receta("CarneAlHorno",1524.0,preparacion,"baja","verano",subRecetas,condiciones);
+    	Recetario.recetas.add(receta);
     		
     		
     		
-    		condiciones.add(hipertenso);
-    		condiciones.add(celiaco);
     		
-    		
-    		 usr = new Usuario(3,"Juan","Masculino",LocalDate.parse("1994-08-05"),1.0,175.0,"Leve",preferenciaAlimenticia,condiciones,new ArrayList<Receta>());
-    		 usrObeso = new Usuario(3,"Juan","Masculino",LocalDate.parse("1994-08-05"),10000.0,1.0,"Leve",preferenciaAlimenticia,condiciones,new ArrayList<Receta>());
-			
 	
 		 
 		 

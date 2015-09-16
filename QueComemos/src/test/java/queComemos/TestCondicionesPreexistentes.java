@@ -6,12 +6,13 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import usuario.GustosSobreAlimentos;
 import usuario.Usuario;
 
 import org.junit.Before;
 import org.junit.Test;
 
+import builderUsuario.UsuarioBuilder;
+import builderUsuario.UsuarioMasGenerico;
 import condicionesPreexistentes.Celiaco;
 import condicionesPreexistentes.Diabetico;
 import condicionesPreexistentes.Hipertenso;
@@ -23,6 +24,7 @@ public class TestCondicionesPreexistentes {
 	private Vegano vegano;
 	private Hipertenso hipertenso;
 	private Diabetico diabetico;
+	private UsuarioBuilder constructorDeUsuario;
 	
 
 	@Before
@@ -41,6 +43,13 @@ public class TestCondicionesPreexistentes {
 				
 
 		
+		 constructorDeUsuario= new UsuarioMasGenerico();
+		 constructorDeUsuario.establecerNombre("juan");
+		 constructorDeUsuario.establecerFechaNacimiento(LocalDate.parse("1998-08-05"));
+		 constructorDeUsuario.establecerSexo("Masculino");
+		 
+		 
+		 
 		
 	}
 
@@ -48,10 +57,12 @@ public class TestCondicionesPreexistentes {
 	public void testDiabeticoSubsanaCondicion() {
 		
 		
-	 Usuario usr =new Usuario(3,"Juan", "Masculino",
-				LocalDate.parse("1998-08-05"), 60.0, 1.75, "Activa", null, null,
-				null);
-	 
+		constructorDeUsuario.establecerRutina("Activa");
+		constructorDeUsuario.establecerPeso(60.0);
+		constructorDeUsuario.establecerEstatura(1.75);
+
+		Usuario usr = constructorDeUsuario.crearUsuario();
+		
 	 assertTrue(diabetico.subSanaCondicion(usr));
 	
 	 
@@ -64,13 +75,13 @@ public class TestCondicionesPreexistentes {
 	public void testDiabeticoNoSubsanaCondicionFallaPorPeso() {
 		
 		
-	 Usuario usr =new Usuario(3,"Juan", "Masculino",
-				LocalDate.parse("1998-08-05"), 80.0, 1.75, "Activa", null, null,
-				null);
-	 
-	 assertFalse(diabetico.subSanaCondicion(usr));
-	
-	 
+		constructorDeUsuario.establecerRutina("Activa");
+		constructorDeUsuario.establecerPeso(80.0);
+		constructorDeUsuario.establecerEstatura(1.75);
+
+		Usuario usr = constructorDeUsuario.crearUsuario();
+			
+		 assertFalse(diabetico.subSanaCondicion(usr));
 	  
 		
 	}
@@ -79,11 +90,14 @@ public class TestCondicionesPreexistentes {
 	public void testDiabeticoNoSubsanaCondicionFallaPorRutina() {
 		
 		
-	 Usuario usr =new Usuario(3,"Juan", "Masculino",
-				LocalDate.parse("1998-08-05"), 50.0, 1.75, "Leve", null, null,
-				null);
+		
+		constructorDeUsuario.establecerRutina("Leve");
+		constructorDeUsuario.establecerPeso(80.0);
+		constructorDeUsuario.establecerEstatura(1.75);
+
+		Usuario usr = constructorDeUsuario.crearUsuario();
 	 
-	 assertFalse(diabetico.subSanaCondicion(usr));
+		assertFalse(diabetico.subSanaCondicion(usr));
 		 
 	  
 		
@@ -93,12 +107,13 @@ public class TestCondicionesPreexistentes {
 	@Test
 	public void testHipertensoSubsanaCondicion() {
 		
+		constructorDeUsuario.establecerRutina("Intensiva");
+		constructorDeUsuario.establecerPeso(50.0);
+		constructorDeUsuario.establecerEstatura(1.75);
+
+		Usuario usr = constructorDeUsuario.crearUsuario();
 		
-	 Usuario usr =new Usuario(3,"Juan", "Masculino",
-				LocalDate.parse("1998-08-05"), 50.0, 1.75, "Intensiva", null, null,
-				null);
-	 
-	 assertTrue(hipertenso.subSanaCondicion(usr));
+		assertTrue(hipertenso.subSanaCondicion(usr));
 		 
 	  
 		
@@ -108,11 +123,12 @@ public class TestCondicionesPreexistentes {
 	public void testHipertensoNoSubsanaCondicionFallaPorRutina() {
 		
 		
-	 Usuario usr =new Usuario(3,"Juan", "Masculino",
-				LocalDate.parse("1998-08-05"), 50.0, 1.75, "Leve", null, null,
-				null);
-	 
-	 assertFalse(hipertenso.subSanaCondicion(usr));
+		constructorDeUsuario.establecerRutina("Leve");
+		constructorDeUsuario.establecerPeso(50.0);
+		constructorDeUsuario.establecerEstatura(1.75);
+
+		Usuario usr = constructorDeUsuario.crearUsuario();
+	    assertFalse(hipertenso.subSanaCondicion(usr));
 		 
 	  
 		
@@ -122,21 +138,15 @@ public class TestCondicionesPreexistentes {
 	@Test
 	public void testVeganoSubsanaCondicion() {
 		
-		List<String> comidasQueGusta  = new ArrayList<>();
-		List<String> comidasQueDisgusta  = new ArrayList<>();
+		constructorDeUsuario.establecerRutina("Leve");
+		constructorDeUsuario.establecerPeso(50.0);
+		constructorDeUsuario.establecerEstatura(1.75);
+		constructorDeUsuario.leGusta("frutas");
+
+		Usuario usr = constructorDeUsuario.crearUsuario();
 		
-		comidasQueGusta.add("fruta");
-		
-		GustosSobreAlimentos preferenciaAlimenticia = new GustosSobreAlimentos(comidasQueGusta,comidasQueDisgusta);
-		
-		
-		
-		
-	 Usuario usr =new Usuario(3,"Juan", "Masculino",
-				LocalDate.parse("1998-08-05"), 50.0, 1.75, "Leve", preferenciaAlimenticia, null,
-				null);
-	 
-	 assertFalse(vegano.subSanaCondicion(usr));
+
+	 assertTrue(vegano.subSanaCondicion(usr));
 		 
 	  
 		
@@ -146,19 +156,13 @@ public class TestCondicionesPreexistentes {
 	public void testVeganoNoSubsanaCondicionFallaPorComidasQueGusta() {
 		
 		
-		List<String> comidasQueGusta  = new ArrayList<>();
-		List<String> comidasQueDisgusta  = new ArrayList<>();
-		
-		GustosSobreAlimentos preferenciaAlimenticia = new GustosSobreAlimentos(comidasQueGusta,comidasQueDisgusta);
-		
-		
-		
-		
-	 Usuario usr =new Usuario(3,"Juan", "Masculino",
-				LocalDate.parse("1998-08-05"), 50.0, 1.75, "Leve", preferenciaAlimenticia, null,
-				null);
+		constructorDeUsuario.establecerRutina("Leve");
+		constructorDeUsuario.establecerPeso(50.0);
+		constructorDeUsuario.establecerEstatura(1.75);
+
+		Usuario usr = constructorDeUsuario.crearUsuario();
 	 
-	 assertFalse(vegano.subSanaCondicion(usr));
+		assertFalse(vegano.subSanaCondicion(usr));
 		 
 	  
 		

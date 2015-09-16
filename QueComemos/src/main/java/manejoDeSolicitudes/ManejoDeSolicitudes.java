@@ -106,6 +106,7 @@ public class ManejoDeSolicitudes {
 		  
 		  motivosRechazos.addAll(aprobaciones.stream().filter(aprobacion -> ! aprobacion.isOk() ).collect(Collectors.toList()));
 		  
+
 		  
 	  }
 

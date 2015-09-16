@@ -9,6 +9,8 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
+import builderUsuario.UsuarioBuilder;
+import builderUsuario.UsuarioMasGenerico;
 import repositorios.Consulta;
 import usuario.Grupo;
 import usuario.Usuario;
@@ -20,14 +22,31 @@ public class TestGrupo {
 	
 	@Before
 	public void setUp() throws Exception {
+		
+		UsuarioBuilder constructorDeUsuario = new UsuarioMasGenerico();
+		constructorDeUsuario.establecerNombre("Pedro");
+		constructorDeUsuario.establecerSexo("Masculino");
+		constructorDeUsuario.establecerFechaNacimiento(	LocalDate.parse("1990-01-01"));
+		constructorDeUsuario.establecerPeso(60.0);
+		constructorDeUsuario.establecerEstatura(1.7);
+		constructorDeUsuario.establecerRutina("Leve");
+		
+		UsuarioBuilder otroConstructorDeUsuario = new UsuarioMasGenerico();
+		otroConstructorDeUsuario.establecerNombre("Juan");
+		otroConstructorDeUsuario.establecerSexo("Masculino");
+		otroConstructorDeUsuario.establecerFechaNacimiento(	LocalDate.parse("1990-01-01"));
+		otroConstructorDeUsuario.establecerPeso(60.0);
+		otroConstructorDeUsuario.establecerEstatura(1.7);
+		otroConstructorDeUsuario.establecerRutina("Leve");
+				
+				
+		
 
-		Usuario usuario1 = new Usuario(3,"Pedro", "Masculino",
-				LocalDate.parse("1990-01-01"), 60.0, 1.7, "Leve",
-				null, null, null);
-		Usuario usuario2 = new Usuario(4,"Juan", "Masculino",
-				LocalDate.parse("1990-01-01"), 60.0, 1.7, "Leve",
-				null, null, null);
-
+		Usuario usuario1 = constructorDeUsuario.crearUsuario();
+		Usuario usuario2 = otroConstructorDeUsuario.crearUsuario();
+		
+		
+	
 		usuariosColeccion = new ArrayList<Usuario>();
 		usuariosColeccion.add(usuario1);
 		usuariosColeccion.add(usuario2);
@@ -64,10 +83,21 @@ public class TestGrupo {
 	public void testEstaPepoEnElGrupo() {
 	
 		grupo = new Grupo("UnNombre" , usuariosColeccion, null);
-		Usuario usuario3 = new Usuario(5,"Pepo", "Masculino",
-				LocalDate.parse("1990-01-01"), 60.0, 1.7, "Leve",
-				null, null, null);
-		grupo.agregarUsuario(usuario3);
+		
+		UsuarioBuilder constructorDeUsuario = new UsuarioMasGenerico();
+		constructorDeUsuario.establecerNombre("Pepo");
+		constructorDeUsuario.establecerSexo("Masculino");
+		constructorDeUsuario.establecerFechaNacimiento(	LocalDate.parse("1990-01-01"));
+		constructorDeUsuario.establecerPeso(60.0);
+		constructorDeUsuario.establecerEstatura(1.7);
+		constructorDeUsuario.establecerRutina("Leve");
+		
+		
+		
+	
+		grupo.agregarUsuario(constructorDeUsuario.crearUsuario());
+		
+		
 		assertTrue(grupo.getUsuarios().stream().anyMatch(usr->usr.getNombre().equals("Pepo")));
 	}
 	

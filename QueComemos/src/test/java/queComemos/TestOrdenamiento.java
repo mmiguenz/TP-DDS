@@ -57,10 +57,6 @@ public class TestOrdenamiento {
 		
 		comidasQueDisgustaUsr.add("Verduras");
 
-		GustosSobreAlimentos preferenciaAlimenticiaSaludable = new GustosSobreAlimentos(
-				comidasQueGustaUsrSaludable, comidasQueDisgustaUsr);
-		GustosSobreAlimentos preferenciaAlimenticiaNoSaludable = new GustosSobreAlimentos(
-				comidasQueGustaUsrNoSaludable, comidasQueDisgustaUsr);
 
 		List<String>comidasProhibidas = new ArrayList<String>();
 		comidasProhibidas.add("Pan");
@@ -76,10 +72,6 @@ public class TestOrdenamiento {
 		comidasProhibidasH.add("caldo");
 		
 		
-		Celiaco celiaco = new Celiaco("celiaco",comidasProhibidas);
-		Vegano vegano = new Vegano("vegano",comidasProhibidas);
-		Hipertenso hipertenso = new Hipertenso("hipertenso",comidasProhibidasH);
-		Diabetico diabetico = new Diabetico("diabetico",comidasProhibidas);
 		
 			
 			instrucciones.add("Preparar");

@@ -157,7 +157,7 @@ public class Usuario {
 	}
 
 	public boolean validar() {
-		return this.tieneCamposObligatorios(this) && this.nombre.length() > 4
+		return this.tieneCamposObligatorios(this) && this.nombre.length() >= 4
 				&& this.fechaNacimiento.isBefore(LocalDate.now())
 				&& this.validaCondicionesPreexistentes(this);
 
