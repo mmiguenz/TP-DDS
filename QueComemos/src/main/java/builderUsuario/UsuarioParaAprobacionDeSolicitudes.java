@@ -11,11 +11,11 @@ public class UsuarioParaAprobacionDeSolicitudes extends UsuarioBuilder {
 		super();
 		
 		
-		establecerNombre(nombre);
-		establecerFechaNacimiento(LocalDate.parse("1994-05-06"));
-		establecerPeso(10.0);
-		establecerEstatura(20.5);
-		establecerRutina("Intensa");
+		nombre(nombre);
+		fechaNacimiento(LocalDate.parse("1994-05-06"));
+		peso(10.0);
+		estatura(20.5);
+		rutina("Intensa");
 				
 		
 		

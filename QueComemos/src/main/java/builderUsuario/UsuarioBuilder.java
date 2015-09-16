@@ -22,34 +22,34 @@ public abstract class UsuarioBuilder {
 	
 	
 	
-	public  void establecerNombre(String nombre)
+	public  void nombre(String nombre)
 	{
 		nuevoUsuario.setNombre(nombre);
 		
 		
 	}
-	public  void establecerSexo(String sexo)
+	public  void sexo(String sexo)
 	{
 		nuevoUsuario.setSexo(sexo);
 		
 		
 	}
-	public  void establecerFechaNacimiento(LocalDate fechaNacimiento){
+	public  void fechaNacimiento(LocalDate fechaNacimiento){
 		
 		nuevoUsuario.setFechaNacimiento(fechaNacimiento);
 		
 	}
-	public  void establecerPeso(Double peso)
+	public  void peso(Double peso)
 	{
 		
 		nuevoUsuario.setPeso(peso);
 	}
-	public  void establecerEstatura(Double estatura)
+	public  void estatura(Double estatura)
 	{
 		nuevoUsuario.setEstatura(estatura);
 		
 	}
-	public  void establecerRutina(String rutina)
+	public  void rutina(String rutina)
 	{
 		nuevoUsuario.setRutina(rutina);
 		

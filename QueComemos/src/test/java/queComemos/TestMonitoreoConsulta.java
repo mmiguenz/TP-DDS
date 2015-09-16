@@ -63,24 +63,24 @@ public class TestMonitoreoConsulta {
 	 
 	 
 		UsuarioBuilder constructorUsuario = new UsuarioSinValidacion();
-		constructorUsuario.establecerNombre("martin");
-		constructorUsuario.establecerSexo("masculino");
-		constructorUsuario.establecerFechaNacimiento(LocalDate.parse("1994-05-06"));
-		constructorUsuario.establecerRutina("Intensa");
+		constructorUsuario.nombre("martin");
+		constructorUsuario.sexo("masculino");
+		constructorUsuario.fechaNacimiento(LocalDate.parse("1994-05-06"));
+		constructorUsuario.rutina("Intensa");
 		constructorUsuario.esVegano();
 		constructorUsuario.esHipertenso();
-		constructorUsuario.establecerEstatura(1.75);
-		constructorUsuario.establecerPeso(60.0);
+		constructorUsuario.estatura(1.75);
+		constructorUsuario.peso(60.0);
 		
 		UsuarioBuilder constructorUsuarioMujer = new UsuarioSinValidacion();
-		constructorUsuarioMujer.establecerNombre("martin");
-		constructorUsuarioMujer.establecerSexo("femenino");
-		constructorUsuarioMujer.establecerFechaNacimiento(LocalDate.parse("1994-05-06"));
-		constructorUsuarioMujer.establecerRutina("Intensa");
+		constructorUsuarioMujer.nombre("martin");
+		constructorUsuarioMujer.sexo("femenino");
+		constructorUsuarioMujer.fechaNacimiento(LocalDate.parse("1994-05-06"));
+		constructorUsuarioMujer.rutina("Intensa");
 		constructorUsuarioMujer.esVegano();
 		constructorUsuarioMujer.esHipertenso();
-		constructorUsuarioMujer.establecerEstatura(1.75);
-		constructorUsuarioMujer.establecerPeso(60.0);
+		constructorUsuarioMujer.estatura(1.75);
+		constructorUsuarioMujer.peso(60.0);
 		
 		
 		

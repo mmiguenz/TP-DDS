@@ -57,12 +57,12 @@ public class TestConsultarRecetasDeUnUsuario {
 		
 				
 		UsuarioBuilder constructorDeUsuarioObeso = new UsuarioSinValidacion();
-		constructorDeUsuarioObeso.establecerNombre("juan");
-		constructorDeUsuarioObeso.establecerSexo("Masculino");
-		constructorDeUsuarioObeso.establecerFechaNacimiento(LocalDate.parse("1994-08-05"));
-		constructorDeUsuarioObeso.establecerRutina("Leve");
-		constructorDeUsuarioObeso.establecerPeso(10000.0);
-		constructorDeUsuarioObeso.establecerEstatura(1.0);
+		constructorDeUsuarioObeso.nombre("juan");
+		constructorDeUsuarioObeso.sexo("Masculino");
+		constructorDeUsuarioObeso.fechaNacimiento(LocalDate.parse("1994-08-05"));
+		constructorDeUsuarioObeso.rutina("Leve");
+		constructorDeUsuarioObeso.peso(10000.0);
+		constructorDeUsuarioObeso.estatura(1.0);
 		constructorDeUsuarioObeso.leGusta("pollo");
 		constructorDeUsuarioObeso.leGusta("carne");
 		constructorDeUsuarioObeso.leDisgusta("tomate");
@@ -72,12 +72,12 @@ public class TestConsultarRecetasDeUnUsuario {
 		
 		
 		UsuarioBuilder constructorDeUsuario = new UsuarioSinValidacion();
-		constructorDeUsuario.establecerNombre("juan");
-		constructorDeUsuario.establecerSexo("Masculino");
-		constructorDeUsuario.establecerFechaNacimiento(LocalDate.parse("1994-08-05"));
-		constructorDeUsuario.establecerRutina("Leve");
-		constructorDeUsuario.establecerPeso(1.0);
-		constructorDeUsuario.establecerEstatura(175.0);
+		constructorDeUsuario.nombre("juan");
+		constructorDeUsuario.sexo("Masculino");
+		constructorDeUsuario.fechaNacimiento(LocalDate.parse("1994-08-05"));
+		constructorDeUsuario.rutina("Leve");
+		constructorDeUsuario.peso(1.0);
+		constructorDeUsuario.estatura(175.0);
 		constructorDeUsuario.leGusta("pollo");
 		constructorDeUsuario.leGusta("carne");
 		constructorDeUsuario.leDisgusta("tomate");

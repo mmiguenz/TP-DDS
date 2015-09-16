@@ -11,6 +11,7 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
+import builderUsuario.UsuarioBuilder;
 import receta.Ingrediente;
 import receta.Preparacion;
 import receta.Receta;
@@ -26,9 +27,7 @@ public class TestUsuario {
 
 	private Usuario usuario;
 	private Receta receta;
-	private Receta recetaModificada;
 	private Preparacion preparacion;
-	private GustosSobreAlimentos preferenciaAlimenticiaSaludable;
 	private GustosSobreAlimentos preferenciaAlimenticiaNoSaludable;
 	private List<String> comidasProhibidas;
 
@@ -38,26 +37,6 @@ public class TestUsuario {
 		Recetario.inadecuados= new ArrayList<CondicionPreexistenteI>();
 		Recetario.recetas = new ArrayList<Receta>();
 		Recetario.observadores = new ArrayList<ObservadorI>();
-		
-		List<String> comidasQueGustaUsrSaludable = new ArrayList<String>();
-		List<String> comidasQueGustaUsrNoSaludable = new ArrayList<String>();
-		List<String> comidasQueDisgustaUsr = new ArrayList<String>();
-
-		comidasQueGustaUsrSaludable.add("Fruta");
-		comidasQueGustaUsrSaludable.add("Carne");
-		comidasQueGustaUsrSaludable.add("Pasta");
-
-		comidasQueGustaUsrNoSaludable.add("Fritos");
-		comidasQueGustaUsrNoSaludable.add("Snacks");
-
-		
-		
-		comidasQueDisgustaUsr.add("Verduras");
-
-		preferenciaAlimenticiaSaludable = new GustosSobreAlimentos(
-				comidasQueGustaUsrSaludable, comidasQueDisgustaUsr);
-		preferenciaAlimenticiaNoSaludable = new GustosSobreAlimentos(
-				comidasQueGustaUsrNoSaludable, comidasQueDisgustaUsr);
 
 		comidasProhibidas = new ArrayList<String>();
 		comidasProhibidas.add("Pan");
@@ -67,18 +46,6 @@ public class TestUsuario {
 		List<Ingrediente> ingredientes = new ArrayList<Ingrediente>();
 		List<Ingrediente>condimentos = new ArrayList<Ingrediente>();
 		List<Receta> subRecetas=new ArrayList<Receta>();
-		
-		List<CondicionPreexistenteI> inadecuados=new ArrayList<CondicionPreexistenteI>();
-		List<String>comidasProhibidas= new ArrayList<String>();
-		List<String>comidasProhibidasH= new ArrayList<String>();
-		comidasProhibidasH.add("caldo");
-		
-		
-		Celiaco celiaco = new Celiaco("celiaco",comidasProhibidas);
-		Vegano vegano = new Vegano("vegano",comidasProhibidas);
-		Hipertenso hipertenso = new Hipertenso("hipertenso",comidasProhibidasH);
-		Diabetico diabetico = new Diabetico("diabetico",comidasProhibidas);
-		
 		
 		
 			
@@ -102,8 +69,8 @@ public class TestUsuario {
 			 String dificultad = "Baja";
 			 String temporada= "Verano";
 			 
-			  receta = new Receta("PolloConPapas", 50.0,preparacion,dificultad,temporada,subRecetas,inadecuados);
-			  recetaModificada = new Receta("PolloConPapasAlHorno", 50.0,preparacion,dificultad,temporada,subRecetas,inadecuados);
+			  receta = new Receta("PolloConPapas", 50.0,preparacion,dificultad,temporada,subRecetas,null);
+			  
 			  
 
 	}
@@ -113,19 +80,35 @@ public class TestUsuario {
 	@Test
 	public void testIMCPesoyEstaturaPositiva() {
 
-		usuario = new Usuario(5,"Matias", "Masculino",
-				LocalDate.parse("1994-08-05"), 70.0, 1.75, "Leve", null, null,
-				null);
+		UsuarioBuilder constructorDeUsuario = new UsuarioSinValidacion();
+		constructorDeUsuario.nombre("Matias");
+		constructorDeUsuario.sexo("Masculino");
+		constructorDeUsuario.peso(70.0);
+		constructorDeUsuario.estatura(1.75);
+		
+		
+		
+		usuario = constructorDeUsuario.crearUsuario();
+				
 		assertEquals(22.85, usuario.indiceMasaCorporal(), 0.1);
 
 	}
 
 	@Test
 	public void testIMCPPesoYEstaturaF() {
+		
+		
+		UsuarioBuilder constructorDeUsuario = new UsuarioSinValidacion();
+		constructorDeUsuario.nombre("Matias");
+		constructorDeUsuario.sexo("Masculino");
+		constructorDeUsuario.peso(80.0);
+		constructorDeUsuario.estatura(1.75);
+		
+		
+		
+		usuario = constructorDeUsuario.crearUsuario();
+				
 
-		usuario = new Usuario(3,"Juan", "Masculino",
-				LocalDate.parse("1998-08-05"), 80.0, 1.75, "Leve", null, null,
-				null);
 		assertEquals(26.12, usuario.indiceMasaCorporal(), 0.1);
 
 	}
@@ -133,9 +116,17 @@ public class TestUsuario {
 	@Test
 	public void testIMCPeso66Estatura172() {
 
-		usuario = new Usuario(2,"Juan", "Masculino",
-				LocalDate.parse("1994-10-05"), 66.0, 1.75, "Intensivo", null,
-				null, null);
+		
+		UsuarioBuilder constructorDeUsuario = new UsuarioSinValidacion();
+		constructorDeUsuario.nombre("Matias");
+		constructorDeUsuario.sexo("Masculino");
+		constructorDeUsuario.peso(66.0);
+		constructorDeUsuario.estatura(1.75);
+		
+		
+		
+		usuario = constructorDeUsuario.crearUsuario();
+				
 		assertEquals(21.55, usuario.indiceMasaCorporal(), 0.1);
 
 	}
@@ -143,21 +134,42 @@ public class TestUsuario {
 	@Test
 	public void testIMCPesoYEstaturaAB() {
 
-		usuario = new Usuario(1,"Alejandro", "Masculino",
-				LocalDate.parse("1994-10-05"), 74.0, 1.82, "Mediano", null,
-				null, null);
+		UsuarioBuilder constructorDeUsuario = new UsuarioSinValidacion();
+		constructorDeUsuario.nombre("Matias");
+		constructorDeUsuario.sexo("Masculino");
+		constructorDeUsuario.peso(74.0);
+		constructorDeUsuario.estatura(1.82);
+		
+		
+		
+		usuario = constructorDeUsuario.crearUsuario();
+				
+
+
 		assertEquals(22.40, usuario.indiceMasaCorporal(), 0.1);
 
 	}
 
 	@Test
 	public void testUsuarioQueSigueRutinaSaludableCumpleIMCYCondiocionesPreexistentes() {
-
-		List<CondicionPreexistenteI> condicionesSaludables = new ArrayList<CondicionPreexistenteI>();
-
-		usuario = new Usuario(8,"Alejandro", "Masculino",
-				LocalDate.parse("1994-10-05"), 74.0, 1.82, "Mediano",
-				preferenciaAlimenticiaSaludable, condicionesSaludables, null);
+		
+		
+		
+		UsuarioBuilder constructorDeUsuario = new UsuarioSinValidacion();
+		constructorDeUsuario.nombre("Matias");
+		constructorDeUsuario.sexo("Masculino");
+		constructorDeUsuario.peso(74.0);
+		constructorDeUsuario.estatura(1.82);
+		constructorDeUsuario.rutina("Mediano");
+		constructorDeUsuario.leGusta("Carne");
+		constructorDeUsuario.leGusta("Fruta");
+		constructorDeUsuario.leGusta("Pasta");	
+		
+		
+		usuario = constructorDeUsuario.crearUsuario();
+				
+		
+		
 		assertTrue(usuario.sigueRutinaSaludable());
 
 	}
@@ -165,11 +177,23 @@ public class TestUsuario {
 	@Test
 	public void testUsuarioQueSigueRutinaSaludableNoCumpleIMCYSiCondiocionesPreexistentes() {
 
-		List<CondicionPreexistenteI> condicionesSaludables = new ArrayList<CondicionPreexistenteI>();
+		
+		
+		UsuarioBuilder constructorDeUsuario = new UsuarioSinValidacion();
+		constructorDeUsuario.nombre("Matias");
+		constructorDeUsuario.sexo("Masculino");
+		constructorDeUsuario.peso(150.0);
+		constructorDeUsuario.estatura(1.82);
+		constructorDeUsuario.rutina("Mediano");
+		constructorDeUsuario.leGusta("Carne");
+		constructorDeUsuario.leGusta("Fruta");
+		constructorDeUsuario.leGusta("Pasta");	
+		
+		
+		usuario = constructorDeUsuario.crearUsuario();
+				
+		
 
-		usuario = new Usuario(8,"Alejandro", "Masculino",
-				LocalDate.parse("1994-10-05"), 150.0, 1.82, "Mediano",
-				preferenciaAlimenticiaSaludable, condicionesSaludables, null);
 		assertFalse(usuario.sigueRutinaSaludable());
 
 	}
@@ -177,13 +201,24 @@ public class TestUsuario {
 	@Test
 	public void testUsuarioQueSigueRutinaSaludableCumpleIMCYSubsanaCondiocionesPreexistentes() {
 
-		List<CondicionPreexistenteI> condiciones = new ArrayList<CondicionPreexistenteI>();
-		condiciones.add(new Celiaco("Celiaco", comidasProhibidas));
-		condiciones.add(new Diabetico("Diabetico", comidasProhibidas));
+	
 
-		usuario = new Usuario(9,"Alejandro", "Masculino",
-				LocalDate.parse("1994-10-05"), 69.0, 1.82, "Activa",
-				preferenciaAlimenticiaSaludable, condiciones, null);
+		UsuarioBuilder constructorDeUsuario = new UsuarioSinValidacion();
+		constructorDeUsuario.nombre("Matias");
+		constructorDeUsuario.sexo("Masculino");
+		constructorDeUsuario.peso(69.0);
+		constructorDeUsuario.estatura(1.82);
+		constructorDeUsuario.rutina("Activa");
+		constructorDeUsuario.leGusta("Carne");
+		constructorDeUsuario.leGusta("Fruta");
+		constructorDeUsuario.leGusta("Pasta");	
+		constructorDeUsuario.esCeliaco();
+		constructorDeUsuario.esDiabetico();
+		
+		
+		
+		usuario = constructorDeUsuario.crearUsuario();
+
 		assertTrue(usuario.sigueRutinaSaludable());
 
 	}
@@ -191,12 +226,28 @@ public class TestUsuario {
 	
 	@Test
 	public void testUsuarioQueSigueRutinaSaludableSinCondicionesPreexistentes() {
+		
+		
+		UsuarioBuilder constructorDeUsuario = new UsuarioSinValidacion();
+		constructorDeUsuario.nombre("Matias");
+		constructorDeUsuario.sexo("Masculino");
+		constructorDeUsuario.peso(69.0);
+		constructorDeUsuario.estatura(1.82);
+		constructorDeUsuario.rutina("Activa");
+		constructorDeUsuario.leGusta("Carne");
+		constructorDeUsuario.leGusta("Fruta");
+		constructorDeUsuario.leGusta("Pasta");	
+		constructorDeUsuario.esCeliaco();
+		constructorDeUsuario.esDiabetico();
+		
+		
+		
+		usuario = constructorDeUsuario.crearUsuario();
 
-		List<CondicionPreexistenteI> condiciones = new ArrayList<CondicionPreexistenteI>();
-				usuario = new Usuario(9,"Alejandro", "Masculino",
-				LocalDate.parse("1994-10-05"), 69.0, 1.82, "Activa",
-				preferenciaAlimenticiaSaludable, condiciones, null);
 		assertTrue(usuario.sigueRutinaSaludable());
+		
+
+
 
 	}
 	
@@ -205,33 +256,69 @@ public class TestUsuario {
 
 	@Test
 	public void testUsuarioDiabeticoNoSigueRutinaSaludable() {
-		List<CondicionPreexistenteI> condiciones = new ArrayList<CondicionPreexistenteI>();
-		condiciones.add(new Diabetico("Diabetico", comidasProhibidas));
-		usuario = new Usuario(43,"Pedro", "Masculino",
-				LocalDate.parse("1990-01-01"), 60.0, 1.7, "Leve",
-				preferenciaAlimenticiaNoSaludable, condiciones, null);
+		
+		
+		
+		UsuarioBuilder constructorDeUsuario = new UsuarioSinValidacion();
+		constructorDeUsuario.nombre("Matias");
+		constructorDeUsuario.sexo("Masculino");
+		constructorDeUsuario.peso(60.0);
+		constructorDeUsuario.estatura(1.7);
+		constructorDeUsuario.rutina("Leve");
+		constructorDeUsuario.leGusta("Fritos");
+		constructorDeUsuario.leGusta("Snacks");
+		constructorDeUsuario.esDiabetico();
+		
+		
+		
+		usuario = constructorDeUsuario.crearUsuario();
+
+
 		assertFalse(usuario.sigueRutinaSaludable());
 
 	}
 
 	@Test
 	public void testUsuarioDiabeticoNoValida() {
-		List<CondicionPreexistenteI> condiciones = new ArrayList<CondicionPreexistenteI>();
-		condiciones.add(new Diabetico("Diabetico", comidasProhibidas));
-		usuario = new Usuario(32,"Pedro", null, LocalDate.parse("1990-01-01"),
-				60.0, 1.7, "Leve", preferenciaAlimenticiaNoSaludable,
-				condiciones, null);
+		
+		
+		UsuarioBuilder constructorDeUsuario = new UsuarioSinValidacion();
+		constructorDeUsuario.nombre("Matias");
+		constructorDeUsuario.sexo("Masculino");
+		constructorDeUsuario.peso(60.0);
+		constructorDeUsuario.estatura(1.7);
+		constructorDeUsuario.rutina("Leve");
+		constructorDeUsuario.leGusta("Fritos");
+		constructorDeUsuario.leGusta("Snacks");
+		constructorDeUsuario.esDiabetico();
+		
+		
+		
+		usuario = constructorDeUsuario.crearUsuario();
+		
+	
 		assertFalse(usuario.validaCondicionesPreexistentes(usuario));
 
 	}
 
 	@Test
 	public void testUsuarioDiabeticoSiValida() {
-		List<CondicionPreexistenteI> condiciones = new ArrayList<CondicionPreexistenteI>();
-		condiciones.add(new Diabetico("Diabetico", comidasProhibidas));
-		usuario = new Usuario(30,"Pedro", "Masculino",
-				LocalDate.parse("1990-01-01"), 60.0, 1.7, "Leve",
-				preferenciaAlimenticiaNoSaludable, condiciones, null);
+		
+		UsuarioBuilder constructorDeUsuario = new UsuarioSinValidacion();
+		constructorDeUsuario.nombre("Matias");
+		constructorDeUsuario.sexo("Masculino");
+		constructorDeUsuario.peso(60.0);
+		constructorDeUsuario.estatura(1.7);
+		constructorDeUsuario.rutina("Leve");
+		constructorDeUsuario.leGusta("Fritos");
+		constructorDeUsuario.leGusta("Snacks");
+		constructorDeUsuario.esDiabetico();
+		
+		
+		
+		usuario = constructorDeUsuario.crearUsuario();
+		
+		
 		assertFalse(usuario.validaCondicionesPreexistentes(usuario));
 
 	}
@@ -239,22 +326,43 @@ public class TestUsuario {
 	
 
 	public void testUsuarioCeliacoValidaConPreferenciaAlimenticiaNoSaludable() {
-		List<CondicionPreexistenteI> condiciones = new ArrayList<CondicionPreexistenteI>();
-
-		condiciones.add(new Celiaco("Celiaco", comidasProhibidas));
-		usuario = new Usuario(1,"Pedro", null, LocalDate.parse("1990-01-01"),
-				60.0, 1.7, "Leve", preferenciaAlimenticiaNoSaludable,
-				condiciones, null);
+		
+		UsuarioBuilder constructorDeUsuario = new UsuarioSinValidacion();
+		constructorDeUsuario.nombre("Matias");
+		constructorDeUsuario.sexo("Masculino");
+		constructorDeUsuario.peso(60.0);
+		constructorDeUsuario.estatura(1.7);
+		constructorDeUsuario.rutina("Leve");
+		constructorDeUsuario.leGusta("Fritos");
+		constructorDeUsuario.leGusta("Snacks");
+		constructorDeUsuario.esCeliaco();
+		
+		
+		
+		usuario = constructorDeUsuario.crearUsuario();
+		
+	
 		assertTrue(usuario.validaCondicionesPreexistentes(usuario));
 
 	}
 	
 	@Test
 	public void testUsuarioCeliacoValidaConPreferenciaAlimenticiaSaludable() {
-		List<CondicionPreexistenteI> condiciones = new ArrayList<CondicionPreexistenteI>();
-		condiciones.add(new Celiaco("Celiaco", comidasProhibidas));
-		usuario = new Usuario(4,"Pedro", null, LocalDate.parse("1990-01-01"),
-				60.0, 1.7, "Leve", preferenciaAlimenticiaSaludable, condiciones, null);
+		
+		UsuarioBuilder constructorDeUsuario = new UsuarioSinValidacion();
+		constructorDeUsuario.nombre("Matias");
+		constructorDeUsuario.sexo("Masculino");
+		constructorDeUsuario.peso(60.0);
+		constructorDeUsuario.estatura(1.7);
+		constructorDeUsuario.rutina("Carne");
+		constructorDeUsuario.leGusta("Pasta");
+		constructorDeUsuario.leGusta("Fruta");
+		constructorDeUsuario.esCeliaco();
+		
+		
+		
+		usuario = constructorDeUsuario.crearUsuario();
+
 		assertTrue(usuario.validaCondicionesPreexistentes(usuario));
 		
 	}
@@ -262,49 +370,89 @@ public class TestUsuario {
 	
 	@Test
 	public void testUsuarioVeganoNoValida() {
-		List<CondicionPreexistenteI> condiciones = new ArrayList<CondicionPreexistenteI>();
-		condiciones.add(new Vegano("Vegano", comidasProhibidas));
-		usuario = new Usuario(3,"Pedro", null, LocalDate.parse("1990-01-01"),
-				60.0, 1.7, "Leve", preferenciaAlimenticiaNoSaludable,
-				condiciones, null);
+		
+		UsuarioBuilder constructorDeUsuario = new UsuarioSinValidacion();
+		constructorDeUsuario.nombre("Matias");
+		constructorDeUsuario.sexo("Masculino");
+		constructorDeUsuario.peso(60.0);
+		constructorDeUsuario.estatura(1.7);
+		constructorDeUsuario.rutina("Leve");
+		constructorDeUsuario.leGusta("Fritos");
+		constructorDeUsuario.leGusta("Snacks");
+		constructorDeUsuario.esVegano();
+		
+		
+		
+		usuario = constructorDeUsuario.crearUsuario();
+		
 		assertFalse(usuario.validaCondicionesPreexistentes(usuario));
 
 	}
 
 	@Test
 	public void testUsuarioVeganoSiValida() {
-		List<CondicionPreexistenteI> condiciones = new ArrayList<CondicionPreexistenteI>();
-		condiciones.add(new Vegano("Vegano", comidasProhibidas));
-		GustosSobreAlimentos prefe = new GustosSobreAlimentos(new ArrayList<String>(),new ArrayList<String>());
-		usuario = new Usuario(1,"Pedro", null, LocalDate.parse("1990-01-01"),
-				60.0, 1.7, "Leve", prefe, condiciones, null);
+		
+		
+		UsuarioBuilder constructorDeUsuario = new UsuarioSinValidacion();
+		constructorDeUsuario.nombre("Matias");
+		constructorDeUsuario.sexo("Masculino");
+		constructorDeUsuario.peso(60.0);
+		constructorDeUsuario.estatura(1.7);
+		constructorDeUsuario.rutina("Leve");
+		constructorDeUsuario.esVegano();
+		
+		
+		
+		usuario = constructorDeUsuario.crearUsuario();
 		assertFalse(usuario.validaCondicionesPreexistentes(usuario));
 
 	}
 
 	@Test
 	public void testUsuarioHipertensoNoValida() {
-		List<CondicionPreexistenteI> condiciones = new ArrayList<CondicionPreexistenteI>();
-		condiciones.add(new Hipertenso("Hipertenso", comidasProhibidas));
-		usuario = new Usuario(1,"Pedro", null, LocalDate.parse("1990-01-01"),
-				60.0, 1.7, "Leve", null, condiciones, null);
+		
+		
+		UsuarioBuilder constructorDeUsuario = new UsuarioSinValidacion();
+		constructorDeUsuario.nombre("Matias");
+		constructorDeUsuario.sexo("Masculino");
+		constructorDeUsuario.peso(60.0);
+		constructorDeUsuario.estatura(1.7);
+		constructorDeUsuario.rutina("Leve");
+		constructorDeUsuario.esHipertenso();
+		
+		
+		
+		usuario = constructorDeUsuario.crearUsuario();
+
 		assertFalse(usuario.validaCondicionesPreexistentes(usuario));
 
 	}
 
 	@Test
 	public void testUsuarioHipertensoSiValida() {
-		List<CondicionPreexistenteI> condiciones = new ArrayList<CondicionPreexistenteI>();
-		condiciones.add(new Hipertenso("Hipertenso", comidasProhibidas));
-		usuario = new Usuario(1,"Pedro", null, LocalDate.parse("1990-01-01"),
-				60.0, 1.7, "Leve", preferenciaAlimenticiaNoSaludable,
-				condiciones, null);
+		
+		
+		UsuarioBuilder constructorDeUsuario = new UsuarioSinValidacion();
+		constructorDeUsuario.nombre("Matias");
+		constructorDeUsuario.sexo("Masculino");
+		constructorDeUsuario.peso(60.0);
+		constructorDeUsuario.estatura(1.7);
+		constructorDeUsuario.rutina("Leve");
+		constructorDeUsuario.leGusta("Fritos");
+		constructorDeUsuario.leGusta("Snacks");
+		constructorDeUsuario.esHipertenso();
+		
+		
+		
+		usuario = constructorDeUsuario.crearUsuario();
 		assertFalse(usuario.validaCondicionesPreexistentes(usuario));
 
 	}
 
 	@Test
 	public void testUsuarioSinFechaDeNacimiento() {
+		
+		
 		usuario = new Usuario(1,"Pedro", "Masculino",
 				LocalDate.parse("2016-01-01"), 60.0, 1.7, "Leve",
 				preferenciaAlimenticiaNoSaludable, null, null);
@@ -316,11 +464,13 @@ public class TestUsuario {
 	public void testAgregarReceta()
 	{
 
-//		Recetario.inadecuados=new ArrayList<CondicionPreexistenteI>();
-				
-		Usuario usr = new Usuario (1,"juan","masculino",LocalDate.parse("2016-01-01"), 60.0, 1.7, "Leve",
-					preferenciaAlimenticiaNoSaludable,new ArrayList<CondicionPreexistenteI>(),new ArrayList<Receta>());
+		UsuarioBuilder constructorDeUsuario = new UsuarioSinValidacion();
+			
 		
+		
+		Usuario usr = constructorDeUsuario.crearUsuario();
+				
+	
 		
 			
 		
@@ -337,10 +487,13 @@ public class TestUsuario {
 			
 	
 			
+
+			UsuarioBuilder constructorDeUsuario = new UsuarioSinValidacion();
+				
 			
-			Usuario usr = new Usuario (2,"juan","masculino",LocalDate.parse("2016-01-01"), 60.0, 1.7, "Leve",
-						preferenciaAlimenticiaNoSaludable,new ArrayList<CondicionPreexistenteI>(),new ArrayList<Receta>());
 			
+			Usuario usr = constructorDeUsuario.crearUsuario();
+					
 					
 		
 			
@@ -361,8 +514,12 @@ public class TestUsuario {
 		{
 					
 			
-			Usuario usr = new Usuario (3,"juan","masculino",LocalDate.parse("2016-01-01"), 60.0, 1.7, "Leve",
-						preferenciaAlimenticiaNoSaludable,new ArrayList<CondicionPreexistenteI>(),new ArrayList<Receta>());
+
+			UsuarioBuilder constructorDeUsuario = new UsuarioSinValidacion();
+				
+			
+			
+			Usuario usr = constructorDeUsuario.crearUsuario();
 					
 				
 			
@@ -395,8 +552,12 @@ public class TestUsuario {
 		{
 					
 			
-			Usuario usr = new Usuario (3,"juancito","masculino",LocalDate.parse("2014-01-01"), 60.0, 1.7, "Leve",
-						preferenciaAlimenticiaNoSaludable,new ArrayList<CondicionPreexistenteI>(),new ArrayList<Receta>());
+
+			UsuarioBuilder constructorDeUsuario = new UsuarioSinValidacion();
+				
+			
+			
+			Usuario usr = constructorDeUsuario.crearUsuario();
 					
 			
 			

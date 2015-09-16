@@ -44,9 +44,9 @@ public class TestCondicionesPreexistentes {
 
 		
 		 constructorDeUsuario= new UsuarioMasGenerico();
-		 constructorDeUsuario.establecerNombre("juan");
-		 constructorDeUsuario.establecerFechaNacimiento(LocalDate.parse("1998-08-05"));
-		 constructorDeUsuario.establecerSexo("Masculino");
+		 constructorDeUsuario.nombre("juan");
+		 constructorDeUsuario.fechaNacimiento(LocalDate.parse("1998-08-05"));
+		 constructorDeUsuario.sexo("Masculino");
 		 
 		 
 		 
@@ -57,9 +57,9 @@ public class TestCondicionesPreexistentes {
 	public void testDiabeticoSubsanaCondicion() {
 		
 		
-		constructorDeUsuario.establecerRutina("Activa");
-		constructorDeUsuario.establecerPeso(60.0);
-		constructorDeUsuario.establecerEstatura(1.75);
+		constructorDeUsuario.rutina("Activa");
+		constructorDeUsuario.peso(60.0);
+		constructorDeUsuario.estatura(1.75);
 
 		Usuario usr = constructorDeUsuario.crearUsuario();
 		
@@ -75,9 +75,9 @@ public class TestCondicionesPreexistentes {
 	public void testDiabeticoNoSubsanaCondicionFallaPorPeso() {
 		
 		
-		constructorDeUsuario.establecerRutina("Activa");
-		constructorDeUsuario.establecerPeso(80.0);
-		constructorDeUsuario.establecerEstatura(1.75);
+		constructorDeUsuario.rutina("Activa");
+		constructorDeUsuario.peso(80.0);
+		constructorDeUsuario.estatura(1.75);
 
 		Usuario usr = constructorDeUsuario.crearUsuario();
 			
@@ -91,9 +91,9 @@ public class TestCondicionesPreexistentes {
 		
 		
 		
-		constructorDeUsuario.establecerRutina("Leve");
-		constructorDeUsuario.establecerPeso(80.0);
-		constructorDeUsuario.establecerEstatura(1.75);
+		constructorDeUsuario.rutina("Leve");
+		constructorDeUsuario.peso(80.0);
+		constructorDeUsuario.estatura(1.75);
 
 		Usuario usr = constructorDeUsuario.crearUsuario();
 	 
@@ -107,9 +107,9 @@ public class TestCondicionesPreexistentes {
 	@Test
 	public void testHipertensoSubsanaCondicion() {
 		
-		constructorDeUsuario.establecerRutina("Intensiva");
-		constructorDeUsuario.establecerPeso(50.0);
-		constructorDeUsuario.establecerEstatura(1.75);
+		constructorDeUsuario.rutina("Intensiva");
+		constructorDeUsuario.peso(50.0);
+		constructorDeUsuario.estatura(1.75);
 
 		Usuario usr = constructorDeUsuario.crearUsuario();
 		
@@ -123,9 +123,9 @@ public class TestCondicionesPreexistentes {
 	public void testHipertensoNoSubsanaCondicionFallaPorRutina() {
 		
 		
-		constructorDeUsuario.establecerRutina("Leve");
-		constructorDeUsuario.establecerPeso(50.0);
-		constructorDeUsuario.establecerEstatura(1.75);
+		constructorDeUsuario.rutina("Leve");
+		constructorDeUsuario.peso(50.0);
+		constructorDeUsuario.estatura(1.75);
 
 		Usuario usr = constructorDeUsuario.crearUsuario();
 	    assertFalse(hipertenso.subSanaCondicion(usr));
@@ -138,9 +138,9 @@ public class TestCondicionesPreexistentes {
 	@Test
 	public void testVeganoSubsanaCondicion() {
 		
-		constructorDeUsuario.establecerRutina("Leve");
-		constructorDeUsuario.establecerPeso(50.0);
-		constructorDeUsuario.establecerEstatura(1.75);
+		constructorDeUsuario.rutina("Leve");
+		constructorDeUsuario.peso(50.0);
+		constructorDeUsuario.estatura(1.75);
 		constructorDeUsuario.leGusta("frutas");
 
 		Usuario usr = constructorDeUsuario.crearUsuario();
@@ -156,9 +156,9 @@ public class TestCondicionesPreexistentes {
 	public void testVeganoNoSubsanaCondicionFallaPorComidasQueGusta() {
 		
 		
-		constructorDeUsuario.establecerRutina("Leve");
-		constructorDeUsuario.establecerPeso(50.0);
-		constructorDeUsuario.establecerEstatura(1.75);
+		constructorDeUsuario.rutina("Leve");
+		constructorDeUsuario.peso(50.0);
+		constructorDeUsuario.estatura(1.75);
 
 		Usuario usr = constructorDeUsuario.crearUsuario();
 	 

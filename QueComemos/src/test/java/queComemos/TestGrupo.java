@@ -24,20 +24,20 @@ public class TestGrupo {
 	public void setUp() throws Exception {
 		
 		UsuarioBuilder constructorDeUsuario = new UsuarioMasGenerico();
-		constructorDeUsuario.establecerNombre("Pedro");
-		constructorDeUsuario.establecerSexo("Masculino");
-		constructorDeUsuario.establecerFechaNacimiento(	LocalDate.parse("1990-01-01"));
-		constructorDeUsuario.establecerPeso(60.0);
-		constructorDeUsuario.establecerEstatura(1.7);
-		constructorDeUsuario.establecerRutina("Leve");
+		constructorDeUsuario.nombre("Pedro");
+		constructorDeUsuario.sexo("Masculino");
+		constructorDeUsuario.fechaNacimiento(	LocalDate.parse("1990-01-01"));
+		constructorDeUsuario.peso(60.0);
+		constructorDeUsuario.estatura(1.7);
+		constructorDeUsuario.rutina("Leve");
 		
 		UsuarioBuilder otroConstructorDeUsuario = new UsuarioMasGenerico();
-		otroConstructorDeUsuario.establecerNombre("Juan");
-		otroConstructorDeUsuario.establecerSexo("Masculino");
-		otroConstructorDeUsuario.establecerFechaNacimiento(	LocalDate.parse("1990-01-01"));
-		otroConstructorDeUsuario.establecerPeso(60.0);
-		otroConstructorDeUsuario.establecerEstatura(1.7);
-		otroConstructorDeUsuario.establecerRutina("Leve");
+		otroConstructorDeUsuario.nombre("Juan");
+		otroConstructorDeUsuario.sexo("Masculino");
+		otroConstructorDeUsuario.fechaNacimiento(	LocalDate.parse("1990-01-01"));
+		otroConstructorDeUsuario.peso(60.0);
+		otroConstructorDeUsuario.estatura(1.7);
+		otroConstructorDeUsuario.rutina("Leve");
 				
 				
 		
@@ -85,12 +85,12 @@ public class TestGrupo {
 		grupo = new Grupo("UnNombre" , usuariosColeccion, null);
 		
 		UsuarioBuilder constructorDeUsuario = new UsuarioMasGenerico();
-		constructorDeUsuario.establecerNombre("Pepo");
-		constructorDeUsuario.establecerSexo("Masculino");
-		constructorDeUsuario.establecerFechaNacimiento(	LocalDate.parse("1990-01-01"));
-		constructorDeUsuario.establecerPeso(60.0);
-		constructorDeUsuario.establecerEstatura(1.7);
-		constructorDeUsuario.establecerRutina("Leve");
+		constructorDeUsuario.nombre("Pepo");
+		constructorDeUsuario.sexo("Masculino");
+		constructorDeUsuario.fechaNacimiento(	LocalDate.parse("1990-01-01"));
+		constructorDeUsuario.peso(60.0);
+		constructorDeUsuario.estatura(1.7);
+		constructorDeUsuario.rutina("Leve");
 		
 		
 		

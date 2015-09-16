@@ -55,11 +55,11 @@ public class TestConsulta {
 
 
 	UsuarioBuilder constructorDeUsuario = new UsuarioMasGenerico();
-	constructorDeUsuario.establecerNombre("Pepito");
-	constructorDeUsuario.establecerFechaNacimiento(LocalDate.parse("1994-05-06"));
-	constructorDeUsuario.establecerPeso(10.0);
-	constructorDeUsuario.establecerEstatura(20.5);
-	constructorDeUsuario.establecerRutina("Intensa");
+	constructorDeUsuario.nombre("Pepito");
+	constructorDeUsuario.fechaNacimiento(LocalDate.parse("1994-05-06"));
+	constructorDeUsuario.peso(10.0);
+	constructorDeUsuario.estatura(20.5);
+	constructorDeUsuario.rutina("Intensa");
 		
 	 usr  =  constructorDeUsuario.crearUsuario();
 			
