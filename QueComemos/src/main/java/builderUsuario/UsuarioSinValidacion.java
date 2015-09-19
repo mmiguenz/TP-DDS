@@ -1,7 +1,6 @@
-package queComemos;
+package builderUsuario;
 
 import usuario.Usuario;
-import builderUsuario.UsuarioBuilder;
 
 public class UsuarioSinValidacion extends UsuarioBuilder {
 

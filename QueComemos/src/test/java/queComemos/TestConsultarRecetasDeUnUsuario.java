@@ -16,6 +16,7 @@ import builderReceta.RecetaBuilder;
 import builderReceta.RecetaGenerica;
 import builderUsuario.UsuarioBuilder;
 import builderUsuario.UsuarioMasGenerico;
+import builderUsuario.UsuarioSinValidacion;
 import receta.Receta;
 import repositorios.Consulta;
 import repositorios.Recetario;

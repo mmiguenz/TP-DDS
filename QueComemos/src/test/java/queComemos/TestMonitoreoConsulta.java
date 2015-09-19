@@ -17,6 +17,7 @@ import org.junit.Test;
 
 import builderUsuario.UsuarioBuilder;
 import builderUsuario.UsuarioMasGenerico;
+import builderUsuario.UsuarioSinValidacion;
 import condicionesPreexistentes.Celiaco;
 import condicionesPreexistentes.Diabetico;
 import condicionesPreexistentes.Hipertenso;

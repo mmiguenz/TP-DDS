@@ -11,7 +11,10 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
+import builderReceta.RecetaBuilder;
+import builderReceta.RecetaGenerica;
 import builderUsuario.UsuarioBuilder;
+import builderUsuario.UsuarioSinValidacion;
 import receta.Ingrediente;
 import receta.Preparacion;
 import receta.Receta;
@@ -42,34 +45,23 @@ public class TestUsuario {
 		comidasProhibidas.add("Pan");
 		
 		
-		List<String>	instrucciones = new ArrayList<String>();
-		List<Ingrediente> ingredientes = new ArrayList<Ingrediente>();
-		List<Ingrediente>condimentos = new ArrayList<Ingrediente>();
-		List<Receta> subRecetas=new ArrayList<Receta>();
-		
+		RecetaBuilder constructorReceta = new RecetaGenerica();
+		constructorReceta.nombre("PolloConPapas");
+		constructorReceta.calorias(50.);
+		constructorReceta.instruccionesAgregar("Preparar");
+		constructorReceta.instruccionesAgregar("Revolver");
+		constructorReceta.instruccionesAgregar("Hornear");
+		constructorReceta.ingredienteAgregar("Azucar", "grs", 150.);
+		constructorReceta.ingredienteAgregar("papa", "kg", 3.);
+		constructorReceta.ingredienteAgregar("Carne", "grs", 2.);
+		constructorReceta.condimentoAgregar("Sal", "grs", 100.);
+		constructorReceta.condimentoAgregar("Mayonesa", "grs", 100.);
+		constructorReceta.temporada("Verano");
+		constructorReceta.dificultad("Baja");
 		
 			
-			instrucciones.add("Preparar");
-			instrucciones.add("Revolver");
-			instrucciones.add("Hornear");
-			
-			Ingrediente sal= new Ingrediente("Sal","grs",100);
-			Ingrediente carne= new Ingrediente("Carne","kg",2);
-			Ingrediente papas= new Ingrediente("papa","kg",3);
-			Ingrediente mayonesa= new Ingrediente("Mayonesa","grs",100);
-			Ingrediente azucar= new Ingrediente("Azucar","grs",150);
-			
-			ingredientes.add(azucar);
-			ingredientes.add(carne);
-			ingredientes.add(papas);
-			condimentos.add(mayonesa);
-			condimentos.add(sal);
-		
-		     preparacion = new Preparacion(ingredientes,condimentos,instrucciones);
-			 String dificultad = "Baja";
-			 String temporada= "Verano";
-			 
-			  receta = new Receta("PolloConPapas", 50.0,preparacion,dificultad,temporada,subRecetas,null);
+		  receta = constructorReceta.crearReceta();
+			  
 			  
 			  
 
