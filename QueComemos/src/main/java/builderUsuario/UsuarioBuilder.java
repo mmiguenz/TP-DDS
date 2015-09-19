@@ -78,7 +78,7 @@ public abstract class UsuarioBuilder {
 	public  Usuario crearUsuario()
 	{
 		if(nuevoUsuario.validar())
-			return nuevoUsuario;
+			return new Usuario(nuevoUsuario.getUsuarioID(),nuevoUsuario.getNombre(),nuevoUsuario.getSexo(),nuevoUsuario.getFechaNacimiento(),nuevoUsuario.getPeso(),nuevoUsuario.getEstatura(),nuevoUsuario.getRutina(),nuevoUsuario.getPreferenciaAlimenticia(),nuevoUsuario.getCondicionesPreexistentes(),nuevoUsuario.getMisRecetas()) ;
 		else
 			throw new FalloValidacionAlCrearUsuario();
 		
