@@ -136,6 +136,15 @@ public class Receta {
 		
 		
 	}
+
+	public static Receta crearReceta() {
+		
+		return new Receta("", 0.0
+						,new Preparacion(new ArrayList<Ingrediente>(), new ArrayList<Ingrediente>(), new ArrayList<String>())
+						, "", "", new ArrayList<Receta>(), new ArrayList<CondicionPreexistenteI>());
+		
+		
+	}
 	
 
 
