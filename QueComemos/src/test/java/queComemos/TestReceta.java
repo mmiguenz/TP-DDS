@@ -11,6 +11,8 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
+import builderReceta.RecetaBuilder;
+import builderReceta.RecetaGenerica;
 import condicionesPreexistentes.Celiaco;
 import condicionesPreexistentes.Diabetico;
 import condicionesPreexistentes.Hipertenso;
@@ -22,14 +24,8 @@ import repositorios.Recetario;
 
 public class TestReceta {
 	
-	private String nombre;
-	private double calorias;
-	private Preparacion preparacion ;
-	private String dificultad;
-	private String temporada;
-	private List<Receta> subRecetas;
-	private List<	CondicionPreexistenteI> inadecuados;
-
+	
+	private RecetaBuilder constructorReceta;
 	@Before
 	public void setUp() throws Exception {
 		
@@ -37,50 +33,26 @@ public class TestReceta {
 		Recetario.recetas = new ArrayList<Receta>();
 		Recetario.observadores = new ArrayList<ObservadorI>();
 	
-	List<String>	instrucciones = new ArrayList<String>();
-	List<Ingrediente> ingredientes = new ArrayList<Ingrediente>();
-	List<Ingrediente>condimentos = new ArrayList<Ingrediente>();
-	subRecetas=new ArrayList<Receta>();
-	
-	inadecuados=new ArrayList<CondicionPreexistenteI>();
-	List<String>comidasProhibidas= new ArrayList<String>();
-	List<String>comidasProhibidasH= new ArrayList<String>();
-	comidasProhibidasH.add("caldo");
 	
 	
-	Celiaco celiaco = new Celiaco("celiaco",comidasProhibidas);
-	Vegano vegano = new Vegano("vegano",comidasProhibidas);
-	Hipertenso hipertenso = new Hipertenso("hipertenso",comidasProhibidasH);
-	Diabetico diabetico = new Diabetico("diabetico",comidasProhibidas);
 	
-//	QueComemosApp.inadecuados=new ArrayList<CondicionPreexistenteI>();
 
 	
-		
-		instrucciones.add("Preparar");
-		instrucciones.add("Revolver");
-		instrucciones.add("Hornear");
-		
-		Ingrediente sal= new Ingrediente("Sal","grs",100);
-		Ingrediente carne= new Ingrediente("Carne","kg",2);
-		Ingrediente papas= new Ingrediente("papa","kg",3);
-		Ingrediente mayonesa= new Ingrediente("Mayonesa","grs",100);
-		Ingrediente azucar= new Ingrediente("Azucar","grs",150);
-		
-		ingredientes.add(azucar);
-		ingredientes.add(carne);
-		ingredientes.add(papas);
-		condimentos.add(mayonesa);
-		condimentos.add(sal);
-		
-		
+	constructorReceta = new RecetaGenerica();
+	constructorReceta.ingredienteAgregar("Azucar", "grs", 150.);
+	constructorReceta.ingredienteAgregar("Carne", "kg",2.);
+	constructorReceta.ingredienteAgregar("papa", "kg", 3.);
+	constructorReceta.condimentoAgregar("Sal", "grs", 100.);
+	constructorReceta.condimentoAgregar("Mayonesa", "grs", 100.);
+	constructorReceta.dificultad("baja");
+	constructorReceta.temporada("verano");
+	constructorReceta.nombre("CarneAlHorno");
+	constructorReceta.calorias(1524.0);
+	
+	
+	 
 
-		
-		
-	     preparacion = new Preparacion(ingredientes,condimentos,instrucciones);
-		 dificultad = "Baja";
-		 temporada= "Verano";
-		 
+
 		 
 		
 	}
@@ -92,7 +64,8 @@ public class TestReceta {
 		Hipertenso hipertenso = new Hipertenso("Hipertenso",comidas);
 		Recetario.inadecuados.add(hipertenso);
 		
-		 Receta receta = new Receta("CarneAlHorno",1524.0,preparacion,dificultad,temporada,subRecetas,inadecuados);
+		
+		 Receta receta = constructorReceta.crearReceta();
 		 assertTrue(receta.getInadecuados().contains(hipertenso));
 	}
 	
@@ -101,7 +74,11 @@ public class TestReceta {
 		Hipertenso hipertenso = new Hipertenso("Hipertenso",comidas);
 //		QueComemosApp.inicializar();
 		Recetario.inadecuados.add(hipertenso);
-		 Receta receta = new Receta("CarneAlHorno",1524.0,preparacion,dificultad,temporada,subRecetas,inadecuados);
+		
+		
+	
+		
+		 Receta receta = constructorReceta.crearReceta();
 		 assertFalse(receta.getInadecuados().contains(hipertenso));
 
 }
@@ -115,7 +92,10 @@ public class TestReceta {
 		Recetario.inadecuados.add(vegano);
 		
 		
-		 Receta receta = new Receta("CarneAlHorno",1524.0,preparacion,dificultad,temporada,subRecetas,inadecuados);
+		
+		
+		
+		 Receta receta = constructorReceta.crearReceta();
 		 assertTrue(receta.getInadecuados().contains(vegano));
 	}
 	
@@ -125,7 +105,7 @@ public class TestReceta {
 		Vegano vegano = new Vegano("Vegano",comidas);
 		Recetario.inadecuados.add(vegano);
 		
-		 Receta receta = new Receta("CarneAlHorno",1524.0,preparacion,dificultad,temporada,subRecetas,inadecuados);
+		 Receta receta = constructorReceta.crearReceta();
 		 assertFalse(receta.getInadecuados().contains(vegano));
 	}
 	
@@ -136,7 +116,7 @@ public class TestReceta {
 		Celiaco celiaco = new Celiaco("Celiaco",comidas);
 		Recetario.inadecuados.add(celiaco);
 		
-		 Receta receta = new Receta("CarneAlHorno",1524.0,preparacion,dificultad,temporada,subRecetas,inadecuados);
+		 Receta receta = constructorReceta.crearReceta();
 		 assertFalse(receta.getInadecuados().contains(celiaco));
 	}
 	
@@ -145,7 +125,7 @@ public class TestReceta {
 		List<String> comidas= new ArrayList<String>();
 		Celiaco celiaco = new Celiaco("Celiaco",comidas);
 		Recetario.inadecuados.add(celiaco);
-		 Receta receta = new Receta("CarneAlHorno",1524.0,preparacion,dificultad,temporada,subRecetas,inadecuados);
+		 Receta receta = constructorReceta.crearReceta();
 		 assertFalse(receta.getInadecuados().contains(celiaco));
 	}
 	
@@ -156,7 +136,7 @@ public class TestReceta {
 		Celiaco celiaco = new Celiaco("celiaco",comidas);
 		Recetario.inadecuados.add(celiaco);
 		
-		 Receta receta = new Receta("CarneAlHorno",1524.0,preparacion,dificultad,temporada,subRecetas,inadecuados);
+		 Receta receta = constructorReceta.crearReceta();
 		 assertFalse(receta.getInadecuados().contains(celiaco));
 	}
 	
@@ -168,7 +148,7 @@ public class TestReceta {
 		Recetario.inadecuados.add(celiaco);
 		
 		
-		 Receta receta = new Receta("CarneAlHorno",1524.0,preparacion,dificultad,temporada,subRecetas,inadecuados);
+		 Receta receta = constructorReceta.crearReceta();
 		 assertFalse(receta.getInadecuados().contains(celiaco));
 	}
 	
@@ -180,7 +160,7 @@ public class TestReceta {
 		Recetario.inadecuados.add(diabetico);
 		
 		
-		 Receta receta = new Receta("CarneAlHorno",1524.0,preparacion,dificultad,temporada,subRecetas,inadecuados);
+		 Receta receta = constructorReceta.crearReceta();
 		 assertFalse(receta.getInadecuados().contains("Diabetico"));
 	}
 	
@@ -188,7 +168,7 @@ public class TestReceta {
 	@Test
 	public void testRecetaContieneUnaComida()
 	{
-		 Receta receta = new Receta("CarneAlHorno",1524.0,preparacion,dificultad,temporada,subRecetas,inadecuados);
+		 Receta receta = constructorReceta.crearReceta();
 		 assertTrue(receta.contiene("Carne"));
 		
 		
@@ -198,7 +178,7 @@ public class TestReceta {
 	@Test
 	public void testRecetaNoContieneUnaComida()
 	{
-		Receta receta = new Receta("CarneAlHorno",1524.0,preparacion,dificultad,temporada,subRecetas,inadecuados);
+		 Receta receta = constructorReceta.crearReceta();
 		 assertFalse(receta.contiene("Chinchulin"));
 		
 		
@@ -207,7 +187,7 @@ public class TestReceta {
 	@Test
 	public void testRecetaContieneAlgunaComidaDeUnaLista()
 	{
-		Receta receta = new Receta("CarneAlHorno",1524.0,preparacion,dificultad,temporada,subRecetas,inadecuados);
+		 Receta receta = constructorReceta.crearReceta();
 		List<String> conjuntoDeComidas = new ArrayList<String>();
 		
 		conjuntoDeComidas.add("Miel");
@@ -224,7 +204,7 @@ public class TestReceta {
 	@Test
 	public void testRecetaNoContieneAlgunaComidaDeUnaLista()
 	{
-		Receta receta = new Receta("CarneAlHorno",1524.0,preparacion,dificultad,temporada,subRecetas,inadecuados);
+		 Receta receta = constructorReceta.crearReceta();
 		List<String> conjuntoDeComidas = new ArrayList<String>();
 		
 		conjuntoDeComidas.add("Miel");
@@ -244,13 +224,26 @@ public class TestReceta {
 	public void testRecetaConSubRecetasContieneAlgunaComidaDeUnaLista()
 	{
 		
-		List<Receta>subRecetasTest = new ArrayList<>();
-		Receta subreceta = new Receta("pollo con papas",100.0,preparacion,dificultad,temporada,subRecetas,inadecuados);
-		subRecetasTest.add(subreceta);
-				
-		Receta receta = new Receta("CarneAlHorno",1524.0,preparacion,dificultad,temporada,subRecetasTest,inadecuados);
+		 
 		
+			
+		RecetaBuilder	otroConstructorReceta = new RecetaGenerica();
+			otroConstructorReceta.ingredienteAgregar("Azucar", "grs", 150.);
+			otroConstructorReceta.ingredienteAgregar("Carne", "kg",2.);
+			otroConstructorReceta.ingredienteAgregar("papa", "kg", 3.);
+			otroConstructorReceta.condimentoAgregar("Sal", "grs", 100.);
+			otroConstructorReceta.condimentoAgregar("Mayonesa", "grs", 100.);
+			otroConstructorReceta.dificultad("baja");
+			otroConstructorReceta.temporada("verano");
+			otroConstructorReceta.nombre("PolloConPapas");
+			otroConstructorReceta.calorias(100.0);
+		 
 		
+		Receta subreceta = otroConstructorReceta.crearReceta();
+		
+		constructorReceta.subRecetaAgregar(subreceta);
+		
+		Receta receta = constructorReceta.crearReceta();
 		
 		List<String> conjuntoDeComidas = new ArrayList<String>();
 		
@@ -268,11 +261,25 @@ public class TestReceta {
 	@Test
 	public void testRecetaConSubRecetasNoContieneAlgunaComidaDeUnaLista()
 	{
-		List<Receta>subRecetasTest = new ArrayList<>();
-		Receta subreceta = new Receta("pollo con papas",100.0,preparacion,dificultad,temporada,subRecetas,inadecuados);
-		subRecetasTest.add(subreceta);
-				
-		Receta receta = new Receta("CarneAlHorno",1524.0,preparacion,dificultad,temporada,subRecetasTest,inadecuados);
+		
+		
+		RecetaBuilder	otroConstructorReceta = new RecetaGenerica();
+			otroConstructorReceta.ingredienteAgregar("Azucar", "grs", 150.);
+			otroConstructorReceta.ingredienteAgregar("Carne", "kg",2.);
+			otroConstructorReceta.ingredienteAgregar("papa", "kg", 3.);
+			otroConstructorReceta.condimentoAgregar("Sal", "grs", 100.);
+			otroConstructorReceta.condimentoAgregar("Mayonesa", "grs", 100.);
+			otroConstructorReceta.dificultad("baja");
+			otroConstructorReceta.temporada("verano");
+			otroConstructorReceta.nombre("PolloConPapas");
+			otroConstructorReceta.calorias(100.0);
+		 
+		
+		Receta subreceta = otroConstructorReceta.crearReceta();
+		
+		constructorReceta.subRecetaAgregar(subreceta);
+		
+		Receta receta = constructorReceta.crearReceta();
 		
 		List<String> conjuntoDeComidas = new ArrayList<String>();
 		
@@ -293,7 +300,8 @@ public class TestReceta {
 	@Test 
 	public void testValidaReceta()
 	{
-		Receta receta = new Receta("CarneAlHorno",1524.0,preparacion,dificultad,temporada,subRecetas,inadecuados);
+
+		Receta receta = constructorReceta.crearReceta();
 				
 		assertTrue(receta.validar());
 		
@@ -304,7 +312,8 @@ public class TestReceta {
 	@Test 
 	public void testNoalidaReceta()
 	{
-		Receta receta = new Receta("CarneAlHorno",0.0,preparacion,dificultad,temporada,subRecetas,inadecuados);
+		constructorReceta.calorias(.0);
+		Receta receta = constructorReceta.crearReceta();
 				
 		assertFalse(receta.validar());
 		

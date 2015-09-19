@@ -13,6 +13,8 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
+import builderReceta.RecetaBuilder;
+import builderReceta.RecetaGenerica;
 import procesamientos.ConsiderarSiEsPar;
 import procesamientos.TomarDiezPrimeros;
 import receta.Ingrediente;
@@ -87,33 +89,20 @@ public class TestProcesamientoPosterior {
 		 
 		 // Crear Receta 
 		 
-		    List<String>	instrucciones = new ArrayList<String>();
-			List<Ingrediente> ingredientes = new ArrayList<Ingrediente>();
-			List<Ingrediente>condimentos = new ArrayList<Ingrediente>();
-			List<Receta> subRecetas=new ArrayList<Receta>();
+			RecetaBuilder constructorReceta = new RecetaGenerica();
+			constructorReceta.nombre("CarneAlHorno");
+			constructorReceta.calorias(1524.0);
+			constructorReceta.ingredienteAgregar("Azucar", "grs", 150.);
+			constructorReceta.ingredienteAgregar("Carne", "kg",2.);
+			constructorReceta.ingredienteAgregar("papa", "kg", 3.);
+			constructorReceta.condimentoAgregar("Sal", "grs", 100.);
+			constructorReceta.condimentoAgregar("Mayonesa", "grs", 100.);
+			constructorReceta.dificultad("baja");
+			constructorReceta.temporada("vernano");
 			
-
-			instrucciones.add("Preparar");
-			instrucciones.add("Revolver");
-			instrucciones.add("Hornear");
-			
-			Ingrediente sal= new Ingrediente("Sal","grs",100);
-			Ingrediente carne= new Ingrediente("Carne","kg",2);
-			Ingrediente papas= new Ingrediente("papa","kg",3);
-			Ingrediente mayonesa= new Ingrediente("Mayonesa","grs",100);
-			Ingrediente azucar= new Ingrediente("Azucar","grs",150);
-			
-			ingredientes.add(azucar);
-			ingredientes.add(carne);
-			ingredientes.add(papas);
-			condimentos.add(mayonesa);
-			condimentos.add(sal);
-			
-		 Preparacion    preparacion = new Preparacion(ingredientes,condimentos,instrucciones);
-
 			
 			Recetario.recetas = new ArrayList<Receta>();
-			 receta = new Receta("CarneAlHorno",1524.0,preparacion,"baja","verano",subRecetas,condiciones);
+			 receta = constructorReceta.crearReceta();
 			Recetario.recetas.add(receta);
 		 
 		 

@@ -11,8 +11,8 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
-import receta.Ingrediente;
-import receta.Preparacion;
+import builderReceta.RecetaBuilder;
+import builderReceta.RecetaGenerica;
 import receta.Receta;
 import repositorios.Recetario;
 import repositorios.RepoUsuarios;
@@ -53,19 +53,14 @@ public class TestMostrarRecetasAccesiblesPorUsuario {
 		
 		comidasQueDisgustaUsr.add("Verduras");
 
-		GustosSobreAlimentos preferenciaAlimenticiaSaludable = new GustosSobreAlimentos(comidasQueGustaUsrSaludable, comidasQueDisgustaUsr);
+		
 		GustosSobreAlimentos preferenciaAlimenticiaNoSaludable = new GustosSobreAlimentos(comidasQueGustaUsrNoSaludable, comidasQueDisgustaUsr);
 
 		List<String>comidasProhibidas = new ArrayList<String>();
 		comidasProhibidas.add("Pan");
 
 		
-		List<String>	instrucciones = new ArrayList<String>();
-		List<Ingrediente> ingredientes = new ArrayList<Ingrediente>();
-		List<Ingrediente>condimentos = new ArrayList<Ingrediente>();
-		List<Receta> subRecetas=new ArrayList<Receta>();
-		
-		List<CondicionPreexistenteI> inadecuados=new ArrayList<CondicionPreexistenteI>();
+			List<CondicionPreexistenteI> inadecuados=new ArrayList<CondicionPreexistenteI>();
 		List<String>comidasProhibidasH= new ArrayList<String>();
 		comidasProhibidasH.add("caldo");
 		
@@ -76,27 +71,24 @@ public class TestMostrarRecetasAccesiblesPorUsuario {
 		Diabetico diabetico = new Diabetico("diabetico",comidasProhibidas);
 		
 		
+		RecetaBuilder constructorReceta = new RecetaGenerica();
+		constructorReceta.nombre("CarneAlHorno");
+		constructorReceta.calorias(1524.0);
+		constructorReceta.ingredienteAgregar("Azucar", "grs", 150.);
+		constructorReceta.ingredienteAgregar("Carne", "kg",2.);
+		constructorReceta.ingredienteAgregar("papa", "kg", 3.);
+		constructorReceta.condimentoAgregar("Sal", "grs", 100.);
+		constructorReceta.condimentoAgregar("Mayonesa", "grs", 100.);
+		constructorReceta.dificultad("baja");
+		constructorReceta.temporada("vernano");
 		
-			
-			instrucciones.add("Preparar");
-			instrucciones.add("Revolver");
-			instrucciones.add("Hornear");
-			
-			Ingrediente sal= new Ingrediente("Sal","grs",100);
-			Ingrediente carne= new Ingrediente("Carne","kg",2);
-			Ingrediente papas= new Ingrediente("papa","kg",3);
-			Ingrediente mayonesa= new Ingrediente("Mayonesa","grs",100);
-			Ingrediente azucar= new Ingrediente("Azucar","grs",150);
-			
-			ingredientes.add(azucar);
-			ingredientes.add(carne);
-			ingredientes.add(papas);
-			condimentos.add(mayonesa);
-			condimentos.add(sal);
+		receta2 = constructorReceta.crearReceta();
 		
-		     Preparacion preparacion = new Preparacion(ingredientes,condimentos,instrucciones);
-			 String dificultad = "Baja";
-			 String temporada= "Verano";
+		constructorReceta.calorias(50.);
+		constructorReceta.nombre("PolloConPapas");
+		
+		
+		receta =constructorReceta.crearReceta();
 		
 		
 		 usr = new Usuario (3,"juan","masculino",LocalDate.parse("2016-01-01"), 60.0, 1.7, "Leve",
@@ -104,8 +96,8 @@ public class TestMostrarRecetasAccesiblesPorUsuario {
 		
 		
 		
-		  receta = new Receta("PolloConPapas", 50.0,preparacion,dificultad,temporada,subRecetas,inadecuados);
-		 receta2 = new Receta("CarneAlHorno",1524.0,preparacion,dificultad,temporada,subRecetas,inadecuados);
+		 
+		 
 		
 		Recetario.recetas.add(receta);
 		usr.getMisRecetas().add(receta2);
