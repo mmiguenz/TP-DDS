@@ -9,6 +9,8 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import observadores.ObservadorVeganoConsultaRecetaDificil;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -201,6 +203,39 @@ public class TestConsultarRecetasDeUnUsuario {
 
 	}
 	
+	
+	
+	@Test
+	public void testVaganoConsultadoDificil() {
+		Recetario.observadores = new ArrayList<ObservadorI>();
+		Recetario.veganosConsultandoRecetasDificiles = new ArrayList<Usuario>();
+		 
+		Recetario.observadores.add(new ObservadorVeganoConsultaRecetaDificil());
+		
+		UsuarioBuilder constructorU = new UsuarioSinValidacion();
+		constructorU.esVegano();
+		
+		RecetaBuilder constructorR = new RecetaGenerica();
+		constructorR.dificultad("dificil");
+		
+		Receta unaReceta =  constructorR.crearReceta();
+		Recetario.recetas.add(unaReceta);
+
+		Consulta consultaRecetas = new Consulta(constructorU.crearUsuario());
+		
+		
+		consultaRecetas.consultarRecetas();
+		
+	
+		
+		assertTrue(Recetario.veganosConsultandoRecetasDificiles.size() == 1 );
+		
+		
+		
+
+	}
+	
+
 
 	
 

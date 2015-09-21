@@ -720,6 +720,28 @@ public class TestUsuario {
 		
 		
 		
+		@Test
+		public void testValidarCeliaco()
+		
+		{
+			UsuarioBuilder constructorDeUsuario = new UsuarioMasGenerico();
+			constructorDeUsuario.nombre("juancito");
+			constructorDeUsuario.peso(40.);
+			constructorDeUsuario.estatura(1.4);
+			constructorDeUsuario.fechaNacimiento(LocalDate.now().minusYears(1));
+			constructorDeUsuario.esDiabetico();
+			constructorDeUsuario.rutina("Activa");
+						
+			Usuario usr = constructorDeUsuario.crearUsuario();
+		
+					
+			Celiaco celiaco = new Celiaco ("celiaco",new ArrayList<String>());
+			
+			assertTrue(celiaco.validar(usr));
+		
+		}
+		
+		
 		
 		
 
