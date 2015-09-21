@@ -704,6 +704,8 @@ public class TestUsuario {
 			constructorDeUsuario.peso(40.);
 			constructorDeUsuario.estatura(1.4);
 			constructorDeUsuario.fechaNacimiento(LocalDate.now().minusYears(1));
+			constructorDeUsuario.esDiabetico();
+			constructorDeUsuario.rutina("Activa");
 						
 			Usuario usr = constructorDeUsuario.crearUsuario();
 		
