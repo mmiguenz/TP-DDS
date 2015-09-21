@@ -545,13 +545,12 @@ public class TestUsuario {
 			Usuario usr = new Usuario (null,null,null,null, null, null, null,
 					null,new ArrayList<CondicionPreexistenteI>(),new ArrayList<Receta>());
 			
-			usr.setNombre("pepe");
+			usr.setNombre(usr.getNombre());
 			
-			Double peso =  usr.getPeso();
-			Double estatura =  usr.getEstatura();
-			usr.setEstatura(10. + 1.);
-			usr.setPeso(20.+ 10.);
-			
+
+			usr.setEstatura(usr.getPeso());
+			usr.setPeso(usr.getEstatura());
+			usr.setSexo(usr.getSexo());
 					
 				
 			
@@ -672,7 +671,7 @@ public class TestUsuario {
 		
 		}
 		
-
+		
 		
 		
 		

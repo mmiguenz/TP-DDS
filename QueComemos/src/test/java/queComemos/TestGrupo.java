@@ -133,6 +133,24 @@ public class TestGrupo {
 		
 	}
 	
+	@Test
+	public void testLeGustaAlGrupo() {
+	
+		
+		grupo = new Grupo("UnNombre" , usuariosColeccion, new GustosSobreAlimentos(new ArrayList<String>(),new ArrayList<String>()));
+		RecetaBuilder constructorDeReceta = new RecetaGenerica();
+		constructorDeReceta.nombre("papasAlHorno");
+		constructorDeReceta.dificultad("facil");
+		
+		Receta receta = constructorDeReceta.crearReceta();
+		
+		assertFalse(grupo.leGustaAlGrupo(receta));
+		
+		
+		
+		
+	}
+	
 	
 
 	
