@@ -536,6 +536,30 @@ public class TestUsuario {
 		
 		}
 		
+		@Test
+		public void testNoValidarUsuario()
+		
+		{
+					
+			
+			Usuario usr = new Usuario (null,null,null,null, null, null, null,
+					null,new ArrayList<CondicionPreexistenteI>(),new ArrayList<Receta>());
+			
+			usr.setNombre("pepe");
+			
+			Double peso =  usr.getPeso();
+			Double estatura =  usr.getEstatura();
+			usr.setEstatura(10. + 1.);
+			usr.setPeso(20.+ 10.);
+			
+					
+				
+			
+			assertFalse(usr.validar());
+		
+		}
+		
+		
 		
 		
 		@Test
@@ -560,6 +584,101 @@ public class TestUsuario {
 		}
 		
 
+		
+		
+		@Test
+		public void testSigueRutinaSaludable()
+		
+		{
+					
+			
+
+			UsuarioBuilder constructorDeUsuario = new UsuarioSinValidacion();
+				
+			constructorDeUsuario.peso(40.);
+			constructorDeUsuario.estatura(1.3);
+		
+			
+			Usuario usr = constructorDeUsuario.crearUsuario();
+			
+				
+			
+			assertTrue(usr.sigueRutinaSaludable());
+		
+		}
+		
+
+
+		@Test
+		public void testNoPuedeVerReceta()
+		
+		{
+					
+			
+
+			UsuarioBuilder constructorDeUsuario = new UsuarioSinValidacion();
+				
+			
+			
+			Usuario usr = constructorDeUsuario.crearUsuario();
+					
+			
+			
+				
+			
+			assertFalse(usr.puedeVer(receta));
+		
+		}
+		
+		@Test
+		public void testpuedeVerRecetaEsPublica()
+		
+		{
+					
+			
+
+			UsuarioBuilder constructorDeUsuario = new UsuarioSinValidacion();
+				
+			
+			
+			Usuario usr = constructorDeUsuario.crearUsuario();
+					
+			Recetario.recetas.add(receta);
+			
+				
+			
+			assertTrue(usr.puedeVer(receta));
+		
+		}
+		
+		@Test
+		public void testpuedeVerRecetaEsPropia()
+		
+		{
+					
+			
+
+			UsuarioBuilder constructorDeUsuario = new UsuarioSinValidacion();
+				
+			
+			
+			Usuario usr = constructorDeUsuario.crearUsuario();
+					
+		  usr.getMisRecetas().add(receta);
+			
+				
+			
+			assertTrue(usr.puedeVer(receta));
+		
+		}
+		
+
+		
+		
+		
+		
+
+		
 		
 		
 

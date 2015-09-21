@@ -1,6 +1,7 @@
 package queComemos;
 
 import static org.junit.Assert.*;
+import interfaces.CondicionPreexistenteI;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -9,10 +10,15 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
+import builderReceta.RecetaBuilder;
+import builderReceta.RecetaGenerica;
 import builderUsuario.UsuarioBuilder;
 import builderUsuario.UsuarioMasGenerico;
+import receta.Receta;
 import repositorios.Consulta;
+import repositorios.Recetario;
 import usuario.Grupo;
+import usuario.GustosSobreAlimentos;
 import usuario.Usuario;
 
 public class TestGrupo {
@@ -22,6 +28,7 @@ public class TestGrupo {
 	
 	@Before
 	public void setUp() throws Exception {
+		Recetario.inadecuados = new ArrayList<CondicionPreexistenteI>();
 		
 		UsuarioBuilder constructorDeUsuario = new UsuarioMasGenerico();
 		constructorDeUsuario.nombre("Pedro");
@@ -107,6 +114,29 @@ public class TestGrupo {
 		grupo = new Grupo("UnNombre" , usuariosColeccion, null);
 		assertFalse(grupo.getUsuarios().stream().anyMatch(usr->usr.getNombre().equals("Pepo")));
 	}
+	
+	@Test
+	public void testEsAdecuadaReceta() {
+	
+		
+		grupo = new Grupo("UnNombre" , usuariosColeccion, new GustosSobreAlimentos(new ArrayList<String>(),new ArrayList<String>()));
+		RecetaBuilder constructorDeReceta = new RecetaGenerica();
+		constructorDeReceta.nombre("papasAlHorno");
+		constructorDeReceta.dificultad("facil");
+		
+		Receta receta = constructorDeReceta.crearReceta();
+		
+		assertTrue(grupo.esAdecuadaParaGrupo(receta));
+		
+		
+		
+		
+	}
+	
+	
+
+	
+	
 	
 	
 	
