@@ -20,19 +20,13 @@ public class Usuario {
 	private Double estatura;
 	private String rutina;
 	private GustosSobreAlimentos preferenciaAlimenticia;
+	private boolean  marcaFavoritasLasConsultas ; 
 	private List<CondicionPreexistenteI> condicionesPreexistentes;
 	private List<Receta> misRecetas;
 	private List<Receta> favoritas;
 	
 	
-	
-	public List<Receta> getFavoritas() {
-		return favoritas;
-	}
 
-	public void setFavoritas(List<Receta> favoritas) {
-		this.favoritas = favoritas;
-	}
 
 
 	public Usuario(Integer usuarioID,String nombre, String sexo, LocalDate fechaNacimiento,
@@ -61,84 +55,27 @@ public class Usuario {
 	}
 	
 	
-	public String getRutina() {
-		return rutina;
-	}
-
-	public void setRutina(String rutina) {
-		this.rutina = rutina;
-	}
-
-	public String getNombre() {
-		return nombre;
-	}
-
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
-
-	public String getSexo() {
-		return sexo;
-	}
-
-	public void setSexo(String sexo) {
-		this.sexo = sexo;
-	}
-
-	public LocalDate getFechaNacimiento() {
-		return fechaNacimiento;
-	}
-
-	public void setFechaNacimiento(LocalDate fechaNacimiento) {
-		this.fechaNacimiento = fechaNacimiento;
-	}
-
-	public Double getPeso() {
-		return peso;
-	}
-
-	public void setPeso(Double peso) {
-		this.peso = peso;
-	}
-
-	public Double getEstatura() {
-		return estatura;
-	}
-
-	public void setEstatura(Double estatura) {
-		this.estatura = estatura;
-	}
-
-	public GustosSobreAlimentos getPreferenciaAlimenticia() {
-		return preferenciaAlimenticia;
-	}
-
-	public void setPreferenciaAlimenticia(
-			GustosSobreAlimentos preferenciaAlimenticia) {
-		this.preferenciaAlimenticia = preferenciaAlimenticia;
-	}
-
-	public List<CondicionPreexistenteI> getCondicionesPreexistentes() {
-		return condicionesPreexistentes;
-	}
-
-	public void setCondicionesPreexistentes(
-			List<CondicionPreexistenteI> condicionesPreexistentes) {
-		this.condicionesPreexistentes = condicionesPreexistentes;
-	}
-
-	public List<Receta> getMisRecetas() {
-		return misRecetas;
-	}
-
-	public void setMisRecetas(List<Receta> misRecetas) {
-		this.misRecetas = misRecetas;
-	}
-
 
 	
-	
-	
+		
+
+	public List<Receta> getFavoritas() {
+		return favoritas;
+	}
+
+
+
+
+
+
+	public void setFavoritas(List<Receta> favoritas) {
+		this.favoritas = favoritas;
+	}
+
+
+
+
+
 
 	public Double indiceMasaCorporal() {
 		return this.peso / (this.estatura * this.estatura);
@@ -232,6 +169,90 @@ public class Usuario {
 	public void setUsuarioID(Integer usuarioID) {
 		this.usuarioID = usuarioID;
 	}
+
+	
+	public String getRutina() {
+		return rutina;
+	}
+
+	public void setRutina(String rutina) {
+		this.rutina = rutina;
+	}
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	public String getSexo() {
+		return sexo;
+	}
+
+	public void setSexo(String sexo) {
+		this.sexo = sexo;
+	}
+
+	public LocalDate getFechaNacimiento() {
+		return fechaNacimiento;
+	}
+
+	public void setFechaNacimiento(LocalDate fechaNacimiento) {
+		this.fechaNacimiento = fechaNacimiento;
+	}
+
+	public Double getPeso() {
+		return peso;
+	}
+
+	public void setPeso(Double peso) {
+		this.peso = peso;
+	}
+
+	public Double getEstatura() {
+		return estatura;
+	}
+
+	public void setEstatura(Double estatura) {
+		this.estatura = estatura;
+	}
+
+	public GustosSobreAlimentos getPreferenciaAlimenticia() {
+		return preferenciaAlimenticia;
+	}
+
+	public void setPreferenciaAlimenticia(
+			GustosSobreAlimentos preferenciaAlimenticia) {
+		this.preferenciaAlimenticia = preferenciaAlimenticia;
+	}
+
+	public List<CondicionPreexistenteI> getCondicionesPreexistentes() {
+		return condicionesPreexistentes;
+	}
+
+	public void setCondicionesPreexistentes(
+			List<CondicionPreexistenteI> condicionesPreexistentes) {
+		this.condicionesPreexistentes = condicionesPreexistentes;
+	}
+
+	public List<Receta> getMisRecetas() {
+		return misRecetas;
+	}
+
+	public void setMisRecetas(List<Receta> misRecetas) {
+		this.misRecetas = misRecetas;
+	}
+
+	public boolean isMarcaFavoritasLasConsultas() {
+		return marcaFavoritasLasConsultas;
+	}
+
+	public void setMarcaFavoritasLasConsultas(boolean marcaFavoritasLasConsultas) {
+		this.marcaFavoritasLasConsultas = marcaFavoritasLasConsultas;
+	}
+
 
 	
 

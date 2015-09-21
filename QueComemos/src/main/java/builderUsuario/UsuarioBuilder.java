@@ -21,6 +21,11 @@ public abstract class UsuarioBuilder {
 	protected Usuario nuevoUsuario;
 	
 	
+	public void marcaFavoritas(boolean valor)
+	{
+		nuevoUsuario.setMarcaFavoritasLasConsultas(valor);
+		
+	}
 	
 	public  void nombre(String nombre)
 	{
@@ -78,10 +83,14 @@ public abstract class UsuarioBuilder {
 	public  Usuario crearUsuario()
 	{
 		if(nuevoUsuario.validar())
-			return new Usuario(nuevoUsuario.getUsuarioID(),nuevoUsuario.getNombre(),nuevoUsuario.getSexo(),nuevoUsuario.getFechaNacimiento(),nuevoUsuario.getPeso(),nuevoUsuario.getEstatura(),nuevoUsuario.getRutina(),nuevoUsuario.getPreferenciaAlimenticia(),nuevoUsuario.getCondicionesPreexistentes(),nuevoUsuario.getMisRecetas()) ;
-		else
+		{
+			Usuario usuarior =  new Usuario(nuevoUsuario.getUsuarioID(),nuevoUsuario.getNombre(),nuevoUsuario.getSexo(),nuevoUsuario.getFechaNacimiento(),nuevoUsuario.getPeso(),nuevoUsuario.getEstatura(),nuevoUsuario.getRutina(),nuevoUsuario.getPreferenciaAlimenticia(),nuevoUsuario.getCondicionesPreexistentes(),nuevoUsuario.getMisRecetas()) ;
+			usuarior.setMarcaFavoritasLasConsultas(nuevoUsuario.isMarcaFavoritasLasConsultas());		
+			return usuarior;
+		}
+		else{
 			throw new FalloValidacionAlCrearUsuario();
-		
+		}
 				
 	}
 	
