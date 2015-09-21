@@ -672,6 +672,27 @@ public class TestUsuario {
 		}
 		
 		
+		@Test
+		public void testLeGustaReceta()
+		
+		{
+					
+			
+
+			UsuarioBuilder constructorDeUsuario = new UsuarioSinValidacion();
+				
+			
+			
+			Usuario usr = constructorDeUsuario.crearUsuario();
+		
+				
+			
+			assertTrue(usr.leGusta(receta));
+		
+		}
+		
+		
+		
 		
 		
 		
