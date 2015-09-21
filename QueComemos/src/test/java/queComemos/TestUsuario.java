@@ -14,6 +14,7 @@ import org.junit.Test;
 import builderReceta.RecetaBuilder;
 import builderReceta.RecetaGenerica;
 import builderUsuario.UsuarioBuilder;
+import builderUsuario.UsuarioMasGenerico;
 import builderUsuario.UsuarioSinValidacion;
 import receta.Ingrediente;
 import receta.Preparacion;
@@ -690,6 +691,28 @@ public class TestUsuario {
 			assertTrue(usr.leGusta(receta));
 		
 		}
+		
+		@Test
+		public void testCrearUsuario()
+		
+		{
+					
+			
+
+			UsuarioBuilder constructorDeUsuario = new UsuarioMasGenerico();
+			constructorDeUsuario.nombre("juancito");
+			constructorDeUsuario.peso(40.);
+			constructorDeUsuario.estatura(1.4);
+			constructorDeUsuario.fechaNacimiento(LocalDate.now().minusYears(1));
+						
+			Usuario usr = constructorDeUsuario.crearUsuario();
+		
+				
+			
+			assertTrue(usr.validar());
+		
+		}
+		
 		
 		
 		
