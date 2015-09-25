@@ -2,11 +2,11 @@ package procesamientos;
 
 import interfaces.CriterioOrdenamientoI;
 
-import java.util.ArrayList;
+
 import java.util.Comparator;
-import java.util.ArrayList;
+
 import java.util.List;
-import java.util.List;
+
 import java.util.stream.Collectors;
 
 import receta.Receta;

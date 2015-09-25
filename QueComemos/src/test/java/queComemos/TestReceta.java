@@ -4,7 +4,7 @@ import static org.junit.Assert.*;
 import interfaces.CondicionPreexistenteI;
 import interfaces.ObservadorI;
 
-import java.time.LocalDate;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,8 +17,6 @@ import condicionesPreexistentes.Celiaco;
 import condicionesPreexistentes.Diabetico;
 import condicionesPreexistentes.Hipertenso;
 import condicionesPreexistentes.Vegano;
-import receta.Ingrediente;
-import receta.Preparacion;
 import receta.Receta;
 import repositorios.Recetario;
 import repositorios.RepoUsuarios;

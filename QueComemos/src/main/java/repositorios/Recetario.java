@@ -1,25 +1,16 @@
 package repositorios;
 
-import interfaces.CondicionPreexistenteI;
-import interfaces.FiltroI;
-import interfaces.ObservadorI;
-import interfaces.ProcesamientoI;
 
-import java.time.LocalDate;
+import interfaces.ObservadorI;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
-import java.util.stream.Collectors;
-
 import receta.Preparacion;
 import receta.Receta;
-import usuario.Grupo;
+
 import usuario.Usuario;
 
 public class Recetario {
@@ -28,6 +19,7 @@ public class Recetario {
 	public static List<ObservadorI>observadores;
 	public static List<Consulta> consultas;
 	public static List<Usuario> veganosConsultandoRecetasDificiles;
+	public static List<Consulta> consultasLogueadas;
 	
 	
 	public static Receta modificarRecetaPublica (String nombre, String nuevoNombre,Double calorias, Preparacion preparacion,List<Receta>subRecetas,String dificultad)

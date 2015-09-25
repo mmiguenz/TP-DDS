@@ -14,7 +14,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 import builderUsuario.UsuarioBuilder;
-import builderUsuario.UsuarioMasGenerico;
 import builderUsuario.UsuarioParaAprobacionDeSolicitudes;
 import receta.Receta;
 import repositorios.Consulta;

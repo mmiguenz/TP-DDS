@@ -55,7 +55,7 @@ public class RepoUsuarios {
 	
 	public static void update(Usuario usr )
 	{
-		 long c = usuarios.stream().filter(usuario -> usuario.getUsuarioID().equals(usr.getUsuarioID())).count();
+
 		
 		Usuario usrOriginal =  usuarios.stream().filter(usuario -> usuario.getUsuarioID().equals(usr.getUsuarioID())).collect(Collectors.toList()).get(0);
 		

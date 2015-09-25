@@ -5,12 +5,7 @@ import interfaces.CondicionPreexistenteI;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import org.json.*;
-
-import javax.json.*;
-
-import queComemos.entrega3.dominio.Dificultad;
 import queComemos.entrega3.repositorio.BusquedaRecetas;
 import queComemos.entrega3.repositorio.RepoRecetas;
 import receta.Ingrediente;
@@ -85,12 +80,9 @@ public class RepoRecetasAd {
 			 
 			String nombre =  jObj.getString("nombre");
 			JSONArray ingredientes = jObj.getJSONArray("ingredientes");
-			Double tiempoPreparacion = jObj.getDouble("tiempoPreparacion");
 			Double calorias  =  jObj.getDouble("totalCalorias");
 			String dificultad = jObj.getString("dificultadReceta");
-			String autor = jObj.getString("autor");
-			Integer anio = jObj.getInt("anioReceta");
-			
+
 			
 			
 			Preparacion preparacion = this.mapiarPreparacion(ingredientes);

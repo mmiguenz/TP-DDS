@@ -1,6 +1,6 @@
 package observadores;
 
-import condicionesPreexistentes.Vegano;
+
 import repositorios.Consulta;
 import repositorios.Recetario;
 import interfaces.ObservadorI;

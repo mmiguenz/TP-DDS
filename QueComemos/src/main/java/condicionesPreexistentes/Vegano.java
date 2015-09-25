@@ -2,7 +2,7 @@ package condicionesPreexistentes;
 
 import interfaces.CondicionPreexistenteI;
 
-import java.util.ArrayList;
+
 import java.util.List;
 
 import receta.Receta;

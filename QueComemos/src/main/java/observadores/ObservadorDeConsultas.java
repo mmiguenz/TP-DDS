@@ -1,6 +1,5 @@
 package observadores;
 
-import java.time.LocalDate;
 
 import repositorios.Consulta;
 import repositorios.Recetario;

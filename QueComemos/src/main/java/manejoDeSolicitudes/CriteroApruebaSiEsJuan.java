@@ -2,7 +2,6 @@ package manejoDeSolicitudes;
 
 import interfaces.CriterioAprobacionI;
 
-import java.util.List;
 
 import usuario.Usuario;
 
