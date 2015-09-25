@@ -21,6 +21,7 @@ import procesamientos.TomarDiezPrimeros;
 import receta.Receta;
 import repositorios.Consulta;
 import repositorios.Recetario;
+import repositorios.RepoUsuarios;
 import usuario.Usuario;
 
 
@@ -34,7 +35,7 @@ public class TestConsulta {
 	@Before
 	public void setUp() throws Exception {
 		
-		Recetario.inadecuados= new ArrayList<CondicionPreexistenteI>();
+		RepoUsuarios.inadecuados= new ArrayList<CondicionPreexistenteI>();
 		Recetario.recetas = new ArrayList<Receta>();
 		Recetario.observadores = new ArrayList<ObservadorI>();
 			

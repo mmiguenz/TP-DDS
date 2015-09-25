@@ -22,6 +22,7 @@ import builderUsuario.UsuarioSinValidacion;
 import receta.Receta;
 import repositorios.Consulta;
 import repositorios.Recetario;
+import repositorios.RepoUsuarios;
 import usuario.Usuario;
 import condicionesPreexistentes.Celiaco;
 import condicionesPreexistentes.Diabetico;
@@ -50,7 +51,7 @@ public class TestConsultarRecetasDeUnUsuario {
 	@Before
 	public void setUp() throws Exception {
 		
-		Recetario.inadecuados= new ArrayList<CondicionPreexistenteI>();
+		RepoUsuarios.inadecuados= new ArrayList<CondicionPreexistenteI>();
 		Recetario.recetas = new ArrayList<Receta>();
 		Recetario.observadores = new ArrayList<ObservadorI>();
 		
@@ -111,10 +112,10 @@ public class TestConsultarRecetasDeUnUsuario {
 		  
 		 
 //			Recetario.inicializar();
-			Recetario.inadecuados.add(diabetico);
-			Recetario.inadecuados.add(celiaco);
-			Recetario.inadecuados.add(hipertenso);
-			Recetario.inadecuados.add(vegano);
+		 RepoUsuarios.inadecuados.add(diabetico);
+		 RepoUsuarios.inadecuados.add(celiaco);
+		 RepoUsuarios.inadecuados.add(hipertenso);
+		 RepoUsuarios.inadecuados.add(vegano);
 		 
 		 
 		 // Crear Receta 

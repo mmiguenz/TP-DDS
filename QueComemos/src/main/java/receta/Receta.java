@@ -11,6 +11,7 @@ import java.util.Set;
 import java.util.stream.Stream;
 
 import repositorios.Recetario;
+import repositorios.RepoUsuarios;
 import usuario.GustosSobreAlimentos;
 import usuario.Usuario;
 
@@ -120,7 +121,7 @@ public class Receta {
 	public List<CondicionPreexistenteI> calcularInadecuados() {
 
 		
-		return Recetario.calcularInadecuadosParaReceta(this);
+		return RepoUsuarios.calcularInadecuadosParaReceta(this);
 				
 	}
 

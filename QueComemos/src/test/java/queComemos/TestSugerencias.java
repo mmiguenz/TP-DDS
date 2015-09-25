@@ -19,6 +19,7 @@ import receta.Ingrediente;
 import receta.Preparacion;
 import receta.Receta;
 import repositorios.Recetario;
+import repositorios.RepoUsuarios;
 import usuario.Grupo;
 import usuario.GustosSobreAlimentos;
 import usuario.Usuario;
@@ -36,7 +37,7 @@ public class TestSugerencias {
 	@Before
 	public void setUp() throws Exception {
 		
-		Recetario.inadecuados= new ArrayList<CondicionPreexistenteI>();
+		RepoUsuarios.inadecuados= new ArrayList<CondicionPreexistenteI>();
 		Recetario.recetas = new ArrayList<Receta>();
 		Recetario.observadores = new ArrayList<ObservadorI>();
 

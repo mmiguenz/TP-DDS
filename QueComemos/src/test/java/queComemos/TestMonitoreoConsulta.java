@@ -25,6 +25,7 @@ import condicionesPreexistentes.Vegano;
 import receta.Receta;
 import repositorios.Consulta;
 import repositorios.Recetario;
+import repositorios.RepoUsuarios;
 import usuario.GustosSobreAlimentos;
 import usuario.Usuario;
 
@@ -38,7 +39,7 @@ public class TestMonitoreoConsulta {
 	public void setUp() throws Exception {
 		
 	Recetario.observadores = new ArrayList<ObservadorI>();
-	Recetario.inadecuados =new ArrayList<CondicionPreexistenteI>();
+	RepoUsuarios.inadecuados =new ArrayList<CondicionPreexistenteI>();
 	Recetario.recetas= new ArrayList<Receta>();
 	Recetario.consultas = new ArrayList<Consulta>();
 	Recetario.veganosConsultandoRecetasDificiles = new ArrayList<Usuario>();
@@ -51,10 +52,10 @@ public class TestMonitoreoConsulta {
 	CondicionPreexistenteI diabetico =  new Diabetico("Diabetico",new ArrayList<String>());
 	 
 	 
-	 Recetario.inadecuados.add(celiaco);
-	 Recetario.inadecuados.add(hipertenso);
-	 Recetario.inadecuados.add(vegano);
-	 Recetario.inadecuados.add(diabetico);
+	RepoUsuarios.inadecuados.add(celiaco);
+	RepoUsuarios.inadecuados.add(hipertenso);
+	RepoUsuarios.inadecuados.add(vegano);
+	RepoUsuarios.inadecuados.add(diabetico);
 	 
 	 	 	 
 	 List<CondicionPreexistenteI> condiciones = new ArrayList<>();

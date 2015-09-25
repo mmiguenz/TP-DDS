@@ -19,6 +19,7 @@ import builderUsuario.UsuarioParaAprobacionDeSolicitudes;
 import receta.Receta;
 import repositorios.Consulta;
 import repositorios.Recetario;
+import repositorios.RepoUsuarios;
 import tareas.GestorDeTareas;
 import usuario.Usuario;
 
@@ -36,7 +37,7 @@ public class TestProcesarTareas {
 		Recetario.consultas =new ArrayList<Consulta>();
 		Recetario.recetas =new ArrayList<Receta>();
 		
-		Recetario.inadecuados = new ArrayList<CondicionPreexistenteI>();
+		RepoUsuarios.inadecuados = new ArrayList<CondicionPreexistenteI>();
 						
 		
 		Recetario.observadores.add(observaSiElUsuarioNecesitaMail);

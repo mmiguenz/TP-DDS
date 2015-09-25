@@ -21,6 +21,7 @@ import receta.Ingrediente;
 import receta.Preparacion;
 import receta.Receta;
 import repositorios.Recetario;
+import repositorios.RepoUsuarios;
 
 public class TestReceta {
 	
@@ -29,7 +30,7 @@ public class TestReceta {
 	@Before
 	public void setUp() throws Exception {
 		
-		Recetario.inadecuados= new ArrayList<CondicionPreexistenteI>();
+		RepoUsuarios.inadecuados= new ArrayList<CondicionPreexistenteI>();
 		Recetario.recetas = new ArrayList<Receta>();
 		Recetario.observadores = new ArrayList<ObservadorI>();
 	
@@ -62,7 +63,7 @@ public class TestReceta {
 		List<String> comidas= new ArrayList<String>();
 		comidas.add("Sal");
 		Hipertenso hipertenso = new Hipertenso("Hipertenso",comidas);
-		Recetario.inadecuados.add(hipertenso);
+		RepoUsuarios.inadecuados.add(hipertenso);
 		
 		
 		 Receta receta = constructorReceta.crearReceta();
@@ -73,7 +74,7 @@ public class TestReceta {
 		List<String> comidas= new ArrayList<String>();
 		Hipertenso hipertenso = new Hipertenso("Hipertenso",comidas);
 //		QueComemosApp.inicializar();
-		Recetario.inadecuados.add(hipertenso);
+		RepoUsuarios.inadecuados.add(hipertenso);
 		
 		
 	
@@ -89,7 +90,7 @@ public class TestReceta {
 		List<String> comidas= new ArrayList<String>();
 		comidas.add("Carne");
 		Vegano vegano = new Vegano("Vegano",comidas);
-		Recetario.inadecuados.add(vegano);
+		RepoUsuarios.inadecuados.add(vegano);
 		
 		
 		
@@ -103,7 +104,7 @@ public class TestReceta {
 	public void testAdecuadoParaVegano() {
 		List<String> comidas= new ArrayList<String>();
 		Vegano vegano = new Vegano("Vegano",comidas);
-		Recetario.inadecuados.add(vegano);
+		RepoUsuarios.inadecuados.add(vegano);
 		
 		 Receta receta = constructorReceta.crearReceta();
 		 assertFalse(receta.getInadecuados().contains(vegano));
@@ -114,7 +115,7 @@ public class TestReceta {
 	public void testInadecuadoParaCeliaco() {
 		List<String> comidas= new ArrayList<String>();
 		Celiaco celiaco = new Celiaco("Celiaco",comidas);
-		Recetario.inadecuados.add(celiaco);
+		RepoUsuarios.inadecuados.add(celiaco);
 		
 		 Receta receta = constructorReceta.crearReceta();
 		 assertFalse(receta.getInadecuados().contains(celiaco));
@@ -124,7 +125,7 @@ public class TestReceta {
 	public void testAdecuadoParaCeliaco() {
 		List<String> comidas= new ArrayList<String>();
 		Celiaco celiaco = new Celiaco("Celiaco",comidas);
-		Recetario.inadecuados.add(celiaco);
+		RepoUsuarios.inadecuados.add(celiaco);
 		 Receta receta = constructorReceta.crearReceta();
 		 assertFalse(receta.getInadecuados().contains(celiaco));
 	}
@@ -134,7 +135,7 @@ public class TestReceta {
 	public void testNoInadecuadoParaCeliaco() {
 		List<String> comidas= new ArrayList<String>();
 		Celiaco celiaco = new Celiaco("celiaco",comidas);
-		Recetario.inadecuados.add(celiaco);
+		RepoUsuarios.inadecuados.add(celiaco);
 		
 		 Receta receta = constructorReceta.crearReceta();
 		 assertFalse(receta.getInadecuados().contains(celiaco));
@@ -145,7 +146,7 @@ public class TestReceta {
 	public void testNoAdecuadoParaCeliaco() {
 		List<String> comidas= new ArrayList<String>();
 		Celiaco celiaco = new Celiaco("celiaco",comidas);
-		Recetario.inadecuados.add(celiaco);
+		RepoUsuarios.inadecuados.add(celiaco);
 		
 		
 		 Receta receta = constructorReceta.crearReceta();
@@ -157,7 +158,7 @@ public class TestReceta {
 	public void testNoInadecuadoParaDiabetico() {
 		List<String> comidas= new ArrayList<String>();
 		Diabetico diabetico = new Diabetico("diabetico",comidas);
-		Recetario.inadecuados.add(diabetico);
+		RepoUsuarios.inadecuados.add(diabetico);
 		
 		
 		 Receta receta = constructorReceta.crearReceta();

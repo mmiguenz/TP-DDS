@@ -25,7 +25,6 @@ import usuario.Usuario;
 public class Recetario {
 
 	public static List<Receta> recetas;
-	public static List<CondicionPreexistenteI> inadecuados ;
 	public static List<ObservadorI>observadores;
 	public static List<Consulta> consultas;
 	public static List<Usuario> veganosConsultandoRecetasDificiles;
@@ -61,12 +60,6 @@ public class Recetario {
 
 	}
 
-	public static List<CondicionPreexistenteI> calcularInadecuadosParaReceta(Receta receta)
-	{
-
-		return  inadecuados.stream().filter(inadecuado->! inadecuado.esAptaReceta(receta))
-				.collect(Collectors.toList());
-	}
 
 
 	private static Receta buscarRecetaPorNombre (String nombre){

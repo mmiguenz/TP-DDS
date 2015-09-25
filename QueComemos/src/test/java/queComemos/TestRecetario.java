@@ -12,6 +12,7 @@ import org.junit.Test;
 
 import receta.Receta;
 import repositorios.Recetario;
+import repositorios.RepoUsuarios;
 import condicionesPreexistentes.Celiaco;
 import condicionesPreexistentes.Diabetico;
 import condicionesPreexistentes.Hipertenso;
@@ -24,7 +25,7 @@ public class TestRecetario {
 	@Before
 	public void setUp() throws Exception {
 		
-		Recetario.inadecuados= new ArrayList<CondicionPreexistenteI>();
+		RepoUsuarios.inadecuados= new ArrayList<CondicionPreexistenteI>();
 		Recetario.recetas = new ArrayList<Receta>();
 		Recetario.observadores = new ArrayList<ObservadorI>();
 		
@@ -35,10 +36,10 @@ public class TestRecetario {
 		CondicionPreexistenteI diabetico =  new Diabetico("Diabetico",new ArrayList<String>());
 		 
 		 
-		 Recetario.inadecuados.add(celiaco);
-		 Recetario.inadecuados.add(hipertenso);
-		 Recetario.inadecuados.add(vegano);
-		 Recetario.inadecuados.add(diabetico);
+		RepoUsuarios.inadecuados.add(celiaco);
+		RepoUsuarios.inadecuados.add(hipertenso);
+		RepoUsuarios.inadecuados.add(vegano);
+		 RepoUsuarios.inadecuados.add(diabetico);
 		 
 		 
 		 

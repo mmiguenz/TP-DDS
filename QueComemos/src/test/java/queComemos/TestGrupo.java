@@ -17,6 +17,7 @@ import builderUsuario.UsuarioMasGenerico;
 import receta.Receta;
 import repositorios.Consulta;
 import repositorios.Recetario;
+import repositorios.RepoUsuarios;
 import usuario.Grupo;
 import usuario.GustosSobreAlimentos;
 import usuario.Usuario;
@@ -28,7 +29,7 @@ public class TestGrupo {
 	
 	@Before
 	public void setUp() throws Exception {
-		Recetario.inadecuados = new ArrayList<CondicionPreexistenteI>();
+		RepoUsuarios.inadecuados = new ArrayList<CondicionPreexistenteI>();
 		
 		UsuarioBuilder constructorDeUsuario = new UsuarioMasGenerico();
 		constructorDeUsuario.nombre("Pedro");

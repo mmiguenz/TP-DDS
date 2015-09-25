@@ -33,7 +33,7 @@ public class TestMostrarRecetasAccesiblesPorUsuario {
 
 	@Before
 	public void setUp() throws Exception {
-		Recetario.inadecuados= new ArrayList<CondicionPreexistenteI>();
+		RepoUsuarios.inadecuados= new ArrayList<CondicionPreexistenteI>();
 		Recetario.recetas = new ArrayList<Receta>();
 		Recetario.observadores = new ArrayList<ObservadorI>();
 		

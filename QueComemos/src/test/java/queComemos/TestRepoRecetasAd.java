@@ -15,6 +15,7 @@ import receta.Receta;
 import repositorios.ConsultaRepoExtAd;
 import repositorios.Recetario;
 import repositorios.RepoRecetasAd;
+import repositorios.RepoUsuarios;
 
 public class TestRepoRecetasAd {
 	
@@ -24,7 +25,7 @@ public class TestRepoRecetasAd {
 	@Before
 	public void setUp() throws Exception {
 		
-		Recetario.inadecuados= new ArrayList<CondicionPreexistenteI>();
+		RepoUsuarios.inadecuados= new ArrayList<CondicionPreexistenteI>();
 		Recetario.recetas = new ArrayList<Receta>();
 		Recetario.observadores = new ArrayList<ObservadorI>();
 		
