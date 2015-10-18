@@ -139,9 +139,9 @@ public class TestRepoUsuarios {
 		condiciones3.add(hipertenso);
 		
 		
-		Usuario usr =  new Usuario(1,"matias", "", LocalDate.parse("1994-05-06"), 10.0, 20.5, "Intensa", preferencia, condiciones3, new ArrayList<Receta>());
+		Usuario usr =  new Usuario((long) 1,"matias", "", LocalDate.parse("1994-05-06"), 10.0, 20.5, "Intensa", preferencia, condiciones3, new ArrayList<Receta>());
 		
-		Usuario usrUpdate =  new Usuario(1,"juan", "", LocalDate.parse("1994-05-06"), 10.0, 20.5, "Intensa", preferencia, condiciones3, new ArrayList<Receta>());
+		Usuario usrUpdate =  new Usuario((long) 1,"juan", "", LocalDate.parse("1994-05-06"), 10.0, 20.5, "Intensa", preferencia, condiciones3, new ArrayList<Receta>());
 		
 		
 		
@@ -178,11 +178,11 @@ public class TestRepoUsuarios {
 		
 		RepoUsuarios.usuarios.addAll(usuarios);
 			
-		Usuario usr8 = new Usuario(7,"matiasM", "", LocalDate.parse("1994-05-06"), 10.0, 20.5, "Intensa", preferencia, condiciones1, new ArrayList<Receta>());
+		Usuario usr8 = new Usuario((long) 7,"matiasM", "", LocalDate.parse("1994-05-06"), 10.0, 20.5, "Intensa", preferencia, condiciones1, new ArrayList<Receta>());
 		RepoUsuarios.add(usr8);
 		
 		
-		Usuario usrSearch = new Usuario(1,"matiasM", null, null, null, null, null, null, null, null);
+		Usuario usrSearch = new Usuario((long) 1,"matiasM", null, null, null, null, null, null, null, null);
 		
 		
 		 assertTrue(RepoUsuarios.get(usrSearch).equals(usr8));
@@ -199,7 +199,7 @@ public class TestRepoUsuarios {
 		
 		RepoUsuarios.usuarios.addAll(usuarios);
 		
-		Usuario usrSearch = new Usuario(1,"matias", null, null, null, null, null, null, null, null);
+		Usuario usrSearch = new Usuario((long) 1,"matias", null, null, null, null, null, null, null, null);
 		
 		
 		assertEquals(RepoUsuarios.list(usrSearch).size(),3);
@@ -230,7 +230,7 @@ public class TestRepoUsuarios {
 		condiciones1.add(vegano);
 		
 		
-		Usuario usr1 = new Usuario(1,"martin", "", LocalDate.parse("1994-05-06"), 10.0, 20.5, "Intensa", preferencia, condiciones1, new ArrayList<Receta>());
+		Usuario usr1 = new Usuario((long) 1,"martin", "", LocalDate.parse("1994-05-06"), 10.0, 20.5, "Intensa", preferencia, condiciones1, new ArrayList<Receta>());
 
 		
 		usuarios.add(usr1);
@@ -239,7 +239,7 @@ public class TestRepoUsuarios {
 		
 		
 		
-		Usuario usrSearch = new Usuario(1,"martin", null, null, null, null, null, null, condiciones1, null);
+		Usuario usrSearch = new Usuario((long) 1,"martin", null, null, null, null, null, null, condiciones1, null);
 		
 		
 		assertEquals(RepoUsuarios.list(usrSearch).size(),1);

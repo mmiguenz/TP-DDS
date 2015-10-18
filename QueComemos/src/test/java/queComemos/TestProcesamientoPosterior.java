@@ -141,7 +141,7 @@ public class TestProcesamientoPosterior {
 			
 		 
 		 
-			 usr = new Usuario(2,"Juan","Masculino",LocalDate.parse("1994-08-05"),90.0,175.0,"Leve",preferenciaAlimenticia,condiciones,new ArrayList<Receta>());
+			 usr = new Usuario((long) 2,"Juan","Masculino",LocalDate.parse("1994-08-05"),90.0,175.0,"Leve",preferenciaAlimenticia,condiciones,new ArrayList<Receta>());
 		
 		
 	}

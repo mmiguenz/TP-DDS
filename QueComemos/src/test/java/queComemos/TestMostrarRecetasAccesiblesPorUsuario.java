@@ -91,7 +91,7 @@ public class TestMostrarRecetasAccesiblesPorUsuario {
 		receta =constructorReceta.crearReceta();
 		
 		
-		 usr = new Usuario (3,"juan","masculino",LocalDate.parse("2016-01-01"), 60.0, 1.7, "Leve",
+		 usr = new Usuario ((long) 3,"juan","masculino",LocalDate.parse("2016-01-01"), 60.0, 1.7, "Leve",
 					preferenciaAlimenticiaNoSaludable,new ArrayList<CondicionPreexistenteI>(),new ArrayList<Receta>());
 		
 		

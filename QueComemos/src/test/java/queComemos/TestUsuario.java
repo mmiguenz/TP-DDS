@@ -447,7 +447,7 @@ public class TestUsuario {
 	public void testUsuarioSinFechaDeNacimiento() {
 		
 		
-		usuario = new Usuario(1,"Pedro", "Masculino",
+		usuario = new Usuario((long) 1,"Pedro", "Masculino",
 				LocalDate.parse("2016-01-01"), 60.0, 1.7, "Leve",
 				preferenciaAlimenticiaNoSaludable, null, null);
 		assertFalse(usuario.validar());
@@ -529,7 +529,7 @@ public class TestUsuario {
 		{
 					
 			
-			Usuario usr = new Usuario (3,"juancito","masculino",LocalDate.parse("2014-01-01"), 60.0, 1.7, "Leve",
+			Usuario usr = new Usuario ((long) 3,"juancito","masculino",LocalDate.parse("2014-01-01"), 60.0, 1.7, "Leve",
 						preferenciaAlimenticiaNoSaludable,new ArrayList<CondicionPreexistenteI>(),new ArrayList<Receta>());
 					
 				
