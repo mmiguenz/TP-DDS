@@ -4,3 +4,7 @@
 quecomemos.ucls
 .gitignore
 *.orig
+./settings
+*.settings
+/.settings
+.settings
