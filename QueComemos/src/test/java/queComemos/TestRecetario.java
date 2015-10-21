@@ -1,7 +1,6 @@
 package queComemos;
 
 import static org.junit.Assert.*;
-import interfaces.CondicionPreexistenteI;
 import interfaces.ObservadorI;
 
 import java.util.ArrayList;
@@ -14,6 +13,7 @@ import receta.Receta;
 import repositorios.Recetario;
 import repositorios.RepoUsuarios;
 import condicionesPreexistentes.Celiaco;
+import condicionesPreexistentes.CondicionPreexistente;
 import condicionesPreexistentes.Diabetico;
 import condicionesPreexistentes.Hipertenso;
 import condicionesPreexistentes.Vegano;
@@ -25,15 +25,15 @@ public class TestRecetario {
 	@Before
 	public void setUp() throws Exception {
 		
-		RepoUsuarios.inadecuados= new ArrayList<CondicionPreexistenteI>();
+		RepoUsuarios.inadecuados= new ArrayList<CondicionPreexistente>();
 		Recetario.recetas = new ArrayList<Receta>();
 		Recetario.observadores = new ArrayList<ObservadorI>();
 		
 		
-		CondicionPreexistenteI	 celiaco = new Celiaco("celiaco",new ArrayList<String>());
-		CondicionPreexistenteI hipertenso= new Hipertenso("hipertenso",new ArrayList<String>());
-		CondicionPreexistenteI vegano = new Vegano("vegano",new ArrayList<String>());
-		CondicionPreexistenteI diabetico =  new Diabetico("Diabetico",new ArrayList<String>());
+		CondicionPreexistente	 celiaco = new Celiaco("celiaco",new ArrayList<String>());
+		CondicionPreexistente hipertenso= new Hipertenso("hipertenso",new ArrayList<String>());
+		CondicionPreexistente vegano = new Vegano("vegano",new ArrayList<String>());
+		CondicionPreexistente diabetico =  new Diabetico("Diabetico",new ArrayList<String>());
 		 
 		 
 		RepoUsuarios.inadecuados.add(celiaco);

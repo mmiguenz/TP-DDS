@@ -1,8 +1,8 @@
 package queComemos;
 
 import static org.junit.Assert.*;
-import interfaces.CondicionPreexistenteI;
 import interfaces.ObservadorI;
+
 
 
 import java.util.ArrayList;
@@ -14,6 +14,7 @@ import org.junit.Test;
 import builderReceta.RecetaBuilder;
 import builderReceta.RecetaGenerica;
 import condicionesPreexistentes.Celiaco;
+import condicionesPreexistentes.CondicionPreexistente;
 import condicionesPreexistentes.Diabetico;
 import condicionesPreexistentes.Hipertenso;
 import condicionesPreexistentes.Vegano;
@@ -28,7 +29,7 @@ public class TestReceta {
 	@Before
 	public void setUp() throws Exception {
 		
-		RepoUsuarios.inadecuados= new ArrayList<CondicionPreexistenteI>();
+		RepoUsuarios.inadecuados= new ArrayList<CondicionPreexistente>();
 		Recetario.recetas = new ArrayList<Receta>();
 		Recetario.observadores = new ArrayList<ObservadorI>();
 	

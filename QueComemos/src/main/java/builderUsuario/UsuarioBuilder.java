@@ -1,18 +1,17 @@
 package builderUsuario;
 
-import interfaces.CondicionPreexistenteI;
-
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 import condicionesPreexistentes.Celiaco;
+import condicionesPreexistentes.CondicionPreexistente;
 import condicionesPreexistentes.Diabetico;
 import condicionesPreexistentes.Hipertenso;
 import condicionesPreexistentes.Vegano;
 import excepciones.FalloValidacionAlCrearUsuario;
 import receta.Receta;
-import usuario.GustosSobreAlimentos;
+import usuario.PreferenciaAlimenticia;
 import usuario.Usuario;
 
 public abstract class UsuarioBuilder {
@@ -70,9 +69,9 @@ public abstract class UsuarioBuilder {
 		List<String> comidasQueDisgusta = new ArrayList<String>();
 			
 			
-		GustosSobreAlimentos preferenciaAlimenticia = new GustosSobreAlimentos(comidasQueGusta,comidasQueDisgusta);
+		PreferenciaAlimenticia preferenciaAlimenticia = new PreferenciaAlimenticia(comidasQueGusta,comidasQueDisgusta);
 			
-	 nuevoUsuario = new Usuario(null ,"","", LocalDate.now(), 0.0, 0.0, "", preferenciaAlimenticia, new ArrayList<CondicionPreexistenteI>(),  new ArrayList<Receta>());
+	 nuevoUsuario = new Usuario(null ,"","", LocalDate.now(), 0.0, 0.0, "", preferenciaAlimenticia, new ArrayList<CondicionPreexistente>(),  new ArrayList<Receta>());
 			
 				
 		 	

@@ -1,7 +1,6 @@
 package queComemos;
 
 import static org.junit.Assert.*;
-import interfaces.CondicionPreexistenteI;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -14,9 +13,10 @@ import builderUsuario.UsuarioBuilder;
 import builderUsuario.UsuarioParaAprobacionDeSolicitudes;
 import receta.Receta;
 import repositorios.RepoUsuarios;
-import usuario.GustosSobreAlimentos;
+import usuario.PreferenciaAlimenticia;
 import usuario.Usuario;
 import condicionesPreexistentes.Celiaco;
+import condicionesPreexistentes.CondicionPreexistente;
 import condicionesPreexistentes.Diabetico;
 import condicionesPreexistentes.Hipertenso;
 import condicionesPreexistentes.Vegano;
@@ -123,14 +123,14 @@ public class TestRepoUsuarios {
 	public void testRepoUsuarioUpdateCambioNombre() {
 		
 
-		GustosSobreAlimentos preferencia = new GustosSobreAlimentos(new ArrayList<String>(),new ArrayList<String>());
+		PreferenciaAlimenticia preferencia = new PreferenciaAlimenticia(new ArrayList<String>(),new ArrayList<String>());
 
-		List<CondicionPreexistenteI> condiciones3 = new ArrayList<>();
+		List<CondicionPreexistente> condiciones3 = new ArrayList<>();
 		
-		CondicionPreexistenteI celiaco = new Celiaco("celiaco",new ArrayList<String>());
-		CondicionPreexistenteI diabetico = new Diabetico("diabetico",new ArrayList<String>());
-		CondicionPreexistenteI vegano = new Vegano("vegano",new ArrayList<String>());
-		CondicionPreexistenteI hipertenso = new Hipertenso("Hipertenso",new ArrayList<String>());
+		CondicionPreexistente celiaco = new Celiaco("celiaco",new ArrayList<String>());
+		CondicionPreexistente diabetico = new Diabetico("diabetico",new ArrayList<String>());
+		CondicionPreexistente vegano = new Vegano("vegano",new ArrayList<String>());
+		CondicionPreexistente hipertenso = new Hipertenso("Hipertenso",new ArrayList<String>());
 		
 	
 		condiciones3.add(celiaco);
@@ -162,13 +162,13 @@ public class TestRepoUsuarios {
 	public void testGetUsuario()
 	{
 		
-		GustosSobreAlimentos preferencia = new GustosSobreAlimentos(new ArrayList<String>(),new ArrayList<String>());
+		PreferenciaAlimenticia preferencia = new PreferenciaAlimenticia(new ArrayList<String>(),new ArrayList<String>());
 		
 	
-		CondicionPreexistenteI vegano = new Vegano("vegano",new ArrayList<String>());
-		CondicionPreexistenteI hipertenso = new Hipertenso("Hipertenso",new ArrayList<String>());
+		CondicionPreexistente vegano = new Vegano("vegano",new ArrayList<String>());
+		CondicionPreexistente hipertenso = new Hipertenso("Hipertenso",new ArrayList<String>());
 		
-		List<CondicionPreexistenteI> condiciones1 = new ArrayList<>();
+		List<CondicionPreexistente> condiciones1 = new ArrayList<>();
 		
 		
 		condiciones1.add(vegano);
@@ -217,14 +217,14 @@ public class TestRepoUsuarios {
 		RepoUsuarios.usuarios= new ArrayList<Usuario>();
 		usuarios = new ArrayList<Usuario>();
 		
-		GustosSobreAlimentos preferencia = new GustosSobreAlimentos(new ArrayList<String>(),new ArrayList<String>());
+		PreferenciaAlimenticia preferencia = new PreferenciaAlimenticia(new ArrayList<String>(),new ArrayList<String>());
 		
 		
 		
 
-		CondicionPreexistenteI vegano = new Vegano("vegano",new ArrayList<String>());
+		CondicionPreexistente vegano = new Vegano("vegano",new ArrayList<String>());
 
-		List<CondicionPreexistenteI> condiciones1 = new ArrayList<>();
+		List<CondicionPreexistente> condiciones1 = new ArrayList<>();
 
 		
 		condiciones1.add(vegano);

@@ -1,6 +1,6 @@
 package condicionesPreexistentes;
 
-import interfaces.CondicionPreexistenteI;
+
 
 
 import java.util.List;
@@ -8,7 +8,7 @@ import java.util.List;
 import receta.Receta;
 import usuario.Usuario;
 
-public class Vegano implements CondicionPreexistenteI {
+public class Vegano extends CondicionPreexistente {
 
 	private String  nombre;
 	private List<String> comidasProhibidas;

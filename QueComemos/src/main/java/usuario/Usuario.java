@@ -1,41 +1,53 @@
 package usuario;
 
-import interfaces.CondicionPreexistenteI;
-
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.*;
+
+import condicionesPreexistentes.CondicionPreexistente;
 import receta.Preparacion;
 import receta.Receta;
 import repositorios.Recetario;
 
+@Entity
+@Table(name="Usuarios")
 public class Usuario {
 
-	private Integer usuarioID;
+	@Id
+	@GeneratedValue
+	@Column(name="usuarioID")
+	private Long id;
 	private String nombre;
 	private String sexo;
 	private LocalDate fechaNacimiento;
 	private Double peso;
 	private Double estatura;
 	private String rutina;
-	private GustosSobreAlimentos preferenciaAlimenticia;
+	@OneToOne
+	private PreferenciaAlimenticia preferenciaAlimenticia;
 	private boolean  marcaFavoritasLasConsultas ; 
-	private List<CondicionPreexistenteI> condicionesPreexistentes;
+	@ManyToMany
+	private List<CondicionPreexistente> condicionesPreexistentes;
+	@ManyToMany
+	@CollectionTable(name="RecetasDeUsuario")
 	private List<Receta> misRecetas;
+	@ManyToMany
+	@CollectionTable(name="RecetasFavoritasXUsuario")
 	private List<Receta> favoritas;
 	
 	
 
 
 
-	public Usuario(Integer usuarioID,String nombre, String sexo, LocalDate fechaNacimiento,
+	public Usuario(Long usuarioID,String nombre, String sexo, LocalDate fechaNacimiento,
 			Double peso, Double estatura, String rutina,
-			GustosSobreAlimentos preferenciaAlimenticia,
-			List<CondicionPreexistenteI> condicionesPreexistentes,
+			PreferenciaAlimenticia preferenciaAlimenticia,
+			List<CondicionPreexistente> condicionesPreexistentes,
 			List<Receta> misRecetas) {
 		
-		this.usuarioID= usuarioID;
+		this.id= usuarioID;
 		this.setNombre(nombre);
 		this.setSexo(sexo);
 		this.setFechaNacimiento(fechaNacimiento);
@@ -45,7 +57,7 @@ public class Usuario {
 		if(!(preferenciaAlimenticia==null)){
 			this.setPreferenciaAlimenticia(preferenciaAlimenticia);
 		}else{
-			this.preferenciaAlimenticia=new GustosSobreAlimentos(new ArrayList<String>(),new ArrayList<String>());
+			this.preferenciaAlimenticia=new PreferenciaAlimenticia(new ArrayList<String>(),new ArrayList<String>());
 		}
 		this.setCondicionesPreexistentes(condicionesPreexistentes);
 		this.setMisRecetas(misRecetas);
@@ -162,12 +174,12 @@ public class Usuario {
 		return true;
 	}
 
-	public Integer getUsuarioID() {
-		return usuarioID;
+	public Long getUsuarioID() {
+		return id;
 	}
 
-	public void setUsuarioID(Integer usuarioID) {
-		this.usuarioID = usuarioID;
+	public void setUsuarioID(Long usuarioID) {
+		this.id = usuarioID;
 	}
 
 	
@@ -219,21 +231,21 @@ public class Usuario {
 		this.estatura = estatura;
 	}
 
-	public GustosSobreAlimentos getPreferenciaAlimenticia() {
+	public PreferenciaAlimenticia getPreferenciaAlimenticia() {
 		return preferenciaAlimenticia;
 	}
 
 	public void setPreferenciaAlimenticia(
-			GustosSobreAlimentos preferenciaAlimenticia) {
+			PreferenciaAlimenticia preferenciaAlimenticia) {
 		this.preferenciaAlimenticia = preferenciaAlimenticia;
 	}
 
-	public List<CondicionPreexistenteI> getCondicionesPreexistentes() {
+	public List<CondicionPreexistente> getCondicionesPreexistentes() {
 		return condicionesPreexistentes;
 	}
 
 	public void setCondicionesPreexistentes(
-			List<CondicionPreexistenteI> condicionesPreexistentes) {
+			List<CondicionPreexistente> condicionesPreexistentes) {
 		this.condicionesPreexistentes = condicionesPreexistentes;
 	}
 

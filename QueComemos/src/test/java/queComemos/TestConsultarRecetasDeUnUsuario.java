@@ -1,7 +1,6 @@
 package queComemos;
 
 import static org.junit.Assert.*;
-import interfaces.CondicionPreexistenteI;
 import interfaces.FiltroI;
 import interfaces.ObservadorI;
 
@@ -25,6 +24,7 @@ import repositorios.Recetario;
 import repositorios.RepoUsuarios;
 import usuario.Usuario;
 import condicionesPreexistentes.Celiaco;
+import condicionesPreexistentes.CondicionPreexistente;
 import condicionesPreexistentes.Diabetico;
 import condicionesPreexistentes.Hipertenso;
 import condicionesPreexistentes.Vegano;
@@ -51,7 +51,7 @@ public class TestConsultarRecetasDeUnUsuario {
 	@Before
 	public void setUp() throws Exception {
 		
-		RepoUsuarios.inadecuados= new ArrayList<CondicionPreexistenteI>();
+		RepoUsuarios.inadecuados= new ArrayList<CondicionPreexistente>();
 		Recetario.recetas = new ArrayList<Receta>();
 		Recetario.observadores = new ArrayList<ObservadorI>();
 		
@@ -96,7 +96,7 @@ public class TestConsultarRecetasDeUnUsuario {
 		// Condiciones Preexistentes
 		
 		
-		List<CondicionPreexistenteI>condiciones = new ArrayList<CondicionPreexistenteI>();
+		List<CondicionPreexistente>condiciones = new ArrayList<CondicionPreexistente>();
 		
 		comidasProhibidas = new ArrayList<String>();
 		comidasProhibidas.add("pan");

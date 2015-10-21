@@ -1,7 +1,6 @@
 package queComemos;
 
 import static org.junit.Assert.*;
-import interfaces.CondicionPreexistenteI;
 import interfaces.FiltroI;
 import interfaces.ObservadorI;
 import interfaces.ProcesamientoI;
@@ -23,9 +22,10 @@ import receta.Receta;
 import repositorios.Consulta;
 import repositorios.Recetario;
 import repositorios.RepoUsuarios;
-import usuario.GustosSobreAlimentos;
+import usuario.PreferenciaAlimenticia;
 import usuario.Usuario;
 import condicionesPreexistentes.Celiaco;
+import condicionesPreexistentes.CondicionPreexistente;
 import condicionesPreexistentes.Diabetico;
 import condicionesPreexistentes.Hipertenso;
 import condicionesPreexistentes.Vegano;
@@ -44,13 +44,13 @@ public class TestProcesamientoPosterior {
 	@Before
 	public void setUp() throws Exception {
 		
-		RepoUsuarios.inadecuados= new ArrayList<CondicionPreexistenteI>();
+		RepoUsuarios.inadecuados= new ArrayList<CondicionPreexistente>();
 		Recetario.recetas = new ArrayList<Receta>();
 		Recetario.observadores = new ArrayList<ObservadorI>();
 		
-		GustosSobreAlimentos preferenciaAlimenticia; 
+		PreferenciaAlimenticia preferenciaAlimenticia; 
 		 List<String> comidasProhibidas;
-		 List<CondicionPreexistenteI> condiciones; 
+		 List<CondicionPreexistente> condiciones; 
 		 Celiaco celiaco;
 		 Hipertenso hipertenso;
 		 Vegano vegano;
@@ -66,13 +66,13 @@ public class TestProcesamientoPosterior {
 		comidasQueDisgusta.add("tomate");
 		comidasQueDisgusta.add("pescado");
 				
-		 preferenciaAlimenticia = new GustosSobreAlimentos(comidasQueGusta,comidasQueDisgusta);
+		 preferenciaAlimenticia = new PreferenciaAlimenticia(comidasQueGusta,comidasQueDisgusta);
 		
 		
 		// Condiciones Preexistentes
 		
 		
-		condiciones = new ArrayList<CondicionPreexistenteI>();
+		condiciones = new ArrayList<CondicionPreexistente>();
 		
 		comidasProhibidas = new ArrayList<String>();
 		comidasProhibidas.add("pan");

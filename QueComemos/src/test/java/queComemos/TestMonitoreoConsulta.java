@@ -7,7 +7,6 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import interfaces.CondicionPreexistenteI;
 import interfaces.ObservadorI;
 import observadores.ObservadorDeConsultas;
 import observadores.ObservadorVeganoConsultaRecetaDificil;
@@ -19,6 +18,7 @@ import builderUsuario.UsuarioBuilder;
 import builderUsuario.UsuarioMasGenerico;
 import builderUsuario.UsuarioSinValidacion;
 import condicionesPreexistentes.Celiaco;
+import condicionesPreexistentes.CondicionPreexistente;
 import condicionesPreexistentes.Diabetico;
 import condicionesPreexistentes.Hipertenso;
 import condicionesPreexistentes.Vegano;
@@ -26,7 +26,7 @@ import receta.Receta;
 import repositorios.Consulta;
 import repositorios.Recetario;
 import repositorios.RepoUsuarios;
-import usuario.GustosSobreAlimentos;
+import usuario.PreferenciaAlimenticia;
 import usuario.Usuario;
 
 public class TestMonitoreoConsulta {
@@ -39,17 +39,17 @@ public class TestMonitoreoConsulta {
 	public void setUp() throws Exception {
 		
 	Recetario.observadores = new ArrayList<ObservadorI>();
-	RepoUsuarios.inadecuados =new ArrayList<CondicionPreexistenteI>();
+	RepoUsuarios.inadecuados =new ArrayList<CondicionPreexistente>();
 	Recetario.recetas= new ArrayList<Receta>();
 	Recetario.consultas = new ArrayList<Consulta>();
 	Recetario.veganosConsultandoRecetasDificiles = new ArrayList<Usuario>();
 	
 	
 	
-	CondicionPreexistenteI	 celiaco = new Celiaco("celiaco",new ArrayList<String>());
-	CondicionPreexistenteI hipertenso= new Hipertenso("hipertenso",new ArrayList<String>());
-	CondicionPreexistenteI vegano = new Vegano("vegano",new ArrayList<String>());
-	CondicionPreexistenteI diabetico =  new Diabetico("Diabetico",new ArrayList<String>());
+	CondicionPreexistente	 celiaco = new Celiaco("celiaco",new ArrayList<String>());
+	CondicionPreexistente hipertenso= new Hipertenso("hipertenso",new ArrayList<String>());
+	CondicionPreexistente vegano = new Vegano("vegano",new ArrayList<String>());
+	CondicionPreexistente diabetico =  new Diabetico("Diabetico",new ArrayList<String>());
 	 
 	 
 	RepoUsuarios.inadecuados.add(celiaco);
@@ -58,7 +58,7 @@ public class TestMonitoreoConsulta {
 	RepoUsuarios.inadecuados.add(diabetico);
 	 
 	 	 	 
-	 List<CondicionPreexistenteI> condiciones = new ArrayList<>();
+	 List<CondicionPreexistente> condiciones = new ArrayList<>();
 	 
 		condiciones.add(vegano);
 		condiciones.add(hipertenso);

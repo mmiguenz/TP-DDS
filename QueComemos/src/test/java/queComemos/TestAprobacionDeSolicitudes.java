@@ -1,7 +1,6 @@
 package queComemos;
 
 import static org.junit.Assert.*;
-import interfaces.CondicionPreexistenteI;
 import interfaces.CriterioAprobacionI;
 
 import java.time.LocalDate;
@@ -18,9 +17,10 @@ import builderUsuario.UsuarioBuilder;
 import builderUsuario.UsuarioMasGenerico;
 import builderUsuario.UsuarioParaAprobacionDeSolicitudes;
 import receta.Receta;
-import usuario.GustosSobreAlimentos;
+import usuario.PreferenciaAlimenticia;
 import usuario.Usuario;
 import condicionesPreexistentes.Celiaco;
+import condicionesPreexistentes.CondicionPreexistente;
 import condicionesPreexistentes.Diabetico;
 import condicionesPreexistentes.Hipertenso;
 import condicionesPreexistentes.Vegano;
@@ -89,7 +89,7 @@ public class TestAprobacionDeSolicitudes {
 	@Test
 	public void testAprobacionesManuales() {
 		
-		GustosSobreAlimentos preferencia = new GustosSobreAlimentos(new ArrayList<String>(),new ArrayList<String>());
+		PreferenciaAlimenticia preferencia = new PreferenciaAlimenticia(new ArrayList<String>(),new ArrayList<String>());
 		
 		List<Usuario> usuariosM = new ArrayList<>();
 		

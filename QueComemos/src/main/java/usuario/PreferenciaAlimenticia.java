@@ -2,12 +2,24 @@ package usuario;
 
 import java.util.List;
 
-public class GustosSobreAlimentos {
+import javax.persistence.*;
+@Entity
+@Table(name="PreferenciasAlimenticias")
+public class PreferenciaAlimenticia {
 	
+	@Id
+	@GeneratedValue
+	@Column(name="PreferenciaAlimenticiaID")
+	Long id;
+	
+	@ElementCollection
+	@CollectionTable(name="ComidasQueGusta")
 	private List<String> comidasQueGusta;
+	@ElementCollection
+	@CollectionTable(name="ComidasQueDisgusta")
 	private List<String> comidasQueDisgusta;
 	
-	public GustosSobreAlimentos(List<String> comidasQueGusta,List<String> comidasQueDisgusta) {
+	public PreferenciaAlimenticia(List<String> comidasQueGusta,List<String> comidasQueDisgusta) {
 	
 		this.comidasQueGusta = comidasQueGusta;
 		this.comidasQueDisgusta = comidasQueDisgusta;

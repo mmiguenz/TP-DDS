@@ -8,11 +8,11 @@ public class Grupo {
 
 	private String nombre;
 	private List<Usuario> usuarios;
-	private GustosSobreAlimentos preferenciaAlimenticia;
+	private PreferenciaAlimenticia preferenciaAlimenticia;
 	
 
 	public Grupo(String nombre, List<Usuario> usuario,
-			GustosSobreAlimentos preferenciaAlimenticia) {
+			PreferenciaAlimenticia preferenciaAlimenticia) {
 		this.setNombre(nombre);
 		this.setUsuarios(usuario);
 		this.setPreferenciaAlimenticia(preferenciaAlimenticia);
@@ -40,12 +40,12 @@ public class Grupo {
 	}
 	
 	
-	public GustosSobreAlimentos getPreferenciaAlimenticia() {
+	public PreferenciaAlimenticia getPreferenciaAlimenticia() {
 		return preferenciaAlimenticia;
 	}
 
 	public void setPreferenciaAlimenticia(
-			GustosSobreAlimentos preferenciaAlimenticia) {
+			PreferenciaAlimenticia preferenciaAlimenticia) {
 		this.preferenciaAlimenticia = preferenciaAlimenticia;
 	}
 	

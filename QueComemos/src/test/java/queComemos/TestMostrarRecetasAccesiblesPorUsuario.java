@@ -1,7 +1,6 @@
 package queComemos;
 
 import static org.junit.Assert.*;
-import interfaces.CondicionPreexistenteI;
 import interfaces.ObservadorI;
 
 import java.time.LocalDate;
@@ -16,9 +15,10 @@ import builderReceta.RecetaGenerica;
 import receta.Receta;
 import repositorios.Recetario;
 import repositorios.RepoUsuarios;
-import usuario.GustosSobreAlimentos;
+import usuario.PreferenciaAlimenticia;
 import usuario.Usuario;
 import condicionesPreexistentes.Celiaco;
+import condicionesPreexistentes.CondicionPreexistente;
 import condicionesPreexistentes.Diabetico;
 import condicionesPreexistentes.Hipertenso;
 import condicionesPreexistentes.Vegano;
@@ -33,7 +33,7 @@ public class TestMostrarRecetasAccesiblesPorUsuario {
 
 	@Before
 	public void setUp() throws Exception {
-		RepoUsuarios.inadecuados= new ArrayList<CondicionPreexistenteI>();
+		RepoUsuarios.inadecuados= new ArrayList<CondicionPreexistente>();
 		Recetario.recetas = new ArrayList<Receta>();
 		Recetario.observadores = new ArrayList<ObservadorI>();
 		
@@ -54,13 +54,13 @@ public class TestMostrarRecetasAccesiblesPorUsuario {
 		comidasQueDisgustaUsr.add("Verduras");
 
 		
-		GustosSobreAlimentos preferenciaAlimenticiaNoSaludable = new GustosSobreAlimentos(comidasQueGustaUsrNoSaludable, comidasQueDisgustaUsr);
+		PreferenciaAlimenticia preferenciaAlimenticiaNoSaludable = new PreferenciaAlimenticia(comidasQueGustaUsrNoSaludable, comidasQueDisgustaUsr);
 
 		List<String>comidasProhibidas = new ArrayList<String>();
 		comidasProhibidas.add("Pan");
 
 		
-			List<CondicionPreexistenteI> inadecuados=new ArrayList<CondicionPreexistenteI>();
+			List<CondicionPreexistente> inadecuados=new ArrayList<CondicionPreexistente>();
 		List<String>comidasProhibidasH= new ArrayList<String>();
 		comidasProhibidasH.add("caldo");
 		
@@ -92,7 +92,7 @@ public class TestMostrarRecetasAccesiblesPorUsuario {
 		
 		
 		 usr = new Usuario ((long) 3,"juan","masculino",LocalDate.parse("2016-01-01"), 60.0, 1.7, "Leve",
-					preferenciaAlimenticiaNoSaludable,new ArrayList<CondicionPreexistenteI>(),new ArrayList<Receta>());
+					preferenciaAlimenticiaNoSaludable,new ArrayList<CondicionPreexistente>(),new ArrayList<Receta>());
 		
 		
 		

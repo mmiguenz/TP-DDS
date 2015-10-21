@@ -1,13 +1,12 @@
 package repositorios;
 
-import interfaces.CondicionPreexistenteI;
-
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import condicionesPreexistentes.CondicionPreexistente;
 import receta.Receta;
 import usuario.Grupo;
 import usuario.Usuario;
@@ -16,7 +15,7 @@ public class RepoUsuarios {
 	
 	public static List<Usuario> usuarios= new ArrayList<Usuario>();
 	public static List<Grupo> grupos = new ArrayList<Grupo>();
-	public static List<CondicionPreexistenteI> inadecuados ;
+	public static List<CondicionPreexistente> inadecuados ;
 	
 	
 	
@@ -129,7 +128,7 @@ public class RepoUsuarios {
 	  }
 	 
 	 
-	 public static List<CondicionPreexistenteI> calcularInadecuadosParaReceta(Receta receta)
+	 public static List<CondicionPreexistente> calcularInadecuadosParaReceta(Receta receta)
 		{
 
 			return  inadecuados.stream().filter(inadecuado->! inadecuado.esAptaReceta(receta))

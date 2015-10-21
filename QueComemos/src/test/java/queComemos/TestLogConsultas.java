@@ -1,7 +1,6 @@
 package queComemos;
 
 import static org.junit.Assert.*;
-import interfaces.CondicionPreexistenteI;
 import interfaces.LoggerI;
 import interfaces.ObservadorI;
 import interfaces.TareaI;
@@ -17,6 +16,7 @@ import observadores.ObservadorParaElEnvioDeMails;
 import org.junit.Before;
 import org.junit.Test;
 
+import condicionesPreexistentes.CondicionPreexistente;
 import builderUsuario.UsuarioBuilder;
 import builderUsuario.UsuarioParaAprobacionDeSolicitudes;
 import receta.Receta;
@@ -37,11 +37,11 @@ public class TestLogConsultas {
 		Recetario.observadores = new ArrayList<ObservadorI>();
 		Recetario.consultas =new ArrayList<Consulta>();
 		Recetario.recetas =new ArrayList<Receta>();
-		RepoUsuarios.inadecuados = new ArrayList<CondicionPreexistenteI>();
+		RepoUsuarios.inadecuados = new ArrayList<CondicionPreexistente>();
 
 		Recetario.observadores.add(new ObservadorDeConsultas());
 		
-		RepoUsuarios.inadecuados = new ArrayList<CondicionPreexistenteI>();
+		RepoUsuarios.inadecuados = new ArrayList<CondicionPreexistente>();
 		Recetario.consultasLogueadas = new ArrayList<Consulta>();
 		Recetario.recetas = new ArrayList<Receta>();
 		Recetario.consultas = new ArrayList<Consulta>();

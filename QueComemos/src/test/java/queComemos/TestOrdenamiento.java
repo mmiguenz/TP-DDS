@@ -1,7 +1,6 @@
 package queComemos;
 
 import static org.junit.Assert.*;
-import interfaces.CondicionPreexistenteI;
 import interfaces.CriterioOrdenamientoI;
 import interfaces.ObservadorI;
 import interfaces.ProcesamientoI;
@@ -22,8 +21,9 @@ import receta.Preparacion;
 import receta.Receta;
 import repositorios.Recetario;
 import repositorios.RepoUsuarios;
-import usuario.GustosSobreAlimentos;
+import usuario.PreferenciaAlimenticia;
 import condicionesPreexistentes.Celiaco;
+import condicionesPreexistentes.CondicionPreexistente;
 import condicionesPreexistentes.Diabetico;
 import condicionesPreexistentes.Hipertenso;
 import condicionesPreexistentes.Vegano;
@@ -35,7 +35,7 @@ public class TestOrdenamiento {
 	@Before
 	public void setUp() throws Exception {
 		
-		RepoUsuarios.inadecuados= new ArrayList<CondicionPreexistenteI>();
+		RepoUsuarios.inadecuados= new ArrayList<CondicionPreexistente>();
 		Recetario.recetas = new ArrayList<Receta>();
 		Recetario.observadores = new ArrayList<ObservadorI>();
 		
@@ -68,7 +68,7 @@ public class TestOrdenamiento {
 		List<Ingrediente>condimentos = new ArrayList<Ingrediente>();
 		List<Receta> subRecetas=new ArrayList<Receta>();
 		
-		List<CondicionPreexistenteI> inadecuados=new ArrayList<CondicionPreexistenteI>();
+		List<CondicionPreexistente> inadecuados=new ArrayList<CondicionPreexistente>();
 		List<String>comidasProhibidasH= new ArrayList<String>();
 		comidasProhibidasH.add("caldo");
 		

@@ -1,7 +1,6 @@
 package queComemos;
 
 import static org.junit.Assert.*;
-import interfaces.CondicionPreexistenteI;
 import interfaces.ObservadorI;
 
 import java.time.LocalDate;
@@ -21,9 +20,10 @@ import receta.Preparacion;
 import receta.Receta;
 import repositorios.Recetario;
 import repositorios.RepoUsuarios;
-import usuario.GustosSobreAlimentos;
+import usuario.PreferenciaAlimenticia;
 import usuario.Usuario;
 import condicionesPreexistentes.Celiaco;
+import condicionesPreexistentes.CondicionPreexistente;
 import condicionesPreexistentes.Diabetico;
 import condicionesPreexistentes.Hipertenso;
 import condicionesPreexistentes.Vegano;
@@ -33,13 +33,13 @@ public class TestUsuario {
 	private Usuario usuario;
 	private Receta receta;
 	private Preparacion preparacion;
-	private GustosSobreAlimentos preferenciaAlimenticiaNoSaludable;
+	private PreferenciaAlimenticia preferenciaAlimenticiaNoSaludable;
 	private List<String> comidasProhibidas;
 
 	@Before
 	public void setUp() throws Exception {
 		
-		RepoUsuarios.inadecuados= new ArrayList<CondicionPreexistenteI>();
+		RepoUsuarios.inadecuados= new ArrayList<CondicionPreexistente>();
 		Recetario.recetas = new ArrayList<Receta>();
 		Recetario.observadores = new ArrayList<ObservadorI>();
 
@@ -530,7 +530,7 @@ public class TestUsuario {
 					
 			
 			Usuario usr = new Usuario ((long) 3,"juancito","masculino",LocalDate.parse("2014-01-01"), 60.0, 1.7, "Leve",
-						preferenciaAlimenticiaNoSaludable,new ArrayList<CondicionPreexistenteI>(),new ArrayList<Receta>());
+						preferenciaAlimenticiaNoSaludable,new ArrayList<CondicionPreexistente>(),new ArrayList<Receta>());
 					
 				
 			
@@ -545,7 +545,7 @@ public class TestUsuario {
 					
 			
 			Usuario usr = new Usuario (null,null,null,null, null, null, null,
-					null,new ArrayList<CondicionPreexistenteI>(),new ArrayList<Receta>());
+					null,new ArrayList<CondicionPreexistente>(),new ArrayList<Receta>());
 			
 			usr.setNombre(usr.getNombre());
 			

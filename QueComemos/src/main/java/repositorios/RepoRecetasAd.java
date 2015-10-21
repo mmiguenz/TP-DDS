@@ -1,11 +1,12 @@
 package repositorios;
 
 
-import interfaces.CondicionPreexistenteI;
-
 import java.util.ArrayList;
 import java.util.List;
+
 import org.json.*;
+
+import condicionesPreexistentes.CondicionPreexistente;
 import queComemos.entrega3.repositorio.BusquedaRecetas;
 import queComemos.entrega3.repositorio.RepoRecetas;
 import receta.Ingrediente;
@@ -92,7 +93,7 @@ public class RepoRecetasAd {
 			  * Mapeo Receta
 			  * =================================================
 			  */
-			recetas.add(new Receta(nombre,calorias,preparacion,dificultad,"",new ArrayList<Receta>(),new ArrayList<CondicionPreexistenteI>()));
+			recetas.add(new Receta(nombre,calorias,preparacion,dificultad,"",new ArrayList<Receta>(),new ArrayList<CondicionPreexistente>()));
 		}
 		
 

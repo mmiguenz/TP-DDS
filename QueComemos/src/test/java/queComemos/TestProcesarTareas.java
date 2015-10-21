@@ -1,7 +1,6 @@
 package queComemos;
 
 import static org.junit.Assert.*;
-import interfaces.CondicionPreexistenteI;
 import interfaces.ObservadorI;
 
 import java.util.ArrayList;
@@ -13,6 +12,7 @@ import observadores.ObservadorParaElEnvioDeMails;
 import org.junit.Before;
 import org.junit.Test;
 
+import condicionesPreexistentes.CondicionPreexistente;
 import builderUsuario.UsuarioBuilder;
 import builderUsuario.UsuarioParaAprobacionDeSolicitudes;
 import receta.Receta;
@@ -36,7 +36,7 @@ public class TestProcesarTareas {
 		Recetario.consultas =new ArrayList<Consulta>();
 		Recetario.recetas =new ArrayList<Receta>();
 		
-		RepoUsuarios.inadecuados = new ArrayList<CondicionPreexistenteI>();
+		RepoUsuarios.inadecuados = new ArrayList<CondicionPreexistente>();
 						
 		
 		Recetario.observadores.add(observaSiElUsuarioNecesitaMail);

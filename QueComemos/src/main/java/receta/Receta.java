@@ -1,26 +1,39 @@
 package receta;
 
-import interfaces.CondicionPreexistenteI;
-
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.persistence.*;
+
+import condicionesPreexistentes.CondicionPreexistente;
 import repositorios.RepoUsuarios;
 
 
-
+@Entity
+@Table(name="Recetas")
 public class Receta {
 
+	@Id
+	@GeneratedValue
+	@Column(name="RecetaID")
+	Long id;
+	
+	
 	private String nombre;
 	private double calorias;
+	@ManyToOne
 	private Preparacion preparacion;
 	private String dificultad;
 	private String temporada;
+	@ManyToMany
+	@CollectionTable(name="SubRecetas")
 	private List<Receta> subRecetas;
-	private List<CondicionPreexistenteI> inadecuados;
+	@ManyToMany
+	private List<CondicionPreexistente> inadecuados;
 
 
 	public Receta(String nombre, double calorias, Preparacion preparacion,
-			String dificultad, String temporada, List<Receta> subRecetas, List<CondicionPreexistenteI> inadecuados) {
+			String dificultad, String temporada, List<Receta> subRecetas, List<CondicionPreexistente> inadecuados) {
 
 		
 		
@@ -83,11 +96,11 @@ public class Receta {
 		this.subRecetas = subRecetas;
 	}
 
-	public List<CondicionPreexistenteI> getInadecuados() {
+	public List<CondicionPreexistente> getInadecuados() {
 		return inadecuados;
 	}
 
-	public void setInadecuados(List<CondicionPreexistenteI> inadecuados) {
+	public void setInadecuados(List<CondicionPreexistente> inadecuados) {
 		this.inadecuados = inadecuados;
 	}
 
@@ -110,7 +123,7 @@ public class Receta {
 		
 
 
-	public List<CondicionPreexistenteI> calcularInadecuados() {
+	public List<CondicionPreexistente> calcularInadecuados() {
 
 		
 		return RepoUsuarios.calcularInadecuadosParaReceta(this);
@@ -134,7 +147,7 @@ public class Receta {
 		
 		return new Receta("", 0.0
 						,new Preparacion(new ArrayList<Ingrediente>(), new ArrayList<Ingrediente>(), new ArrayList<String>())
-						, "", "", new ArrayList<Receta>(), new ArrayList<CondicionPreexistenteI>());
+						, "", "", new ArrayList<Receta>(), new ArrayList<CondicionPreexistente>());
 		
 		
 	}

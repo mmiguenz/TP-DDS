@@ -8,12 +8,12 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
-import usuario.GustosSobreAlimentos;
+import usuario.PreferenciaAlimenticia;
 
 public class TestGustosSobreAlimentos {
 
 	List<String> alimentosAceptados, alimentosRechazados, listaComidas;
-	GustosSobreAlimentos gustosAlimenticios;
+	PreferenciaAlimenticia gustosAlimenticios;
 	
 	@Before
 	public void setUp() throws Exception {
@@ -29,7 +29,7 @@ public class TestGustosSobreAlimentos {
 		listaComidas.add("pescado");
 		listaComidas.add("tomate");
 		
-		gustosAlimenticios = new GustosSobreAlimentos(alimentosAceptados, alimentosRechazados);
+		gustosAlimenticios = new PreferenciaAlimenticia(alimentosAceptados, alimentosRechazados);
 	}
 
 	@Test

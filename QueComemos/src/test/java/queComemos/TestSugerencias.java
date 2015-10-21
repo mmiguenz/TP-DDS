@@ -1,7 +1,6 @@
 package queComemos;
 
 import static org.junit.Assert.*;
-import interfaces.CondicionPreexistenteI;
 import interfaces.ObservadorI;
 
 import java.time.LocalDate;
@@ -21,9 +20,10 @@ import receta.Receta;
 import repositorios.Recetario;
 import repositorios.RepoUsuarios;
 import usuario.Grupo;
-import usuario.GustosSobreAlimentos;
+import usuario.PreferenciaAlimenticia;
 import usuario.Usuario;
 import condicionesPreexistentes.Celiaco;
+import condicionesPreexistentes.CondicionPreexistente;
 import condicionesPreexistentes.Diabetico;
 import condicionesPreexistentes.Hipertenso;
 import condicionesPreexistentes.Vegano;
@@ -37,7 +37,7 @@ public class TestSugerencias {
 	@Before
 	public void setUp() throws Exception {
 		
-		RepoUsuarios.inadecuados= new ArrayList<CondicionPreexistenteI>();
+		RepoUsuarios.inadecuados= new ArrayList<CondicionPreexistente>();
 		Recetario.recetas = new ArrayList<Receta>();
 		Recetario.observadores = new ArrayList<ObservadorI>();
 
@@ -133,7 +133,7 @@ public class TestSugerencias {
 		comidasGusta.add("Carne");
 		List<String> comidasNoGusta= new ArrayList<String>();
 		comidasNoGusta.add("lavandina");
-		GustosSobreAlimentos preferencia=new GustosSobreAlimentos(comidasGusta,comidasNoGusta);
+		PreferenciaAlimenticia preferencia=new PreferenciaAlimenticia(comidasGusta,comidasNoGusta);
 		Grupo grupo = new Grupo("UnNombre" , usuariosGrupo, preferencia);	
 
 		

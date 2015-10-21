@@ -3,8 +3,8 @@ package receta;
 import javax.persistence.*;
 
 @Entity
-@Table(name="Ingredientes")
-public   class Ingrediente  {
+@Table(name="Condimentos")
+public   class Condimento  {
 		
 		@Id
 		@GeneratedValue
@@ -15,7 +15,7 @@ public   class Ingrediente  {
 		private String medida;
 		private double cantidad;
 	
-	public Ingrediente(String nombre,String medida,double cantidad)
+	public Condimento(String nombre,String medida,double cantidad)
 	{
 		this.nombre=nombre;
 		this.medida=medida;

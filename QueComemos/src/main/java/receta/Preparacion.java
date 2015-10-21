@@ -2,13 +2,28 @@ package receta;
 
 import java.util.List;
 
+import javax.persistence.*;
+@Entity
+@Table(name="preparaciones")
 public class Preparacion {
 
+	@Id
+	@GeneratedValue
+	@Column(name="PreparacionID")
+	Long id;
+	
+	@OneToMany
+	@JoinColumn(name= "PreparacionID")
+	@CollectionTable(name="Ingredientes")
 	private List<Ingrediente> ingredientes;
+	@OneToMany
+	@JoinColumn(name="PreparacionID")
+	@CollectionTable(name="Condimentos")
 	private List<Ingrediente> condimentos;
+	@ElementCollection
 	private List<String> explicacion;
-	
-	
+
+
 	
 	public Preparacion(List<Ingrediente> ingredientes, List<Ingrediente> condimentos,List<String> explicacion)
 	{

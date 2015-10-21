@@ -1,7 +1,6 @@
 package queComemos;
 
 import static org.junit.Assert.*;
-import interfaces.CondicionPreexistenteI;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -10,6 +9,7 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
+import condicionesPreexistentes.CondicionPreexistente;
 import builderReceta.RecetaBuilder;
 import builderReceta.RecetaGenerica;
 import builderUsuario.UsuarioBuilder;
@@ -19,7 +19,7 @@ import repositorios.Consulta;
 import repositorios.Recetario;
 import repositorios.RepoUsuarios;
 import usuario.Grupo;
-import usuario.GustosSobreAlimentos;
+import usuario.PreferenciaAlimenticia;
 import usuario.Usuario;
 
 public class TestGrupo {
@@ -29,7 +29,7 @@ public class TestGrupo {
 	
 	@Before
 	public void setUp() throws Exception {
-		RepoUsuarios.inadecuados = new ArrayList<CondicionPreexistenteI>();
+		RepoUsuarios.inadecuados = new ArrayList<CondicionPreexistente>();
 		
 		UsuarioBuilder constructorDeUsuario = new UsuarioMasGenerico();
 		constructorDeUsuario.nombre("Pedro");
@@ -120,7 +120,7 @@ public class TestGrupo {
 	public void testEsAdecuadaReceta() {
 	
 		
-		grupo = new Grupo("UnNombre" , usuariosColeccion, new GustosSobreAlimentos(new ArrayList<String>(),new ArrayList<String>()));
+		grupo = new Grupo("UnNombre" , usuariosColeccion, new PreferenciaAlimenticia(new ArrayList<String>(),new ArrayList<String>()));
 		RecetaBuilder constructorDeReceta = new RecetaGenerica();
 		constructorDeReceta.nombre("papasAlHorno");
 		constructorDeReceta.dificultad("facil");
@@ -138,7 +138,7 @@ public class TestGrupo {
 	public void testLeGustaAlGrupo() {
 	
 		
-		grupo = new Grupo("UnNombre" , usuariosColeccion, new GustosSobreAlimentos(new ArrayList<String>(),new ArrayList<String>()));
+		grupo = new Grupo("UnNombre" , usuariosColeccion, new PreferenciaAlimenticia(new ArrayList<String>(),new ArrayList<String>()));
 		RecetaBuilder constructorDeReceta = new RecetaGenerica();
 		constructorDeReceta.nombre("papasAlHorno");
 		constructorDeReceta.dificultad("facil");
