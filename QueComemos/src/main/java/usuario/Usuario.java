@@ -6,6 +6,8 @@ import java.util.List;
 
 import javax.persistence.*;
 
+import org.uqbarproject.jpa.java8.extras.convert.LocalDateConverter;
+
 import condicionesPreexistentes.CondicionPreexistente;
 import receta.Preparacion;
 import receta.Receta;
@@ -21,6 +23,7 @@ public class Usuario {
 	private Long id;
 	private String nombre;
 	private String sexo;
+	@Convert(converter=LocalDateConverter.class)
 	private LocalDate fechaNacimiento;
 	private Double peso;
 	private Double estatura;

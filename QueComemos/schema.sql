@@ -16,13 +16,8 @@
     )
 
     create table Condimentos (
-        PreparacionID bigint not null auto_increment,
-        cantidad double precision not null,
-        medida varchar(255),
-        nombre varchar(255),
         preparaciones_PreparacionID bigint not null,
-        condimentos_PreparacionID bigint not null,
-        primary key (PreparacionID)
+        condimentos_PreparacionID bigint not null
     )
 
     create table Ingredientes (

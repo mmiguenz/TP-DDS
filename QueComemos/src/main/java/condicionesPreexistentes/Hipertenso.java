@@ -2,9 +2,11 @@ package condicionesPreexistentes;
 
 import java.util.List;
 
+import javax.persistence.DiscriminatorValue;
+
 import receta.Receta;
 import usuario.Usuario;
-
+@DiscriminatorValue("Hipertenso")
 public class Hipertenso extends CondicionPreexistente {
 	
 	private String nombre;

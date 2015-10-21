@@ -2,9 +2,11 @@ package condicionesPreexistentes;
 
 import java.util.List;
 
+import javax.persistence.DiscriminatorValue;
+
 import receta.Receta;
 import usuario.Usuario;
-
+@DiscriminatorValue("Celiaco")
 public class Celiaco extends CondicionPreexistente {
 
 	public Celiaco(String nombre, List<String> comidasProhibidas) {

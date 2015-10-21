@@ -5,9 +5,11 @@ package condicionesPreexistentes;
 
 import java.util.List;
 
+import javax.persistence.DiscriminatorValue;
+
 import receta.Receta;
 import usuario.Usuario;
-
+@DiscriminatorValue("Vegano")
 public class Vegano extends CondicionPreexistente {
 
 	private String  nombre;

@@ -2,12 +2,23 @@ package usuario;
 
 import java.util.List;
 
-import receta.Receta;
+import javax.persistence.*;
 
+import receta.Receta;
+@Entity 
+@Table(name="Grupos")
 public class Grupo {
 
+	@Id
+	@GeneratedValue
+	@Column(name="GrupoID")
+	Long id;
+	
 	private String nombre;
+	@ManyToMany
+	@CollectionTable(name="usuariosXGrupo")
 	private List<Usuario> usuarios;
+	@OneToOne
 	private PreferenciaAlimenticia preferenciaAlimenticia;
 	
 
