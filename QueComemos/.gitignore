@@ -7,4 +7,5 @@ quecomemos.ucls
 ./settings
 *.settings
 /.settings
-.settings
+.settings´
+/bin
