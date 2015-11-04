@@ -36,10 +36,10 @@ public class TestCondicionesPreexistentes {
 		
 		
 		
-		 celiaco = new Celiaco("celiaco",comidasProhibidas);
-		 vegano = new Vegano("vegano",comidasProhibidas);
-		 hipertenso = new Hipertenso("hipertenso",comidasProhibidas);
-		 diabetico = new Diabetico("diabetico",comidasProhibidas);
+		 celiaco = new Celiaco(null, "celiaco",comidasProhibidas);
+		 vegano = new Vegano(null, "vegano",comidasProhibidas);
+		 hipertenso = new Hipertenso(null, "hipertenso",comidasProhibidas);
+		 diabetico = new Diabetico(null, "diabetico",comidasProhibidas);
 				
 
 		

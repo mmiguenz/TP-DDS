@@ -11,7 +11,7 @@ public class LoggerMock implements LoggerI {
 	@Override
 	public void loguear(Consulta consulta) {
 		
-		Recetario.consultasLogueadas.add(consulta);
+		Recetario.getInstance().consultasLogueadas.add(consulta);
 	}
 
 }

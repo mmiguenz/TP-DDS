@@ -93,7 +93,7 @@ public class RepoRecetasAd {
 			  * Mapeo Receta
 			  * =================================================
 			  */
-			recetas.add(new Receta(nombre,calorias,preparacion,dificultad,"",new ArrayList<Receta>(),new ArrayList<CondicionPreexistente>()));
+			recetas.add(new Receta(null, nombre,calorias,preparacion,dificultad,"",new ArrayList<Receta>(),new ArrayList<CondicionPreexistente>()));
 		}
 		
 

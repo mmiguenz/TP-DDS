@@ -1,4 +1,4 @@
-package usuario;
+ package usuario;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -28,7 +28,7 @@ public class Usuario {
 	private Double peso;
 	private Double estatura;
 	private String rutina;
-	@OneToOne
+	@OneToOne(cascade={CascadeType.PERSIST})
 	private PreferenciaAlimenticia preferenciaAlimenticia;
 	private boolean  marcaFavoritasLasConsultas ; 
 	@ManyToMany
@@ -44,38 +44,38 @@ public class Usuario {
 
 
 
-	public Usuario(Long usuarioID,String nombre, String sexo, LocalDate fechaNacimiento,
-			Double peso, Double estatura, String rutina,
-			PreferenciaAlimenticia preferenciaAlimenticia,
-			List<CondicionPreexistente> condicionesPreexistentes,
-			List<Receta> misRecetas) {
-		
-		this.id= usuarioID;
-		this.setNombre(nombre);
-		this.setSexo(sexo);
-		this.setFechaNacimiento(fechaNacimiento);
-		this.setPeso(peso);
-		this.setEstatura(estatura);
-		this.setRutina(rutina);
-		if(!(preferenciaAlimenticia==null)){
-			this.setPreferenciaAlimenticia(preferenciaAlimenticia);
-		}else{
-			this.preferenciaAlimenticia=new PreferenciaAlimenticia(new ArrayList<String>(),new ArrayList<String>());
-		}
-		this.setCondicionesPreexistentes(condicionesPreexistentes);
-		this.setMisRecetas(misRecetas);
-		this.favoritas= new ArrayList<Receta>();
-		
-
-	}
-	
-	
 
 	
 		
 
 	public List<Receta> getFavoritas() {
 		return favoritas;
+	}
+
+
+
+
+
+
+	public Usuario(Long id, String nombre, String sexo,
+			LocalDate fechaNacimiento, Double peso, Double estatura,
+			String rutina, PreferenciaAlimenticia preferenciaAlimenticia,
+			boolean marcaFavoritasLasConsultas,
+			List<CondicionPreexistente> condicionesPreexistentes,
+			List<Receta> misRecetas, List<Receta> favoritas) {
+
+		this.id = id;
+		this.nombre = nombre;
+		this.sexo = sexo;
+		this.fechaNacimiento = fechaNacimiento;
+		this.peso = peso;
+		this.estatura = estatura;
+		this.rutina = rutina;
+		this.preferenciaAlimenticia = preferenciaAlimenticia;
+		this.marcaFavoritasLasConsultas = marcaFavoritasLasConsultas;
+		this.condicionesPreexistentes = condicionesPreexistentes;
+		this.misRecetas = misRecetas;
+		this.favoritas = favoritas;
 	}
 
 
@@ -135,6 +135,7 @@ public class Usuario {
 
 	public void agregarReceta(Receta receta) {
 
+			
 		if (receta.validar()) {
 			misRecetas.add(receta);
 
@@ -146,14 +147,15 @@ public class Usuario {
 
 	
 	public void modificaUnaRecetaPublica(String nombre, String nuevoNombre,Double calorias, Preparacion preparacion,List<Receta>subRecetas,String dificultad){
-		Receta recetaModificada= Recetario.modificarRecetaPublica( nombre,  nuevoNombre, calorias, preparacion,subRecetas, dificultad);
+		Receta recetaModificada= Recetario.getInstance().modificarRecetaPublica( nombre,  nuevoNombre, calorias, preparacion,subRecetas, dificultad);
+		if (recetaModificada !=null)
 		this.agregarReceta(recetaModificada);
 		
 	}
 
 	public boolean puedeVer(Receta receta) {
 		return esAdecuadaLaReceta(receta) && 
-				(misRecetas.contains(receta) || Recetario.recetas.contains(receta));
+				(misRecetas.contains(receta) || Recetario.getInstance().listarTodas().contains(receta));
 
 	}
 
@@ -269,7 +271,27 @@ public class Usuario {
 	}
 
 
-	
+
+
+
+
+	public Long getId() {
+		return id;
+	}
+
+
+
+
+
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+
+
+
+
 
 	
 }

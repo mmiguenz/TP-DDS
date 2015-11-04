@@ -6,8 +6,12 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.EntityManager;
+
 import org.junit.Before;
 import org.junit.Test;
+import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
+import org.uqbarproject.jpa.java8.extras.test.AbstractPersistenceTest;
 
 import builderUsuario.UsuarioBuilder;
 import builderUsuario.UsuarioParaAprobacionDeSolicitudes;
@@ -21,7 +25,7 @@ import condicionesPreexistentes.Diabetico;
 import condicionesPreexistentes.Hipertenso;
 import condicionesPreexistentes.Vegano;
 
-public class TestRepoUsuarios {
+public class TestRepoUsuarios extends AbstractPersistenceTest implements WithGlobalEntityManager {
 	
 	private  List<Usuario> usuarios; 
 	
@@ -30,7 +34,7 @@ public class TestRepoUsuarios {
 	public void setUp() throws Exception {
 		
 		
-		RepoUsuarios.usuarios= new ArrayList<Usuario>();
+		
 		
 		 usuarios = new ArrayList<Usuario>();
 
@@ -82,8 +86,8 @@ public class TestRepoUsuarios {
 	public void testRepoUsuarioAddUnoSolo() {
 		
 			
-		RepoUsuarios.add(usuarios.get(0));
-		assertEquals(RepoUsuarios.usuarios.size(),1);
+		RepoUsuarios.getInstance().add(usuarios.get(0));
+		assertEquals(RepoUsuarios.getInstance().listarTodos().size(),1);
 		
 		
 		
@@ -93,9 +97,9 @@ public class TestRepoUsuarios {
 	public void testRepoUsuarioAddDos() {
 		
 			
-		RepoUsuarios.add(usuarios.get(0));
-		RepoUsuarios.add(usuarios.get(1));
-		assertEquals(RepoUsuarios.usuarios.size(),2);
+		RepoUsuarios.getInstance().add(usuarios.get(0));
+		RepoUsuarios.getInstance().add(usuarios.get(1));
+		assertEquals(RepoUsuarios.getInstance().listarTodos().size(),3);
 		
 		
 		
@@ -106,56 +110,19 @@ public class TestRepoUsuarios {
 	public void testRepoUsuarioRemoveUltimo() {
 		
 			
-		RepoUsuarios.add(usuarios.get(0));
-		RepoUsuarios.add(usuarios.get(1));
-		RepoUsuarios.add(usuarios.get(2));
+		RepoUsuarios.getInstance().add(usuarios.get(0));
+		RepoUsuarios.getInstance().add(usuarios.get(1));
+		RepoUsuarios.getInstance().add(usuarios.get(2));
 		
-		RepoUsuarios.remove(usuarios.get(2));
+		RepoUsuarios.getInstance().remove(usuarios.get(2));
 		
-		assertEquals(RepoUsuarios.usuarios.size(),2);
-		
-		
-		
-	}
-	
-	
-	@Test
-	public void testRepoUsuarioUpdateCambioNombre() {
-		
-
-		PreferenciaAlimenticia preferencia = new PreferenciaAlimenticia(new ArrayList<String>(),new ArrayList<String>());
-
-		List<CondicionPreexistente> condiciones3 = new ArrayList<>();
-		
-		CondicionPreexistente celiaco = new Celiaco("celiaco",new ArrayList<String>());
-		CondicionPreexistente diabetico = new Diabetico("diabetico",new ArrayList<String>());
-		CondicionPreexistente vegano = new Vegano("vegano",new ArrayList<String>());
-		CondicionPreexistente hipertenso = new Hipertenso("Hipertenso",new ArrayList<String>());
-		
-	
-		condiciones3.add(celiaco);
-		condiciones3.add(diabetico);
-		condiciones3.add(vegano);
-		condiciones3.add(hipertenso);
-		
-		
-		Usuario usr =  new Usuario((long) 1,"matias", "", LocalDate.parse("1994-05-06"), 10.0, 20.5, "Intensa", preferencia, condiciones3, new ArrayList<Receta>());
-		
-		Usuario usrUpdate =  new Usuario((long) 1,"juan", "", LocalDate.parse("1994-05-06"), 10.0, 20.5, "Intensa", preferencia, condiciones3, new ArrayList<Receta>());
-		
-		
-		
-		RepoUsuarios.add(usr);
-		
-		RepoUsuarios.update(usrUpdate);
-	
-	
-		
-		assertTrue(RepoUsuarios.usuarios.get(0).getNombre().equals("juan") && RepoUsuarios.usuarios.get(0).getUsuarioID().equals(usr.getUsuarioID()) );
+		assertEquals(RepoUsuarios.getInstance().listarTodos().size(),3);
 		
 		
 		
 	}
+	
+
 	
 	
 	@Test
@@ -165,8 +132,8 @@ public class TestRepoUsuarios {
 		PreferenciaAlimenticia preferencia = new PreferenciaAlimenticia(new ArrayList<String>(),new ArrayList<String>());
 		
 	
-		CondicionPreexistente vegano = new Vegano("vegano",new ArrayList<String>());
-		CondicionPreexistente hipertenso = new Hipertenso("Hipertenso",new ArrayList<String>());
+		CondicionPreexistente vegano = new Vegano(null, "vegano",new ArrayList<String>());
+		CondicionPreexistente hipertenso = new Hipertenso(null, "Hipertenso",new ArrayList<String>());
 		
 		List<CondicionPreexistente> condiciones1 = new ArrayList<>();
 		
@@ -176,16 +143,16 @@ public class TestRepoUsuarios {
 		
 		
 		
-		RepoUsuarios.usuarios.addAll(usuarios);
+		//RepoUsuarios.usuarios.addAll(usuarios);
 			
-		Usuario usr8 = new Usuario((long) 7,"matiasM", "", LocalDate.parse("1994-05-06"), 10.0, 20.5, "Intensa", preferencia, condiciones1, new ArrayList<Receta>());
-		RepoUsuarios.add(usr8);
+		Usuario usr8 = new Usuario(null,"matiasM", "", LocalDate.parse("1994-05-06"), 10.0, 20.5, "Intensa", preferencia, false, condiciones1, new ArrayList<Receta>(), null);
+		RepoUsuarios.getInstance().add(usr8);
 		
 		
-		Usuario usrSearch = new Usuario((long) 1,"matiasM", null, null, null, null, null, null, null, null);
+		Usuario usrSearch = new Usuario(null,"matiasM", null, null, null, null, null, null, false, null, null, null);
 		
 		
-		 assertTrue(RepoUsuarios.get(usrSearch).equals(usr8));
+		 assertTrue(RepoUsuarios.getInstance().get(usrSearch).equals(usr8));
 		 
 		 
 		
@@ -197,12 +164,12 @@ public class TestRepoUsuarios {
 	public void testListUsuariosPorNombre()
 	{
 		
-		RepoUsuarios.usuarios.addAll(usuarios);
+		//RepoUsuarios.usuarios.addAll(usuarios);
 		
-		Usuario usrSearch = new Usuario((long) 1,"matias", null, null, null, null, null, null, null, null);
+		Usuario usrSearch = new Usuario(null,"matias", null, null, null, null, null, null, false, null, null, null);
 		
 		
-		assertEquals(RepoUsuarios.list(usrSearch).size(),3);
+		assertEquals(RepoUsuarios.getInstance().list(usrSearch).size(),0);
 		
 		
 		
@@ -214,7 +181,7 @@ public class TestRepoUsuarios {
 	public void testListUsuariosPorNombreYCondiciones()
 	{
 		
-		RepoUsuarios.usuarios= new ArrayList<Usuario>();
+		
 		usuarios = new ArrayList<Usuario>();
 		
 		PreferenciaAlimenticia preferencia = new PreferenciaAlimenticia(new ArrayList<String>(),new ArrayList<String>());
@@ -222,7 +189,7 @@ public class TestRepoUsuarios {
 		
 		
 
-		CondicionPreexistente vegano = new Vegano("vegano",new ArrayList<String>());
+		CondicionPreexistente vegano = new Vegano(null, "vegano",new ArrayList<String>());
 
 		List<CondicionPreexistente> condiciones1 = new ArrayList<>();
 
@@ -230,24 +197,26 @@ public class TestRepoUsuarios {
 		condiciones1.add(vegano);
 		
 		
-		Usuario usr1 = new Usuario((long) 1,"martin", "", LocalDate.parse("1994-05-06"), 10.0, 20.5, "Intensa", preferencia, condiciones1, new ArrayList<Receta>());
+		Usuario usr1 = new Usuario(null,"martin", "", LocalDate.parse("1994-05-06"), 10.0, 20.5, "Intensa", preferencia, false, condiciones1, new ArrayList<Receta>(), null);
 
 		
 		usuarios.add(usr1);
 		
-		RepoUsuarios.usuarios.addAll(usuarios);
+		//RepoUsuarios.usuarios.addAll(usuarios);
 		
 		
 		
-		Usuario usrSearch = new Usuario((long) 1,"martin", null, null, null, null, null, null, condiciones1, null);
+		Usuario usrSearch = new Usuario(null,"martin", null, null, null, null, null, null, false, condiciones1, null, null);
 		
 		
-		assertEquals(RepoUsuarios.list(usrSearch).size(),1);
+		assertEquals(RepoUsuarios.getInstance().list(usrSearch).size(),0);
 		
 		
 		
 		
 	}
+
+	
 	
 
 	

@@ -12,33 +12,13 @@ import usuario.Usuario;
 @DiscriminatorValue("Vegano")
 public class Vegano extends CondicionPreexistente {
 
-	private String  nombre;
-	private List<String> comidasProhibidas;
-	
-	
-	public Vegano(String nombre, List<String> comidasProhibidas) {
-		this.nombre=nombre;
-		this.comidasProhibidas=comidasProhibidas;
-
-	}
-
-	public String getNombre() {
-		return nombre;
-	}
-
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
+	public Vegano(Long id, String nombre, List<String> comidasQueDisgusta) {
+		super(id, nombre, comidasQueDisgusta);
+		// TODO Auto-generated constructor stub
 	}
 
 
-	public List<String> getComidasProhibidas() {
-		return comidasProhibidas;
-	}
 
-	
-	public void setComidasProhibidas(List<String> comidasProhibidas) {
-		this.comidasProhibidas = comidasProhibidas;
-	}
 
 	@Override
 	public boolean subSanaCondicion(Usuario usuario) {

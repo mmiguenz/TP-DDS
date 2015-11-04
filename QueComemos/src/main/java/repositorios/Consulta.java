@@ -7,17 +7,37 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.*;
+
+import org.uqbarproject.jpa.java8.extras.convert.LocalDateTimeConverter;
+
 import condicionesPreexistentes.Vegano;
 import receta.Receta;
 import usuario.Usuario;
 
+@Entity
+@Table(name = "Consultas")
 public class Consulta {
 	
+	@Id
+	@GeneratedValue
+	@Column(name = "ConsultaID")
+	Long id;
 	
+	@Transient
 	private List<FiltroI> filtros ;
+	
+	@Transient
 	private ProcesamientoI procesamientoPosterior;
+	
+	@ManyToOne(cascade={CascadeType.PERSIST})
 	private Usuario usr ;
+	
+	@ManyToMany
+	@CollectionTable(name="RecetasXConsulta")
 	private List<Receta> resultadoConsulta;
+	
+	@Convert(converter = LocalDateTimeConverter.class)
 	private LocalDateTime horaConsulta;
 	
 
@@ -51,7 +71,7 @@ public class Consulta {
 	public void  consultarRecetas()
 	{
 		
-		resultadoConsulta =   Recetario.listarTodas();
+		resultadoConsulta =   Recetario.getInstance().listarTodas();
 		
 		filtros.forEach(filtro -> resultadoConsulta = filtro.filtrar(resultadoConsulta, this.usr));
 		
@@ -60,8 +80,8 @@ public class Consulta {
 		
 		
 		this.setHoraConsulta(LocalDateTime.now());
-		Recetario.observadores.forEach(obervador -> obervador.notificar(this));
-				
+		Recetario.getInstance().observadores.forEach(obervador -> obervador.notificar(this));
+						
 		 
 		
 	}

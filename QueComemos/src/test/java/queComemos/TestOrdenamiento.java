@@ -35,9 +35,8 @@ public class TestOrdenamiento {
 	@Before
 	public void setUp() throws Exception {
 		
-		RepoUsuarios.inadecuados= new ArrayList<CondicionPreexistente>();
-		Recetario.recetas = new ArrayList<Receta>();
-		Recetario.observadores = new ArrayList<ObservadorI>();
+		RepoUsuarios.getInstance().inadecuados= new ArrayList<CondicionPreexistente>();
+
 		
 		
 		recetas = new ArrayList<Receta>();
@@ -100,14 +99,14 @@ public class TestOrdenamiento {
 		
 		
 	
-	recetas.add( new Receta("PolloConPapasA", 60.0,preparacion,dificultad,temporada,subRecetas,inadecuados));
-	recetas.add( new Receta("CarneAlHornoA",4524.0,preparacion,dificultad,temporada,subRecetas,inadecuados));
-	recetas.add( new Receta("CarneAlHornoB",1534.0,preparacion,dificultad,temporada,subRecetas,inadecuados));
-	recetas.add( new Receta("PolloConPapasB", 80.0,preparacion,dificultad,temporada,subRecetas,inadecuados));
-	recetas.add( new Receta("CarneAlHornoC",124.0,preparacion,dificultad,temporada,subRecetas,inadecuados));
-	recetas.add( new Receta("PolloConPapasC", 550.0,preparacion,dificultad,temporada,subRecetas,inadecuados));
-	recetas.add( new Receta("AA",1574.0,preparacion,dificultad,temporada,subRecetas,inadecuados));
-	recetas.add( new Receta("PolloConPapasA", 21600.0,preparacion,dificultad,temporada,subRecetas,inadecuados));		
+	recetas.add( new Receta(null, "PolloConPapasA", 60.0,preparacion,dificultad,temporada,subRecetas,inadecuados));
+	recetas.add( new Receta(null, "CarneAlHornoA",4524.0,preparacion,dificultad,temporada,subRecetas,inadecuados));
+	recetas.add( new Receta(null, "CarneAlHornoB",1534.0,preparacion,dificultad,temporada,subRecetas,inadecuados));
+	recetas.add( new Receta(null, "PolloConPapasB", 80.0,preparacion,dificultad,temporada,subRecetas,inadecuados));
+	recetas.add( new Receta(null, "CarneAlHornoC",124.0,preparacion,dificultad,temporada,subRecetas,inadecuados));
+	recetas.add( new Receta(null, "PolloConPapasC", 550.0,preparacion,dificultad,temporada,subRecetas,inadecuados));
+	recetas.add( new Receta(null, "AA",1574.0,preparacion,dificultad,temporada,subRecetas,inadecuados));
+	recetas.add( new Receta(null, "PolloConPapasA", 21600.0,preparacion,dificultad,temporada,subRecetas,inadecuados));		
 	
 	
 		

@@ -76,7 +76,7 @@ public  abstract class RecetaBuilder {
 	public Receta crearReceta()
 	{
 		return 
-				new Receta(nuevaReceta.getNombre(), nuevaReceta.getCalorias(), nuevaReceta.getPreparacion(), nuevaReceta.getDificultad(), nuevaReceta.getTemporada(), nuevaReceta.getSubRecetas(), nuevaReceta.getInadecuados());
+				new Receta(null, nuevaReceta.getNombre(), nuevaReceta.getCalorias(), nuevaReceta.getPreparacion(), nuevaReceta.getDificultad(), nuevaReceta.getTemporada(), nuevaReceta.getSubRecetas(), nuevaReceta.getInadecuados());
 		
 	}
 	

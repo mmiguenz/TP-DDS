@@ -9,38 +9,13 @@ import usuario.Usuario;
 @DiscriminatorValue("Diabetico")
 public class Diabetico extends CondicionPreexistente {
 	
-	private String nombre;
-	private List<String> comidasProhibidas;
+		
 	
-	
-	
-	
-	public Diabetico(String nombre, List<String> comidasProhibidas) {
-		super();
-		this.nombre = nombre;
-		this.comidasProhibidas = comidasProhibidas;
-	}
 
-	public String getNombre() {
-		return nombre;
+	public Diabetico(Long id, String nombre, List<String> comidasQueDisgusta) {
+		super(id, nombre, comidasQueDisgusta);
+		// TODO Auto-generated constructor stub
 	}
-
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
-
-	public List<String> getComidasProhibidas() {
-		return comidasProhibidas;
-	}
-
-	public void setComidasProhibidas(List<String> comidasProhibidas) {
-		this.comidasProhibidas = comidasProhibidas;
-	}
-
-	
-	
-	
-	
 
 	public boolean subSanaCondicion(Usuario usuario) {
 		return usuario.getRutina() == "Activa" && usuario.getPeso() <= 70.0;

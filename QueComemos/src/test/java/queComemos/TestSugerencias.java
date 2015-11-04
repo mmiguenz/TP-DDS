@@ -37,9 +37,8 @@ public class TestSugerencias {
 	@Before
 	public void setUp() throws Exception {
 		
-		RepoUsuarios.inadecuados= new ArrayList<CondicionPreexistente>();
-		Recetario.recetas = new ArrayList<Receta>();
-		Recetario.observadores = new ArrayList<ObservadorI>();
+		RepoUsuarios.getInstance().inadecuados= new ArrayList<CondicionPreexistente>();
+	
 
 		RecetaBuilder constructorReceta = new RecetaGenerica();
 		constructorReceta.nombre("CarneAlHorno");

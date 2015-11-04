@@ -14,7 +14,7 @@ public class ObservadorVeganoConsultaRecetaDificil implements ObservadorI {
 		
 	   if 
 	   (unaConsulta.esVeganoConsultandoDificil())
-		   Recetario.veganosConsultandoRecetasDificiles.add(unaConsulta.getUsr());
+		   Recetario.getInstance().veganosConsultandoRecetasDificiles.add(unaConsulta.getUsr());
 				
 	}
 	

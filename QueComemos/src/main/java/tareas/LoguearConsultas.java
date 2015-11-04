@@ -25,7 +25,8 @@ public class LoguearConsultas implements TareaI {
 		
 		
 		Recetario
-		.consultas
+		.getInstance()
+		.listarConsultas()
 		.stream()
 		.filter(consulta -> consulta.cantidadRecetasResultado() > Long.parseLong("100"))
 		.forEach(consulta -> logger.loguear(consulta));

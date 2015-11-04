@@ -50,4 +50,12 @@ public class PreferenciaAlimenticia {
 	{
 		return comidasQueGusta.contains(preferencia);
 	}
+
+	public PreferenciaAlimenticia(Long id, List<String> comidasQueGusta,
+			List<String> comidasQueDisgusta) {
+		super();
+		this.id = id;
+		this.comidasQueGusta = comidasQueGusta;
+		this.comidasQueDisgusta = comidasQueDisgusta;
+	}
 }

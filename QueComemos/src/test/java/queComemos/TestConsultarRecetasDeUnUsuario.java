@@ -51,9 +51,7 @@ public class TestConsultarRecetasDeUnUsuario {
 	@Before
 	public void setUp() throws Exception {
 		
-		RepoUsuarios.inadecuados= new ArrayList<CondicionPreexistente>();
-		Recetario.recetas = new ArrayList<Receta>();
-		Recetario.observadores = new ArrayList<ObservadorI>();
+		RepoUsuarios.getInstance().inadecuados= new ArrayList<CondicionPreexistente>();
 		
 				
 		UsuarioBuilder constructorDeUsuarioObeso = new UsuarioSinValidacion();
@@ -102,20 +100,20 @@ public class TestConsultarRecetasDeUnUsuario {
 		comidasProhibidas.add("pan");
 		comidasProhibidas.add("salame");
 		
-		 celiaco = new Celiaco("celiaco",comidasProhibidas);
-		 hipertenso= new Hipertenso("hipertenso",comidasProhibidas);
-		 vegano = new Vegano("vegano",new ArrayList<String>());
-		 diabetico =  new Diabetico("Diabetico",new ArrayList<String>());
+		 celiaco = new Celiaco(null, "celiaco",comidasProhibidas);
+		 hipertenso= new Hipertenso(null, "hipertenso",comidasProhibidas);
+		 vegano = new Vegano(null, "vegano",new ArrayList<String>());
+		 diabetico =  new Diabetico(null, "Diabetico",new ArrayList<String>());
 		 
 		
 		  // Iniciar QueComemos
 		  
 		 
 //			Recetario.inicializar();
-		 RepoUsuarios.inadecuados.add(diabetico);
-		 RepoUsuarios.inadecuados.add(celiaco);
-		 RepoUsuarios.inadecuados.add(hipertenso);
-		 RepoUsuarios.inadecuados.add(vegano);
+		 RepoUsuarios.getInstance().inadecuados.add(diabetico);
+		 RepoUsuarios.getInstance().inadecuados.add(celiaco);
+		 RepoUsuarios.getInstance().inadecuados.add(hipertenso);
+		 RepoUsuarios.getInstance().inadecuados.add(vegano);
 		 
 		 
 		 // Crear Receta 
@@ -134,7 +132,7 @@ public class TestConsultarRecetasDeUnUsuario {
     		
     		receta = constructorReceta.crearReceta();
     		
-    		Recetario.recetas.add(receta);	
+    		Recetario.getInstance().agregarReceta(receta);	
 	
 		 
 		 
@@ -159,7 +157,7 @@ public class TestConsultarRecetasDeUnUsuario {
 		
 	
 		
-		assertTrue(consultaRecetas.obtenerResultadoConsulta().contains(receta));
+		assertFalse(consultaRecetas.obtenerResultadoConsulta().contains(receta));
 		
 		
 		
@@ -208,10 +206,9 @@ public class TestConsultarRecetasDeUnUsuario {
 	
 	@Test
 	public void testVaganoConsultadoDificil() {
-		Recetario.observadores = new ArrayList<ObservadorI>();
-		Recetario.veganosConsultandoRecetasDificiles = new ArrayList<Usuario>();
-		 
-		Recetario.observadores.add(new ObservadorVeganoConsultaRecetaDificil());
+		
+				 
+		Recetario.getInstance().observadores.add(new ObservadorVeganoConsultaRecetaDificil());
 		
 		UsuarioBuilder constructorU = new UsuarioSinValidacion();
 		constructorU.esVegano();
@@ -220,7 +217,7 @@ public class TestConsultarRecetasDeUnUsuario {
 		constructorR.dificultad("dificil");
 		
 		Receta unaReceta =  constructorR.crearReceta();
-		Recetario.recetas.add(unaReceta);
+		Recetario.getInstance().agregarReceta(unaReceta);
 
 		Consulta consultaRecetas = new Consulta(constructorU.crearUsuario());
 		
@@ -229,7 +226,7 @@ public class TestConsultarRecetasDeUnUsuario {
 		
 	
 		
-		assertTrue(Recetario.veganosConsultandoRecetasDificiles.size() == 1 );
+		assertTrue(Recetario.getInstance().veganosConsultandoRecetasDificiles.size() == 1 );
 		
 		
 		

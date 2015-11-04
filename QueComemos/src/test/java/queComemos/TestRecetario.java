@@ -8,6 +8,8 @@ import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
+import org.uqbarproject.jpa.java8.extras.test.AbstractPersistenceTest;
 
 import receta.Receta;
 import repositorios.Recetario;
@@ -20,31 +22,29 @@ import condicionesPreexistentes.Vegano;
 import receta.Ingrediente;
 import receta.Preparacion;
 
-public class TestRecetario {
+public class TestRecetario extends AbstractPersistenceTest implements WithGlobalEntityManager {
 
 	@Before
 	public void setUp() throws Exception {
 		
-		RepoUsuarios.inadecuados= new ArrayList<CondicionPreexistente>();
-		Recetario.recetas = new ArrayList<Receta>();
-		Recetario.observadores = new ArrayList<ObservadorI>();
+		RepoUsuarios.getInstance().inadecuados= new ArrayList<CondicionPreexistente>();
+
 		
-		
-		CondicionPreexistente	 celiaco = new Celiaco("celiaco",new ArrayList<String>());
-		CondicionPreexistente hipertenso= new Hipertenso("hipertenso",new ArrayList<String>());
-		CondicionPreexistente vegano = new Vegano("vegano",new ArrayList<String>());
-		CondicionPreexistente diabetico =  new Diabetico("Diabetico",new ArrayList<String>());
+		CondicionPreexistente	 celiaco = new Celiaco(null, "celiaco",new ArrayList<String>());
+		CondicionPreexistente hipertenso= new Hipertenso(null, "hipertenso",new ArrayList<String>());
+		CondicionPreexistente vegano = new Vegano(null, "vegano",new ArrayList<String>());
+		CondicionPreexistente diabetico =  new Diabetico(null, "Diabetico",new ArrayList<String>());
 		 
 		 
-		RepoUsuarios.inadecuados.add(celiaco);
-		RepoUsuarios.inadecuados.add(hipertenso);
-		RepoUsuarios.inadecuados.add(vegano);
-		 RepoUsuarios.inadecuados.add(diabetico);
+		RepoUsuarios.getInstance().inadecuados.add(celiaco);
+		RepoUsuarios.getInstance().inadecuados.add(hipertenso);
+		RepoUsuarios.getInstance().inadecuados.add(vegano);
+		 RepoUsuarios.getInstance().inadecuados.add(diabetico);
 		 
 		 
 		 
 		 // Lo que Hago es , llenar las recetas del sistema, con las recetas del repo externo, para que tengan algun dato.
-		 Recetario.recetas.addAll(Recetario.listarTodas());   
+	  
 		  
 		 
 		
@@ -57,7 +57,7 @@ public class TestRecetario {
 	
 		
 		
-		Receta  recetaModificada = Recetario.modificarRecetaPublica("No La Encuentres", null, 400.0, null, null, null);
+		Receta  recetaModificada = Recetario.getInstance().modificarRecetaPublica("No La Encuentres", null, 400.0, null, null, null);
 		
 		assertTrue(recetaModificada == null);
 		
@@ -91,7 +91,7 @@ public class TestRecetario {
 		Preparacion preparacion = new Preparacion(ingredientes,condimentos,instrucciones);
 		
 		
-		Receta  recetaModificada = Recetario.modificarRecetaPublica("ensalada caesar", null, null, preparacion, null, null);
+		Receta  recetaModificada = Recetario.getInstance().modificarRecetaPublica("ensalada caesar", null, null, preparacion, null, null);
 		
 		assertTrue(recetaModificada.getPreparacion().equals(preparacion));
 		
@@ -106,7 +106,7 @@ public class TestRecetario {
 		
 		
 		
-		Receta  recetaModificada = Recetario.modificarRecetaPublica("ensalada caesar", null, 20.0, null, null, null);
+		Receta  recetaModificada = Recetario.getInstance().modificarRecetaPublica("ensalada caesar", null, 20.0, null, null, null);
 		
 		assertTrue(recetaModificada.getCalorias() == 20.0);
 		

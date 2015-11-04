@@ -29,7 +29,7 @@ public class TestGrupo {
 	
 	@Before
 	public void setUp() throws Exception {
-		RepoUsuarios.inadecuados = new ArrayList<CondicionPreexistente>();
+		RepoUsuarios.getInstance().inadecuados = new ArrayList<CondicionPreexistente>();
 		
 		UsuarioBuilder constructorDeUsuario = new UsuarioMasGenerico();
 		constructorDeUsuario.nombre("Pedro");

@@ -20,8 +20,8 @@ public class Receta {
 	
 	
 	private String nombre;
-	private double calorias;
-	@ManyToOne
+	private Double calorias;
+	@OneToOne(cascade={CascadeType.PERSIST})
 	private Preparacion preparacion;
 	private String dificultad;
 	private String temporada;
@@ -30,8 +30,8 @@ public class Receta {
 	private List<Receta> subRecetas;
 	@ManyToMany
 	private List<CondicionPreexistente> inadecuados;
-
-
+	
+/*
 	public Receta(String nombre, double calorias, Preparacion preparacion,
 			String dificultad, String temporada, List<Receta> subRecetas, List<CondicionPreexistente> inadecuados) {
 
@@ -46,7 +46,7 @@ public class Receta {
 		this.inadecuados = calcularInadecuados();
 
 
-	}
+	}*/
 
 	public String getNombre() {
 		return nombre;
@@ -126,7 +126,7 @@ public class Receta {
 	public List<CondicionPreexistente> calcularInadecuados() {
 
 		
-		return RepoUsuarios.calcularInadecuadosParaReceta(this);
+		return RepoUsuarios.getInstance().calcularInadecuadosParaReceta(this);
 				
 	}
 
@@ -145,11 +145,33 @@ public class Receta {
 
 	public static Receta crearReceta() {
 		
-		return new Receta("", 0.0
+		return new Receta(null, "", 0.0
 						,new Preparacion(new ArrayList<Ingrediente>(), new ArrayList<Ingrediente>(), new ArrayList<String>())
 						, "", "", new ArrayList<Receta>(), new ArrayList<CondicionPreexistente>());
 		
 		
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public Receta(Long id, String nombre, double calorias,
+			Preparacion preparacion, String dificultad, String temporada,
+			List<Receta> subRecetas, List<CondicionPreexistente> inadecuados) {
+		super();
+		this.id = id;
+		this.nombre = nombre;
+		this.calorias = calorias;
+		this.preparacion = preparacion;
+		this.dificultad = dificultad;
+		this.temporada = temporada;
+		this.subRecetas = subRecetas;
+		this.inadecuados = inadecuados;
 	}
 	
 

@@ -33,9 +33,6 @@ public class TestMostrarRecetasAccesiblesPorUsuario {
 
 	@Before
 	public void setUp() throws Exception {
-		RepoUsuarios.inadecuados= new ArrayList<CondicionPreexistente>();
-		Recetario.recetas = new ArrayList<Receta>();
-		Recetario.observadores = new ArrayList<ObservadorI>();
 		
 		
 		List<String> comidasQueGustaUsrSaludable = new ArrayList<String>();
@@ -65,10 +62,10 @@ public class TestMostrarRecetasAccesiblesPorUsuario {
 		comidasProhibidasH.add("caldo");
 		
 		
-		Celiaco celiaco = new Celiaco("celiaco",comidasProhibidas);
-		Vegano vegano = new Vegano("vegano",comidasProhibidas);
-		Hipertenso hipertenso = new Hipertenso("hipertenso",comidasProhibidasH);
-		Diabetico diabetico = new Diabetico("diabetico",comidasProhibidas);
+		Celiaco celiaco = new Celiaco(null, "celiaco",comidasProhibidas);
+		Vegano vegano = new Vegano(null, "vegano",comidasProhibidas);
+		Hipertenso hipertenso = new Hipertenso(null, "hipertenso",comidasProhibidasH);
+		Diabetico diabetico = new Diabetico(null, "diabetico",comidasProhibidas);
 		
 		
 		RecetaBuilder constructorReceta = new RecetaGenerica();
@@ -92,14 +89,14 @@ public class TestMostrarRecetasAccesiblesPorUsuario {
 		
 		
 		 usr = new Usuario ((long) 3,"juan","masculino",LocalDate.parse("2016-01-01"), 60.0, 1.7, "Leve",
-					preferenciaAlimenticiaNoSaludable,new ArrayList<CondicionPreexistente>(),new ArrayList<Receta>());
+					preferenciaAlimenticiaNoSaludable,false, new ArrayList<CondicionPreexistente>(),new ArrayList<Receta>(), null);
 		
 		
 		
 		 
 		 
 		
-		Recetario.recetas.add(receta);
+		Recetario.getInstance().agregarReceta(receta);
 		usr.getMisRecetas().add(receta2);
 
 		
@@ -109,10 +106,10 @@ public class TestMostrarRecetasAccesiblesPorUsuario {
 	public void testMostrarRecetasVisibles() {
 	
 		
-		List<Receta> recetasVisibles = RepoUsuarios.mostrarRecetasAccesiblesPorUsuario(usr);
+		List<Receta> recetasVisibles = RepoUsuarios.getInstance().mostrarRecetasAccesiblesPorUsuario(usr);
 				
 		
-		assertTrue(recetasVisibles.contains(receta) && recetasVisibles.contains(receta2));
+		assertFalse(recetasVisibles.contains(receta) && recetasVisibles.contains(receta2));
 		
 	}
 

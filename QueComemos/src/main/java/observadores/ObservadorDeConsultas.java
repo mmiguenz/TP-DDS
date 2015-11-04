@@ -10,7 +10,7 @@ public class ObservadorDeConsultas implements ObservadorI {
 	@Override
 	public void notificar(Consulta unaConsulta) {
 				
-		Recetario.consultas.add(unaConsulta);		
+		Recetario.getInstance().agregarConsulta(unaConsulta);		
 		
 		
 	}

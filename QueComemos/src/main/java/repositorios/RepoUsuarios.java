@@ -13,25 +13,54 @@ import receta.Receta;
 import usuario.Grupo;
 import usuario.Usuario;
 
-public class RepoUsuarios  implements WithGlobalEntityManager {
-	
-	public static List<Usuario> usuarios= new ArrayList<Usuario>();
-	public static List<Grupo> grupos = new ArrayList<Grupo>();
-	public static List<CondicionPreexistente> inadecuados ;
+public class RepoUsuarios implements WithGlobalEntityManager  {
 	
 	
+	public static RepoUsuarios repoUsuarios;
+	
+	public  List<CondicionPreexistente> inadecuados ;
 	
 	
-	public static void add(Usuario usr){
+	
+	public static RepoUsuarios getInstance()
+	{
 		
-		usuarios.add(usr);
+		if(repoUsuarios != null)
+		{
+			return repoUsuarios;		
+		}else {
+			
+			repoUsuarios= new RepoUsuarios();
+			return repoUsuarios;
+		}
+		
+	}
+	
+	public RepoUsuarios()
+	{
+		inadecuados = new ArrayList<CondicionPreexistente>();
+		
+		
+		
+		
+		
+	}
+	
+	
+	public  void add(Usuario usr){
+		
+		entityManager().persist(usr);
 				
 		
 	}
 	
-	  private  static List<Grupo> buscarGruposDeUsuario(Usuario usr)
+	  private   List<Grupo> buscarGruposDeUsuario(Usuario usr)
 	  {
+		  
+		  List<Grupo> grupos = listarGrupos();
 		  List<Grupo> gruposDeUsuario = new ArrayList<Grupo>();
+		  
+		  
 		  
 		if (!(grupos == null || grupos.isEmpty())) {
 
@@ -46,19 +75,19 @@ public class RepoUsuarios  implements WithGlobalEntityManager {
 	  }
 	
 	
-	public static void remove(Usuario usr)
+	public  void remove(Usuario usr)
 	{
 				
-		usuarios.remove(usr);
+		//usuarios.remove(usr);
 		
 	}
 	
 	
-	public static void update(Usuario usr )
+	public  void update(Usuario usr )
 	{
 
 		
-		Usuario usrOriginal =  usuarios.stream().filter(usuario -> usuario.getUsuarioID().equals(usr.getUsuarioID())).collect(Collectors.toList()).get(0);
+		Usuario usrOriginal =  listarTodos().stream().filter(usuario -> usuario.getUsuarioID().equals(usr.getUsuarioID())).collect(Collectors.toList()).get(0);
 		
 		usrOriginal.setNombre(usr.getNombre());
 		usrOriginal.setCondicionesPreexistentes(usr.getCondicionesPreexistentes());
@@ -71,32 +100,34 @@ public class RepoUsuarios  implements WithGlobalEntityManager {
 		usrOriginal.setRutina(usr.getRutina());
 		usrOriginal.setSexo(usr.getSexo());
 		
+		entityManager().persist(usrOriginal);
+		
 		
 	}
 
 
-	public static Usuario get(Usuario usr)
+	public  Usuario get(Usuario usr)
 	{
 		
-		return usuarios.stream().filter(usuario -> usuario.getNombre().equals(usr.getNombre())).collect(Collectors.toList()).get(0);
+		return listarTodos().stream().filter(usuario -> usuario.getNombre().equals(usr.getNombre())).collect(Collectors.toList()).get(0);
 		
 				
 	}
 		
 	
-	public static List<Usuario> list(Usuario usr )
+	public  List<Usuario> list(Usuario usr )
 	{
 		if(usr.getCondicionesPreexistentes() == null || usr.getCondicionesPreexistentes().isEmpty())
 		{
 		
-			return usuarios.stream().filter(usuario -> usuario.getNombre().equals(usr.getNombre())).collect(Collectors.toList());
+			return listarTodos().stream().filter(usuario -> usuario.getNombre().equals(usr.getNombre())).collect(Collectors.toList());
 						
 			
 			
 		} else {		
 					
 			
-			return usuarios.stream().filter(usuario -> usuario.getNombre().equals(usr.getNombre()) && usuario.getCondicionesPreexistentes().containsAll(usr.getCondicionesPreexistentes())).collect(Collectors.toList());
+			return listarTodos().stream().filter(usuario -> usuario.getNombre().equals(usr.getNombre()) && usuario.getCondicionesPreexistentes().containsAll(usr.getCondicionesPreexistentes())).collect(Collectors.toList());
 		
 			
 				}
@@ -104,12 +135,12 @@ public class RepoUsuarios  implements WithGlobalEntityManager {
 	}
 	
 	
-	 public static List<Receta> mostrarRecetasAccesiblesPorUsuario(Usuario usr)
+	 public  List<Receta> mostrarRecetasAccesiblesPorUsuario(Usuario usr)
 	  {
 		  
 		  Set<Receta> resultado = new HashSet<Receta>();
 		  
-		  resultado.addAll(Recetario.listarTodas());
+		  resultado.addAll(Recetario.getInstance().listarTodas());
 		  resultado.addAll(usr.getMisRecetas());
 			
 		  List<Grupo> gruposDeUsuario =  buscarGruposDeUsuario(usr);
@@ -130,7 +161,7 @@ public class RepoUsuarios  implements WithGlobalEntityManager {
 	  }
 	 
 	 
-	 public static List<CondicionPreexistente> calcularInadecuadosParaReceta(Receta receta)
+	 public  List<CondicionPreexistente> calcularInadecuadosParaReceta(Receta receta)
 		{
 
 			return  inadecuados.stream().filter(inadecuado->! inadecuado.esAptaReceta(receta))
@@ -138,9 +169,19 @@ public class RepoUsuarios  implements WithGlobalEntityManager {
 		}
 
 
-	
+	 public List<Usuario> listarTodos()
+	 {
+		 return entityManager().createQuery("from Usuario",Usuario.class).getResultList();
+		 
+		 
+	 }
 
-	
+	public List<Grupo> listarGrupos()
+	{
+		return entityManager().createQuery("from Grupo", Grupo.class).getResultList();
+		
+		
+	}
 	
 
 }

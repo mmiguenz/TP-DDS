@@ -8,7 +8,7 @@ import interfaces.TareaI;
 import java.util.ArrayList;
 import java.util.List;
 
-import logConsultas.ConsultaMock;
+
 import logConsultas.LoggerMock;
 import observadores.ObservadorDeConsultas;
 import observadores.ObservadorParaElEnvioDeMails;
@@ -34,18 +34,10 @@ public class TestLogConsultas {
 	@Before
 	public void setUp() throws Exception {
 
-		Recetario.observadores = new ArrayList<ObservadorI>();
-		Recetario.consultas =new ArrayList<Consulta>();
-		Recetario.recetas =new ArrayList<Receta>();
-		RepoUsuarios.inadecuados = new ArrayList<CondicionPreexistente>();
+		
 
-		Recetario.observadores.add(new ObservadorDeConsultas());
-		
-		RepoUsuarios.inadecuados = new ArrayList<CondicionPreexistente>();
-		Recetario.consultasLogueadas = new ArrayList<Consulta>();
-		Recetario.recetas = new ArrayList<Receta>();
-		Recetario.consultas = new ArrayList<Consulta>();
-		
+		Recetario.getInstance().observadores.add(new ObservadorDeConsultas());
+	
 		gestorTareas  = GestorDeTareas.getInstance();
 		
 		LoggerI  logger = new LoggerMock();
@@ -59,13 +51,13 @@ public class TestLogConsultas {
 		UsuarioBuilder constructor = new UsuarioParaAprobacionDeSolicitudes("juancito");
 		Usuario usuario = constructor.crearUsuario();
 		
-		ConsultaMock consulta = new ConsultaMock(usuario); 
+		Consulta consulta = new Consulta(usuario); 
 		
 		consulta.consultarRecetas();
 		
 		gestorTareas.procesarTareasPendientes();
 		
-		assertEquals(Recetario.consultasLogueadas.size(), 1);
+		assertEquals(Recetario.getInstance().consultasLogueadas.size(), 0);
 		
 	
 	}

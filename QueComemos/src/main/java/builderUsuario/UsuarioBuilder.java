@@ -71,7 +71,7 @@ public abstract class UsuarioBuilder {
 			
 		PreferenciaAlimenticia preferenciaAlimenticia = new PreferenciaAlimenticia(comidasQueGusta,comidasQueDisgusta);
 			
-	 nuevoUsuario = new Usuario(null ,"","", LocalDate.now(), 0.0, 0.0, "", preferenciaAlimenticia, new ArrayList<CondicionPreexistente>(),  new ArrayList<Receta>());
+	 nuevoUsuario = new Usuario(null ,"","", LocalDate.now(), 0.0, 0.0, "", preferenciaAlimenticia, false, new ArrayList<CondicionPreexistente>(),  new ArrayList<Receta>(), null);
 			
 				
 		 	
@@ -82,7 +82,7 @@ public abstract class UsuarioBuilder {
 	{
 		if(nuevoUsuario.validar())
 		{
-			Usuario usuarior =  new Usuario(nuevoUsuario.getUsuarioID(),nuevoUsuario.getNombre(),nuevoUsuario.getSexo(),nuevoUsuario.getFechaNacimiento(),nuevoUsuario.getPeso(),nuevoUsuario.getEstatura(),nuevoUsuario.getRutina(),nuevoUsuario.getPreferenciaAlimenticia(),nuevoUsuario.getCondicionesPreexistentes(),nuevoUsuario.getMisRecetas()) ;
+			Usuario usuarior =  new Usuario(nuevoUsuario.getUsuarioID(),nuevoUsuario.getNombre(),nuevoUsuario.getSexo(),nuevoUsuario.getFechaNacimiento(),nuevoUsuario.getPeso(),nuevoUsuario.getEstatura(),nuevoUsuario.getRutina(),nuevoUsuario.getPreferenciaAlimenticia(),false, nuevoUsuario.getCondicionesPreexistentes(),nuevoUsuario.getMisRecetas(), null) ;
 			usuarior.setMarcaFavoritasLasConsultas(nuevoUsuario.isMarcaFavoritasLasConsultas());		
 			return usuarior;
 		}
@@ -100,7 +100,7 @@ public abstract class UsuarioBuilder {
 	comidasProhibidas.add("pan");
 	comidasProhibidas.add("harina");
 	
-	nuevoUsuario.getCondicionesPreexistentes().add(new Celiaco("celiaco",comidasProhibidas));
+	nuevoUsuario.getCondicionesPreexistentes().add(new Celiaco(null, "celiaco",comidasProhibidas));
 	
 			
 		
@@ -112,7 +112,7 @@ public abstract class UsuarioBuilder {
 		comidasProhibidas.add("sal");
 		comidasProhibidas.add("vino");
 		
-		nuevoUsuario.getCondicionesPreexistentes().add(new Hipertenso("hipertenso",comidasProhibidas));
+		nuevoUsuario.getCondicionesPreexistentes().add(new Hipertenso(null, "hipertenso",comidasProhibidas));
 		
 	}
 	public  void esDiabetico()
@@ -122,7 +122,7 @@ public abstract class UsuarioBuilder {
 		comidasProhibidas.add("caramelo");
 		comidasProhibidas.add("helado");
 		
-		nuevoUsuario.getCondicionesPreexistentes().add(new Diabetico("diabetico",comidasProhibidas));
+		nuevoUsuario.getCondicionesPreexistentes().add(new Diabetico(null, "diabetico",comidasProhibidas));
 		
 		
 	}
@@ -133,7 +133,7 @@ public abstract class UsuarioBuilder {
 		comidasProhibidas.add("pollo");
 		comidasProhibidas.add("pescado");
 		
-		nuevoUsuario.getCondicionesPreexistentes().add(new Vegano("vegano",comidasProhibidas));
+		nuevoUsuario.getCondicionesPreexistentes().add(new Vegano(null, "vegano",comidasProhibidas));
 		
 		
 	}

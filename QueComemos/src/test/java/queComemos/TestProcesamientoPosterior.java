@@ -44,9 +44,7 @@ public class TestProcesamientoPosterior {
 	@Before
 	public void setUp() throws Exception {
 		
-		RepoUsuarios.inadecuados= new ArrayList<CondicionPreexistente>();
-		Recetario.recetas = new ArrayList<Receta>();
-		Recetario.observadores = new ArrayList<ObservadorI>();
+		RepoUsuarios.getInstance().inadecuados= new ArrayList<CondicionPreexistente>();
 		
 		PreferenciaAlimenticia preferenciaAlimenticia; 
 		 List<String> comidasProhibidas;
@@ -78,10 +76,10 @@ public class TestProcesamientoPosterior {
 		comidasProhibidas.add("pan");
 		comidasProhibidas.add("salame");
 		
-		 celiaco = new Celiaco("celiaco",comidasProhibidas);
-		 hipertenso= new Hipertenso("hipertenso",comidasProhibidas);
-		 vegano = new Vegano("vegano",new ArrayList<String>());
-		 diabetico =  new Diabetico("Diabetico",new ArrayList<String>());
+		 celiaco = new Celiaco(null, "celiaco",comidasProhibidas);
+		 hipertenso= new Hipertenso(null, "hipertenso",comidasProhibidas);
+		 vegano = new Vegano(null, "vegano",new ArrayList<String>());
+		 diabetico =  new Diabetico(null, "Diabetico",new ArrayList<String>());
 		 
 		
 		 
@@ -102,9 +100,9 @@ public class TestProcesamientoPosterior {
 			constructorReceta.temporada("vernano");
 			
 			
-			Recetario.recetas = new ArrayList<Receta>();
+			
 			 receta = constructorReceta.crearReceta();
-			Recetario.recetas.add(receta);
+			Recetario.getInstance().agregarReceta(receta);
 		 
 		 
 		 
@@ -121,10 +119,10 @@ public class TestProcesamientoPosterior {
 		  
 			
 
-		  RepoUsuarios.inadecuados.add(diabetico);
-		  RepoUsuarios.inadecuados.add(celiaco);
-		  RepoUsuarios.inadecuados.add(hipertenso);
-		  RepoUsuarios.inadecuados.add(vegano);
+		  RepoUsuarios.getInstance().inadecuados.add(diabetico);
+		  RepoUsuarios.getInstance().inadecuados.add(celiaco);
+		  RepoUsuarios.getInstance().inadecuados.add(hipertenso);
+		  RepoUsuarios.getInstance().inadecuados.add(vegano);
 			
 			
 			
@@ -141,7 +139,7 @@ public class TestProcesamientoPosterior {
 			
 		 
 		 
-			 usr = new Usuario((long) 2,"Juan","Masculino",LocalDate.parse("1994-08-05"),90.0,175.0,"Leve",preferenciaAlimenticia,condiciones,new ArrayList<Receta>());
+			 usr = new Usuario(null,"Juan","Masculino",LocalDate.parse("1994-08-05"),90.0,175.0,"Leve",preferenciaAlimenticia,false, condiciones,new ArrayList<Receta>(), null);
 		
 		
 	}
@@ -181,7 +179,7 @@ public class TestProcesamientoPosterior {
 						
 								
 		
-	assertTrue(consultaRecetas.cantidadRecetasResultado()  == 7);		
+	assertTrue(consultaRecetas.cantidadRecetasResultado()  == 6);		
 		
 		
 	}

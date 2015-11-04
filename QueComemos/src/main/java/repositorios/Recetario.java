@@ -2,27 +2,55 @@ package repositorios;
 
 
 import interfaces.ObservadorI;
+
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
+
+import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
+
 import receta.Preparacion;
 import receta.Receta;
-
 import usuario.Usuario;
 
-public class Recetario {
-
-	public static List<Receta> recetas;
-	public static List<ObservadorI>observadores;
-	public static List<Consulta> consultas;
-	public static List<Usuario> veganosConsultandoRecetasDificiles;
-	public static List<Consulta> consultasLogueadas;
+public class Recetario implements WithGlobalEntityManager {
 	
 	
-	public static Receta modificarRecetaPublica (String nombre, String nuevoNombre,Double calorias, Preparacion preparacion,List<Receta>subRecetas,String dificultad)
+	private static Recetario recetario;
+	 
+	public  List<ObservadorI>observadores;
+	public  List<Usuario> veganosConsultandoRecetasDificiles;
+	public  List<Consulta> consultasLogueadas;
+	
+	
+	public static Recetario getInstance()
+	{
+		if(recetario!=null)
+		{
+			return recetario;
+		}else {
+			
+			recetario = new Recetario();
+			return recetario;
+		}
+		
+		
+	}
+	
+	public Recetario()
+	{
+		observadores= new ArrayList<ObservadorI>();
+		veganosConsultandoRecetasDificiles = new ArrayList<Usuario>();
+		consultasLogueadas = new ArrayList<Consulta>();
+		
+		
+	}
+	
+	
+	public  Receta modificarRecetaPublica (String nombre, String nuevoNombre,Double calorias, Preparacion preparacion,List<Receta>subRecetas,String dificultad)
 	{
 
 		Receta recetaPublica = buscarRecetaPorNombre(nombre);
@@ -54,7 +82,11 @@ public class Recetario {
 
 
 
-	private static Receta buscarRecetaPorNombre (String nombre){
+	private  Receta buscarRecetaPorNombre (String nombre){
+		
+		List<Receta> recetas = listarTodas();
+		
+		
 		for (Receta receta : recetas ){
 			if (receta.getNombre().equals(nombre)){
 				return receta;
@@ -63,20 +95,20 @@ public class Recetario {
 		return null;
 	}
 
-	private static Receta clonarReceta(Receta receta)
+	private  Receta clonarReceta(Receta receta)
 	{
 
-		Receta recetaClon = new Receta (receta.getNombre(),receta.getCalorias(),receta.getPreparacion(),receta.getDificultad(),receta.getTemporada(),receta.getSubRecetas(),receta.getInadecuados());
+		Receta recetaClon = new Receta (null, receta.getNombre(),receta.getCalorias(),receta.getPreparacion(),receta.getDificultad(),receta.getTemporada(),receta.getSubRecetas(),receta.getInadecuados());
 		return recetaClon;
 
 	}
 
 
 	  
-	  public static List<Receta> listarTodas()
+	  public  List<Receta> listarTodas()
 	  {
 		  List<Receta> listaRecetas = new ArrayList<Receta>();
-		  		  
+		  List<Receta> recetas = entityManager().createQuery("from Receta", Receta.class).getResultList();
 		  
 		  RepoRecetasAd repoRecetasExterno = new RepoRecetasAd();
 		  listaRecetas.addAll(repoRecetasExterno.traerTodasRecetasExternas());
@@ -86,10 +118,13 @@ public class Recetario {
 
 	  }
 
-	public static Long obtenerCantidadDeRecetasConsultadas(LocalDateTime horaConsultaDesde, LocalDateTime horaConsultaHasta) {
+	public  Long obtenerCantidadDeRecetasConsultadas(LocalDateTime horaConsultaDesde, LocalDateTime horaConsultaHasta) {
 		
-				
-		return   consultas.stream()
+		
+		
+		
+						
+		return   listarConsultas().stream()
 				.filter(unaConsulta -> unaConsulta.estaEnRangoHorario(horaConsultaDesde,horaConsultaHasta))
 				.mapToLong(consulta -> consulta.cantidadRecetasResultado())
 				.sum();
@@ -97,11 +132,13 @@ public class Recetario {
 				
 	}
 
-	public static Receta obtenerRecetaMasConsultada() {
+	public  Receta obtenerRecetaMasConsultada() {
+		
 		
 		
 		List<Receta> recetasConsultadas = new ArrayList<>();
-		 consultas.forEach(consulta ->recetasConsultadas.addAll(consulta.obtenerResultadoConsulta()));
+		listarConsultas().forEach(consulta ->recetasConsultadas.addAll(consulta.obtenerResultadoConsulta()));
+		
 		
 		
 		 Comparator<Receta> comparaRecetas =   (unareceta , otraReceta)  -> Long.compare(Collections.frequency(recetasConsultadas,unareceta ), Collections.frequency(recetasConsultadas,otraReceta )) ;
@@ -116,10 +153,12 @@ public class Recetario {
 		
 	}
 
-	public static Receta obtenerRecetaMasConsultadaPorHombres() {
+	public  Receta obtenerRecetaMasConsultadaPorHombres() {
 		 
+		
+		
 		 List<Receta> recetasConsultadas = new ArrayList<>();
-		 consultas.stream()
+		 listarConsultas().stream()
 		 		  .filter(consulta -> consulta.getUsr().getSexo().equals("masculino"))
 		 		  .forEach(consulta ->recetasConsultadas.addAll(consulta.obtenerResultadoConsulta()));
 		 
@@ -136,10 +175,12 @@ public class Recetario {
 		
 	}
 	
-	public static Receta obtenerRecetaMasConsultadaPorMujeres() {
+	public  Receta obtenerRecetaMasConsultadaPorMujeres() {
 		 
+		
+		
 		 List<Receta> recetasConsultadas = new ArrayList<>();
-		 consultas.stream()
+		 listarConsultas().stream()
 		 		  .filter(consulta -> consulta.getUsr().getSexo().equals("femenino"))
 		 		  .forEach(consulta ->recetasConsultadas.addAll(consulta.obtenerResultadoConsulta()));
 		 
@@ -153,6 +194,27 @@ public class Recetario {
 		
 		 
 		return null;
+		
+	}
+
+	public void agregarReceta(Receta receta) {
+		
+		entityManager().persist(receta);
+		
+		
+	}
+
+	public void agregarConsulta(Consulta unaConsulta) {
+		
+		entityManager().persist(unaConsulta);
+		
+	}
+
+	public List<Consulta> listarConsultas() {
+		
+		
+		
+		return  entityManager().createQuery("from Consulta",Consulta.class).getResultList();
 		
 	}
 	

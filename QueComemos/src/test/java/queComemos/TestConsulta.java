@@ -35,10 +35,8 @@ public class TestConsulta {
 	@Before
 	public void setUp() throws Exception {
 		
-		RepoUsuarios.inadecuados= new ArrayList<CondicionPreexistente>();
-		Recetario.recetas = new ArrayList<Receta>();
-		Recetario.observadores = new ArrayList<ObservadorI>();
-			
+		RepoUsuarios.getInstance().inadecuados= new ArrayList<CondicionPreexistente>();
+		
 		
 		filtros = new ArrayList<FiltroI>();
 		
