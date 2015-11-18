@@ -41,11 +41,7 @@ public class TestUsuario extends AbstractPersistenceTest implements WithGlobalEn
 	@Before
 	public void setUp() throws Exception {
 		
-		RepoUsuarios.getInstance().inadecuados= new ArrayList<CondicionPreexistente>();
-	
-		comidasProhibidas = new ArrayList<String>();
-		comidasProhibidas.add("Pan");
-		
+			
 		
 		RecetaBuilder constructorReceta = new RecetaGenerica();
 		constructorReceta.nombre("PolloConPapas");
@@ -721,30 +717,7 @@ public class TestUsuario extends AbstractPersistenceTest implements WithGlobalEn
 		
 		
 		
-		
-		
-		@Test
-		public void testValidarCeliaco()
-		
-		{
-			UsuarioBuilder constructorDeUsuario = new UsuarioMasGenerico();
-			constructorDeUsuario.nombre("juancito");
-			constructorDeUsuario.peso(40.);
-			constructorDeUsuario.estatura(1.4);
-			constructorDeUsuario.fechaNacimiento(LocalDate.now().minusYears(1));
-			constructorDeUsuario.esDiabetico();
-			constructorDeUsuario.rutina("Activa");
-						
-			Usuario usr = constructorDeUsuario.crearUsuario();
-		
-					
-			Celiaco celiaco = new Celiaco (null, "celiaco",new ArrayList<String>());
-			
-			assertTrue(celiaco.validar(usr));
-		
-		}
-		
-		
+
 		
 		
 

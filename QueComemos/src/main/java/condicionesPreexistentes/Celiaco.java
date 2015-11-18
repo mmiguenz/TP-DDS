@@ -1,18 +1,20 @@
 package condicionesPreexistentes;
 
-import java.util.List;
+
 
 import javax.persistence.DiscriminatorValue;
+import javax.persistence.*;
 
 import receta.Receta;
 import usuario.Usuario;
-@DiscriminatorValue("Celiaco")
+@Entity
+@DiscriminatorValue("celiaco")
 public class Celiaco extends CondicionPreexistente {
 
 
 
-	public Celiaco(Long id, String nombre, List<String> comidasQueDisgusta) {
-		super(id, nombre, comidasQueDisgusta);
+	public Celiaco(Long id, String nombre) {
+		super(id, nombre);
 		// TODO Auto-generated constructor stub
 	}
 

@@ -1,17 +1,13 @@
 package condicionesPreexistentes;
-
 import static javax.persistence.InheritanceType.SINGLE_TABLE;
-
-import java.util.List;
-
 import javax.persistence.*;
-
 import receta.Receta;
 import usuario.Usuario;
+
 @Entity
 @Table(name="CondicionesPreexistentes")
 @Inheritance(strategy = SINGLE_TABLE)
-@DiscriminatorColumn(name="TipoCondicion")
+@DiscriminatorColumn(name="TipoCondicion",discriminatorType = DiscriminatorType.STRING)
 public abstract class CondicionPreexistente {
 
 	@Id
@@ -21,9 +17,7 @@ public abstract class CondicionPreexistente {
 	
 	
 	public String nombre;
-	@ElementCollection
-	@CollectionTable(name="ComidasProhibidasPorCondicion")
-	public List<String> comidasProhibidas;
+	
 
 
 	
@@ -45,18 +39,12 @@ public abstract class CondicionPreexistente {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-	public List<String> getComidasQueDisgusta() {
-		return comidasProhibidas;
-	}
-	public void setComidasQueDisgusta(List<String> comidasQueDisgusta) {
-		this.comidasProhibidas = comidasQueDisgusta;
-	}
-	public CondicionPreexistente(Long id, String nombre,
-			List<String> comidasQueDisgusta) {
+
+	public CondicionPreexistente(Long id, String nombre) {
 		super();
 		this.id = id;
 		this.nombre = nombre;
-		this.comidasProhibidas = comidasQueDisgusta;
+		
 	}
 	
 	

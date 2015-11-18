@@ -35,7 +35,7 @@ public class TestOrdenamiento {
 	@Before
 	public void setUp() throws Exception {
 		
-		RepoUsuarios.getInstance().inadecuados= new ArrayList<CondicionPreexistente>();
+		
 
 		
 		

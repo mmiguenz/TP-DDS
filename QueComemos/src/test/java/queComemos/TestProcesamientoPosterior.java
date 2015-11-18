@@ -44,15 +44,15 @@ public class TestProcesamientoPosterior {
 	@Before
 	public void setUp() throws Exception {
 		
-		RepoUsuarios.getInstance().inadecuados= new ArrayList<CondicionPreexistente>();
+		
 		
 		PreferenciaAlimenticia preferenciaAlimenticia; 
 		 List<String> comidasProhibidas;
 		 List<CondicionPreexistente> condiciones; 
-		 Celiaco celiaco;
-		 Hipertenso hipertenso;
-		 Vegano vegano;
-		 Diabetico diabetico;
+		 CondicionPreexistente celiaco;
+		 CondicionPreexistente hipertenso;
+		 CondicionPreexistente vegano;
+		 CondicionPreexistente diabetico;
 		
 		
 		// Preferencia Alimenticia
@@ -72,16 +72,14 @@ public class TestProcesamientoPosterior {
 		
 		condiciones = new ArrayList<CondicionPreexistente>();
 		
-		comidasProhibidas = new ArrayList<String>();
-		comidasProhibidas.add("pan");
-		comidasProhibidas.add("salame");
-		
-		 celiaco = new Celiaco(null, "celiaco",comidasProhibidas);
-		 hipertenso= new Hipertenso(null, "hipertenso",comidasProhibidas);
-		 vegano = new Vegano(null, "vegano",new ArrayList<String>());
-		 diabetico =  new Diabetico(null, "Diabetico",new ArrayList<String>());
 		 
-		
+		 celiaco =  RepoUsuarios.getInstance().obtenerCondicion("celiaco");
+		 hipertenso=RepoUsuarios.getInstance().obtenerCondicion("hipertenso");
+		 vegano = RepoUsuarios.getInstance().obtenerCondicion("vegano");
+		 diabetico = RepoUsuarios.getInstance().obtenerCondicion("diabetico");
+		 
+		 
+		 
 		 
 //		 Recetario.inicializar();
 		 

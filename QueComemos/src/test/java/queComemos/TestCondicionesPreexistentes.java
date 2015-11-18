@@ -6,6 +6,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import repositorios.RepoUsuarios;
 import usuario.Usuario;
 
 import org.junit.Before;
@@ -14,6 +15,7 @@ import org.junit.Test;
 import builderUsuario.UsuarioBuilder;
 import builderUsuario.UsuarioMasGenerico;
 import condicionesPreexistentes.Celiaco;
+import condicionesPreexistentes.CondicionPreexistente;
 import condicionesPreexistentes.Diabetico;
 import condicionesPreexistentes.Hipertenso;
 import condicionesPreexistentes.Vegano;
@@ -33,14 +35,12 @@ public class TestCondicionesPreexistentes {
 		List<String>comidasProhibidas= new ArrayList<String>();
 		comidasProhibidas.add("caldo");
 		
-		
-		
-		
-		 celiaco = new Celiaco(null, "celiaco",comidasProhibidas);
-		 vegano = new Vegano(null, "vegano",comidasProhibidas);
-		 hipertenso = new Hipertenso(null, "hipertenso",comidasProhibidas);
-		 diabetico = new Diabetico(null, "diabetico",comidasProhibidas);
-				
+		 celiaco = (Celiaco) RepoUsuarios.getInstance().obtenerCondicion("celiaco");
+		 hipertenso=(Hipertenso) RepoUsuarios.getInstance().obtenerCondicion("hipertenso");
+		 vegano = (Vegano) RepoUsuarios.getInstance().obtenerCondicion("vegano");
+		 diabetico = (Diabetico) RepoUsuarios.getInstance().obtenerCondicion("diabetico");
+		 
+		 
 
 		
 		 constructorDeUsuario= new UsuarioMasGenerico();

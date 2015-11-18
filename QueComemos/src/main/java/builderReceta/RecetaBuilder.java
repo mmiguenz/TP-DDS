@@ -75,6 +75,9 @@ public  abstract class RecetaBuilder {
 	
 	public Receta crearReceta()
 	{
+		nuevaReceta.calcularInadecuados();
+		
+		
 		return 
 				new Receta(null, nuevaReceta.getNombre(), nuevaReceta.getCalorias(), nuevaReceta.getPreparacion(), nuevaReceta.getDificultad(), nuevaReceta.getTemporada(), nuevaReceta.getSubRecetas(), nuevaReceta.getInadecuados());
 		

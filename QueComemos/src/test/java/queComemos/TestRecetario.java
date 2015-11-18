@@ -27,20 +27,14 @@ public class TestRecetario extends AbstractPersistenceTest implements WithGlobal
 	@Before
 	public void setUp() throws Exception {
 		
-		RepoUsuarios.getInstance().inadecuados= new ArrayList<CondicionPreexistente>();
-
-		
-		CondicionPreexistente	 celiaco = new Celiaco(null, "celiaco",new ArrayList<String>());
-		CondicionPreexistente hipertenso= new Hipertenso(null, "hipertenso",new ArrayList<String>());
-		CondicionPreexistente vegano = new Vegano(null, "vegano",new ArrayList<String>());
-		CondicionPreexistente diabetico =  new Diabetico(null, "Diabetico",new ArrayList<String>());
+			
+		CondicionPreexistente celiaco = RepoUsuarios.getInstance().obtenerCondicion("celiaco");
+		CondicionPreexistente hipertenso=RepoUsuarios.getInstance().obtenerCondicion("hipertenso");
+		CondicionPreexistente vegano = RepoUsuarios.getInstance().obtenerCondicion("vegano");
+		CondicionPreexistente diabetico = RepoUsuarios.getInstance().obtenerCondicion("diabetico");
 		 
 		 
-		RepoUsuarios.getInstance().inadecuados.add(celiaco);
-		RepoUsuarios.getInstance().inadecuados.add(hipertenso);
-		RepoUsuarios.getInstance().inadecuados.add(vegano);
-		 RepoUsuarios.getInstance().inadecuados.add(diabetico);
-		 
+	
 		 
 		 
 		 // Lo que Hago es , llenar las recetas del sistema, con las recetas del repo externo, para que tengan algun dato.

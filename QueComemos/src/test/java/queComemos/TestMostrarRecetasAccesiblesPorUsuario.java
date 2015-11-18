@@ -56,17 +56,8 @@ public class TestMostrarRecetasAccesiblesPorUsuario {
 		List<String>comidasProhibidas = new ArrayList<String>();
 		comidasProhibidas.add("Pan");
 
-		
-			List<CondicionPreexistente> inadecuados=new ArrayList<CondicionPreexistente>();
-		List<String>comidasProhibidasH= new ArrayList<String>();
-		comidasProhibidasH.add("caldo");
-		
-		
-		Celiaco celiaco = new Celiaco(null, "celiaco",comidasProhibidas);
-		Vegano vegano = new Vegano(null, "vegano",comidasProhibidas);
-		Hipertenso hipertenso = new Hipertenso(null, "hipertenso",comidasProhibidasH);
-		Diabetico diabetico = new Diabetico(null, "diabetico",comidasProhibidas);
-		
+
+
 		
 		RecetaBuilder constructorReceta = new RecetaGenerica();
 		constructorReceta.nombre("CarneAlHorno");

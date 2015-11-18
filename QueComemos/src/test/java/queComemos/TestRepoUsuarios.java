@@ -8,6 +8,7 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
@@ -28,12 +29,20 @@ import condicionesPreexistentes.Vegano;
 public class TestRepoUsuarios extends AbstractPersistenceTest implements WithGlobalEntityManager {
 	
 	private  List<Usuario> usuarios; 
-	
+	private CondicionPreexistente celiaco;
+	private CondicionPreexistente vegano;
+	private CondicionPreexistente hipertenso;
+	private CondicionPreexistente diabetico;
 
 	@Before
-	public void setUp() throws Exception {
+	public void setUp() throws Exception {	
 		
-		
+		 celiaco = RepoUsuarios.getInstance().obtenerCondicion("celiaco");
+		 hipertenso=RepoUsuarios.getInstance().obtenerCondicion("hipertenso");
+		 vegano = RepoUsuarios.getInstance().obtenerCondicion("vegano");
+		 diabetico = RepoUsuarios.getInstance().obtenerCondicion("diabetico");
+		 
+		 
 		
 		
 		 usuarios = new ArrayList<Usuario>();
@@ -72,15 +81,11 @@ public class TestRepoUsuarios extends AbstractPersistenceTest implements WithGlo
 		usuarios.add(usr8.crearUsuario());
 		usuarios.add(usr9.crearUsuario());
 		
-	
-		
-		
-		
-		
-				
 		
 		
 	}
+	
+	
 
 	@Test
 	public void testRepoUsuarioAddUnoSolo() {
@@ -99,7 +104,7 @@ public class TestRepoUsuarios extends AbstractPersistenceTest implements WithGlo
 			
 		RepoUsuarios.getInstance().add(usuarios.get(0));
 		RepoUsuarios.getInstance().add(usuarios.get(1));
-		assertEquals(RepoUsuarios.getInstance().listarTodos().size(),3);
+		assertEquals(RepoUsuarios.getInstance().listarTodos().size(),2);
 		
 		
 		
@@ -131,9 +136,6 @@ public class TestRepoUsuarios extends AbstractPersistenceTest implements WithGlo
 		
 		PreferenciaAlimenticia preferencia = new PreferenciaAlimenticia(new ArrayList<String>(),new ArrayList<String>());
 		
-	
-		CondicionPreexistente vegano = new Vegano(null, "vegano",new ArrayList<String>());
-		CondicionPreexistente hipertenso = new Hipertenso(null, "Hipertenso",new ArrayList<String>());
 		
 		List<CondicionPreexistente> condiciones1 = new ArrayList<>();
 		
@@ -187,10 +189,6 @@ public class TestRepoUsuarios extends AbstractPersistenceTest implements WithGlo
 		PreferenciaAlimenticia preferencia = new PreferenciaAlimenticia(new ArrayList<String>(),new ArrayList<String>());
 		
 		
-		
-
-		CondicionPreexistente vegano = new Vegano(null, "vegano",new ArrayList<String>());
-
 		List<CondicionPreexistente> condiciones1 = new ArrayList<>();
 
 		

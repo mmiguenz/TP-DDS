@@ -37,7 +37,7 @@ public class TestSugerencias {
 	@Before
 	public void setUp() throws Exception {
 		
-		RepoUsuarios.getInstance().inadecuados= new ArrayList<CondicionPreexistente>();
+		
 	
 
 		RecetaBuilder constructorReceta = new RecetaGenerica();

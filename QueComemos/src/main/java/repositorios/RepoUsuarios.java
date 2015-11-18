@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 
 import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 
+import condicionesPreexistentes.Celiaco;
 import condicionesPreexistentes.CondicionPreexistente;
 import receta.Receta;
 import usuario.Grupo;
@@ -36,13 +37,23 @@ public class RepoUsuarios implements WithGlobalEntityManager  {
 		
 	}
 	
+	
 	public RepoUsuarios()
 	{
-		inadecuados = new ArrayList<CondicionPreexistente>();
+		//inadecuados =entityManager().createQuery("from CondicionPreexistente").getResultList();
+		CondicionPreexistente celiacoo = entityManager().find(Celiaco.class,1);
+		Celiaco celiaco = entityManager().find(Celiaco.class,1);
+		
+				
 		
 		
+	}
+	
+	
+	public CondicionPreexistente obtenerCondicion(String nombreCondicion)
+	{
 		
-		
+		return inadecuados.stream().filter(condicion -> condicion.nombre.equals(nombreCondicion)).findFirst().get();
 		
 	}
 	

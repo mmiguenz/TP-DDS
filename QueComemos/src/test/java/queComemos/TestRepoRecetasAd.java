@@ -25,8 +25,7 @@ public class TestRepoRecetasAd {
 	@Before
 	public void setUp() throws Exception {
 		
-		RepoUsuarios.getInstance().inadecuados= new ArrayList<CondicionPreexistente>();
-		
+			
 		
 		
 		  repo = new  RepoRecetasAd();	

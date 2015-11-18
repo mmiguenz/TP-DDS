@@ -29,7 +29,10 @@ public class TestReceta {
 	@Before
 	public void setUp() throws Exception {
 		
-		RepoUsuarios.getInstance().inadecuados= new ArrayList<CondicionPreexistente>();
+		
+		
+		
+		
 		
 	
 
@@ -55,10 +58,8 @@ public class TestReceta {
 
 	@Test
 	public void testInadecuadoParaHipertenso() {
-		List<String> comidas= new ArrayList<String>();
-		comidas.add("Sal");
-		Hipertenso hipertenso = new Hipertenso(null,"Hipertenso",comidas);
-		RepoUsuarios.getInstance().inadecuados.add(hipertenso);
+		CondicionPreexistente hipertenso = RepoUsuarios.getInstance().obtenerCondicion("hipertenso");
+		
 		
 		
 		 Receta receta = constructorReceta.crearReceta();
@@ -82,14 +83,8 @@ public class TestReceta {
 	
 	@Test
 	public void testInadecuadoParaVegano() {
-		List<String> comidas= new ArrayList<String>();
-		comidas.add("Carne");
-		Vegano vegano = new Vegano(null, "Vegano",comidas);
-		RepoUsuarios.getInstance().inadecuados.add(vegano);
-		
-		
-		
-		
+
+		CondicionPreexistente vegano = RepoUsuarios.getInstance().obtenerCondicion("vegano");
 		
 		 Receta receta = constructorReceta.crearReceta();
 		 assertFalse(receta.getInadecuados().contains(vegano));
@@ -97,10 +92,8 @@ public class TestReceta {
 	
 	@Test
 	public void testAdecuadoParaVegano() {
-		List<String> comidas= new ArrayList<String>();
-		Vegano vegano = new Vegano(null, "Vegano",comidas);
-		RepoUsuarios.getInstance().inadecuados.add(vegano);
-		
+
+		CondicionPreexistente vegano = RepoUsuarios.getInstance().obtenerCondicion("vegano");
 		 Receta receta = constructorReceta.crearReceta();
 		 assertFalse(receta.getInadecuados().contains(vegano));
 	}
@@ -108,9 +101,9 @@ public class TestReceta {
 	
 	@Test
 	public void testInadecuadoParaCeliaco() {
-		List<String> comidas= new ArrayList<String>();
-		Celiaco celiaco = new Celiaco(null, "Celiaco",comidas);
-		RepoUsuarios.getInstance().inadecuados.add(celiaco);
+
+
+		CondicionPreexistente celiaco = RepoUsuarios.getInstance().obtenerCondicion("celiaco");
 		
 		 Receta receta = constructorReceta.crearReceta();
 		 assertFalse(receta.getInadecuados().contains(celiaco));
@@ -118,9 +111,8 @@ public class TestReceta {
 	
 	@Test
 	public void testAdecuadoParaCeliaco() {
-		List<String> comidas= new ArrayList<String>();
-		Celiaco celiaco = new Celiaco(null, "Celiaco",comidas);
-		RepoUsuarios.getInstance().inadecuados.add(celiaco);
+
+		CondicionPreexistente celiaco = RepoUsuarios.getInstance().obtenerCondicion("celiaco");
 		 Receta receta = constructorReceta.crearReceta();
 		 assertFalse(receta.getInadecuados().contains(celiaco));
 	}
@@ -128,9 +120,7 @@ public class TestReceta {
 	
 	@Test
 	public void testNoInadecuadoParaCeliaco() {
-		List<String> comidas= new ArrayList<String>();
-		Celiaco celiaco = new Celiaco(null, "celiaco",comidas);
-		RepoUsuarios.getInstance().inadecuados.add(celiaco);
+		CondicionPreexistente celiaco = RepoUsuarios.getInstance().obtenerCondicion("celiaco");
 		
 		 Receta receta = constructorReceta.crearReceta();
 		 assertFalse(receta.getInadecuados().contains(celiaco));
@@ -139,10 +129,7 @@ public class TestReceta {
 	
 	@Test
 	public void testNoAdecuadoParaCeliaco() {
-		List<String> comidas= new ArrayList<String>();
-		Celiaco celiaco = new Celiaco(null, "celiaco",comidas);
-		RepoUsuarios.getInstance().inadecuados.add(celiaco);
-		
+		CondicionPreexistente celiaco = RepoUsuarios.getInstance().obtenerCondicion("celiaco");
 		
 		 Receta receta = constructorReceta.crearReceta();
 		 assertFalse(receta.getInadecuados().contains(celiaco));
@@ -151,10 +138,7 @@ public class TestReceta {
 	
 	@Test
 	public void testNoInadecuadoParaDiabetico() {
-		List<String> comidas= new ArrayList<String>();
-		Diabetico diabetico = new Diabetico(null, "diabetico",comidas);
-		RepoUsuarios.getInstance().inadecuados.add(diabetico);
-		
+		CondicionPreexistente celiaco = RepoUsuarios.getInstance().obtenerCondicion("celiaco");
 		
 		 Receta receta = constructorReceta.crearReceta();
 		 assertFalse(receta.getInadecuados().contains("Diabetico"));

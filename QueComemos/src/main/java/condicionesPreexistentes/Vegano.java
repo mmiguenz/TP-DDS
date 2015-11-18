@@ -1,19 +1,25 @@
 package condicionesPreexistentes;
 
-
-
-
+import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.DiscriminatorValue;
 
 import receta.Receta;
 import usuario.Usuario;
-@DiscriminatorValue("Vegano")
+@Entity
+@DiscriminatorValue("vegano")
 public class Vegano extends CondicionPreexistente {
 
-	public Vegano(Long id, String nombre, List<String> comidasQueDisgusta) {
-		super(id, nombre, comidasQueDisgusta);
+	private List<String>comidasProhibidas;
+	
+	public Vegano(Long id, String nombre) {
+		super(id, nombre);
+		
+		comidasProhibidas= new ArrayList<String>();
+		comidasProhibidas.add("carne");
+		comidasProhibidas.add("pollo");
 		// TODO Auto-generated constructor stub
 	}
 

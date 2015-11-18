@@ -13,6 +13,10 @@
     	<class>receta.Preparacion</class>
       	<class>receta.Receta</class>
       	<class>condicionesPreexistentes.CondicionPreexistente</class>
+      	<class>condicionesPreexistentes.Diabetico</class>
+      	<class>condicionesPreexistentes.Celiaco</class>
+      	<class>condicionesPreexistentes.Hipertenso</class>
+      	<class>condicionesPreexistentes.Vegano</class>
       	<class>repositorios.Consulta</class>
       	   	
     	   	 

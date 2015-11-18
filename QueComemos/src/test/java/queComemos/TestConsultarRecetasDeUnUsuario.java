@@ -51,7 +51,9 @@ public class TestConsultarRecetasDeUnUsuario {
 	@Before
 	public void setUp() throws Exception {
 		
-		RepoUsuarios.getInstance().inadecuados= new ArrayList<CondicionPreexistente>();
+		
+		
+		
 		
 				
 		UsuarioBuilder constructorDeUsuarioObeso = new UsuarioSinValidacion();
@@ -94,27 +96,7 @@ public class TestConsultarRecetasDeUnUsuario {
 		// Condiciones Preexistentes
 		
 		
-		List<CondicionPreexistente>condiciones = new ArrayList<CondicionPreexistente>();
-		
-		comidasProhibidas = new ArrayList<String>();
-		comidasProhibidas.add("pan");
-		comidasProhibidas.add("salame");
-		
-		 celiaco = new Celiaco(null, "celiaco",comidasProhibidas);
-		 hipertenso= new Hipertenso(null, "hipertenso",comidasProhibidas);
-		 vegano = new Vegano(null, "vegano",new ArrayList<String>());
-		 diabetico =  new Diabetico(null, "Diabetico",new ArrayList<String>());
-		 
-		
-		  // Iniciar QueComemos
-		  
-		 
-//			Recetario.inicializar();
-		 RepoUsuarios.getInstance().inadecuados.add(diabetico);
-		 RepoUsuarios.getInstance().inadecuados.add(celiaco);
-		 RepoUsuarios.getInstance().inadecuados.add(hipertenso);
-		 RepoUsuarios.getInstance().inadecuados.add(vegano);
-		 
+			 
 		 
 		 // Crear Receta 
 

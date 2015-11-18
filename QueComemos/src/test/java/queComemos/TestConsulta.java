@@ -35,7 +35,7 @@ public class TestConsulta {
 	@Before
 	public void setUp() throws Exception {
 		
-		RepoUsuarios.getInstance().inadecuados= new ArrayList<CondicionPreexistente>();
+		
 		
 		
 		filtros = new ArrayList<FiltroI>();

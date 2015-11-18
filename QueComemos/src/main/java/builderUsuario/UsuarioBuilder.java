@@ -11,6 +11,7 @@ import condicionesPreexistentes.Hipertenso;
 import condicionesPreexistentes.Vegano;
 import excepciones.FalloValidacionAlCrearUsuario;
 import receta.Receta;
+import repositorios.RepoUsuarios;
 import usuario.PreferenciaAlimenticia;
 import usuario.Usuario;
 
@@ -96,11 +97,8 @@ public abstract class UsuarioBuilder {
 	public  void esCeliaco()
 	{
 		
-	List<String> comidasProhibidas = new ArrayList<String>();
-	comidasProhibidas.add("pan");
-	comidasProhibidas.add("harina");
 	
-	nuevoUsuario.getCondicionesPreexistentes().add(new Celiaco(null, "celiaco",comidasProhibidas));
+	nuevoUsuario.getCondicionesPreexistentes().add(RepoUsuarios.getInstance().obtenerCondicion("celiaco"));
 	
 			
 		
@@ -108,32 +106,23 @@ public abstract class UsuarioBuilder {
 	public  void esHipertenso()
 	{
 		
-		List<String> comidasProhibidas = new ArrayList<String>();
-		comidasProhibidas.add("sal");
-		comidasProhibidas.add("vino");
 		
-		nuevoUsuario.getCondicionesPreexistentes().add(new Hipertenso(null, "hipertenso",comidasProhibidas));
+		nuevoUsuario.getCondicionesPreexistentes().add(RepoUsuarios.getInstance().obtenerCondicion("hipertenso"));
 		
 	}
 	public  void esDiabetico()
 	{		
-		List<String> comidasProhibidas = new ArrayList<String>();
-		comidasProhibidas.add("azucar");
-		comidasProhibidas.add("caramelo");
-		comidasProhibidas.add("helado");
+	
 		
-		nuevoUsuario.getCondicionesPreexistentes().add(new Diabetico(null, "diabetico",comidasProhibidas));
+		nuevoUsuario.getCondicionesPreexistentes().add(RepoUsuarios.getInstance().obtenerCondicion("diabetico"));
 		
 		
 	}
 	public  void esVegano()
 	{
-		List<String> comidasProhibidas = new ArrayList<String>();
-		comidasProhibidas.add("carne");
-		comidasProhibidas.add("pollo");
-		comidasProhibidas.add("pescado");
+	
 		
-		nuevoUsuario.getCondicionesPreexistentes().add(new Vegano(null, "vegano",comidasProhibidas));
+		nuevoUsuario.getCondicionesPreexistentes().add(RepoUsuarios.getInstance().obtenerCondicion("vegano"));
 		
 		
 	}
