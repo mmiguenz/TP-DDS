@@ -12,7 +12,8 @@ import usuario.Usuario;
 @DiscriminatorValue("vegano")
 public class Vegano extends CondicionPreexistente {
 
-	private List<String>comidasProhibidas;
+	@Transient
+	private final List<String>comidasProhibidas;
 	
 	public Vegano(Long id, String nombre) {
 		super(id, nombre);

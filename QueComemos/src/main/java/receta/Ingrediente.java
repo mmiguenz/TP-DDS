@@ -11,6 +11,7 @@ public   class Ingrediente  {
 		@Column(name="PreparacionID")
 		Long id;
 		
+		
 		private String nombre ;
 		private String medida;
 		private double cantidad;
