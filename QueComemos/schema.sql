@@ -251,6 +251,6 @@
 
 		
 insert into CondicionesPreexistentes (CondicionID,TipoCondicion,nombre) values (1,'hipertenso','hipertenso')
-insert into CondicionesPreexistentes (CondicionID,TipoCondicion,nombre) values (1,'celiaco','celiaco')
-insert into CondicionesPreexistentes (CondicionID,TipoCondicion,nombre) values (1,'diabetico','diabetico')
-insert into CondicionesPreexistentes (CondicionID,TipoCondicion,nombre) values (1,'vegano','vegano')
+insert into CondicionesPreexistentes (CondicionID,TipoCondicion,nombre) values (2,'celiaco','celiaco')
+insert into CondicionesPreexistentes (CondicionID,TipoCondicion,nombre) values (3,'diabetico','diabetico')
+insert into CondicionesPreexistentes (CondicionID,TipoCondicion,nombre) values (4,'vegano','vegano')
