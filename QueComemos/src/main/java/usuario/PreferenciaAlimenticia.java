@@ -58,4 +58,11 @@ public class PreferenciaAlimenticia {
 		this.comidasQueGusta = comidasQueGusta;
 		this.comidasQueDisgusta = comidasQueDisgusta;
 	}
+	
+	
+	public PreferenciaAlimenticia()
+	{
+		
+		super();
+	}
 }

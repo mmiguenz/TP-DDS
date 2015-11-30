@@ -36,4 +36,11 @@ public class Diabetico extends CondicionPreexistente {
 
 	
 
+	public Diabetico()
+	{
+		super();
+		
+	}
+
+	
 }

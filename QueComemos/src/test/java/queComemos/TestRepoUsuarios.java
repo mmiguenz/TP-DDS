@@ -37,10 +37,13 @@ public class TestRepoUsuarios extends AbstractPersistenceTest implements WithGlo
 	@Before
 	public void setUp() throws Exception {	
 		
-		 celiaco = RepoUsuarios.getInstance().obtenerCondicion("celiaco");
+		RepoUsuarios.repoUsuarios=null;
+				
+		celiaco = RepoUsuarios.getInstance().obtenerCondicion("celiaco");
 		 hipertenso=RepoUsuarios.getInstance().obtenerCondicion("hipertenso");
 		 vegano = RepoUsuarios.getInstance().obtenerCondicion("vegano");
 		 diabetico = RepoUsuarios.getInstance().obtenerCondicion("diabetico");
+		 
 		 
 		 
 		
@@ -90,6 +93,7 @@ public class TestRepoUsuarios extends AbstractPersistenceTest implements WithGlo
 	@Test
 	public void testRepoUsuarioAddUnoSolo() {
 		
+		RepoUsuarios.repoUsuarios=null;
 			
 		RepoUsuarios.getInstance().add(usuarios.get(0));
 		assertEquals(RepoUsuarios.getInstance().listarTodos().size(),1);
@@ -182,7 +186,7 @@ public class TestRepoUsuarios extends AbstractPersistenceTest implements WithGlo
 	@Test
 	public void testListUsuariosPorNombreYCondiciones()
 	{
-		
+		RepoUsuarios.repoUsuarios=null;
 		
 		usuarios = new ArrayList<Usuario>();
 		

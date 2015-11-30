@@ -178,4 +178,13 @@ public class Receta {
 
 	
 
+
+
+public Receta()
+{
+	
+	super();
+	
+}
+
 }

@@ -12,12 +12,12 @@ import usuario.Usuario;
 public class Hipertenso extends CondicionPreexistente {
 	
 	@Transient
-	private final List<String>comidasProhibidas;
+	private final List<String>comidasProhibidas=new ArrayList<String>();
 	
 	public Hipertenso(Long id, String nombre, List<String> comidasQueDisgusta) {
 		super(id, nombre);
 		
-		comidasProhibidas= new ArrayList<String>();
+		
 		comidasProhibidas.add("sal");
 		// TODO Auto-generated constructor stub
 	}
@@ -36,5 +36,12 @@ public class Hipertenso extends CondicionPreexistente {
 		return ! comidasProhibidas.stream().anyMatch(comida -> receta.contiene(comida));
 	}
 
+
+
+	public Hipertenso()
+	{
+		super();
+		
+	}
 
 }

@@ -37,7 +37,11 @@ public class Celiaco extends CondicionPreexistente {
 	}
 
 
-
+	public Celiaco()
+	{
+		super();
+		
+	}
 
 
 

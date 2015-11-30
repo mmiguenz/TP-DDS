@@ -13,12 +13,12 @@ import usuario.Usuario;
 public class Vegano extends CondicionPreexistente {
 
 	@Transient
-	private final List<String>comidasProhibidas;
+	private final List<String>comidasProhibidas=new ArrayList<String>();
 	
 	public Vegano(Long id, String nombre) {
 		super(id, nombre);
 		
-		comidasProhibidas= new ArrayList<String>();
+		
 		comidasProhibidas.add("carne");
 		comidasProhibidas.add("pollo");
 		// TODO Auto-generated constructor stub
@@ -38,6 +38,14 @@ public class Vegano extends CondicionPreexistente {
 	@Override
 	public boolean esAptaReceta(Receta receta){
 		return !( comidasProhibidas.stream().anyMatch(comida -> receta.contiene(comida)));
+	}
+
+
+
+	public Vegano()
+	{
+		super();
+		
 	}
 
 	

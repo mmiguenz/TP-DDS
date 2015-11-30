@@ -136,4 +136,11 @@ private Ingrediente buscarPorNombre(String nombre,List<Ingrediente> ingredientes
 	
 }
 
+
+public Preparacion()
+{
+	super();
+	
+}
+
 }

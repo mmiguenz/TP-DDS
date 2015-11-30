@@ -44,6 +44,11 @@ public abstract class CondicionPreexistente {
 		this.nombre = nombre;
 	}
 
+	public CondicionPreexistente()
+	{
+		super();
+		
+	}
 	
 	
 

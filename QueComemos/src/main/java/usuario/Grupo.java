@@ -77,6 +77,10 @@ public class Grupo {
 	
 	
 	
+public Grupo()
+{
 	
+	super();
+}
 	
 }

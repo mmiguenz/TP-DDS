@@ -88,6 +88,11 @@ public   class Ingrediente  {
 	
 	
 	
+	public Ingrediente()
+	{
+		super();
+		
+	}
 
 }
 
