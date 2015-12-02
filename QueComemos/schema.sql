@@ -16,11 +16,6 @@
         primary key (CondicionID)
     )
 
-    create table Condimentos (
-        preparaciones_PreparacionID bigint not null,
-        condimentos_PreparacionID bigint not null
-    )
-
     create table Consultas (
         ConsultaID bigint not null auto_increment,
         horaConsulta datetime,
@@ -33,16 +28,6 @@
         nombre varchar(255),
         preferenciaAlimenticia_PreferenciaAlimenticiaID bigint,
         primary key (GrupoID)
-    )
-
-    create table Ingredientes (
-        PreparacionID bigint not null auto_increment,
-        cantidad double precision not null,
-        medida varchar(255),
-        nombre varchar(255),
-        preparaciones_PreparacionID bigint not null,
-        ingredientes_PreparacionID bigint not null,
-        primary key (PreparacionID)
     )
 
     create table PreferenciasAlimenticias (
@@ -108,8 +93,27 @@
         condicionesPreexistentes_CondicionID bigint not null
     )
 
+    create table condimentos (
+        ID bigint not null auto_increment,
+        cantidad double precision not null,
+        medida varchar(255),
+        nombre varchar(255),
+        PreparacionID bigint,
+        primary key (ID)
+    )
+
+    create table ingredientes (
+        ID bigint not null auto_increment,
+        cantidad double precision not null,
+        medida varchar(255),
+        nombre varchar(255),
+        PreparacionID bigint,
+        primary key (ID)
+    )
+
     create table preparaciones (
         PreparacionID bigint not null auto_increment,
+        nombre varchar(255),
         primary key (PreparacionID)
     )
 
@@ -117,12 +121,6 @@
         Grupos_GrupoID bigint not null,
         usuarios_usuarioID bigint not null
     )
-
-    alter table Condimentos 
-        add constraint UK_2abto5jpyvdet58va0qt057ro  unique (condimentos_PreparacionID)
-
-    alter table Ingredientes 
-        add constraint UK_tkgu9lk76guk1nqy2l0k9i6ne  unique (ingredientes_PreparacionID)
 
     alter table ComidasQueDisgusta 
         add constraint FK_182gm7w4tnxwo1b05f60d9w5x 
@@ -134,16 +132,6 @@
         foreign key (PreferenciaAlimenticia_PreferenciaAlimenticiaID) 
         references PreferenciasAlimenticias (PreferenciaAlimenticiaID)
 
-    alter table Condimentos 
-        add constraint FK_2abto5jpyvdet58va0qt057ro 
-        foreign key (condimentos_PreparacionID) 
-        references Ingredientes (PreparacionID)
-
-    alter table Condimentos 
-        add constraint FK_f68sfi4pxc33nk5wjj5dke0ea 
-        foreign key (preparaciones_PreparacionID) 
-        references preparaciones (PreparacionID)
-
     alter table Consultas 
         add constraint FK_irpguisx6rpqk9xb3bl2ah7wy 
         foreign key (usr_usuarioID) 
@@ -153,16 +141,6 @@
         add constraint FK_6qpq23q78ynd1h3h439b2gcmk 
         foreign key (preferenciaAlimenticia_PreferenciaAlimenticiaID) 
         references PreferenciasAlimenticias (PreferenciaAlimenticiaID)
-
-    alter table Ingredientes 
-        add constraint FK_tkgu9lk76guk1nqy2l0k9i6ne 
-        foreign key (ingredientes_PreparacionID) 
-        references Ingredientes (PreparacionID)
-
-    alter table Ingredientes 
-        add constraint FK_9lxkpi3qphawdf02buylvi4qg 
-        foreign key (preparaciones_PreparacionID) 
-        references preparaciones (PreparacionID)
 
     alter table Preparacion_explicacion 
         add constraint FK_ho8afkmdessyfxj7wj0q6gn1h 
@@ -239,6 +217,16 @@
         foreign key (Usuarios_usuarioID) 
         references Usuarios (usuarioID)
 
+    alter table condimentos 
+        add constraint FK_b1f536ubatio0xm6p7hiot923 
+        foreign key (PreparacionID) 
+        references preparaciones (PreparacionID)
+
+    alter table ingredientes 
+        add constraint FK_jecvj8x3o27uruq66xrmnwsun 
+        foreign key (PreparacionID) 
+        references preparaciones (PreparacionID)
+
     alter table usuariosXGrupo 
         add constraint FK_srl7l0me2405gsl2n56137w40 
         foreign key (usuarios_usuarioID) 
@@ -248,9 +236,3 @@
         add constraint FK_beaynbiakq0uiu9wwdvx5vrla 
         foreign key (Grupos_GrupoID) 
         references Grupos (GrupoID)
-
-		
-insert into CondicionesPreexistentes (CondicionID,TipoCondicion,nombre) values (1,'hipertenso','hipertenso')
-insert into CondicionesPreexistentes (CondicionID,TipoCondicion,nombre) values (2,'celiaco','celiaco')
-insert into CondicionesPreexistentes (CondicionID,TipoCondicion,nombre) values (3,'diabetico','diabetico')
-insert into CondicionesPreexistentes (CondicionID,TipoCondicion,nombre) values (4,'vegano','vegano')

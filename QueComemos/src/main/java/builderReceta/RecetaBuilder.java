@@ -1,6 +1,11 @@
 package builderReceta;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import receta.Condimento;
 import receta.Ingrediente;
+import receta.Preparacion;
 import receta.Receta;
 
 public  abstract class RecetaBuilder {
@@ -28,7 +33,7 @@ public  abstract class RecetaBuilder {
 	public void condimentoAgregar(String nombre, String medida, Double cantidad)
 	{
 		
-		nuevaReceta.getPreparacion().getCondimentos().add(new Ingrediente(nombre,medida,cantidad));
+		nuevaReceta.getPreparacion().getCondimentos().add(new Condimento(nombre,medida,cantidad));
 		
 		
 	}
@@ -77,9 +82,19 @@ public  abstract class RecetaBuilder {
 	{
 		nuevaReceta.calcularInadecuados();
 		
+		List<Ingrediente> ingredientes = new ArrayList<Ingrediente>();
+		List<Condimento> condimentos = new ArrayList<Condimento>();
+		List<String> explicacion = new ArrayList<String>();
+		
+		ingredientes.addAll(nuevaReceta.getPreparacion().getIngredientes());		
+		condimentos.addAll(nuevaReceta.getPreparacion().getCondimentos());
+		explicacion.addAll(nuevaReceta.getPreparacion().getExplicacion());
+		
+		Preparacion preparacion = new Preparacion(null,ingredientes,condimentos,explicacion);
+				
 		
 		return 
-				new Receta(null, nuevaReceta.getNombre(), nuevaReceta.getCalorias(), nuevaReceta.getPreparacion(), nuevaReceta.getDificultad(), nuevaReceta.getTemporada(), nuevaReceta.getSubRecetas(), nuevaReceta.getInadecuados());
+				new Receta(null, nuevaReceta.getNombre(), nuevaReceta.getCalorias(), preparacion, nuevaReceta.getDificultad(), nuevaReceta.getTemporada(), nuevaReceta.getSubRecetas(), nuevaReceta.getInadecuados());
 		
 	}
 	

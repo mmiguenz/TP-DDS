@@ -9,6 +9,7 @@ import org.json.*;
 import condicionesPreexistentes.CondicionPreexistente;
 import queComemos.entrega3.repositorio.BusquedaRecetas;
 import queComemos.entrega3.repositorio.RepoRecetas;
+import receta.Condimento;
 import receta.Ingrediente;
 import receta.Preparacion;
 import receta.Receta;
@@ -116,7 +117,7 @@ public class RepoRecetasAd {
 			
 		}
 		
-	 return  new Preparacion(ingres,new ArrayList<Ingrediente>(), new ArrayList<String>());
+	 return  new Preparacion(null,ingres,new ArrayList<Condimento>(), new ArrayList<String>());
 		 
 		
 		

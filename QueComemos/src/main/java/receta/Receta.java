@@ -25,7 +25,7 @@ public class Receta {
 	private Preparacion preparacion;
 	private String dificultad;
 	private String temporada;
-	@ManyToMany
+	@ManyToMany(cascade={CascadeType.PERSIST})
 	@CollectionTable(name="SubRecetas")
 	private List<Receta> subRecetas;
 	@ManyToMany
@@ -146,7 +146,7 @@ public class Receta {
 	public static Receta crearReceta() {
 		
 		return new Receta(null, "", 0.0
-						,new Preparacion(new ArrayList<Ingrediente>(), new ArrayList<Ingrediente>(), new ArrayList<String>())
+						,new Preparacion(null,new ArrayList<Ingrediente>(), new ArrayList<Condimento>(), new ArrayList<String>())
 						, "", "", new ArrayList<Receta>(), new ArrayList<CondicionPreexistente>());
 		
 		

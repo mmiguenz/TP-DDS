@@ -16,6 +16,7 @@ import org.junit.Test;
 import procesamientos.Ordenar;
 import procesamientos.OrdenarPorCalorias;
 import procesamientos.OrdenarPorNombre;
+import receta.Condimento;
 import receta.Ingrediente;
 import receta.Preparacion;
 import receta.Receta;
@@ -64,7 +65,7 @@ public class TestOrdenamiento {
 		
 		List<String>	instrucciones = new ArrayList<String>();
 		List<Ingrediente> ingredientes = new ArrayList<Ingrediente>();
-		List<Ingrediente>condimentos = new ArrayList<Ingrediente>();
+		List<Condimento>condimentos = new ArrayList<Condimento>();
 		List<Receta> subRecetas=new ArrayList<Receta>();
 		
 		List<CondicionPreexistente> inadecuados=new ArrayList<CondicionPreexistente>();
@@ -78,10 +79,10 @@ public class TestOrdenamiento {
 			instrucciones.add("Revolver");
 			instrucciones.add("Hornear");
 			
-			Ingrediente sal= new Ingrediente("Sal","grs",100);
+			Condimento sal= new Condimento("Sal","grs",100);
 			Ingrediente carne= new Ingrediente("Carne","kg",2);
 			Ingrediente papas= new Ingrediente("papa","kg",3);
-			Ingrediente mayonesa= new Ingrediente("Mayonesa","grs",100);
+			Condimento mayonesa= new Condimento("Mayonesa","grs",100);
 			Ingrediente azucar= new Ingrediente("Azucar","grs",150);
 			
 			ingredientes.add(azucar);
@@ -90,7 +91,7 @@ public class TestOrdenamiento {
 			condimentos.add(mayonesa);
 			condimentos.add(sal);
 		
-		     Preparacion preparacion = new Preparacion(ingredientes,condimentos,instrucciones);
+		     Preparacion preparacion = new Preparacion(null,ingredientes,condimentos,instrucciones);
 			 String dificultad = "Baja";
 			 String temporada= "Verano";
 		

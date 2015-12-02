@@ -129,6 +129,41 @@ public class Consulta {
 	}
 
 
+	public Consulta() {
+		super();
+	}
+
+
+	public Long getId() {
+		return id;
+	}
+
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+
+	public List<Receta> getResultadoConsulta() {
+		return resultadoConsulta;
+	}
+
+
+	public void setFiltros(List<FiltroI> filtros) {
+		this.filtros = filtros;
+	}
+
+
+	public void setProcesamientoPosterior(ProcesamientoI procesamientoPosterior) {
+		this.procesamientoPosterior = procesamientoPosterior;
+	}
+
+
+	public void setUsr(Usuario usr) {
+		this.usr = usr;
+	}
+
+
 	public boolean estaEnRangoHorario(LocalDateTime horaConsultaDesde,LocalDateTime horaConsultaHasta) {
 	
 		return (horaConsulta.isAfter(horaConsultaDesde) && horaConsulta.isBefore(horaConsultaHasta)) 

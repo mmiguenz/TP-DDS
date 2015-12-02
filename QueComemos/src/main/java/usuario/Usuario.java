@@ -33,10 +33,10 @@ public class Usuario {
 	private boolean  marcaFavoritasLasConsultas ; 
 	@ManyToMany
 	private List<CondicionPreexistente> condicionesPreexistentes;
-	@ManyToMany
+	@ManyToMany(cascade={CascadeType.PERSIST})
 	@CollectionTable(name="RecetasDeUsuario")
 	private List<Receta> misRecetas;
-	@ManyToMany
+	@ManyToMany(cascade={CascadeType.PERSIST})
 	@CollectionTable(name="RecetasFavoritasXUsuario")
 	private List<Receta> favoritas;
 	

@@ -8,6 +8,7 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
+import receta.Condimento;
 import receta.Ingrediente;
 import receta.Preparacion;
 
@@ -15,23 +16,23 @@ public class TestPreparacion {
 	
 	List<String> instrucciones;
 	List<Ingrediente> ingredientes;
-	List<Ingrediente> condimentos;
+	List<Condimento> condimentos;
 
 	@Before
 	public void setUp() throws Exception {
 		
 		instrucciones = new ArrayList<String>();
 		ingredientes = new ArrayList<Ingrediente>();
-		condimentos = new ArrayList<Ingrediente>();
+		condimentos = new ArrayList<Condimento>();
 		
 		instrucciones.add("Preparar");
 		instrucciones.add("Revolver");
 		instrucciones.add("Hornear");
 		
-		Ingrediente sal= new Ingrediente("Sal","grs",100);
+		Condimento sal= new Condimento("Sal","grs",100);
 		Ingrediente carne= new Ingrediente("Carne","kg",2);
 		Ingrediente papas= new Ingrediente("papa","kg",3);
-		Ingrediente mayonesa= new Ingrediente("Mayonesa","grs",100);
+		Condimento mayonesa= new Condimento("Mayonesa","grs",100);
 		
 		ingredientes.add(carne);
 		ingredientes.add(papas);
@@ -47,7 +48,7 @@ public class TestPreparacion {
 	@Test
 	public void testContieneSal() {
 		
-		Preparacion preparacion = new Preparacion(ingredientes,condimentos,instrucciones);
+		Preparacion preparacion = new Preparacion(null,ingredientes,condimentos,instrucciones);
 		assertTrue(preparacion.contiene("Sal"));
 		
 		
@@ -57,7 +58,7 @@ public class TestPreparacion {
 	@Test
 	public void testNoContieneLimon() {
 		
-		Preparacion preparacion = new Preparacion(ingredientes,condimentos,instrucciones);
+		Preparacion preparacion = new Preparacion(null,ingredientes,condimentos,instrucciones);
 		assertFalse(preparacion.contiene("Limon"));
 		
 		
@@ -68,7 +69,7 @@ public class TestPreparacion {
 	@Test
 	public void testContieneCarne() {
 		
-		Preparacion preparacion = new Preparacion(ingredientes,condimentos,instrucciones);
+		Preparacion preparacion = new Preparacion(null,ingredientes,condimentos,instrucciones);
 		assertTrue(preparacion.contiene("Carne"));
 		
 		
@@ -79,7 +80,7 @@ public class TestPreparacion {
 	@Test
 	public void testNoContienePollo() {
 		
-		Preparacion preparacion = new Preparacion(ingredientes,condimentos,instrucciones);
+		Preparacion preparacion = new Preparacion(null,ingredientes,condimentos,instrucciones);
 		assertFalse(preparacion.contiene("Pollo"));
 		
 		

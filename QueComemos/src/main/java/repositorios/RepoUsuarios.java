@@ -21,6 +21,7 @@ public class RepoUsuarios implements WithGlobalEntityManager  {
 	public static RepoUsuarios repoUsuarios;
 	
 	public  List<CondicionPreexistente> inadecuados ;
+	public Usuario usuarioSession ;
 	
 	
 	
@@ -43,6 +44,8 @@ public class RepoUsuarios implements WithGlobalEntityManager  {
 	public RepoUsuarios()
 	{
 		inadecuados =entityManager().createQuery("from CondicionPreexistente").getResultList();
+		usuarioSession = entityManager().find(Usuario.class, Long.parseLong("1"));
+		
 
 		
 		

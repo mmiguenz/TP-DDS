@@ -217,6 +217,23 @@ public class Recetario implements WithGlobalEntityManager {
 		return  entityManager().createQuery("from Consulta",Consulta.class).getResultList();
 		
 	}
+
+	public List<Receta> listaRecetasUsuario() {
+		
+		List<Receta> recetas = listarTodas() ;
+		
+		List<Receta> recetasFavoritas = RepoUsuarios.getInstance().usuarioSession.getFavoritas();
+		
+		if (recetasFavoritas != null && !recetasFavoritas.isEmpty())
+		{
+			
+			recetas.removeIf(receta ->  ! recetasFavoritas.contains(receta));
+			
+		}
+		 
+		
+		return recetas;
+	}
 	
 	
 

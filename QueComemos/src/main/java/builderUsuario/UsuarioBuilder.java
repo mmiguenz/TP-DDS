@@ -83,7 +83,7 @@ public abstract class UsuarioBuilder {
 	{
 		if(nuevoUsuario.validar())
 		{
-			Usuario usuarior =  new Usuario(nuevoUsuario.getUsuarioID(),nuevoUsuario.getNombre(),nuevoUsuario.getSexo(),nuevoUsuario.getFechaNacimiento(),nuevoUsuario.getPeso(),nuevoUsuario.getEstatura(),nuevoUsuario.getRutina(),nuevoUsuario.getPreferenciaAlimenticia(),false, nuevoUsuario.getCondicionesPreexistentes(),nuevoUsuario.getMisRecetas(), null) ;
+			Usuario usuarior =  new Usuario(nuevoUsuario.getUsuarioID(),nuevoUsuario.getNombre(),nuevoUsuario.getSexo(),nuevoUsuario.getFechaNacimiento(),nuevoUsuario.getPeso(),nuevoUsuario.getEstatura(),nuevoUsuario.getRutina(),nuevoUsuario.getPreferenciaAlimenticia(),false, nuevoUsuario.getCondicionesPreexistentes(),nuevoUsuario.getMisRecetas(), new ArrayList<Receta>()) ;
 			usuarior.setMarcaFavoritasLasConsultas(nuevoUsuario.isMarcaFavoritasLasConsultas());		
 			return usuarior;
 		}

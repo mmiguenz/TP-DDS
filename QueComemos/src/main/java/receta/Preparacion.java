@@ -8,26 +8,56 @@ import javax.persistence.*;
 public class Preparacion {
 
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name="PreparacionID")
 	Long id;
 	
-	@OneToMany
+	@OneToMany(cascade={CascadeType.PERSIST})
 	@JoinColumn(name= "PreparacionID")
-	@CollectionTable(name="Ingredientes")
 	private List<Ingrediente> ingredientes;
-	@OneToMany
-	@JoinColumn(name="PreparacionID")
-	@CollectionTable(name="Condimentos")
-	private List<Ingrediente> condimentos;
+	@JoinColumn(name= "PreparacionID")
+	@OneToMany(cascade={CascadeType.PERSIST})
+	private List<Condimento> condimentos;
 	@ElementCollection
 	private List<String> explicacion;
+	private String nombre;
 
 
 	
-	public Preparacion(List<Ingrediente> ingredientes, List<Ingrediente> condimentos,List<String> explicacion)
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+
+
+
+
+
+	public Long getId() {
+		return id;
+	}
+
+
+
+
+
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+
+
+
+
+
+	public Preparacion(Long id , List<Ingrediente> ingredientes, List<Condimento> condimentos,List<String> explicacion)
 	{
-		
+		this.id = null;
 		this.ingredientes=ingredientes;
 		this.explicacion=explicacion;
 		this.condimentos =condimentos;
@@ -53,13 +83,13 @@ public class Preparacion {
 
 
 
-	public List<Ingrediente> getCondimentos() {
+	public List<Condimento> getCondimentos() {
 		return condimentos;
 	}
 
 
 
-	public void setCondimentos(List<Ingrediente> condimentos) {
+	public void setCondimentos(List<Condimento> condimentos) {
 		this.condimentos = condimentos;
 	}
 
@@ -94,15 +124,9 @@ public class Preparacion {
 		{
 			return this.buscarPorNombre(ingre, ingredientes);
 			
-		} else
-			
-		{
-			return this.buscarPorNombre(ingre, condimentos);
-			
 		}
-			
-			
-			
+		
+		return null;
 		
 		
 	}

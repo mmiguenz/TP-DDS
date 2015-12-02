@@ -3,12 +3,12 @@ package receta;
 import javax.persistence.*;
 
 @Entity
-@Table(name="Ingredientes")
+@Table(name="ingredientes")
 public   class Ingrediente  {
 		
 		@Id
 		@GeneratedValue
-		@Column(name="PreparacionID")
+		@Column(name="ID")
 		Long id;
 		
 		

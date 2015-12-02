@@ -19,6 +19,7 @@ import condicionesPreexistentes.CondicionPreexistente;
 import condicionesPreexistentes.Diabetico;
 import condicionesPreexistentes.Hipertenso;
 import condicionesPreexistentes.Vegano;
+import receta.Condimento;
 import receta.Ingrediente;
 import receta.Preparacion;
 
@@ -62,12 +63,12 @@ public class TestRecetario extends AbstractPersistenceTest implements WithGlobal
 	public void testModificarUnaRetaPublicaPreparacion() {
 		
 		List<Ingrediente> ingredientes = new ArrayList<>();
-		List<Ingrediente> condimentos = new ArrayList<>();
+		List<Condimento> condimentos = new ArrayList<>();
 		List<String> instrucciones = new ArrayList<>();
 		
 		Ingrediente pollo =new Ingrediente("pollo","kg",1.0);
 		Ingrediente papas =new Ingrediente("papas","kg",0.5);		
-		Ingrediente sal =new Ingrediente("sal","grs",10);
+		Condimento sal =new Condimento("sal","grs",10);
 				
 				
 		ingredientes.add(pollo);
@@ -82,7 +83,7 @@ public class TestRecetario extends AbstractPersistenceTest implements WithGlobal
 		
 		
 		
-		Preparacion preparacion = new Preparacion(ingredientes,condimentos,instrucciones);
+		Preparacion preparacion = new Preparacion(null,ingredientes,condimentos,instrucciones);
 		
 		
 		Receta  recetaModificada = Recetario.getInstance().modificarRecetaPublica("ensalada caesar", null, null, preparacion, null, null);
