@@ -1,0 +1,184 @@
+{{# partial "titulo" }}	
+	<title>Recetas - QueComemos</title>
+{{/partial}}
+		
+{{# partial "contenido" }}	
+
+{{#receta}}
+
+<div class="container">
+<form action="/recetas/receta" method="POST">
+  <div class="row">
+	  	  <label>Nombre:</label>
+		  <input type="text" class="form-control" name="nombreReceta" placeholder="Nombre Receta" value="{{nombre}}">
+		</div>
+		
+	 <div class="row">
+	  	  <label>Calorias:</label>
+		  <input type="text" class="form-control" name="caloriasReceta" placeholder="cantidad de calorias" value="{{calorias}}">
+		</div>
+		
+	<div class="row">
+	  	  <label>Dificultad:</label>
+			<select class="form-control" name="dificultad">
+		    <option>Facil</option>
+		    <option>Media</option>
+		    <option>Dificil</option>
+		    <option selected>{{dificultad}}</option>
+	   </select>
+	
+		</div>
+						
+	<div class="row">
+	  	  <label>Temporada:</label>
+			<select class="form-control" name="temporada">
+		    <option>verano</option>
+		    <option>invierno</option>
+		    <option>primavera</option>
+		    <option>otoño</option>
+		    <option>TODAS</option>
+		    <option selected>{{temporada}}</option>
+	   </select>
+	    <div hidden="hidden" class="row">
+	  	  
+		  <input type="text" class="form-control" name="recetaid" value="{{id}}">
+		</div>
+
+		<input type="submit" class="form-control  btn btn-info" value="Modificar">
+		
+	
+			
+		
+  </div>	
+ </form>	
+
+
+
+
+<div class="row">
+	<h1>PREPARACION</h1>
+</div>
+
+<div class="row">
+	<h3 class= "text-info">ingredientes</h3>
+</div>
+<div class="row">
+	<div class="col-md-10">	
+		<table class="table table-striped" >
+			<td>Nombre</td>
+			<td>Medida</td>
+			<td>Cantidad</td>
+					
+		</hr>
+	{{#ingredientes}}
+		<tr>
+			<td>{{nombre}}</td>
+			<td>{{medida}}</td>
+			<td>{{cantidad}}</td>
+					
+		</tr>
+		
+	{{/ingredientes}}				
+	</table>
+	
+	</div>
+</div>
+
+<div class="row">
+	<h3 class= "text-info">condimentos</h3>
+</div>
+<div class="row">
+	<div class="col-md-10">	
+		<table class="table table-striped" >
+			<td>Nombre</td>
+			<td>Medida</td>
+			<td>Cantidad</td>
+					
+		</hr>
+	{{#condimentos}}
+		<tr>
+			<td>{{nombre}}</td>
+			<td>{{medida}}</td>
+			<td>{{cantidad}}</td>
+					
+		</tr>
+		
+	{{/condimentos}}				
+	</table>
+	
+	</div>
+</div>
+
+
+
+<div class="container">
+	<div class="jumbotron">
+		<h3 class= "text-info">Explicacion</h3>
+		<h5 class= "text-info">{{explicacion}}</h5>	
+	</div>
+</div>
+	
+
+
+
+
+<div class="row">
+	<h1>SUBRECETAS</h1>
+</div>
+
+<div class="row">
+	<div class="col-md-10">	
+		<table class="table table-striped" >
+			<td>Nombre</td>
+			<td>Calorias</td>
+			<td>Dificultad</td>
+			<td>Temporada</td>
+			
+		</hr>
+	{{#subrecetas}}
+		<tr>
+			<td>{{nombre}}</td>
+			<td>{{calorias}}</td>
+			<td>{{dificultad}}</td>
+			<td>{{temporada}}</td>
+			
+		</tr>
+		
+	{{/subrecetas}}				
+	</table>
+	
+	</div>
+</div>
+
+
+<div class="row">
+	<h2 class = bg-danger>Inadecuados para esta receta</h2>
+</div>
+
+<div class="row">
+	<div class="col-md-10">	
+		<table class="table table-striped" >
+			<td>Condicion</td>
+			
+		</hr>
+	{{#inadecuados}}
+		<tr>
+			<td>{{nombre}}</td>
+			
+		</tr>
+		
+	{{/inadecuados}}				
+	</table>
+	
+	</div>
+</div>
+
+<div class="row">
+<a class="btn btn-info" href="/recetas">VOLVER</a>
+</div>
+
+{{/receta}}
+
+{{/partial}}
+				
+{{> layout.hbs }}
