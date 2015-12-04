@@ -3,6 +3,7 @@ package main;
 import static spark.Spark.*;
 import static spark.SparkBase.port;
 import controllers.HomeController;
+import controllers.PerfilUsuarioController;
 import controllers.RecetasController;
 import spark.template.handlebars.HandlebarsTemplateEngine;
 
@@ -15,6 +16,7 @@ public class Routes {
     HandlebarsTemplateEngine engine = new HandlebarsTemplateEngine();
     HomeController home = new HomeController();
     RecetasController recetas = new RecetasController();
+    PerfilUsuarioController perfilUsuario = new PerfilUsuarioController(); 
 
     port(8080);
 
@@ -31,8 +33,8 @@ public class Routes {
     get("/recetas/receta/:id",recetas::mostrarDetalle,engine);
     post("/recetas/receta",recetas::modificarReceta);
     post("/recetas/receta/",recetas::modificarReceta);
-    
-
+    get("/perfil",perfilUsuario::mostrar,engine);
+    post("/perfil",perfilUsuario::modificarPerfil);
   }
 
 }

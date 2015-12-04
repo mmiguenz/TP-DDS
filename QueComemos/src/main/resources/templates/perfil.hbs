@@ -1,0 +1,160 @@
+{{# partial "titulo" }}	
+	<title>Recetas - QueComemos</title>
+{{/partial}}
+		
+{{# partial "contenido" }}	
+
+<div class="jumbotron">
+	<h1 class="text-info"> Perfil </h1>
+</div>
+
+{{#usuario}}
+
+<div class="container" >
+<form action="/perfil" method="POST">
+  <div class="row"  hidden = "hidden">
+	  	  <input type="text" class="form-control"  name="usuarioID" value="{{id}}">
+		</div>
+	
+  
+  <div class="row">
+	  	  <label>Nombre:</label>
+		  <input type="text" class="form-control" name="nombre" placeholder="Nombre" value="{{nombre}}">
+		</div>
+		
+	<div class="row">
+	  	  <label>Sexo:</label>
+			<select class="form-control" name="sexo">
+		    <option>Masculino</option>
+		    <option>Femenino</option>
+		    <option selected>{{sexo}}</option>
+	   </select>
+   </div>
+   
+     <div class="row">
+	  	  <label>Fecha Nacimiento:</label>
+		  <input type="text" class="form-control" name="fechaNacimiento" placeholder="aaaa-mm-dd" value="{{fechaNacimiento}}">
+		</div>
+   
+	     <div class="row">
+	  	  <label>Peso:</label>
+		  <input type="text" class="form-control" name="peso" placeholder="peso" value="{{peso}}">
+		</div>
+	   			
+	  <div class="row">
+	  	  <label>Estatura:</label>
+		  <input type="text" class="form-control" name="estatura" placeholder="estatura" value="{{estatura}}">
+	  </div>
+	  
+	<div class="row">
+	  	  <label>Rutina:</label>
+			<select class="form-control" name="rutina">
+		    <option>Leve</option>
+		    <option>Moderada</option>
+		    <option>Intensa</option>
+		    <option selected>{{rutina}}</option>
+	   </select>
+   </div>
+   
+     <div class="row">
+     {{#imc}}
+	  	  <label>IMC:</label>
+		  <input type="text" class="form-control" name="imc" value="{{imc}}" readonly>
+	{{/imc}}
+	  </div>
+	  <div class="row">
+	  <input type="submit" class="form-control  btn btn-info" value="Enviar Cambios">
+	  </div>
+{{#preferencia}}
+   
+   <div class="container">
+	<div class="jumbotron">
+		<h3 class= "text-info">Comidas que gusta</h3>
+		<h5 class= "text-info">{{comidasQueGusta}}</h5>	
+	</div>
+</div>
+
+<div class="container">
+	<div class="jumbotron">
+		<h3 class= "text-info">Comidas que disgusta</h3>
+		<h5 class= "text-info">{{comidasQueDisgusta}}</h5>	
+	</div>
+</div>
+   
+{{/preferencia}}
+  </div>
+  
+  
+
+<div class="row">
+	<h1>Recetas Propias</h1>
+</div>
+
+<div class="row">
+	<div class="col-md-12">	
+		<table class="table table-striped" >
+			<td>Nombre</td>
+			<td>Calorias</td>
+			<td>Dificultad</td>
+			<td>Temporada</td>
+			
+		</hr>
+	{{#misRecetas}}
+		<tr>
+			<td>{{nombre}}</td>
+			<td>{{calorias}}</td>
+			<td>{{dificultad}}</td>
+			<td>{{temporada}}</td>
+			
+		</tr>
+		
+	{{/misRecetas}}				
+	</table>
+	
+	</div>
+	
+	
+<div class="row">
+	<h1>Recetas Favoritas</h1>
+</div>
+
+<div class="row">
+	<div class="col-md-12">	
+		<table class="table table-striped" >
+			<td>Nombre</td>
+			<td>Calorias</td>
+			<td>Dificultad</td>
+			<td>Temporada</td>
+			
+		</hr>
+	{{#favoritas}}
+		<tr>
+			<td>{{nombre}}</td>
+			<td>{{calorias}}</td>
+			<td>{{dificultad}}</td>
+			<td>{{temporada}}</td>
+			
+		</tr>
+		
+	{{/favoritas}}				
+	</table>
+	
+	</div>
+	
+	
+</div>
+  	
+ </form>	
+
+{{/usuario}}
+
+
+<div class="row">
+<a class="btn btn-info" href="/">VOLVER</a>
+</div>
+
+
+
+{{/partial}}
+				
+{{> layout.hbs }}
